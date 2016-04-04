@@ -15,13 +15,43 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>4.69</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Impact.ttf</string>
+		<string>EtelkaNarrowTextPro.otf</string>
+		<string>Absender.ttf</string>
+		<string>StencilStd.otf</string>
+		<string>AvenirCondensedHand.ttf</string>
+		<string>LeagueGothic-Regular.otf</string>
+		<string>Righteous-Regular.ttf</string>
+		<string>LeagueGothic-Italic.otf</string>
+		<string>Skipping_Stones.ttf</string>
+		<string>TrashHand.ttf</string>
+		<string>JennaSue.ttf</string>
+		<string>angelina.ttf</string>
+		<string>Darkwoman.otf</string>
+		<string>HoneyScript-Light.ttf</string>
+		<string>daniel.ttf</string>
+		<string>PoplarStd.otf</string>
+		<string>LithosPro-Black.otf</string>
+		<string>Subway-Black.ttf</string>
+		<string>Karate.ttf</string>
+		<string>MarketingScript.ttf</string>
+		<string>Prisma.ttf</string>
+		<string>LouisaCP.otf</string>
+		<string>RollingNoOne-ExtraBold.ttf</string>
+		<string>Arabella.ttf</string>
+		<string>Bolina.otf</string>
+		<string>Artbrush.ttf</string>
+		<string>TobagoPoster.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -33,15 +63,40 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>Image</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.gif</string>
+		</dict>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>Image</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.png</string>
+		</dict>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>Image</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.jpg</string>
+		</dict>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>Image</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.jpeg</string>
+		</dict>
 	</array>
 </dict>
 </plist>
