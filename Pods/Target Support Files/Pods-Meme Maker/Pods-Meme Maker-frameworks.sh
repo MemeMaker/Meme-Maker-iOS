@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Meme Maker/IQKeyboardManagerSwift.framework"
+  install_framework "Pods-Meme Maker/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Meme Maker/IQKeyboardManagerSwift.framework"
+  install_framework "Pods-Meme Maker/SDWebImage.framework"
 fi

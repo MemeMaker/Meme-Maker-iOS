@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +29,6 @@
         <!--Memes-->
         <scene sceneID="wy1-5J-nYF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9SR-vL-fZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MemesVC" title="Memes" id="C0s-Ur-iqW" customClass="MemesViewController" customModule="Meme_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YXt-FD-Xrb"/>
@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zAC-Wk-SlI">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="42" width="600" height="558"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XbX-bT-6wX">
                                     <size key="itemSize" width="100" height="100"/>
@@ -48,16 +48,92 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="m9p-gR-2Gx">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="m9p-gR-2Gx" customClass="MemesCollectionViewCell" customModule="Meme_Maker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dwp-kM-Xjp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                </imageView>
+                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTo-ep-1Pt">
+                                                    <rect key="frame" x="0.0" y="80" width="100" height="20"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="70V-4c-QHx">
+                                                            <rect key="frame" x="4" y="0.0" width="92" height="20"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="12"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="0y2-4G-Fzf"/>
+                                                        <constraint firstItem="70V-4c-QHx" firstAttribute="leading" secondItem="dTo-ep-1Pt" secondAttribute="leading" constant="4" id="3Iw-Kj-bc6"/>
+                                                        <constraint firstAttribute="trailing" secondItem="70V-4c-QHx" secondAttribute="trailing" constant="4" id="SPN-Dr-gAX"/>
+                                                        <constraint firstItem="70V-4c-QHx" firstAttribute="top" secondItem="dTo-ep-1Pt" secondAttribute="top" id="nGT-GX-gJL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="70V-4c-QHx" secondAttribute="bottom" id="rw2-Rl-OWb"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Dwp-kM-Xjp" secondAttribute="trailing" constant="-8" id="45b-7L-y2a"/>
+                                            <constraint firstItem="Dwp-kM-Xjp" firstAttribute="leading" secondItem="m9p-gR-2Gx" secondAttribute="leadingMargin" constant="-8" id="7de-nb-MYg"/>
+                                            <constraint firstItem="dTo-ep-1Pt" firstAttribute="leading" secondItem="m9p-gR-2Gx" secondAttribute="leadingMargin" constant="-8" id="R0U-7A-Pi5"/>
+                                            <constraint firstItem="Dwp-kM-Xjp" firstAttribute="top" secondItem="m9p-gR-2Gx" secondAttribute="topMargin" constant="-8" id="apr-it-Lf3"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="dTo-ep-1Pt" secondAttribute="bottom" constant="-8" id="g32-cK-64w"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="Dwp-kM-Xjp" secondAttribute="bottom" constant="-8" id="o5z-Oh-OlX"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="dTo-ep-1Pt" secondAttribute="trailing" constant="-8" id="x86-wE-YTx"/>
+                                        </constraints>
                                         <connections>
-                                            <segue destination="7z0-ic-X6o" kind="presentation" id="xd9-Y4-6J8"/>
+                                            <outlet property="memeImageView" destination="Dwp-kM-Xjp" id="Cu9-Fm-ERQ"/>
+                                            <outlet property="memeNameLabel" destination="70V-4c-QHx" id="mNE-tv-bQ4"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="ZeR-lp-6G5" customClass="MemesCollectionViewCell" customModule="Meme_Maker" customModuleProvider="target">
+                                        <rect key="frame" x="110" y="84" width="475" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="475" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Ug-la-jMI">
+                                                    <rect key="frame" x="8" y="0.0" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="5Ug-la-jMI" secondAttribute="height" multiplier="1:1" id="IaZ-Ul-VLc"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj7-g4-BGf">
+                                                    <rect key="frame" x="76" y="19.5" width="383" height="21"/>
+                                                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="bj7-g4-BGf" firstAttribute="leading" secondItem="5Ug-la-jMI" secondAttribute="trailing" constant="8" id="9oX-o5-3HV"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="5Ug-la-jMI" secondAttribute="bottom" constant="-8" id="Gmj-uD-rql"/>
+                                            <constraint firstItem="5Ug-la-jMI" firstAttribute="top" secondItem="ZeR-lp-6G5" secondAttribute="topMargin" constant="-8" id="RE0-cg-wga"/>
+                                            <constraint firstItem="bj7-g4-BGf" firstAttribute="centerY" secondItem="5Ug-la-jMI" secondAttribute="centerY" id="TgX-nT-ffM"/>
+                                            <constraint firstAttribute="leadingMargin" secondItem="5Ug-la-jMI" secondAttribute="leading" id="nRy-bf-X1I"/>
+                                            <constraint firstItem="bj7-g4-BGf" firstAttribute="top" secondItem="5Ug-la-jMI" secondAttribute="top" constant="8" id="nwL-c8-zA0"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="bj7-g4-BGf" secondAttribute="trailing" constant="8" id="tHT-VC-t8x"/>
+                                        </constraints>
+                                        <size key="customSize" width="475" height="60"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="nwL-c8-zA0"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="memeImageView" destination="5Ug-la-jMI" id="GQ4-tP-k2W"/>
+                                            <outlet property="memeNameLabel" destination="bj7-g4-BGf" id="WNw-B2-XtO"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -66,20 +142,46 @@
                                     <outlet property="delegate" destination="C0s-Ur-iqW" id="gCx-8Y-APu"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nma-Df-qIL">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gKD-Cr-71u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zAC-Wk-SlI" firstAttribute="top" secondItem="YXt-FD-Xrb" secondAttribute="bottom" constant="-64" id="71Q-Xo-Mes"/>
+                            <constraint firstItem="zAC-Wk-SlI" firstAttribute="top" secondItem="YXt-FD-Xrb" secondAttribute="bottom" constant="-22" id="71Q-Xo-Mes"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nma-Df-qIL" secondAttribute="trailing" constant="-20" id="AIg-Mh-ArF"/>
+                            <constraint firstItem="nma-Df-qIL" firstAttribute="leading" secondItem="0o3-RI-9Fw" secondAttribute="leadingMargin" constant="-20" id="YrM-p6-2QU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zAC-Wk-SlI" secondAttribute="trailing" constant="-20" id="bF9-Sw-em3"/>
+                            <constraint firstItem="zAC-Wk-SlI" firstAttribute="top" secondItem="nma-Df-qIL" secondAttribute="bottom" id="frL-fs-cCb"/>
                             <constraint firstItem="zAC-Wk-SlI" firstAttribute="leading" secondItem="0o3-RI-9Fw" secondAttribute="leadingMargin" constant="-20" id="hBo-v8-2vV"/>
                             <constraint firstItem="zP0-K0-fDO" firstAttribute="top" secondItem="zAC-Wk-SlI" secondAttribute="bottom" constant="-49" id="l2x-gs-gmg"/>
+                            <constraint firstItem="nma-Df-qIL" firstAttribute="top" secondItem="YXt-FD-Xrb" secondAttribute="bottom" id="umC-y9-9jM"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="frL-fs-cCb"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Memes" id="2Ag-1U-4uA"/>
+                    <navigationItem key="navigationItem" title="Memes" id="2Ag-1U-4uA">
+                        <barButtonItem key="leftBarButtonItem" image="collectionViewIcon" id="vhw-WI-rh3">
+                            <connections>
+                                <action selector="toggleListGridAction:" destination="C0s-Ur-iqW" id="616-XA-fxj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="zAC-Wk-SlI" id="RD0-tu-Z7z"/>
+                        <outlet property="collectionViewTopConstraint" destination="71Q-Xo-Mes" id="Zm7-mp-RGy"/>
+                        <outlet property="listViewToggleBarButton" destination="vhw-WI-rh3" id="bDJ-ya-vSJ"/>
+                        <outlet property="searchBarPlaceholderView" destination="nma-Df-qIL" id="Wae-Mo-5jc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9SR-vL-fZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1915" y="-565"/>
         </scene>
@@ -425,7 +527,7 @@ Share with friends and the internet.</string>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Thanking the following Awesome People for providing freeware fonts" id="xBk-gw-vB6">
-                                <mutableString key="footerTitle">Jenna Sue for "Jenna Sue" (jennasuedesign.com)
+                                <string key="footerTitle">Jenna Sue for "Jenna Sue" (jennasuedesign.com)
 				
 Tudor Banciu for "Darkwoman" (spontaneousartattack.wordpress.com/author/tudy1311/)
 			
@@ -444,7 +546,7 @@ Morris Fuller Benton for "League Gothic"
 Claude Pelletier for "Bolina" and "Louisa CP" (claudeserieux@gmail.com)
 
 Gary D. Jessey for "Art Brush"
-			</mutableString>
+			</string>
                                 <cells/>
                             </tableViewSection>
                         </sections>

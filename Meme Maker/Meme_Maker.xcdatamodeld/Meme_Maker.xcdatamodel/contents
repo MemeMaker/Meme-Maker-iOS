@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="XCreated" representedClassName=".XCreated" syncable="YES">
+        <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateCreated" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memeID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="meme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMeme" inverseName="created" inverseEntity="XMeme" syncable="YES"/>
+    </entity>
+    <entity name="XMeme" representedClassName=".XMeme" syncable="YES">
+        <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="detail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memeID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="created" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="XCreated" inverseName="meme" inverseEntity="XCreated" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="XMeme" positionX="1233" positionY="792" width="135" height="193"/>
+        <element name="XCreated" positionX="1456" positionY="819" width="128" height="118"/>
+    </elements>
 </model>
