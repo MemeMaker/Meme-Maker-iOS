@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SVProgressHUD
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
@@ -18,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
+		
+		SVProgressHUD.setDefaultMaskType(.Gradient)
+		SVProgressHUD.setDefaultStyle(.Dark)
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
@@ -32,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		
 		IQKeyboardManager.sharedManager().enable = true
+		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
+		IQKeyboardManager.sharedManager().shouldToolbarUsesTextFieldTintColor = true
 		
 		return true
 	}

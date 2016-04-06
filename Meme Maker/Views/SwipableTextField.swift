@@ -14,7 +14,7 @@ protocol SwipableTextFieldDelegate {
 	func textFieldDidSwipeRight(textField: SwipableTextField) -> Void
 }
 
-@IBDesignable public class SwipableTextField: KaedeTextField {
+public class SwipableTextField: KaedeTextField {
 	
 	var swipeDelegate: SwipableTextFieldDelegate?
 	

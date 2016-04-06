@@ -90,6 +90,13 @@ func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
 	return newImage
 }
 
+func modalAlertControllerFor(title: String, message: String) -> UIAlertController {
+	let alertC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+	let cancelA = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+	alertC.addAction(cancelA)
+	return alertC
+}
+
 extension UIColor {
 	var components:(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
 		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0

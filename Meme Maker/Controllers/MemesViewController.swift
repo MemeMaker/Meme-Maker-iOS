@@ -25,6 +25,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var searchPlaceholderTopConstraint: NSLayoutConstraint!
 	@IBOutlet weak var collectionViewToSearchViewConstraint: NSLayoutConstraint!
 	
+	@IBOutlet weak var searchBarButton: UIBarButtonItem!
+	@IBOutlet weak var lastEditBarButton: UIBarButtonItem!
 	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
 	
@@ -56,6 +58,13 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}
 		catch _ {
 			print("Error in fetching.")
+		}
+		
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.navigationItem.rightBarButtonItems = [self.searchBarButton, self.photoGalleryButton]
+			if let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
+				self.memeSelectionDelegate?.didPickImage(image)
+			}
 		}
 		
 //		self.fetchedMemes = NSMutableArray()
@@ -111,6 +120,18 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	// MARK: - Bar Button Actions
 
+	@IBAction func lastEditAction(sender: AnyObject) {
+		if (NSFileManager.defaultManager().fileExistsAtPath(imagesPathForFileName("lastImage"))) {
+			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			editorVC.editorMode = .UserImage
+			self.presentViewController(editorVC, animated: true, completion: nil)
+		}
+		else {
+			let alertC = modalAlertControllerFor("No last edit", message: "Go on, pick a meme from the list below, or choose your own.")
+			self.presentViewController(alertC, animated: true, completion: nil)
+		}
+	}
+	
 	@IBAction func searchAction(sender: AnyObject) {
 		
 		let searchBarButton = sender as! UIBarButtonItem
@@ -179,11 +200,22 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	// MARK: - Collection view delegate
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		
 		let meme = memes?.objectAtIndex(indexPath.row) as! XMeme
+		
+		let image = UIImage(contentsOfFile: imagesPathForFileName("\(meme.memeID)"))
+		let data = UIImageJPEGRepresentation(image!, 0.8)
+		do {
+			try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+		}
+		catch _ {}
+		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			self.memeSelectionDelegate?.didSelectMeme(meme)
 		}
 		else {
+			// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
+			XTextAttributes.clearTopAndBottomTexts()
 			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
 			editorVC.meme = meme
 			editorVC.editorMode = .Meme
@@ -279,9 +311,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 				self.presentViewController(picker, animated: true, completion: nil)
 			}
 			else {
-				let alertC = UIAlertController(title: "Error", message: "Camera not found!", preferredStyle: .Alert)
-				let cancelA = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
-				alertC.addAction(cancelA)
+				let alertC = modalAlertControllerFor("Error", message: "Camera not found")
 				self.presentViewController(alertC, animated: true, completion: nil)
 			}
 		}
@@ -298,7 +328,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		else {
 			self.presentViewController(alertController, animated: true, completion: nil)
 		}
-
 		
 	}
 	
@@ -306,9 +335,13 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 		
-		let ratio = 1024/image.size.height
+		let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+		
+		let ratio1 = 1024/image.size.height
+		let ratio2 = 1024/image.size.width
+		let ratio = min(ratio1, ratio2)
 		
 		let newImage = getImageByResizingImage(image, ratio: ratio)
 		
@@ -318,13 +351,17 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}
 		catch _ {}
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			self.memeSelectionDelegate?.didPickImage(newImage)
-		}
-		else {
-			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-			editorVC.editorMode = .UserImage
-			self.presentViewController(editorVC, animated: true, completion: nil)
+		self.dismissViewControllerAnimated(true) { 
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				self.memeSelectionDelegate?.didPickImage(newImage)
+			}
+			else {
+				// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
+				XTextAttributes.clearTopAndBottomTexts()
+				let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+				editorVC.editorMode = .UserImage
+				self.presentViewController(editorVC, animated: true, completion: nil)
+			}
 		}
 		
 	}

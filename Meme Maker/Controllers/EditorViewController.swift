@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import SDWebImage
 import TextFieldEffects
 
@@ -30,6 +31,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	@IBOutlet weak var memeImageView: UIImageView!
 	
+	var swipeUpGesture: UISwipeGestureRecognizer?
+	var swipeDownGesture: UISwipeGestureRecognizer?
 	var pinchGestureRecognizer: UIPinchGestureRecognizer?
 	
 	var baseImage: UIImage?
@@ -50,6 +53,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		pinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(EditorViewController.handlePinch(_:)))
 		self.view.addGestureRecognizer(pinchGestureRecognizer!)
+		
+		
 		
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
@@ -92,7 +97,13 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			
 			self.memeNameLabel.text = self.meme!.name
 			
-			let filePath = imagesPathForFileName("\(self.meme!.memeID)")
+			var filePath = ""
+			if (editorMode == .Meme) {
+				filePath = imagesPathForFileName("\(self.meme!.memeID)")
+			}
+			else {
+				filePath = "\(self.meme!.image!)"
+			}
 			
 			if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
 				baseImage = UIImage(contentsOfFile: filePath)
@@ -161,6 +172,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	// MARK: - Gesture handlers
 	
+	@IBAction func fontAction(sender: AnyObject) -> Void {
+		
+	}
+	
 	func handlePinch(recognizer: UIPinchGestureRecognizer) -> Void {
 		let fontScale = 0.3 * recognizer.velocity
 		let point = recognizer.locationInView(self.memeImageView)
@@ -194,7 +209,9 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	func didPickImage(image: UIImage) {
 		self.editorMode = .UserImage
-		self.meme = XMeme()
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let context = appDelegate.managedObjectContext
+		self.meme = XMeme(entity: NSEntityDescription.entityForName("XMeme", inManagedObjectContext: context)!, insertIntoManagedObjectContext: nil)
 		self.meme?.name = "Custom Image"
 		self.meme?.imageURL = NSURL(fileURLWithPath: imagesPathForFileName("lastImage"))
 		self.meme?.image = imagesPathForFileName("lastImage")

@@ -188,19 +188,28 @@
                     </view>
                     <navigationItem key="navigationItem" title="Memes" id="2Ag-1U-4uA">
                         <barButtonItem key="leftBarButtonItem" image="collectionViewIcon" id="vhw-WI-rh3">
+                            <inset key="imageInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
                             <connections>
                                 <action selector="toggleListGridAction:" destination="C0s-Ur-iqW" id="616-XA-fxj"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="MagnifyingGlass" id="Coz-Sg-ByD">
+                                <inset key="imageInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <connections>
                                     <action selector="searchAction:" destination="C0s-Ur-iqW" id="xv7-Bu-eTC"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="PhotoGallery" id="2kE-Yj-G3d">
+                                <inset key="imageInsets" minX="8" minY="0.0" maxX="-8" maxY="0.0"/>
                                 <connections>
                                     <action selector="photoGalleryAction:" destination="C0s-Ur-iqW" id="IuD-3z-O9G"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="reply" id="aEK-o5-lIs">
+                                <inset key="imageInsets" minX="24" minY="0.0" maxX="-24" maxY="0.0"/>
+                                <connections>
+                                    <action selector="lastEditAction:" destination="C0s-Ur-iqW" id="FSM-fD-v41"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -208,9 +217,11 @@
                     <connections>
                         <outlet property="collectionView" destination="zAC-Wk-SlI" id="RD0-tu-Z7z"/>
                         <outlet property="collectionViewToSearchViewConstraint" destination="spI-rw-3K5" id="5Vs-vd-Qtz"/>
+                        <outlet property="lastEditBarButton" destination="aEK-o5-lIs" id="XeX-VQ-uO1"/>
                         <outlet property="listViewToggleBarButton" destination="vhw-WI-rh3" id="bDJ-ya-vSJ"/>
                         <outlet property="photoGalleryButton" destination="2kE-Yj-G3d" id="RgI-BF-TCK"/>
                         <outlet property="searchBar" destination="HOc-Zx-qw9" id="KV1-5I-vOP"/>
+                        <outlet property="searchBarButton" destination="Coz-Sg-ByD" id="Pxd-co-6PW"/>
                         <outlet property="searchPlaceholderTopConstraint" destination="umC-y9-9jM" id="Ns5-vi-510"/>
                     </connections>
                 </viewController>
@@ -236,7 +247,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSU-80-8YW">
                                         <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a Meme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ya-iz-3Rw">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Meme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ya-iz-3Rw">
                                                 <rect key="frame" x="251" y="13" width="98" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="18"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -752,6 +763,55 @@ Gary D. Jessey for "Art Brush"
             </objects>
             <point key="canvasLocation" x="1220" y="857"/>
         </scene>
+        <!--Fonts-->
+        <scene sceneID="wdA-mq-Jnd">
+            <objects>
+                <tableViewController storyboardIdentifier="FontVC" title="Fonts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bmB-oy-Ap8" customClass="FontTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="wyO-ge-kAF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <color key="sectionIndexColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fontCell" textLabel="oxn-fP-gHy" imageView="kOp-Yi-gIl" rowHeight="70" style="IBUITableViewCellStyleDefault" id="kqL-nM-S9P">
+                                <rect key="frame" x="0.0" y="22" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kqL-nM-S9P" id="xnb-TZ-Slg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Default" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oxn-fP-gHy">
+                                            <rect key="frame" x="58" y="0.0" width="302" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="success.png" id="kOp-Yi-gIl">
+                                            <rect key="frame" x="15" y="20" width="28" height="28"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bmB-oy-Ap8" id="axJ-O3-inf"/>
+                            <outlet property="delegate" destination="bmB-oy-Ap8" id="nDT-Xf-PPV"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="320"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yeP-Ql-3gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3294" y="-565"/>
+        </scene>
     </scenes>
     <resources>
         <image name="MagnifyingGlass" width="20" height="20"/>
@@ -759,6 +819,7 @@ Gary D. Jessey for "Art Brush"
         <image name="Settings" width="26" height="26"/>
         <image name="collectionViewIcon" width="20" height="20"/>
         <image name="crossButton" width="24" height="24"/>
+        <image name="success.png" width="28" height="28"/>
         <image name="tableViewIcon" width="20" height="20"/>
     </resources>
 </document>

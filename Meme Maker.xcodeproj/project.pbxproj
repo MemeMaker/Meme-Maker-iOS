@@ -55,6 +55,8 @@
 		597D74901CB43866002C784B /* TrashHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74751CB43866002C784B /* TrashHand.ttf */; };
 		59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */; };
 		59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */; };
+		59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */; };
+		59EFF4D01CB57C6700EE3D27 /* fonts.json in Resources */ = {isa = PBXBuildFile; fileRef = 59EFF4CF1CB57C6700EE3D27 /* fonts.json */; };
 		8BCF1B811523F871ECACFD0D /* Pods_Meme_Maker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,8 @@
 		597D74751CB43866002C784B /* TrashHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.ttf; path = "Supporting Files/Fonts/TrashHand.ttf"; sourceTree = "<group>"; };
 		59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XTextAttributes.swift; path = Model/XTextAttributes.swift; sourceTree = "<group>"; };
 		59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipableTextField.swift; path = Views/SwipableTextField.swift; sourceTree = "<group>"; };
+		59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontTableViewController.swift; path = Controllers/FontTableViewController.swift; sourceTree = "<group>"; };
+		59EFF4CF1CB57C6700EE3D27 /* fonts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fonts.json; path = "Supporting Files/Fonts/fonts.json"; sourceTree = "<group>"; };
 		B2012CFA4C567A3C4E9C3225 /* Pods-Meme Maker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.debug.xcconfig"; sourceTree = "<group>"; };
 		D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meme_Maker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E731F34C267B577755D7DDA1 /* Pods-Meme Maker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.release.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				593B82741CB22B380073DC17 /* MyMemesViewController.swift */,
 				593B82701CB22B210073DC17 /* SettingsTableViewController.swift */,
 				593B82761CB22CC80073DC17 /* EditorViewController.swift */,
+				59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 		593B82671CB222F30073DC17 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				59EFF4CF1CB57C6700EE3D27 /* fonts.json */,
 				597D745B1CB43866002C784B /* Absender.ttf */,
 				597D745C1CB43866002C784B /* angelina.ttf */,
 				597D745D1CB43866002C784B /* Arabella.ttf */,
@@ -493,6 +499,7 @@
 			files = (
 				597D74901CB43866002C784B /* TrashHand.ttf in Resources */,
 				597D74781CB43866002C784B /* Arabella.ttf in Resources */,
+				59EFF4D01CB57C6700EE3D27 /* fonts.json in Resources */,
 				597D748D1CB43866002C784B /* StencilStd.otf in Resources */,
 				597D747D1CB43866002C784B /* Darkwoman.otf in Resources */,
 				597D74761CB43866002C784B /* Absender.ttf in Resources */,
@@ -602,6 +609,7 @@
 				593B82691CB22AB90073DC17 /* MemesViewController.swift in Sources */,
 				593B82391CB222560073DC17 /* Meme_Maker.xcdatamodeld in Sources */,
 				593B827C1CB24E000073DC17 /* XCreated+CoreDataProperties.swift in Sources */,
+				59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */,
 				59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */,
 				593B82731CB22B2E0073DC17 /* BrowseViewController.swift in Sources */,
 				593B827D1CB24E000073DC17 /* XCreated.swift in Sources */,

@@ -186,4 +186,14 @@ class XTextAttributes: NSObject {
 		
 	}
 	
+	class func clearTopAndBottomTexts() -> Void {
+		// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
+		let topTextAttr = XTextAttributes(savename: "topAttr")
+		topTextAttr.text = ""
+		topTextAttr.saveAttributes("topAttr")
+		let bottomTextAttr = XTextAttributes(savename: "bottomAttr")
+		bottomTextAttr.text = ""
+		bottomTextAttr.saveAttributes("bottomAttr")
+	}
+	
 }
