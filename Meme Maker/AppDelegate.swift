@@ -22,9 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			let splitVC: UISplitViewController = UISplitViewController.init()
-			let tabBarVC = self.window?.rootViewController
-			let editorVC = storyboard.instantiateViewControllerWithIdentifier("EditorVC")
-			splitVC.viewControllers = [tabBarVC!, editorVC]
+			let tabBarVC = self.window?.rootViewController as! UITabBarController
+			let memesVCNav = tabBarVC.viewControllers?.first as! UINavigationController
+			let memesVC = memesVCNav.viewControllers.first as! MemesViewController
+			let editorVC = storyboard.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			memesVC.memeSelectionDelegate = editorVC
+			splitVC.viewControllers = [tabBarVC, editorVC]
 			self.window?.rootViewController = splitVC
 		}
 		

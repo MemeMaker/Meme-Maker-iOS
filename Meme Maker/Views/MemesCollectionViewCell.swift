@@ -32,14 +32,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	override func drawRect(rect: CGRect) {
 		
 		if (isListCell) {
-			let beizerPath = UIBezierPath()
-			beizerPath.lineWidth = 0.5
-			beizerPath.lineCapStyle = .Round
-			beizerPath.moveToPoint(CGPointMake(self.bounds.height + 8, self.bounds.height - 0.5))
-			beizerPath.addLineToPoint(CGPointMake(self.bounds.width, self.bounds.height - 0.5))
-			UIColor.lightGrayColor().setStroke()
-			beizerPath.stroke()
-			
+			// Disclosure
 			let disclosurePath = UIBezierPath()
 			disclosurePath.lineWidth = 1.0;
 //			disclosurePath.lineCapStyle = .Round
@@ -49,6 +42,15 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			disclosurePath.addLineToPoint(CGPointMake(self.bounds.width - 12, self.center.y + 4))
 			UIColor.lightGrayColor().setStroke()
 			disclosurePath.stroke()
+			
+			// Separator
+			let beizerPath = UIBezierPath()
+			beizerPath.lineWidth = 0.5
+			beizerPath.lineCapStyle = .Round
+			beizerPath.moveToPoint(CGPointMake(self.bounds.height + 8, self.bounds.height - 0.5))
+			beizerPath.addLineToPoint(CGPointMake(self.bounds.width, self.bounds.height - 0.5))
+			UIColor.lightGrayColor().setStroke()
+			beizerPath.stroke()
 		}
 		
 	}
@@ -64,14 +66,15 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			}
 		}
 		else {
-			let URL = meme?.imageURL
-			self.downloadImageWithURL(URL!, filePath: filePath)
+			if let URL = meme?.imageURL {
+				self.downloadImageWithURL(URL, filePath: filePath)
+			}
 		}
 	}
 	
 	func downloadImageWithURL(URL: NSURL, filePath: String) -> Void {
 		SDWebImageDownloader.sharedDownloader().downloadImageWithURL(URL, options: .ProgressiveDownload, progress: nil, completed: { (image, data, error, success) in
-			if (success) {
+			if (success && error == nil) {
 				do {
 					try data.writeToFile(filePath, options: .AtomicWrite)
 				}

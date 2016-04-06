@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import SVProgressHUD
 import CoreData
 
-class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchControllerDelegate {
+protocol MemesViewControllerDelegate {
+	func didSelectMeme(meme: XMeme) -> Void
+}
+
+class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+	
+	var memeSelectionDelegate: MemesViewControllerDelegate?
 	
 	@IBOutlet weak var collectionView: UICollectionView!
-	@IBOutlet weak var searchBarPlaceholderView: UIView!
+	@IBOutlet weak var searchBar: UISearchBar!
 
-	@IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
+	@IBOutlet weak var searchPlaceholderTopConstraint: NSLayoutConstraint!
+	@IBOutlet weak var collectionViewToSearchViewConstraint: NSLayoutConstraint!
 	
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
 	
@@ -32,6 +40,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         // Do any additional setup after loading the view.
 		
+//		SVProgressHUD.show()
+		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
@@ -48,8 +58,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
 //		self.fetchedMemes = NSMutableArray()
 //		self.fetchMemes(1)
-		
-		self.setupSearchController()
 		
     }
 	
@@ -76,12 +84,14 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 						self.fetchedMemes?.addObjectsFromArray(memesArray as [AnyObject])
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchMemes(paging + 1)
+							SVProgressHUD.dismiss()
 						})
 					}
 					else {
 						self.memes = self.fetchedMemes
 						dispatch_async(dispatch_get_main_queue(), {
 							self.collectionView.reloadData()
+							SVProgressHUD.dismiss()
 						})
 						return
 					}
@@ -96,24 +106,29 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}.resume()
 		
 	}
-
-	func setupSearchController() -> Void {
-		self.searchController = UISearchController.init(searchResultsController: nil)
-		self.searchController?.searchBar.frame = CGRectMake(0, 0, self.collectionView.bounds.size.width, 44)
-		self.searchController?.searchResultsUpdater = self
-		self.searchController?.delegate = self
-		self.searchController?.searchBar.backgroundColor = UIColor.whiteColor()
-		let txtSearchField = self.searchController?.searchBar.valueForKey("_searchField") as! UITextField
-		txtSearchField.backgroundColor = UIColor(white: 0.85, alpha: 1)
-		self.searchController?.searchBar.barTintColor = UIColor.whiteColor()
-		self.searchController?.dimsBackgroundDuringPresentation = false
-		self.definesPresentationContext = true
-		self.searchController?.searchBar.sizeToFit()
-		self.searchBarPlaceholderView.addSubview((self.searchController?.searchBar)!)
-	}
 	
 	// MARK: - Bar Button Actions
 
+	@IBAction func searchAction(sender: AnyObject) {
+		
+		let searchBarButton = sender as! UIBarButtonItem
+		
+		if (searchPlaceholderTopConstraint.constant == -44) {
+			searchBarButton.image = UIImage(named: "crossButton")
+			UIView.animateWithDuration(0.15, animations: {
+				self.searchPlaceholderTopConstraint.constant = 0
+				self.collectionViewToSearchViewConstraint.constant = -64
+				}, completion: { (done) in
+					self.searchBar.becomeFirstResponder()
+			})
+		}
+		else {
+			searchBarButton.image = UIImage(named: "MagnifyingGlass")
+			self.searchBarCancelButtonClicked(self.searchBar)
+		}
+		
+	}
+	
 	@IBAction func toggleListGridAction(sender: AnyObject) {
 		
 		self.isListView = !self.isListView
@@ -159,9 +174,19 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		return cell;
 	}
 	
-	
-	
 	// MARK: - Collection view delegate
+	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+		let meme = memes?.objectAtIndex(indexPath.row) as! XMeme
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.memeSelectionDelegate?.didSelectMeme(meme)
+		}
+		else {
+			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			editorVC.meme = meme
+			self.presentViewController(editorVC, animated: true, completion: nil)
+		}
+	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 		if (isListView) {
@@ -178,12 +203,16 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		return 0
 	}
 	
-	// MARK: - Search results updater
+	// MARK: - Scroll view delegate
 	
-	func updateSearchResultsForSearchController(searchController: UISearchController) {
-		let searchBar = searchController.searchBar
-		let text = searchBar.text!
-		self.filterMemesWithSearchText(text)
+	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+		self.searchBar.resignFirstResponder()
+	}
+	
+	// MARK: - Search bar delegate
+	
+	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+		self.filterMemesWithSearchText(searchText)
 	}
 	
 	func filterMemesWithSearchText(text: String) -> Void {
@@ -197,15 +226,25 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.collectionView.reloadData()
 	}
 	
-	// MARK: - Search controller delagate
-	
-	func willDismissSearchController(searchController: UISearchController) {
-		self.collectionViewTopConstraint.constant = -22
+	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+		self.searchBar.text = ""
+		self.filterMemesWithSearchText("")
+		self.searchBar.resignFirstResponder()
+		UIView.animateWithDuration(0.15) {
+			self.searchPlaceholderTopConstraint.constant = -44
+			self.collectionViewToSearchViewConstraint.constant = -64
+		}
 	}
 	
-	func willPresentSearchController(searchController: UISearchController) {
-		self.collectionViewTopConstraint.constant = 22
-	}
+//	// NO: - Search controller delagate
+//	
+//	func willDismissSearchController(searchController: UISearchController) {
+//		self.collectionViewTopConstraint.constant = -22
+//	}
+//	
+//	func willPresentSearchController(searchController: UISearchController) {
+//		self.collectionViewTopConstraint.constant = 22
+//	}
 	
     /*
     // MARK: - Navigation

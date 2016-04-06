@@ -44,6 +44,17 @@ func imagesPathForFileName(name: String) -> String {
 	return directoryPath.stringByAppendingString("\(name).jpg")
 }
 
+func documentsPathForFileName(name: String) -> String {
+	let directoryPath = getDocumentsDirectory().stringByAppendingString("/resources/")
+	let manager = NSFileManager.defaultManager()
+	if (!manager.fileExistsAtPath(directoryPath)) {
+		do {
+			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+		} catch _ { }
+	}
+	return directoryPath.stringByAppendingString("\(name).dat")
+}
+
 func getCircularImage(image: UIImage) -> UIImage {
 	let minwh = min(image.size.width, image.size.height)
 	let centerRect = CGRectMake((image.size.width - minwh)/2, (image.size.height - minwh)/2, minwh, minwh)
@@ -68,4 +79,12 @@ func getSquareImage(image: UIImage) -> UIImage {
 	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
 	return newImage
+}
+
+extension UIColor {
+	var components:(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+		getRed(&r, green: &g, blue: &b, alpha: &a)
+		return (r,g,b,a)
+	}
 }

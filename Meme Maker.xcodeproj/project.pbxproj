@@ -25,7 +25,36 @@
 		593B827F1CB24E000073DC17 /* XMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B827B1CB24E000073DC17 /* XMeme.swift */; };
 		593B82881CB287030073DC17 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B82871CB287030073DC17 /* PrefixHeader.swift */; };
 		593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */; };
-		593B828D1CB2D49A0073DC17 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B828C1CB2D49A0073DC17 /* SettingsManager.swift */; };
+		597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D74591CB3A4A1002C784B /* SettingsManager.swift */; };
+		597D74761CB43866002C784B /* Absender.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745B1CB43866002C784B /* Absender.ttf */; };
+		597D74771CB43866002C784B /* angelina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745C1CB43866002C784B /* angelina.ttf */; };
+		597D74781CB43866002C784B /* Arabella.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745D1CB43866002C784B /* Arabella.ttf */; };
+		597D74791CB43866002C784B /* Artbrush.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745E1CB43866002C784B /* Artbrush.ttf */; };
+		597D747A1CB43866002C784B /* AvenirCondensedHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745F1CB43866002C784B /* AvenirCondensedHand.ttf */; };
+		597D747B1CB43866002C784B /* Bolina.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74601CB43866002C784B /* Bolina.otf */; };
+		597D747C1CB43866002C784B /* daniel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74611CB43866002C784B /* daniel.ttf */; };
+		597D747D1CB43866002C784B /* Darkwoman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74621CB43866002C784B /* Darkwoman.otf */; };
+		597D747E1CB43866002C784B /* EtelkaNarrowTextPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74631CB43866002C784B /* EtelkaNarrowTextPro.otf */; };
+		597D747F1CB43866002C784B /* HoneyScript-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74641CB43866002C784B /* HoneyScript-Light.ttf */; };
+		597D74801CB43866002C784B /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74651CB43866002C784B /* Impact.ttf */; };
+		597D74811CB43866002C784B /* JennaSue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74661CB43866002C784B /* JennaSue.ttf */; };
+		597D74821CB43866002C784B /* Karate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74671CB43866002C784B /* Karate.ttf */; };
+		597D74831CB43866002C784B /* LeagueGothic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74681CB43866002C784B /* LeagueGothic-Italic.otf */; };
+		597D74841CB43866002C784B /* LeagueGothic-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74691CB43866002C784B /* LeagueGothic-Regular.otf */; };
+		597D74851CB43866002C784B /* LithosPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746A1CB43866002C784B /* LithosPro-Black.otf */; };
+		597D74861CB43866002C784B /* LouisaCP.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746B1CB43866002C784B /* LouisaCP.otf */; };
+		597D74871CB43866002C784B /* MarketingScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746C1CB43866002C784B /* MarketingScript.ttf */; };
+		597D74881CB43866002C784B /* PoplarStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746D1CB43866002C784B /* PoplarStd.otf */; };
+		597D74891CB43866002C784B /* Prisma.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746E1CB43866002C784B /* Prisma.ttf */; };
+		597D748A1CB43866002C784B /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D746F1CB43866002C784B /* Righteous-Regular.ttf */; };
+		597D748B1CB43866002C784B /* RollingNoOne-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74701CB43866002C784B /* RollingNoOne-ExtraBold.ttf */; };
+		597D748C1CB43866002C784B /* Skipping_Stones.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74711CB43866002C784B /* Skipping_Stones.ttf */; };
+		597D748D1CB43866002C784B /* StencilStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74721CB43866002C784B /* StencilStd.otf */; };
+		597D748E1CB43866002C784B /* Subway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74731CB43866002C784B /* Subway-Black.ttf */; };
+		597D748F1CB43866002C784B /* TobagoPoster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74741CB43866002C784B /* TobagoPoster.ttf */; };
+		597D74901CB43866002C784B /* TrashHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74751CB43866002C784B /* TrashHand.ttf */; };
+		59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */; };
+		59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */; };
 		8BCF1B811523F871ECACFD0D /* Pods_Meme_Maker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +100,36 @@
 		593B827B1CB24E000073DC17 /* XMeme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMeme.swift; path = Model/XMeme.swift; sourceTree = "<group>"; };
 		593B82871CB287030073DC17 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefixHeader.swift; path = "Supporting Files/PrefixHeader.swift"; sourceTree = "<group>"; };
 		593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemesCollectionViewCell.swift; path = Views/MemesCollectionViewCell.swift; sourceTree = "<group>"; };
-		593B828C1CB2D49A0073DC17 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = "Supporting Files/SettingsManager.swift"; sourceTree = "<group>"; };
+		597D74591CB3A4A1002C784B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Model/SettingsManager.swift; sourceTree = "<group>"; };
+		597D745B1CB43866002C784B /* Absender.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Absender.ttf; path = "Supporting Files/Fonts/Absender.ttf"; sourceTree = "<group>"; };
+		597D745C1CB43866002C784B /* angelina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = angelina.ttf; path = "Supporting Files/Fonts/angelina.ttf"; sourceTree = "<group>"; };
+		597D745D1CB43866002C784B /* Arabella.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Arabella.ttf; path = "Supporting Files/Fonts/Arabella.ttf"; sourceTree = "<group>"; };
+		597D745E1CB43866002C784B /* Artbrush.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Artbrush.ttf; path = "Supporting Files/Fonts/Artbrush.ttf"; sourceTree = "<group>"; };
+		597D745F1CB43866002C784B /* AvenirCondensedHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AvenirCondensedHand.ttf; path = "Supporting Files/Fonts/AvenirCondensedHand.ttf"; sourceTree = "<group>"; };
+		597D74601CB43866002C784B /* Bolina.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Bolina.otf; path = "Supporting Files/Fonts/Bolina.otf"; sourceTree = "<group>"; };
+		597D74611CB43866002C784B /* daniel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = daniel.ttf; path = "Supporting Files/Fonts/daniel.ttf"; sourceTree = "<group>"; };
+		597D74621CB43866002C784B /* Darkwoman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Darkwoman.otf; path = "Supporting Files/Fonts/Darkwoman.otf"; sourceTree = "<group>"; };
+		597D74631CB43866002C784B /* EtelkaNarrowTextPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EtelkaNarrowTextPro.otf; path = "Supporting Files/Fonts/EtelkaNarrowTextPro.otf"; sourceTree = "<group>"; };
+		597D74641CB43866002C784B /* HoneyScript-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "HoneyScript-Light.ttf"; path = "Supporting Files/Fonts/HoneyScript-Light.ttf"; sourceTree = "<group>"; };
+		597D74651CB43866002C784B /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Impact.ttf; path = "Supporting Files/Fonts/Impact.ttf"; sourceTree = "<group>"; };
+		597D74661CB43866002C784B /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = JennaSue.ttf; path = "Supporting Files/Fonts/JennaSue.ttf"; sourceTree = "<group>"; };
+		597D74671CB43866002C784B /* Karate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Karate.ttf; path = "Supporting Files/Fonts/Karate.ttf"; sourceTree = "<group>"; };
+		597D74681CB43866002C784B /* LeagueGothic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LeagueGothic-Italic.otf"; path = "Supporting Files/Fonts/LeagueGothic-Italic.otf"; sourceTree = "<group>"; };
+		597D74691CB43866002C784B /* LeagueGothic-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LeagueGothic-Regular.otf"; path = "Supporting Files/Fonts/LeagueGothic-Regular.otf"; sourceTree = "<group>"; };
+		597D746A1CB43866002C784B /* LithosPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LithosPro-Black.otf"; path = "Supporting Files/Fonts/LithosPro-Black.otf"; sourceTree = "<group>"; };
+		597D746B1CB43866002C784B /* LouisaCP.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = LouisaCP.otf; path = "Supporting Files/Fonts/LouisaCP.otf"; sourceTree = "<group>"; };
+		597D746C1CB43866002C784B /* MarketingScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MarketingScript.ttf; path = "Supporting Files/Fonts/MarketingScript.ttf"; sourceTree = "<group>"; };
+		597D746D1CB43866002C784B /* PoplarStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = PoplarStd.otf; path = "Supporting Files/Fonts/PoplarStd.otf"; sourceTree = "<group>"; };
+		597D746E1CB43866002C784B /* Prisma.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Prisma.ttf; path = "Supporting Files/Fonts/Prisma.ttf"; sourceTree = "<group>"; };
+		597D746F1CB43866002C784B /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Righteous-Regular.ttf"; path = "Supporting Files/Fonts/Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		597D74701CB43866002C784B /* RollingNoOne-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "RollingNoOne-ExtraBold.ttf"; path = "Supporting Files/Fonts/RollingNoOne-ExtraBold.ttf"; sourceTree = "<group>"; };
+		597D74711CB43866002C784B /* Skipping_Stones.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Skipping_Stones.ttf; path = "Supporting Files/Fonts/Skipping_Stones.ttf"; sourceTree = "<group>"; };
+		597D74721CB43866002C784B /* StencilStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = StencilStd.otf; path = "Supporting Files/Fonts/StencilStd.otf"; sourceTree = "<group>"; };
+		597D74731CB43866002C784B /* Subway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Subway-Black.ttf"; path = "Supporting Files/Fonts/Subway-Black.ttf"; sourceTree = "<group>"; };
+		597D74741CB43866002C784B /* TobagoPoster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TobagoPoster.ttf; path = "Supporting Files/Fonts/TobagoPoster.ttf"; sourceTree = "<group>"; };
+		597D74751CB43866002C784B /* TrashHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.ttf; path = "Supporting Files/Fonts/TrashHand.ttf"; sourceTree = "<group>"; };
+		59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XTextAttributes.swift; path = Model/XTextAttributes.swift; sourceTree = "<group>"; };
+		59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipableTextField.swift; path = Views/SwipableTextField.swift; sourceTree = "<group>"; };
 		B2012CFA4C567A3C4E9C3225 /* Pods-Meme Maker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.debug.xcconfig"; sourceTree = "<group>"; };
 		D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meme_Maker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E731F34C267B577755D7DDA1 /* Pods-Meme Maker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,8 +238,9 @@
 		593B82621CB222BF0073DC17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				593B82891CB291060073DC17 /* Cells */,
 				593B82651CB222DF0073DC17 /* Launch */,
+				59EFF4CC1CB4DF6700EE3D27 /* Swipable Text Field */,
+				593B82891CB291060073DC17 /* Cells */,
 				593B82341CB222560073DC17 /* Main.storyboard */,
 			);
 			name = Views;
@@ -190,6 +249,8 @@
 		593B82631CB222C20073DC17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				59EFF4C71CB4BAD700EE3D27 /* TextAttributes */,
+				597D74581CB3A48E002C784B /* SettingsManager */,
 				593B82811CB24E0B0073DC17 /* Meme */,
 				593B82801CB24E060073DC17 /* Created */,
 				593B82371CB222560073DC17 /* Meme_Maker.xcdatamodeld */,
@@ -226,6 +287,33 @@
 		593B82671CB222F30073DC17 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				597D745B1CB43866002C784B /* Absender.ttf */,
+				597D745C1CB43866002C784B /* angelina.ttf */,
+				597D745D1CB43866002C784B /* Arabella.ttf */,
+				597D745E1CB43866002C784B /* Artbrush.ttf */,
+				597D745F1CB43866002C784B /* AvenirCondensedHand.ttf */,
+				597D74601CB43866002C784B /* Bolina.otf */,
+				597D74611CB43866002C784B /* daniel.ttf */,
+				597D74621CB43866002C784B /* Darkwoman.otf */,
+				597D74631CB43866002C784B /* EtelkaNarrowTextPro.otf */,
+				597D74641CB43866002C784B /* HoneyScript-Light.ttf */,
+				597D74651CB43866002C784B /* Impact.ttf */,
+				597D74661CB43866002C784B /* JennaSue.ttf */,
+				597D74671CB43866002C784B /* Karate.ttf */,
+				597D74681CB43866002C784B /* LeagueGothic-Italic.otf */,
+				597D74691CB43866002C784B /* LeagueGothic-Regular.otf */,
+				597D746A1CB43866002C784B /* LithosPro-Black.otf */,
+				597D746B1CB43866002C784B /* LouisaCP.otf */,
+				597D746C1CB43866002C784B /* MarketingScript.ttf */,
+				597D746D1CB43866002C784B /* PoplarStd.otf */,
+				597D746E1CB43866002C784B /* Prisma.ttf */,
+				597D746F1CB43866002C784B /* Righteous-Regular.ttf */,
+				597D74701CB43866002C784B /* RollingNoOne-ExtraBold.ttf */,
+				597D74711CB43866002C784B /* Skipping_Stones.ttf */,
+				597D74721CB43866002C784B /* StencilStd.otf */,
+				597D74731CB43866002C784B /* Subway-Black.ttf */,
+				597D74741CB43866002C784B /* TobagoPoster.ttf */,
+				597D74751CB43866002C784B /* TrashHand.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -252,7 +340,6 @@
 			isa = PBXGroup;
 			children = (
 				593B82871CB287030073DC17 /* PrefixHeader.swift */,
-				593B828C1CB2D49A0073DC17 /* SettingsManager.swift */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -263,6 +350,30 @@
 				593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		597D74581CB3A48E002C784B /* SettingsManager */ = {
+			isa = PBXGroup;
+			children = (
+				597D74591CB3A4A1002C784B /* SettingsManager.swift */,
+			);
+			name = SettingsManager;
+			sourceTree = "<group>";
+		};
+		59EFF4C71CB4BAD700EE3D27 /* TextAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */,
+			);
+			name = TextAttributes;
+			sourceTree = "<group>";
+		};
+		59EFF4CC1CB4DF6700EE3D27 /* Swipable Text Field */ = {
+			isa = PBXGroup;
+			children = (
+				59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */,
+			);
+			name = "Swipable Text Field";
 			sourceTree = "<group>";
 		};
 		E387C582D155737BA55B23FD /* Frameworks */ = {
@@ -380,8 +491,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				597D74901CB43866002C784B /* TrashHand.ttf in Resources */,
+				597D74781CB43866002C784B /* Arabella.ttf in Resources */,
+				597D748D1CB43866002C784B /* StencilStd.otf in Resources */,
+				597D747D1CB43866002C784B /* Darkwoman.otf in Resources */,
+				597D74761CB43866002C784B /* Absender.ttf in Resources */,
+				597D748F1CB43866002C784B /* TobagoPoster.ttf in Resources */,
+				597D747E1CB43866002C784B /* EtelkaNarrowTextPro.otf in Resources */,
 				593B823E1CB222560073DC17 /* LaunchScreen.storyboard in Resources */,
+				597D74811CB43866002C784B /* JennaSue.ttf in Resources */,
+				597D747C1CB43866002C784B /* daniel.ttf in Resources */,
+				597D74871CB43866002C784B /* MarketingScript.ttf in Resources */,
+				597D74801CB43866002C784B /* Impact.ttf in Resources */,
+				597D74851CB43866002C784B /* LithosPro-Black.otf in Resources */,
+				597D748A1CB43866002C784B /* Righteous-Regular.ttf in Resources */,
+				597D747B1CB43866002C784B /* Bolina.otf in Resources */,
 				593B823B1CB222560073DC17 /* Assets.xcassets in Resources */,
+				597D74861CB43866002C784B /* LouisaCP.otf in Resources */,
+				597D74891CB43866002C784B /* Prisma.ttf in Resources */,
+				597D748C1CB43866002C784B /* Skipping_Stones.ttf in Resources */,
+				597D748E1CB43866002C784B /* Subway-Black.ttf in Resources */,
+				597D74881CB43866002C784B /* PoplarStd.otf in Resources */,
+				597D74791CB43866002C784B /* Artbrush.ttf in Resources */,
+				597D74841CB43866002C784B /* LeagueGothic-Regular.otf in Resources */,
+				597D748B1CB43866002C784B /* RollingNoOne-ExtraBold.ttf in Resources */,
+				597D74771CB43866002C784B /* angelina.ttf in Resources */,
+				597D74831CB43866002C784B /* LeagueGothic-Italic.otf in Resources */,
+				597D747F1CB43866002C784B /* HoneyScript-Light.ttf in Resources */,
+				597D747A1CB43866002C784B /* AvenirCondensedHand.ttf in Resources */,
+				597D74821CB43866002C784B /* Karate.ttf in Resources */,
 				593B82361CB222560073DC17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,15 +595,17 @@
 			files = (
 				593B82881CB287030073DC17 /* PrefixHeader.swift in Sources */,
 				593B82711CB22B210073DC17 /* SettingsTableViewController.swift in Sources */,
+				59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */,
 				593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */,
 				593B82311CB222560073DC17 /* AppDelegate.swift in Sources */,
 				593B82751CB22B380073DC17 /* MyMemesViewController.swift in Sources */,
 				593B82691CB22AB90073DC17 /* MemesViewController.swift in Sources */,
 				593B82391CB222560073DC17 /* Meme_Maker.xcdatamodeld in Sources */,
 				593B827C1CB24E000073DC17 /* XCreated+CoreDataProperties.swift in Sources */,
+				59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */,
 				593B82731CB22B2E0073DC17 /* BrowseViewController.swift in Sources */,
 				593B827D1CB24E000073DC17 /* XCreated.swift in Sources */,
-				593B828D1CB2D49A0073DC17 /* SettingsManager.swift in Sources */,
+				597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */,
 				593B827E1CB24E000073DC17 /* XMeme+CoreDataProperties.swift in Sources */,
 				593B82771CB22CC80073DC17 /* EditorViewController.swift in Sources */,
 				593B827F1CB24E000073DC17 /* XMeme.swift in Sources */,

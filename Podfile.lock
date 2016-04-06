@@ -3,13 +3,19 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SVProgressHUD (2.0.2)
+  - TextFieldEffects (1.2.0)
 
 DEPENDENCIES:
   - IQKeyboardManagerSwift
   - SDWebImage (~> 3.7)
+  - SVProgressHUD
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: ede2a27b4e1ce053d03073b9c7fa439322f5e405
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SVProgressHUD: e4020e23badbd7cc61bc4a80d3c1da57f166a978
+  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
 COCOAPODS: 0.39.0
