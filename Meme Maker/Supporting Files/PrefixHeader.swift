@@ -81,6 +81,15 @@ func getSquareImage(image: UIImage) -> UIImage {
 	return newImage
 }
 
+func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
+	let imageRect = CGRectMake(0, 0, image.size.width * ratio, image.size.height * ratio)
+	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * ratio, image.size.height * ratio))
+	image.drawInRect(imageRect)
+	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+	UIGraphicsEndImageContext()
+	return newImage
+}
+
 extension UIColor {
 	var components:(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
 		var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0

@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="EtelkaNarrowTextPro.otf">
@@ -191,16 +192,24 @@
                                 <action selector="toggleListGridAction:" destination="C0s-Ur-iqW" id="616-XA-fxj"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="MagnifyingGlass" id="Coz-Sg-ByD">
-                            <connections>
-                                <action selector="searchAction:" destination="C0s-Ur-iqW" id="xv7-Bu-eTC"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="MagnifyingGlass" id="Coz-Sg-ByD">
+                                <connections>
+                                    <action selector="searchAction:" destination="C0s-Ur-iqW" id="xv7-Bu-eTC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="PhotoGallery" id="2kE-Yj-G3d">
+                                <connections>
+                                    <action selector="photoGalleryAction:" destination="C0s-Ur-iqW" id="IuD-3z-O9G"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="zAC-Wk-SlI" id="RD0-tu-Z7z"/>
                         <outlet property="collectionViewToSearchViewConstraint" destination="spI-rw-3K5" id="5Vs-vd-Qtz"/>
                         <outlet property="listViewToggleBarButton" destination="vhw-WI-rh3" id="bDJ-ya-vSJ"/>
+                        <outlet property="photoGalleryButton" destination="2kE-Yj-G3d" id="RgI-BF-TCK"/>
                         <outlet property="searchBar" destination="HOc-Zx-qw9" id="KV1-5I-vOP"/>
                         <outlet property="searchPlaceholderTopConstraint" destination="umC-y9-9jM" id="Ns5-vi-510"/>
                     </connections>
@@ -227,8 +236,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aSU-80-8YW">
                                         <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Meme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ya-iz-3Rw">
-                                                <rect key="frame" x="251" y="13.5" width="98" height="16.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select a Meme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ya-iz-3Rw">
+                                                <rect key="frame" x="251" y="13" width="98" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="18"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -321,7 +330,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZjE-X5-fLS">
-                                <rect key="frame" x="20" y="124" width="560" height="372"/>
+                                <rect key="frame" x="4" y="124" width="592" height="372"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -331,13 +340,17 @@
                             <constraint firstItem="IIQ-Y1-MkG" firstAttribute="leading" secondItem="fim-ag-5KT" secondAttribute="leading" id="9BR-eG-AY8"/>
                             <constraint firstItem="IIQ-Y1-MkG" firstAttribute="top" secondItem="ZjE-X5-fLS" secondAttribute="bottom" constant="8" id="F8E-X3-a02"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fim-ag-5KT" secondAttribute="trailing" id="IaL-AB-ifi"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ZjE-X5-fLS" secondAttribute="leading" id="JtV-se-7Ne"/>
+                            <constraint firstItem="ZjE-X5-fLS" firstAttribute="leading" secondItem="T5O-ZJ-PUw" secondAttribute="leadingMargin" constant="-16" id="JtV-se-7Ne">
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="CTb-S9-S09" firstAttribute="top" secondItem="wHE-Dt-w5f" secondAttribute="bottom" constant="-20" id="NtH-sS-E4F"/>
                             <constraint firstAttribute="leadingMargin" secondItem="fim-ag-5KT" secondAttribute="leading" id="PhI-Ww-zWq"/>
                             <constraint firstItem="ZjE-X5-fLS" firstAttribute="top" secondItem="fim-ag-5KT" secondAttribute="bottom" constant="8" id="UgT-fV-HNH"/>
                             <constraint firstItem="CTb-S9-S09" firstAttribute="leading" secondItem="T5O-ZJ-PUw" secondAttribute="leadingMargin" constant="-20" id="W0F-aC-69C"/>
                             <constraint firstItem="W6e-Dx-Fns" firstAttribute="leading" secondItem="T5O-ZJ-PUw" secondAttribute="leadingMargin" constant="-20" id="XhR-7H-oeh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZjE-X5-fLS" secondAttribute="trailing" id="cAN-Le-LzH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZjE-X5-fLS" secondAttribute="trailing" constant="-16" id="cAN-Le-LzH">
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="CTb-S9-S09" secondAttribute="trailing" constant="-20" id="doT-Oa-GfM"/>
                             <constraint firstItem="W6e-Dx-Fns" firstAttribute="top" secondItem="ZjE-X5-fLS" secondAttribute="bottom" constant="8" id="hqz-5x-zO2"/>
                             <constraint firstItem="IIQ-Y1-MkG" firstAttribute="trailing" secondItem="fim-ag-5KT" secondAttribute="trailing" id="hyt-ms-3HU"/>

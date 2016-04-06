@@ -10,9 +10,16 @@ import UIKit
 import SDWebImage
 import TextFieldEffects
 
+enum EditorMode {
+	case Meme
+	case UserImage
+}
+
 class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate {
 	
 	var meme: XMeme?
+	
+	var editorMode: EditorMode = .Meme
 	
 	@IBOutlet weak var memeNameLabel: UILabel!
 	
@@ -22,6 +29,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	@IBOutlet weak var bottomTextField: SwipableTextField!
 	
 	@IBOutlet weak var memeImageView: UIImageView!
+	
+	var pinchGestureRecognizer: UIPinchGestureRecognizer?
 	
 	var baseImage: UIImage?
 	
@@ -39,7 +48,18 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		self.topTextField.swipeDelegate = self
 		self.bottomTextField.swipeDelegate = self
 		
-		updateMemeViews()
+		pinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(EditorViewController.handlePinch(_:)))
+		self.view.addGestureRecognizer(pinchGestureRecognizer!)
+		
+		if (editorMode == .Meme) {
+			if (self.meme != nil) {
+				self.didSelectMeme(self.meme!)
+			}
+		}
+		else {
+			let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage"))
+			self.didPickImage(image!)
+		}
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			self.dismissButton.hidden = true
@@ -88,14 +108,17 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 	}
 	
-	// MARK: - Drawing
+	// MARK: - Cooking
 	
 	func cookImage() -> Void {
 		
 		let imageSize = memeImageView.image?.size as CGSize!
 		
-		topTextAttr.setDefault()
-		bottomTextAttr.setDefault()
+//		topTextAttr.setDefault()
+//		bottomTextAttr.setDefault()
+		
+		topTextAttr.textColor = UIColor.whiteColor()
+		bottomTextAttr.textColor = UIColor.whiteColor()
 		
 		let maxHeight = imageSize.height/2 - 10	// Max height of top and bottom texts
 		
@@ -136,10 +159,45 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 	}
 	
+	// MARK: - Gesture handlers
+	
+	func handlePinch(recognizer: UIPinchGestureRecognizer) -> Void {
+		let fontScale = 0.3 * recognizer.velocity
+		let point = recognizer.locationInView(self.memeImageView)
+		let topRect = CGRectMake(0, 0, self.memeImageView.bounds.size.width, self.memeImageView.bounds.size.height/2)
+		if (topRect.contains(point)) {
+			if (recognizer.scale > 1) {
+				topTextAttr.fontSize = min(topTextAttr.fontSize + fontScale, 150)
+			}
+			else {
+				topTextAttr.fontSize = max(topTextAttr.fontSize + fontScale, 20)
+			}
+		}
+		else {
+			if (recognizer.scale > 1) {
+				bottomTextAttr.fontSize = min(bottomTextAttr.fontSize + fontScale, 150)
+			}
+			else {
+				bottomTextAttr.fontSize = max(bottomTextAttr.fontSize + fontScale, 20)
+			}
+		}
+		cookImage()
+	}
+	
 	// MARK: - Memes view controller delegate
 	
 	func didSelectMeme(meme: XMeme) {
 		self.meme = meme
+		self.editorMode = .Meme
+		updateMemeViews()
+	}
+	
+	func didPickImage(image: UIImage) {
+		self.editorMode = .UserImage
+		self.meme = XMeme()
+		self.meme?.name = "Custom Image"
+		self.meme?.imageURL = NSURL(fileURLWithPath: imagesPathForFileName("lastImage"))
+		self.meme?.image = imagesPathForFileName("lastImage")
 		updateMemeViews()
 	}
 	

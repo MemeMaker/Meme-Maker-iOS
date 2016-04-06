@@ -12,9 +12,10 @@ import CoreData
 
 protocol MemesViewControllerDelegate {
 	func didSelectMeme(meme: XMeme) -> Void
+	func didPickImage(image: UIImage) -> Void
 }
 
-class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
 	var memeSelectionDelegate: MemesViewControllerDelegate?
 	
@@ -24,6 +25,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var searchPlaceholderTopConstraint: NSLayoutConstraint!
 	@IBOutlet weak var collectionViewToSearchViewConstraint: NSLayoutConstraint!
 	
+	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
 	
 	var isListView: Bool = true
@@ -184,6 +186,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		else {
 			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
 			editorVC.meme = meme
+			editorVC.editorMode = .Meme
 			self.presentViewController(editorVC, animated: true, completion: nil)
 		}
 	}
@@ -245,6 +248,86 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 //	func willPresentSearchController(searchController: UISearchController) {
 //		self.collectionViewTopConstraint.constant = 22
 //	}
+	
+	// MARK: - Camera or Gallery pickup
+	
+	@IBAction func photoGalleryAction(sender: AnyObject) {
+		
+		let alertController = UIAlertController(title: "Select source", message: "", preferredStyle: .ActionSheet)
+		
+		let photoGalleryAction = UIAlertAction(title: "Photo Gallery", style: .Default) { (alertAction) in
+			let picker = UIImagePickerController()
+			picker.delegate = self
+			picker.allowsEditing = false
+			picker.navigationItem.title = "Select Image"
+			picker.sourceType = .PhotoLibrary
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				let popupController = UIPopoverController(contentViewController: picker)
+				popupController.presentPopoverFromBarButtonItem(self.photoGalleryButton, permittedArrowDirections: .Any, animated: true)
+			}
+			else {
+				self.presentViewController(picker, animated: true, completion: nil)
+			}
+		}
+		let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (alertAction) in
+			if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
+				let picker = UIImagePickerController()
+				picker.delegate = self
+				picker.allowsEditing = false
+				picker.sourceType = .Camera
+				picker.cameraCaptureMode = .Photo
+				self.presentViewController(picker, animated: true, completion: nil)
+			}
+			else {
+				let alertC = UIAlertController(title: "Error", message: "Camera not found!", preferredStyle: .Alert)
+				let cancelA = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+				alertC.addAction(cancelA)
+				self.presentViewController(alertC, animated: true, completion: nil)
+			}
+		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		
+		alertController.addAction(photoGalleryAction)
+		alertController.addAction(cameraAction)
+		alertController.addAction(cancelAction)
+
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			let popupController = UIPopoverController(contentViewController: alertController)
+			popupController.presentPopoverFromBarButtonItem(self.photoGalleryButton, permittedArrowDirections: .Any, animated: true)
+		}
+		else {
+			self.presentViewController(alertController, animated: true, completion: nil)
+		}
+
+		
+	}
+	
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+		
+		let ratio = 1024/image.size.height
+		
+		let newImage = getImageByResizingImage(image, ratio: ratio)
+		
+		let data = UIImageJPEGRepresentation(newImage, 0.8)
+		do {
+			try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+		}
+		catch _ {}
+		
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.memeSelectionDelegate?.didPickImage(newImage)
+		}
+		else {
+			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			editorVC.editorMode = .UserImage
+			self.presentViewController(editorVC, animated: true, completion: nil)
+		}
+		
+	}
 	
     /*
     // MARK: - Navigation

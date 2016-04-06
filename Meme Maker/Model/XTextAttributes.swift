@@ -55,7 +55,7 @@ class XTextAttributes: NSObject {
 				
 				let dict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
 				
-				print("\(savename) = \(dict)")
+//				print("\(savename) = \(dict)")
 				
 				text = dict["text"] as! NSString
 				uppercase = dict["uppercase"] as! Bool
