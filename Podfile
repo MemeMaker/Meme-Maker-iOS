@@ -8,7 +8,9 @@ target 'Meme Maker' do
 pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage', '~>3.7'
 pod 'SVProgressHUD'
-pod "TextFieldEffects"
+pod 'TextFieldEffects’
+pod 'ChameleonFramework/Swift'
+pod 'PermissionScope'
 
 end
 

@@ -11,16 +11,13 @@ import UIKit
 let kSettingsTimesLaunched			= "TimesLaunched"
 let kSettingsContinuousEditing		= "ContinuousEditing"
 let kSettingsAutoDismiss			= "AutoDismiss"
+let kSettingsUploadMemes			= "EnableMemeUpload"
 let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
 let kSettingsDarkMode				= "DarkMode"
-let kSettingsSmallSizeLoadedOnce	= "SmallSizeLoadedOnce"
-let kSettingsRelativeFontScale		= "RelativeFontScale"
-let kSettingsTextAlignment			= "TextAlignment"
-let kSettingsFontName				= "FontName"
-let kSettingsStrokeWidth			= "StrokeWidth"
-let kSettingsOutlineColor			= "OutlineColor"
-let kSettingsTextColor				= "TextColor"
-let kSettingsLibCamPickUp			= "LibCamPickUp"
+
+func isDarkMode() -> Bool {
+	return SettingsManager.sharedManager().getBool(kSettingsDarkMode)
+}
 
 class SettingsManager: NSObject {
 
@@ -77,6 +74,22 @@ class SettingsManager: NSObject {
 		defaults.synchronize()
 	}
 	
+	func saveLastUpdateDate() -> Void {
+		let formatter = NSDateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+		let date = formatter.stringFromDate(NSDate())
+		defaults.setObject(date, forKey: "lastUpdateDate")
+	}
 	
+	func getLastUpdateDate() -> NSDate {
+		if (defaults.objectForKey("lastUpdateDate") != nil) {
+			let dateString = "\(defaults.objectForKey("lastUpdateDate") as! String)"
+			let formatter = NSDateFormatter()
+			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+			let date = formatter.dateFromString(dateString)
+			return date!
+		}
+		return NSDate(timeIntervalSinceNow: (-10 * 86400))
+	}
 	
 }

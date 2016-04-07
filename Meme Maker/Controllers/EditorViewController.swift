@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import PermissionScope
+import ChameleonFramework
+import SVProgressHUD
 import CoreData
 import SDWebImage
 import TextFieldEffects
@@ -22,13 +25,22 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	var editorMode: EditorMode = .Meme
 	
+	@IBOutlet weak var navBarBackgroundView: UIView!
 	@IBOutlet weak var memeNameLabel: UILabel!
 	
 	@IBOutlet weak var dismissButton: UIButton!
 	
+	@IBOutlet weak var settingsButton: UIButton!
+	@IBOutlet weak var topBottomEditButton: UIButton!
+	@IBOutlet weak var saveImageButton: UIButton!
+	@IBOutlet weak var shareImageButton: UIButton!
+	
 	@IBOutlet weak var topTextField: SwipableTextField!
 	@IBOutlet weak var bottomTextField: SwipableTextField!
 	
+	var isEditingTop: Bool = true
+	
+	@IBOutlet weak var backgroundImageView: UIImageView!
 	@IBOutlet weak var memeImageView: UIImageView!
 	
 	var fontTableVC: FontTableViewController!
@@ -37,6 +49,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	var swipeUpGesture: UISwipeGestureRecognizer?
 	var swipeDownGesture: UISwipeGestureRecognizer?
 	var pinchGestureRecognizer: UIPinchGestureRecognizer?
+	var doubleTapGesture: UITapGestureRecognizer?
 	
 	var baseImage: UIImage?
 	
@@ -64,6 +77,11 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(EditorViewController.dismissFontAction(_:)))
 		swipeDownGesture?.direction = .Down
 		self.view.addGestureRecognizer(swipeDownGesture!)
+		
+		doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(EditorViewController.handleDoubleTap(_:)))
+		doubleTapGesture?.numberOfTapsRequired = 2
+		doubleTapGesture?.numberOfTouchesRequired = 1
+		self.view.addGestureRecognizer(doubleTapGesture!)
 		
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
@@ -117,6 +135,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
 				baseImage = UIImage(contentsOfFile: filePath)
 				self.memeImageView.image = baseImage
+				self.backgroundImageView.image = baseImage
+				self.view.backgroundColor = UIColor(gradientStyle: .Radial, withFrame: self.view.bounds, andColors: ColorsFromImage(baseImage!, withFlatScheme: true))
 				cookImage()
 			}
 			else {
@@ -124,8 +144,15 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 					self.downloadImageWithURL(URL, filePath: filePath)
 				}
 			}
-			
 		}
+		
+//		if isDarkMode() {
+//			self.navBarBackgroundView.backgroundColor = FlatNavyBlueDark()
+//		}
+//		else {
+//			self.navBarBackgroundView.backgroundColor = FlatGreenDark()
+//		}
+		
 	}
 	
 	// MARK: - Cooking
@@ -172,9 +199,53 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 	}
 	
+	// MARK: - Button Actions
+	
+	
+	@IBAction func topBottomEditAction(sender: AnyObject) {
+		
+	}
+	
+	@IBAction func saveImageAction(sender: AnyObject) {
+	
+		switch PermissionScope().statusPhotos() {
+			case .Unauthorized, .Unknown, .Disabled:
+				let pscope = PermissionScope()
+				pscope.addPermission(PhotosPermission(), message: "Allow meme maker to access photos to save it to the gallery.")
+				pscope.show({ (finished, results) in
+					self.saveImageToPhotos()
+					}, cancelled: { (results) in
+						SVProgressHUD.showErrorWithStatus("Allow Photo Access!")
+				})
+			default:
+				saveImageToPhotos()
+		}
+		
+	}
+	
+	func saveImageToPhotos() -> Void {
+		UIImageWriteToSavedPhotosAlbum(memeImageView.image!, nil, nil, nil)
+		SVProgressHUD.showSuccessWithStatus("Saved!")
+	}
+	
+	@IBAction func shareImageAction(sender: AnyObject) {
+		let textToShare = "Check out this funny meme I made..."
+		let imageToShare = memeImageView.image
+		let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare!], applicationActivities: nil)
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			let popoverVC = UIPopoverController(contentViewController: activityVC)
+			popoverVC.presentPopoverFromRect(shareImageButton.frame, inView: self.view, permittedArrowDirections: .Any, animated: true)
+		}
+		else {
+			self.presentViewController(activityVC, animated: true, completion: nil)
+		}
+	}
+	
+	
 	// MARK: - Gesture handlers
 	
 	@IBAction func fontAction(sender: AnyObject) -> Void {
+		self.view.endEditing(true)
 		if (shouldDisplayFTVC) {
 			shouldDisplayFTVC = false
 			fontTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("FontVC") as! FontTableViewController
@@ -206,6 +277,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	func dismissFontAction(sender: AnyObject) -> Void {
+		self.view.endEditing(true)
 		if (shouldDisplayFTVC == false) {
 			UIView.animateWithDuration(0.15, animations: {
 				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
@@ -243,6 +315,14 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				bottomTextAttr.fontSize = max(bottomTextAttr.fontSize + fontScale, 20)
 			}
 		}
+		cookImage()
+	}
+	
+	func handleDoubleTap(recognizer: UITapGestureRecognizer) -> Void {
+		topTextAttr.uppercase = !topTextAttr.uppercase
+		bottomTextAttr.uppercase = !bottomTextAttr.uppercase
+		topTextAttr.saveAttributes("topAttr")
+		bottomTextAttr.saveAttributes("bottomAttr")
 		cookImage()
 	}
 	
@@ -341,6 +421,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				dispatch_async(dispatch_get_main_queue(), {
 					self.baseImage = image
 					self.memeImageView.image = image
+					self.backgroundImageView.image = image
 					self.cookImage()
 				})
 			}

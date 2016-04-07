@@ -47,8 +47,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         // Do any additional setup after loading the view.
 		
-//		SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
-		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
@@ -71,8 +69,11 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			}
 		}
 		
-//		self.fetchedMemes = NSMutableArray()
-//		self.fetchMemes(1)
+		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
+			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+			self.fetchedMemes = NSMutableArray()
+			self.fetchMemes(1)
+		}
 		
     }
 	
@@ -105,6 +106,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 					else {
 						self.memes = self.fetchedMemes
 						dispatch_async(dispatch_get_main_queue(), {
+							SettingsManager.sharedManager().saveLastUpdateDate()
 							self.collectionView.reloadData()
 							SVProgressHUD.dismiss()
 						})

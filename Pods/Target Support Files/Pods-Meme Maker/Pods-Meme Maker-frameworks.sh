@@ -84,13 +84,17 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Meme Maker/ChameleonFramework.framework"
   install_framework "Pods-Meme Maker/IQKeyboardManagerSwift.framework"
+  install_framework "Pods-Meme Maker/PermissionScope.framework"
   install_framework "Pods-Meme Maker/SDWebImage.framework"
   install_framework "Pods-Meme Maker/SVProgressHUD.framework"
   install_framework "Pods-Meme Maker/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Meme Maker/ChameleonFramework.framework"
   install_framework "Pods-Meme Maker/IQKeyboardManagerSwift.framework"
+  install_framework "Pods-Meme Maker/PermissionScope.framework"
   install_framework "Pods-Meme Maker/SDWebImage.framework"
   install_framework "Pods-Meme Maker/SVProgressHUD.framework"
   install_framework "Pods-Meme Maker/TextFieldEffects.framework"

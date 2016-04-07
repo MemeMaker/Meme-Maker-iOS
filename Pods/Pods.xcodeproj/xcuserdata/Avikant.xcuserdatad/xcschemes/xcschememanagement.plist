@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>PermissionScope.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,22 +42,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2AD9661FCF473BA68E1AA9BE79E4C090</key>
+		<key>2717813C947CD5A21CF742D29C8B8E03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A18194618B70C2B4415928F3841174D</key>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>882CF9D588F7637FAB0B04721E21E572</key>
+		<key>5C381E61A03D6B57DEF9A54342ED53AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B42DE431E697FFCE62C31898FADE22C3</key>
+		<key>76D08ECE5EDA6518B5909B55F7D5F526</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95032DDCFE13384B7E237DF5788C8665</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C55E46AC6A1E70A6AA25E306AE545375</key>
 		<dict>
 			<key>primary</key>
 			<true/>

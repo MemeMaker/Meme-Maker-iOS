@@ -150,8 +150,6 @@ class XTextAttributes: NSObject {
 	
 	func getTextAttributes() -> [String: AnyObject] {
 		
-//		let attr = NSMutableDictionary()
-		
 		var attr: [String: AnyObject] = [:]
 		
 		font = UIFont(name: font.fontName, size: fontSize)!

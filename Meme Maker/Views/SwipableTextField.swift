@@ -22,6 +22,7 @@ public class SwipableTextField: KaedeTextField {
 	private var swipeRight: UISwipeGestureRecognizer?
 	
 	override public func willMoveToSuperview(newSuperview: UIView!) {
+		self.layer.cornerRadius = 4.0
 		super.willMoveToSuperview(newSuperview)
 		swipeLeft = UISwipeGestureRecognizer.init(target: self, action: #selector(swipeLeftAction))
 		swipeLeft?.direction = .Left
