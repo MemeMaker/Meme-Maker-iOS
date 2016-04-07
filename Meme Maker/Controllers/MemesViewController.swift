@@ -17,6 +17,8 @@ protocol MemesViewControllerDelegate {
 
 class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 	
+	var editorVC: EditorViewController?
+	
 	var memeSelectionDelegate: MemesViewControllerDelegate?
 	
 	@IBOutlet weak var collectionView: UICollectionView!
@@ -34,8 +36,9 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	var searchController: UISearchController?
 	
-	var memes: NSMutableArray? = NSMutableArray()
-	var fetchedMemes: NSMutableArray? = NSMutableArray()
+	var memes = NSMutableArray()
+	var allMemes = NSMutableArray()
+	var fetchedMemes = NSMutableArray()
 	
 	var context: NSManagedObjectContext? = nil
 
@@ -44,7 +47,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 
         // Do any additional setup after loading the view.
 		
-//		SVProgressHUD.show()
+//		SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
@@ -54,7 +57,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		do {
 			let fetchedArray = try self.context?.executeFetchRequest(request)
 			memes = NSMutableArray(array: fetchedArray!)
-			fetchedMemes = NSMutableArray(array: fetchedArray!)
+			allMemes = NSMutableArray(array: fetchedArray!)
 		}
 		catch _ {
 			print("Error in fetching.")
@@ -64,6 +67,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			self.navigationItem.rightBarButtonItems = [self.searchBarButton, self.photoGalleryButton]
 			if let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
 				self.memeSelectionDelegate?.didPickImage(image)
+				self.editorVC?.memeNameLabel.text = "Last Edit"
 			}
 		}
 		
@@ -92,7 +96,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 					if (code == 200) {
 						let jsonmemes = json.valueForKey("data") as! NSArray
 						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: self.context!)!
-						self.fetchedMemes?.addObjectsFromArray(memesArray as [AnyObject])
+						self.fetchedMemes.addObjectsFromArray(memesArray as [AnyObject])
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchMemes(paging + 1)
 							SVProgressHUD.dismiss()
@@ -133,9 +137,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	@IBAction func searchAction(sender: AnyObject) {
-		
 		let searchBarButton = sender as! UIBarButtonItem
-		
 		if (searchPlaceholderTopConstraint.constant == -44) {
 			searchBarButton.image = UIImage(named: "crossButton")
 			UIView.animateWithDuration(0.15, animations: {
@@ -149,22 +151,17 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			searchBarButton.image = UIImage(named: "MagnifyingGlass")
 			self.searchBarCancelButtonClicked(self.searchBar)
 		}
-		
 	}
 	
 	@IBAction func toggleListGridAction(sender: AnyObject) {
-		
 		self.isListView = !self.isListView
-		
 		if (isListView) {
 			self.listViewToggleBarButton.image = UIImage(named: "collectionViewIcon")
 		}
 		else {
 			self.listViewToggleBarButton.image = UIImage(named: "tableViewIcon")
 		}
-		
 		self.collectionView.reloadData()
-		
 	}
 	
 
@@ -175,7 +172,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return (self.memes?.count)!;
+		return self.memes.count;
 	}
 	
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -189,7 +186,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! MemesCollectionViewCell
 		}
 		
-		let meme = self.memes?.objectAtIndex(indexPath.row) as! XMeme
+		let meme = self.memes.objectAtIndex(indexPath.row) as! XMeme
 		
 		cell.meme = meme
 		cell.isListCell = self.isListView
@@ -201,7 +198,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		
-		let meme = memes?.objectAtIndex(indexPath.row) as! XMeme
+		let meme = memes.objectAtIndex(indexPath.row) as! XMeme
 		
 		let image = UIImage(contentsOfFile: imagesPathForFileName("\(meme.memeID)"))
 		let data = UIImageJPEGRepresentation(image!, 0.8)
@@ -246,6 +243,11 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	// MARK: - Search bar delegate
 	
+	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+		lastEditBarButton.enabled = false
+		photoGalleryButton.enabled = false
+	}
+	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
 		self.filterMemesWithSearchText(searchText)
 	}
@@ -253,7 +255,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	func filterMemesWithSearchText(text: String) -> Void {
 		if (text.characters.count > 0) {
 			let predicate = NSPredicate(format: "name contains[cd] %@ OR tags contains[cd] %@", text, text)
-			memes = NSMutableArray(array: (fetchedMemes?.filteredArrayUsingPredicate(predicate))!)
+			memes = NSMutableArray(array: (fetchedMemes.filteredArrayUsingPredicate(predicate)))
 		}
 		else {
 			memes = fetchedMemes

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/MemesViewController.swift"
-            timestampString = "481653778.323393"
+            timestampString = "481729437.974138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "collectionView(_:cellForItemAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/MemesViewController.swift"
-            timestampString = "481653778.323393"
+            timestampString = "481729111.009287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "fetchMemes(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/MemesViewController.swift"
-            timestampString = "481652541.599534"
+            timestampString = "481729111.009287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
             <Locations>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/MemesViewController.swift"
-            timestampString = "481652541.599534"
+            timestampString = "481729111.009287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,11 +232,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Model/XTextAttributes.swift"
-            timestampString = "481613912.936477"
+            timestampString = "481727049.182031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "saveAttributes(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Model/XTextAttributes.swift"
-            timestampString = "481614202.004032"
+            timestampString = "481727049.182031"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "saveAttributes(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "cookImage()"
             landmarkType = "5">
          </BreakpointContent>
@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "cookImage()"
             landmarkType = "5">
             <Locations>
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "downloadImageWithURL(_:filePath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -376,11 +376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "handlePinch(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -392,12 +392,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "didPickImage(_:)"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "EditorViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meme Maker/Controllers/EditorViewController.swift"
+            timestampString = "481717475.687641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "updateMemeViews()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -408,12 +424,60 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Meme Maker/Controllers/EditorViewController.swift"
-            timestampString = "481652172.755818"
+            timestampString = "481730981.728097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "updateMemeViews()"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "fontAction(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Meme_Maker.EditorViewController.fontAction (Swift.AnyObject) -&gt; ()"
+                  moduleName = "Meme Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Avikant/Documents/Xcode/Meme%20Maker/Meme%20Maker/Controllers/EditorViewController.swift"
+                  timestampString = "481718865.922571"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "3814">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Meme_Maker.EditorViewController.(fontAction (Swift.AnyObject) -&gt; ()).(closure #1)"
+                  moduleName = "Meme Maker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Avikant/Documents/Xcode/Meme%20Maker/Meme%20Maker/Controllers/EditorViewController.swift"
+                  timestampString = "481718865.922767"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Meme Maker/Controllers/EditorViewController.swift"
+            timestampString = "481730981.728097"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "fontAction(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

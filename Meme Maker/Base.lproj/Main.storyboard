@@ -16,6 +16,7 @@
         <mutableArray key="Impact.ttf">
             <string>Impact</string>
             <string>Impact</string>
+            <string>Impact</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -509,7 +510,7 @@
                             <tableViewSection footerTitle="Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings." id="9pa-hd-kQh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wfU-ND-Oxl">
-                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfU-ND-Oxl" id="ceQ-L3-f0C">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -539,7 +540,7 @@
                             <tableViewSection footerTitle="Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life." id="LjE-Cu-nUi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sit-T7-2mu">
-                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sit-T7-2mu" id="QDb-Qn-PoF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -569,7 +570,7 @@
                             <tableViewSection footerTitle="" id="HIm-gx-Mho">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="csF-rY-6uh">
-                                        <rect key="frame" x="0.0" y="380.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="382" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="csF-rY-6uh" id="aKz-Do-q2o">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -599,7 +600,7 @@
                             <tableViewSection footerTitle="" id="mxP-IG-RiC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IJ6-Gk-I9W">
-                                        <rect key="frame" x="0.0" y="460.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="462" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IJ6-Gk-I9W" id="KXF-gg-Xlq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -651,7 +652,7 @@ Share with friends and the internet.</string>
                             <tableViewSection footerTitle="" id="rRy-E1-6f9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jid-Dn-5ln" style="IBUITableViewCellStyleDefault" id="tp6-cP-3pU">
-                                        <rect key="frame" x="0.0" y="889" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="891" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp6-cP-3pU" id="6DS-eb-3fX">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -766,7 +767,7 @@ Gary D. Jessey for "Art Brush"
         <!--Fonts-->
         <scene sceneID="wdA-mq-Jnd">
             <objects>
-                <tableViewController storyboardIdentifier="FontVC" title="Fonts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bmB-oy-Ap8" customClass="FontTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FontVC" title="Fonts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bmB-oy-Ap8" customClass="FontTableViewController" customModule="Meme_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="wyO-ge-kAF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -776,27 +777,42 @@ Gary D. Jessey for "Art Brush"
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fontCell" textLabel="oxn-fP-gHy" imageView="kOp-Yi-gIl" rowHeight="70" style="IBUITableViewCellStyleDefault" id="kqL-nM-S9P">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fontCell" rowHeight="70" id="kqL-nM-S9P" customClass="FontsTableViewCell" customModule="Meme_Maker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kqL-nM-S9P" id="xnb-TZ-Slg">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Default" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oxn-fP-gHy">
-                                            <rect key="frame" x="58" y="0.0" width="302" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys1-oh-hWD" customClass="UnderlinedLabel" customModule="Meme_Maker" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="12" width="291" height="45.5"/>
+                                            <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="25"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="drawsUnderline" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="success.png" id="kOp-Yi-gIl">
-                                            <rect key="frame" x="15" y="20" width="28" height="28"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ys1-oh-hWD" firstAttribute="top" secondItem="xnb-TZ-Slg" secondAttribute="topMargin" constant="4" id="5fb-du-ZyK"/>
+                                        <constraint firstItem="Ys1-oh-hWD" firstAttribute="centerY" secondItem="xnb-TZ-Slg" secondAttribute="centerY" id="PrE-wE-D56"/>
+                                        <constraint firstItem="Ys1-oh-hWD" firstAttribute="centerX" secondItem="xnb-TZ-Slg" secondAttribute="centerX" constant="-32" id="Sdq-kS-3pB"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ys1-oh-hWD" secondAttribute="trailing" constant="60" id="Yi8-of-fGj"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ys1-oh-hWD" secondAttribute="bottom" constant="4" id="f10-1F-Omw"/>
+                                        <constraint firstItem="Ys1-oh-hWD" firstAttribute="leading" secondItem="xnb-TZ-Slg" secondAttribute="leadingMargin" constant="8" id="qBs-L5-DLo"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="PrE-wE-D56"/>
+                                            <exclude reference="Sdq-kS-3pB"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="fontNameLabel" destination="Ys1-oh-hWD" id="ds9-Cf-IIX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -810,7 +826,7 @@ Gary D. Jessey for "Art Brush"
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yeP-Ql-3gk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3294" y="-565"/>
+            <point key="canvasLocation" x="3145.5" y="-565"/>
         </scene>
     </scenes>
     <resources>
@@ -819,7 +835,6 @@ Gary D. Jessey for "Art Brush"
         <image name="Settings" width="26" height="26"/>
         <image name="collectionViewIcon" width="20" height="20"/>
         <image name="crossButton" width="24" height="24"/>
-        <image name="success.png" width="28" height="28"/>
         <image name="tableViewIcon" width="20" height="20"/>
     </resources>
 </document>

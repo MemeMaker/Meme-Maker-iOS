@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let memesVC = memesVCNav.viewControllers.first as! MemesViewController
 			let editorVC = storyboard.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
 			memesVC.memeSelectionDelegate = editorVC
+			memesVC.editorVC = editorVC
 			splitVC.viewControllers = [tabBarVC, editorVC]
 			self.window?.rootViewController = splitVC
 		}

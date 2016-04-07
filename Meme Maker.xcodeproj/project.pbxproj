@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E51CB6897600219133 /* FontsTableViewCell.swift */; };
+		592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E81CB694DF00219133 /* UnderlinedLabel.swift */; };
 		593B82311CB222560073DC17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B82301CB222560073DC17 /* AppDelegate.swift */; };
 		593B82361CB222560073DC17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 593B82341CB222560073DC17 /* Main.storyboard */; };
 		593B82391CB222560073DC17 /* Meme_Maker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 593B82371CB222560073DC17 /* Meme_Maker.xcdatamodeld */; };
@@ -78,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		592293E51CB6897600219133 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontsTableViewCell.swift; path = Views/FontsTableViewCell.swift; sourceTree = "<group>"; };
+		592293E81CB694DF00219133 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnderlinedLabel.swift; path = Views/UnderlinedLabel.swift; sourceTree = "<group>"; };
 		593B822D1CB222560073DC17 /* Meme Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		593B82301CB222560073DC17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		593B82351CB222560073DC17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -174,6 +178,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		592293E71CB694D500219133 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				592293E81CB694DF00219133 /* UnderlinedLabel.swift */,
+			);
+			name = Labels;
+			sourceTree = "<group>";
+		};
 		593B82241CB222560073DC17 = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +255,7 @@
 		593B82621CB222BF0073DC17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				592293E71CB694D500219133 /* Labels */,
 				593B82651CB222DF0073DC17 /* Launch */,
 				59EFF4CC1CB4DF6700EE3D27 /* Swipable Text Field */,
 				593B82891CB291060073DC17 /* Cells */,
@@ -354,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */,
+				592293E51CB6897600219133 /* FontsTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -607,6 +621,7 @@
 				593B82311CB222560073DC17 /* AppDelegate.swift in Sources */,
 				593B82751CB22B380073DC17 /* MyMemesViewController.swift in Sources */,
 				593B82691CB22AB90073DC17 /* MemesViewController.swift in Sources */,
+				592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */,
 				593B82391CB222560073DC17 /* Meme_Maker.xcdatamodeld in Sources */,
 				593B827C1CB24E000073DC17 /* XCreated+CoreDataProperties.swift in Sources */,
 				59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */,
@@ -616,6 +631,7 @@
 				597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */,
 				593B827E1CB24E000073DC17 /* XMeme+CoreDataProperties.swift in Sources */,
 				593B82771CB22CC80073DC17 /* EditorViewController.swift in Sources */,
+				592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */,
 				593B827F1CB24E000073DC17 /* XMeme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

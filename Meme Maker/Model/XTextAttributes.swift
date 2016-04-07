@@ -16,15 +16,15 @@ class XTextAttributes: NSObject {
 	var rect: CGRect = CGRectZero
 	var offset: CGPoint = CGPointZero
 	
-	var fontSize: CGFloat = 20
-	var font: UIFont = UIFont(name: "Impact", size: 20)!
+	var fontSize: CGFloat = 44
+	var font: UIFont = UIFont(name: "Impact", size: 44)!
 	
 	var textColor: UIColor = UIColor.whiteColor()
 	var outlineColor: UIColor = UIColor.blackColor()
 	
 	var alignment: NSTextAlignment = .Left
 	
-	var strokeWidth: CGFloat = 4
+	var strokeWidth: CGFloat = 2
 	
 	var opacity: CGFloat = 1
 	
@@ -35,16 +35,8 @@ class XTextAttributes: NSObject {
 		do {
 			
 			text = ""
-			uppercase = true
 			rect = CGRectZero
-			offset = CGPointZero
-			fontSize = 20
-			font = UIFont(name: "Impact", size: 20)!
-			textColor = UIColor.whiteColor()
-			outlineColor = UIColor.blackColor()
-			alignment = .Center
-			strokeWidth = 4
-			opacity = 1
+			setDefault()
 			
 			if (!NSFileManager.defaultManager().fileExistsAtPath(documentsPathForFileName(savename))) {
 				print("No such attribute file")
@@ -67,11 +59,11 @@ class XTextAttributes: NSObject {
 				let fontName = dict["fontName"] as! String
 				font = UIFont(name: fontName, size: fontSize)!
 				
-				let textRGB = dict["textColorRGB"] as! NSDictionary
+				let textRGB =  NSDictionary(dictionary: dict["textColorRGB"] as! Dictionary)
 				textColor = UIColor(red: textRGB["red"] as! CGFloat, green: textRGB["green"] as! CGFloat, blue: textRGB["blue"] as! CGFloat, alpha: 1)
 				
 				let outRGB = dict["outColorRGB"] as! NSDictionary
-				textColor = UIColor(red: outRGB["red"] as! CGFloat, green: outRGB["green"] as! CGFloat, blue: outRGB["blue"] as! CGFloat, alpha: 1)
+				outlineColor = UIColor(red: outRGB["red"] as! CGFloat, green: outRGB["green"] as! CGFloat, blue: outRGB["blue"] as! CGFloat, alpha: 1)
 				
 				let align = dict["alignment"] as! Int
 				switch align {
@@ -152,7 +144,7 @@ class XTextAttributes: NSObject {
 		textColor = UIColor.whiteColor()
 		outlineColor = UIColor.blackColor()
 		alignment = .Center
-		strokeWidth = 4
+		strokeWidth = 2
 		opacity = 1
 	}
 	
@@ -165,7 +157,7 @@ class XTextAttributes: NSObject {
 		font = UIFont(name: font.fontName, size: fontSize)!
 		attr[NSFontAttributeName] = font
 		
-		attr[NSForegroundColorAttributeName] = textColor
+		attr[NSForegroundColorAttributeName] = textColor.colorWithAlphaComponent(opacity)
 		
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.alignment = alignment

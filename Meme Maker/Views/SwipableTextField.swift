@@ -30,14 +30,6 @@ public class SwipableTextField: KaedeTextField {
 		swipeRight?.direction = .Right
 		self.addGestureRecognizer(swipeRight!)
 	}
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 	
 	func swipeLeftAction() -> Void {
 		self.swipeDelegate?.textFieldDidSwipeLeft(self)

@@ -16,7 +16,7 @@ enum EditorMode {
 	case UserImage
 }
 
-class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate {
+class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate, TextAttributeChangingDelegate {
 	
 	var meme: XMeme?
 	
@@ -30,6 +30,9 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	@IBOutlet weak var bottomTextField: SwipableTextField!
 	
 	@IBOutlet weak var memeImageView: UIImageView!
+	
+	var fontTableVC: FontTableViewController!
+	var shouldDisplayFTVC: Bool = true
 	
 	var swipeUpGesture: UISwipeGestureRecognizer?
 	var swipeDownGesture: UISwipeGestureRecognizer?
@@ -54,7 +57,13 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		pinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(EditorViewController.handlePinch(_:)))
 		self.view.addGestureRecognizer(pinchGestureRecognizer!)
 		
+		swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(EditorViewController.fontAction(_:)))
+		swipeUpGesture?.direction = .Up
+		self.view.addGestureRecognizer(swipeUpGesture!)
 		
+		swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(EditorViewController.dismissFontAction(_:)))
+		swipeDownGesture?.direction = .Down
+		self.view.addGestureRecognizer(swipeDownGesture!)
 		
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
@@ -123,36 +132,29 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	func cookImage() -> Void {
 		
-		let imageSize = memeImageView.image?.size as CGSize!
+		let imageSize = baseImage?.size as CGSize!
 		
-//		topTextAttr.setDefault()
-//		bottomTextAttr.setDefault()
+		let maxHeight = imageSize.height/2 - 5	// Max height of top and bottom texts
 		
-		topTextAttr.textColor = UIColor.whiteColor()
-		bottomTextAttr.textColor = UIColor.whiteColor()
-		
-		let maxHeight = imageSize.height/2 - 10	// Max height of top and bottom texts
-		
-		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 10), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2 - 10)
+		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
 		// Adjust top size
-		while (topTextRect.size.height >= maxHeight) {
+		while (ceil(topTextRect.size.height) >= maxHeight) {
 			topTextAttr.fontSize -= 2;
-			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 10), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
+			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 10), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
-		let expectedBottomSize = bottomTextRect.size
+		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
 		bottomTextAttr.rect = CGRectMake(0, (baseImage!.size.height) - (expectedBottomSize.height), baseImage!.size.width, baseImage!.size.height/2);
 		// Adjust bottom size
-		while (bottomTextRect.size.height >= maxHeight) {
+		while (ceil(bottomTextRect.size.height) >= maxHeight) {
 			bottomTextAttr.fontSize -= 2;
-			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 10), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			expectedBottomSize = bottomTextRect.size
+			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2)
 		}
-		
-		topTextAttr.saveAttributes("topAttr")
-		bottomTextAttr.saveAttributes("bottomAttr")
 		
 		UIGraphicsBeginImageContext(imageSize)
 		
@@ -173,7 +175,52 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	// MARK: - Gesture handlers
 	
 	@IBAction func fontAction(sender: AnyObject) -> Void {
-		
+		if (shouldDisplayFTVC) {
+			shouldDisplayFTVC = false
+			fontTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("FontVC") as! FontTableViewController
+			fontTableVC.textAttrChangeDelegate = self
+			fontTableVC.topTextAttr = topTextAttr
+			fontTableVC.bottomTextAttr = bottomTextAttr
+			
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height, self.view.frame.size.width - 200, 390)
+			}
+			else {
+				fontTableVC.view.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 270)
+			}
+			
+			self.addChildViewController(fontTableVC)
+			self.view.addSubview(fontTableVC.view)
+			
+			fontTableVC?.didMoveToParentViewController(self)
+			
+			UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: { 
+				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+					self.fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height - 400, self.view.frame.size.width - 200, 390);
+				}
+				else {
+					self.fontTableVC.view.frame = CGRectMake(5, self.view.frame.size.height - 275, self.view.frame.size.width - 10, 270);
+				}
+			}, completion: nil)
+		}
+	}
+	
+	func dismissFontAction(sender: AnyObject) -> Void {
+		if (shouldDisplayFTVC == false) {
+			UIView.animateWithDuration(0.15, animations: {
+				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+					self.fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height, self.view.frame.size.width - 200, 390)
+				}
+				else {
+					self.fontTableVC.view.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 270)
+				}
+				self.fontTableVC.view.alpha = 0
+			}, completion: { (success) in
+				self.fontTableVC.view.removeFromSuperview()
+				self.fontTableVC.removeFromParentViewController()
+				self.shouldDisplayFTVC = true
+			})
+		}
 	}
 	
 	func handlePinch(recognizer: UIPinchGestureRecognizer) -> Void {
@@ -196,6 +243,14 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				bottomTextAttr.fontSize = max(bottomTextAttr.fontSize + fontScale, 20)
 			}
 		}
+		cookImage()
+	}
+	
+	// MARK: - Text change selection delegate
+	
+	func didUpdateTextAttributes(topTextAttributes: XTextAttributes, bottomTextAttributes: XTextAttributes) {
+		topTextAttr = topTextAttributes
+		bottomTextAttr = bottomTextAttributes
 		cookImage()
 	}
 	
