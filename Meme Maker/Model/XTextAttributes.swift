@@ -22,7 +22,7 @@ class XTextAttributes: NSObject {
 	var textColor: UIColor = UIColor.whiteColor()
 	var outlineColor: UIColor = UIColor.blackColor()
 	
-	var alignment: NSTextAlignment = .Left
+	var alignment: NSTextAlignment = .Center
 	
 	var strokeWidth: CGFloat = 2
 	

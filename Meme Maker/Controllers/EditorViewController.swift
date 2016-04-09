@@ -103,7 +103,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		let notifCenter = NSNotificationCenter.defaultCenter()
 		notifCenter.addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification) in
-			
+			let data = UIImageJPEGRepresentation(self.baseImage!, 0.8)
+			data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
+			self.topTextAttr.saveAttributes("topAttr")
+			self.bottomTextAttr.saveAttributes("bottomAttr")
 		}
 		
     }
@@ -182,6 +185,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	func cookImage() -> Void {
 		
+		if (baseImage == nil) {
+			return
+		}
+		
 		let imageSize = baseImage?.size as CGSize!
 		
 		let maxHeight = imageSize.height/2	// Max height of top and bottom texts
@@ -259,8 +266,14 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			activityVC.modalPresentationStyle = .Popover
 			activityVC.popoverPresentationController?.sourceView = self.shareImageButton
 		}
-		self.presentViewController(activityVC, animated: true, completion: nil)
-		saveUserCreation()
+		self.presentViewController(activityVC, animated: true) { 
+			self.saveUserCreation()
+			if (self.editorMode == .Meme) {
+				if (SettingsManager.sharedManager().getBool(kSettingsUploadMemes)) {
+					self.uploadMemeToServer()
+				}
+			}
+		}
 	}
 	
 	
@@ -353,6 +366,9 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	func didUpdateTextAttributes(topTextAttributes: XTextAttributes, bottomTextAttributes: XTextAttributes) {
 		topTextAttr = topTextAttributes
 		bottomTextAttr = bottomTextAttributes
+		if (SettingsManager.sharedManager().getBool(kSettingsAutoDismiss)) {
+			self.dismissFontAction(self)
+		}
 		cookImage()
 	}
 	
@@ -379,12 +395,27 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	@IBAction func topTextChangedAction(sender: AnyObject) {
 		topTextAttr.text = "\(topTextField.text!)"
-		cookImage()
+		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
+			cookImage()
+		}
 	}
 	
 	@IBAction func bottomTextChangedAction(sender: AnyObject) {
 		bottomTextAttr.text = "\(bottomTextField.text!)"
+		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
+			cookImage()
+		}
+	}
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		if (textField == self.topTextField) {
+			self.bottomTextField.becomeFirstResponder()
+		}
+		else {
+			self.view.endEditing(true)
+		}
 		cookImage()
+		return true
 	}
 	
 	func textFieldDidSwipeLeft(textField: SwipableTextField) {
@@ -395,6 +426,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		else if (textField == self.bottomTextField) {
 			self.bottomTextChangedAction(textField)
 		}
+		textField.resignFirstResponder()
 	}
 	
 	func textFieldDidSwipeRight(textField: SwipableTextField) {
@@ -424,6 +456,47 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	// MARK: - Utility
+	
+	func uploadMemeToServer() -> Void {
+		
+		print("Uploading...")
+		
+		let URLString = "\(API_BASE_URL)/\(meme?.memeID)/submissions/"
+		let URL = NSURL(string: URLString)
+		
+		let request = NSMutableURLRequest(URL: URL!)
+		request.HTTPMethod = "POST"
+		
+		let postBodyString = "topText=\(topTextAttr.text)&bottomText=\(bottomTextAttr.text)" as NSString
+		let postData = postBodyString.dataUsingEncoding(NSASCIIStringEncoding)
+		
+		request.HTTPBody = postData
+		
+		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+			
+			if (error != nil) {
+				// Handle error...
+				return
+			}
+			
+			if (data != nil) {
+				do {
+					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+					let code = json.valueForKey("code") as! Int
+					if (code == 201) {
+						print("Upload success")
+					}
+					else {
+						print("Upload failed")
+					}
+				}
+				catch _ {
+				}
+			}
+			
+		}.resume()
+
+	}
 	
 	func saveUserCreation () -> Void {
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

@@ -61,6 +61,8 @@ class FontTableViewController: UITableViewController {
 		
 		self.tableView.separatorStyle = .None
 		
+		self.view.backgroundColor = globalBackColor
+		
 		self.view.alpha = 0.7
 		self.view.layer.cornerRadius = 8.0
 		

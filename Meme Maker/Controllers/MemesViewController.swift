@@ -32,13 +32,19 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
 	
-	var isListView: Bool = true
+	var isListView: Bool = true {
+		didSet {
+			SettingsManager.sharedManager().setBool(isListView, key: kSettingsViewModeIsList)
+		}
+	}
 	
 	var memes = NSMutableArray()
 	var allMemes = NSMutableArray()
 	var fetchedMemes = NSMutableArray()
 	
 	var context: NSManagedObjectContext? = nil
+	
+	// MARK: -
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +79,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			self.fetchMemes(1)
 		}
 		
+		updateCollectionViewCells()
+		
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -80,19 +88,14 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func fetchMemes(paging: Int) -> Void {
-		
 		let request = NSMutableURLRequest(URL: apiMemesPaging(paging))
 		request.HTTPMethod = "GET"
-		
 		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
-			
 			if (error != nil) {
 				print("Error: %@", error?.localizedDescription)
 				return
 			}
-			
 			if (data != nil) {
-				
 				do {
 					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
 					let code = json.valueForKey("code") as! Int
@@ -119,11 +122,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 					SVProgressHUD.showErrorWithStatus("Failed to fetch")
 					return
 				}
-				
 			}
-			
 		}.resume()
-		
 	}
 	
 	// MARK: - Bar Button Actions
@@ -159,6 +159,11 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	@IBAction func toggleListGridAction(sender: AnyObject) {
 		self.isListView = !self.isListView
+		updateCollectionViewCells()
+	}
+	
+	func updateCollectionViewCells () -> Void {
+		isListView = SettingsManager.sharedManager().getBool(kSettingsViewModeIsList)
 		if (isListView) {
 			self.listViewToggleBarButton.image = UIImage(named: "collectionViewIcon")
 		}

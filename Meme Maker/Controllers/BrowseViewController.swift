@@ -100,11 +100,6 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		}.resume()
 		
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
 	// MARK: - Collection view data source
 	
@@ -143,7 +138,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			self.editorVC?.baseImage = baseImage
 			self.editorVC?.topTextField.text = creation.topText!
 			self.editorVC?.bottomTextField.text = creation.bottomText!
-//			self.editorVC?.memeNameLabel.text = ""
+			self.editorVC?.memeNameLabel.text = "Browse"
 			self.editorVC?.updateForViewing()
 		}
 		else {

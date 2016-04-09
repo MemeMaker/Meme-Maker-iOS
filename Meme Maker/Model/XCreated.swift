@@ -32,11 +32,11 @@ class XCreated: NSManagedObject {
 		do {
 			let fetchedArray = try context.executeFetchRequest(fetchRequest)
 			if (fetchedArray.count > 0) {
-			print("Submission \(ID) already present.")
+//			print("Submission \(ID) already present.")
 				submission = fetchedArray.first as! XCreated
 			}
 			else {
-				print("Inserting submission \(ID).")
+//				print("Inserting submission \(ID).")
 				submission = NSEntityDescription.insertNewObjectForEntityForName("XCreated", inManagedObjectContext: context) as! XCreated
 				submission.memeID = ID
 				submission.topText = topText

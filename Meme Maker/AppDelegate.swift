@@ -40,6 +40,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
 		
+		let manager = SettingsManager.sharedManager()
+		let timesLaunched = manager.getInteger(kSettingsTimesLaunched)
+		if (timesLaunched == 0) {
+			manager.setBool(false, key: kSettingsAutoDismiss)
+			manager.setBool(false, key: kSettingsResetSettingsOnLaunch)
+			manager.setBool(true, key: kSettingsContinuousEditing)
+			manager.setBool(true, key: kSettingsDarkMode)
+			manager.setBool(true, key: kSettingsUploadMemes)
+		}
+		manager.setInteger(timesLaunched + 1, key: kSettingsTimesLaunched)
+		if manager.getBool(kSettingsResetSettingsOnLaunch) {
+			let topAttr = XTextAttributes(savename: "topAttr")
+			topAttr.saveAttributes("topAttr")
+			let bottomAttr = XTextAttributes(savename: "bottomAttr")
+			bottomAttr.saveAttributes("bottomAttr")
+		}
+		
 		return true
 	}
 

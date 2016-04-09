@@ -20,6 +20,8 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	var editorVC: EditorViewController?
 	
+	var longPressGesture: UILongPressGestureRecognizer?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +39,9 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 			}
 		}
 		
+		longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(MyMemesViewController.handleLongPress(_:)))
+		longPressGesture?.minimumPressDuration = 0.8
+		collectionView.addGestureRecognizer(longPressGesture!)
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -49,11 +54,6 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		}
 		collectionView.reloadData()
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
 	// MARK: - Collection view data source
 	
@@ -70,8 +70,6 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! ViewerCollectionViewCell
 		
 		let ucreation = userCreations.objectAtIndex(indexPath.row) as! XUserCreation
-		
-		print("user creation : \(ucreation)")
 		
 		cell.topText = ucreation.topText!.uppercaseString
 		cell.bottomText = ucreation.bottomText!.uppercaseString
@@ -95,9 +93,16 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			let ucreation = userCreations.objectAtIndex(indexPath.row) as! XUserCreation
-			let baseImage = UIImage(contentsOfFile: ucreation.imagePath!)
+			var baseImage = UIImage()
+			if (ucreation.isMeme) {
+				baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(ucreation.memeID)"))!
+			}
+			else {
+				baseImage = UIImage(contentsOfFile: userImagesPathForFileName(ucreation.createdOn!))!
+			}
 			self.editorVC?.editorMode = .Viewer
 			self.editorVC?.baseImage = baseImage
+			self.editorVC?.memeNameLabel.text = "My memes"
 			self.editorVC?.topTextField.text = ucreation.topText!
 			self.editorVC?.bottomTextField.text = ucreation.bottomText!
 			self.editorVC?.updateForViewing()
@@ -117,6 +122,37 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 		return 0
+	}
+	
+	// MARK: - Handle long press
+	
+	func handleLongPress(recognizer: UILongPressGestureRecognizer) -> Void {
+		if let indexPath = collectionView.indexPathForItemAtPoint(recognizer.locationInView(self.collectionView)) {
+			let alertController = UIAlertController(title: "Delete?", message: "This action is irreversible. Are you sure you want to continue?", preferredStyle: .ActionSheet)
+			let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) in
+				let ucreation = self.userCreations.objectAtIndex(indexPath.row) as! XUserCreation
+				self.context?.deleteObject(ucreation)
+				do {
+					try self.context?.save()
+				}
+				catch _ {}
+				self.viewDidAppear(true)
+			})
+			let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+			alertController.addAction(deleteAction)
+			alertController.addAction(cancelAction)
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				alertController.modalPresentationStyle = .Popover
+				alertController.popoverPresentationController?.permittedArrowDirections = .Any
+				if let sourceView = collectionView.cellForItemAtIndexPath(indexPath) {
+					alertController.popoverPresentationController?.sourceView = sourceView
+				}
+				else {
+					alertController.popoverPresentationController?.sourceView = self.collectionView
+				}
+			}
+			self.presentViewController(alertController, animated: true, completion: nil)
+		}
 	}
 
     /*

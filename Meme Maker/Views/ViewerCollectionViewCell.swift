@@ -39,13 +39,13 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 		let baseImage = getImageByResizingImage(image, ratio: ratio)
 		
 		let topTextAttr = XTextAttributes(savename: "topo")
-		topTextAttr.fontSize = 16
+		topTextAttr.fontSize = 20
 		topTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 16)!
 		topTextAttr.strokeWidth = 0
 		topTextAttr.text = topText
 		let bottomTextAttr = XTextAttributes(savename: "boto")
 		bottomTextAttr.text = bottomText
-		bottomTextAttr.fontSize = 16
+		bottomTextAttr.fontSize = 20
 		bottomTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 16)!
 		bottomTextAttr.strokeWidth = 0
 		
@@ -71,8 +71,8 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 			expectedBottomSize = bottomTextRect.size
 			bottomTextAttr.rect = CGRectMake(4, (self.bounds.height - expectedBottomSize.height), self.bounds.width - 8, expectedBottomSize.height)
 		}
-		
-		baseImage.drawInRect(self.bounds)
+	
+		baseImage.drawInRectAspectFill(self.bounds)
 		
 		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
 		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())

@@ -119,7 +119,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			case 4:
 				return "Check this if you want your \"creations\" to be uploaded or not."
 			case noos - 3:
-				return "Last updated: \(SettingsManager.sharedManager().getLastUpdateDate())"
+				let formatter = NSDateFormatter()
+				formatter.dateFormat = "MMM dd yyyy, hh:mm a"
+				let date = SettingsManager.sharedManager().getLastUpdateDate()
+				return "Last updated: \(formatter.stringFromDate(date))"
 			case noos - 1:
 				return "Select or search a meme.\n\nAdd your own images.\n\nSwipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch to set text size.\n\nTwo finger pan to place top or bottom text, tap the button on the right to select. Shake to reset position.\n\nSwipe left to set bring up opacity panel.\n\nSwipe on text field to add default text.\n\nDouble tap to change case.\n\nShare with friends and the internet."
 			default:

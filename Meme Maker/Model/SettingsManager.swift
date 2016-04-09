@@ -16,6 +16,7 @@ let kSettingsAutoDismiss			= "AutoDismiss"
 let kSettingsUploadMemes			= "EnableMemeUpload"
 let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
 let kSettingsDarkMode				= "DarkMode"
+let kSettingsViewModeIsList			= "MemeListViewModeIsList"
 
 var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
 var globalTintColor: UIColor = UIColor(hexString: "326400")
@@ -88,7 +89,6 @@ class SettingsManager: NSObject {
 	
 	func setObject(object: AnyObject, key: String) {
 		defaults.setObject(object, forKey: key)
-		sync()
 	}
 	
 	func getObject(key: String) -> AnyObject? {
@@ -97,7 +97,6 @@ class SettingsManager: NSObject {
 	
 	func setBool(bool: Bool, key: String) {
 		defaults.setBool(bool, forKey: key)
-		defaults.synchronize()
 	}
 	
 	func getBool(key: String) -> Bool {
@@ -106,7 +105,6 @@ class SettingsManager: NSObject {
 	
 	func setInteger(value: Int, key: String) {
 		defaults.setInteger(value, forKey: key)
-		defaults.synchronize()
 	}
 	
 	func getInteger(key: String) -> Int {
@@ -115,7 +113,6 @@ class SettingsManager: NSObject {
 	
 	func setFloat(value: Float, key: String) {
 		defaults.setFloat(value, forKey: key)
-		defaults.synchronize()
 	}
 	
 	func getFloat(key: String) -> Float {
@@ -124,7 +121,6 @@ class SettingsManager: NSObject {
 	
 	func deleteObject(key: String) {
 		defaults.removeObjectForKey(key)
-		defaults.synchronize()
 	}
 	
 	func saveLastUpdateDate() -> Void {

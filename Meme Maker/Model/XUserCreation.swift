@@ -25,7 +25,7 @@ class XUserCreation: NSManagedObject {
 	class func createOrUpdateUserCreationWithMeme(meme: XMeme, topText: String, bottomText: String, dateCreated: NSDate, context: NSManagedObjectContext) -> XUserCreation {
 		
 		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
-//		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
+		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
 		
 		var creation: XUserCreation!
 		
