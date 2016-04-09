@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SVProgressHUD
+import ChameleonFramework
 
 let kSettingsTimesLaunched			= "TimesLaunched"
 let kSettingsContinuousEditing		= "ContinuousEditing"
@@ -14,6 +16,57 @@ let kSettingsAutoDismiss			= "AutoDismiss"
 let kSettingsUploadMemes			= "EnableMemeUpload"
 let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
 let kSettingsDarkMode				= "DarkMode"
+
+var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
+var globalTintColor: UIColor = UIColor(hexString: "326400")
+
+func updateGlobalTheme () -> Void {
+	if isDarkMode() {
+		globalBackColor = UIColor(white: 0.12, alpha: 1)
+		globalTintColor = UIColor(hexString: "AAFA78")
+	}
+	else {
+		globalBackColor = UIColor(hexString: "EFF0EF")
+		globalTintColor = UIColor(hexString: "326400")
+	}
+	
+	UINavigationBar.appearance().backgroundColor = globalBackColor
+	UINavigationBar.appearance().tintColor = globalTintColor
+	UINavigationBar.appearance().barTintColor = globalBackColor
+	
+	UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor]
+	
+	UITabBar.appearance().backgroundColor = globalBackColor
+	UITabBar.appearance().tintColor = globalTintColor
+	UITabBar.appearance().barTintColor = globalBackColor
+	
+	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: globalTintColor], forState: .Selected)
+	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
+	
+	UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor], forState: .Normal)
+	
+	UITableView.appearance().backgroundColor = globalBackColor
+	UITableView.appearance().tintColor = globalTintColor
+	
+	UICollectionView.appearance().backgroundColor = globalBackColor
+	UICollectionView.appearance().tintColor = globalTintColor
+	
+	UIButton.appearance().tintColor = globalTintColor
+	
+	UISwitch.appearance().tintColor = globalTintColor
+	UISwitch.appearance().onTintColor = globalTintColor
+	
+	UISearchBar.appearance().backgroundColor = globalBackColor
+	UISearchBar.appearance().tintColor = globalTintColor
+	UISearchBar.appearance().barTintColor = globalBackColor
+	
+	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor]
+	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor.colorWithAlphaComponent(0.8)]
+	
+	SVProgressHUD.setFont(UIFont(name: "EtelkaNarrowTextPro", size: 18))
+	SVProgressHUD.setBackgroundColor(globalBackColor)
+	SVProgressHUD.setForegroundColor(globalTintColor)
+}
 
 func isDarkMode() -> Bool {
 	return SettingsManager.sharedManager().getBool(kSettingsDarkMode)

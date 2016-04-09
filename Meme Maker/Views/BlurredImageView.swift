@@ -12,7 +12,9 @@ class BlurredImageView: UIImageView {
 	
 	var blurView: UIVisualEffectView?
 	
-	override func awakeFromNib() {
+	override func layoutSubviews() {
+		
+		blurView?.removeFromSuperview()
 		
 		if isDarkMode() {
 			let blurEffect = UIBlurEffect(style: .Dark)
@@ -26,11 +28,7 @@ class BlurredImageView: UIImageView {
 		blurView?.frame = self.bounds
 		
 		self.addSubview(blurView!)
-		
-	}
-	
-	override func layoutSubviews() {
-		blurView?.frame = self.bounds
+
 	}
 
 }

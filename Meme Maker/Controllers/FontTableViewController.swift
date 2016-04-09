@@ -61,7 +61,7 @@ class FontTableViewController: UITableViewController {
 		
 		self.tableView.separatorStyle = .None
 		
-		self.view.alpha = 0.5
+		self.view.alpha = 0.7
 		self.view.layer.cornerRadius = 8.0
 		
 		let horizontalME = UIInterpolatingMotionEffect(keyPath: "center.x", type: .TiltAlongHorizontalAxis)
@@ -88,6 +88,8 @@ class FontTableViewController: UITableViewController {
 			}
 			catch _ {}
 		}
+		
+		// For now I'm gonna hard-code these values, maybe later move them to JSON or server
 		
 		let dAlignments = NSMutableArray(objects:
 			 ["displayName": "Center (Default)", "value": 0],
@@ -125,14 +127,14 @@ class FontTableViewController: UITableViewController {
 			["displayName": "60%", "value": 0.6],
 			["displayName": "40%", "value": 0.4],
 			["displayName": "20%", "value": 0.2],
-			["displayName": "0%", "value": 0.0])
+			["displayName": "0% (Only outline)", "value": 0.0])
 		
 		let dOutlineThickness = NSMutableArray(objects:
 			["displayName": "4pt (Default)", "value": 4.0],
 			["displayName": "3pt", "value": 3.0],
 			["displayName": "2pt", "value": 2.0],
 			["displayName": "1pt", "value": 1.0],
-			["displayName": "0pt", "value": 0.0],
+			["displayName": "0pt (Only shadow)", "value": 0.0],
 			["displayName": "5pt", "value": 5.0],
 			["displayName": "6pt", "value": 6.0],
 			["displayName": "7pt", "value": 7.0])
@@ -222,7 +224,7 @@ class FontTableViewController: UITableViewController {
 				self.view.layer.transform = CATransform3DMakeTranslation(self.view.bounds.size.width, 0, 0)
 				UIView.animateWithDuration(0.12, delay: 0.0, options: .CurveEaseOut, animations: {
 					self.view.layer.transform = CATransform3DIdentity
-					self.view.alpha = 0.5
+					self.view.alpha = 0.7
 					}, completion: nil)
 		}
 		
@@ -244,7 +246,7 @@ class FontTableViewController: UITableViewController {
 			self.view.layer.transform = CATransform3DMakeTranslation(-self.view.bounds.size.width, 0, 0)
 			UIView.animateWithDuration(0.12, delay: 0.0, options: .CurveEaseOut, animations: {
 				self.view.layer.transform = CATransform3DIdentity
-				self.view.alpha = 0.5
+				self.view.alpha = 0.7
 				}, completion: nil)
 		}
 		
@@ -366,13 +368,13 @@ class FontTableViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let headerView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 30))
-		headerView.backgroundColor = UIColor.whiteColor()
+		headerView.backgroundColor = globalBackColor
 		let label = UILabel(frame: CGRectMake(16, 0, self.view.frame.size.width - 76, 25))
 		let dataSource = fDataSource.objectAtIndex(currentFTType) as! XDataSource
 		label.text = dataSource.title?.uppercaseString
 		label.textAlignment = .Center
 		label.font = UIFont(name: "Impact", size: 15)
-		label.textColor = UIColor.blackColor()
+		label.textColor = globalTintColor
 		headerView.addSubview(label)
 		return headerView
 	}

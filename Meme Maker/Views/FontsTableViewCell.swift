@@ -23,6 +23,12 @@ class FontsTableViewCell: UITableViewCell {
 		}
 	}
 	
+	override func layoutSubviews() {
+		tintColor = globalTintColor
+		fontNameLabel.textColor = globalTintColor
+		backgroundColor = globalBackColor
+	}
+	
 	override func drawRect(rect: CGRect) {
 		if (ticked) {
 			let w = self.bounds.size.width
@@ -32,6 +38,7 @@ class FontsTableViewCell: UITableViewCell {
 			tickPath.addLineToPoint(CGPointMake(w - 16, h - 60))
 			tickPath.addLineToPoint(CGPointMake(w - 48, h - 28))
 			tickPath.closePath()
+			globalTintColor.setFill()
 			tickPath.fill()
 		}
 	}

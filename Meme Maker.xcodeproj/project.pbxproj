@@ -56,6 +56,8 @@
 		597D748E1CB43866002C784B /* Subway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74731CB43866002C784B /* Subway-Black.ttf */; };
 		597D748F1CB43866002C784B /* TobagoPoster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74741CB43866002C784B /* TobagoPoster.ttf */; };
 		597D74901CB43866002C784B /* TrashHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74751CB43866002C784B /* TrashHand.ttf */; };
+		59BC23BB1CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23B91CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift */; };
+		59BC23BC1CB7E2B8004D6673 /* XUserCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */; };
 		59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */; };
 		59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */; };
 		59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */; };
@@ -136,6 +138,8 @@
 		597D74731CB43866002C784B /* Subway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Subway-Black.ttf"; path = "Supporting Files/Fonts/Subway-Black.ttf"; sourceTree = "<group>"; };
 		597D74741CB43866002C784B /* TobagoPoster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TobagoPoster.ttf; path = "Supporting Files/Fonts/TobagoPoster.ttf"; sourceTree = "<group>"; };
 		597D74751CB43866002C784B /* TrashHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.ttf; path = "Supporting Files/Fonts/TrashHand.ttf"; sourceTree = "<group>"; };
+		59BC23B91CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XUserCreation+CoreDataProperties.swift"; path = "Model/XUserCreation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUserCreation.swift; path = Model/XUserCreation.swift; sourceTree = "<group>"; };
 		59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XTextAttributes.swift; path = Model/XTextAttributes.swift; sourceTree = "<group>"; };
 		59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipableTextField.swift; path = Views/SwipableTextField.swift; sourceTree = "<group>"; };
 		59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontTableViewController.swift; path = Controllers/FontTableViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 				597D74581CB3A48E002C784B /* SettingsManager */,
 				593B82811CB24E0B0073DC17 /* Meme */,
 				593B82801CB24E060073DC17 /* Created */,
+				59BC23B41CB7E289004D6673 /* User Creation */,
 				593B82371CB222560073DC17 /* Meme_Maker.xcdatamodeld */,
 			);
 			name = Model;
@@ -391,6 +396,15 @@
 			name = SettingsManager;
 			sourceTree = "<group>";
 		};
+		59BC23B41CB7E289004D6673 /* User Creation */ = {
+			isa = PBXGroup;
+			children = (
+				59BC23B91CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift */,
+				59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */,
+			);
+			name = "User Creation";
+			sourceTree = "<group>";
+		};
 		59EFF4C71CB4BAD700EE3D27 /* TextAttributes */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +500,7 @@
 				TargetAttributes = {
 					593B822C1CB222560073DC17 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = HN3SCP8A52;
 					};
 					593B82431CB222570073DC17 = {
 						CreatedOnToolsVersion = 7.3;
@@ -627,6 +642,7 @@
 			files = (
 				593B82881CB287030073DC17 /* PrefixHeader.swift in Sources */,
 				593B82711CB22B210073DC17 /* SettingsTableViewController.swift in Sources */,
+				59BC23BB1CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift in Sources */,
 				59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */,
 				593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */,
 				593B82311CB222560073DC17 /* AppDelegate.swift in Sources */,
@@ -642,6 +658,7 @@
 				597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */,
 				592293EC1CB6C35800219133 /* BlurredImageView.swift in Sources */,
 				593B827E1CB24E000073DC17 /* XMeme+CoreDataProperties.swift in Sources */,
+				59BC23BC1CB7E2B8004D6673 /* XUserCreation.swift in Sources */,
 				593B82771CB22CC80073DC17 /* EditorViewController.swift in Sources */,
 				592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */,
 				593B827F1CB24E000073DC17 /* XMeme.swift in Sources */,
@@ -789,11 +806,14 @@
 			baseConfigurationReference = B2012CFA4C567A3C4E9C3225 /* Pods-Meme Maker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Meme Maker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -802,11 +822,14 @@
 			baseConfigurationReference = E731F34C267B577755D7DDA1 /* Pods-Meme Maker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Meme Maker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

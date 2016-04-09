@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		
@@ -37,18 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			self.window?.rootViewController = splitVC
 		}
 		
-		if isDarkMode() {
-//			Chameleon.setGlobalThemeUsingPrimaryColor(FlatNavyBlueDark(), withSecondaryColor: FlatMint(), andContentStyle: .Contrast)
-//			UINavigationBar.appearance().backgroundColor = FlatNavyBlueDark()
-//			UINavigationBar.appearance().tintColor = FlatMint()
-		}
-		else {
-//			Chameleon.setGlobalThemeUsingPrimaryColor(FlatGreenDark(), withSecondaryColor: FlatWhite(), andContentStyle: .Contrast)
-//			UINavigationBar.appearance().backgroundColor = FlatGreenDark()
-//			UINavigationBar.appearance().tintColor = FlatGreenDark()
-//			UITabBar.appearance().tintColor = FlatWhite()
-//			UITabBar.appearance().backgroundColor = FlatGreenDark()
-		}
+		updateGlobalTheme()
 		
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true

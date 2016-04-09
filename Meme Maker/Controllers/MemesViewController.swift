@@ -77,6 +77,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
     }
 	
+	override func viewDidAppear(animated: Bool) {
+		self.collectionView.reloadData()
+	}
+	
 	func fetchMemes(paging: Int) -> Void {
 		
 		let request = NSMutableURLRequest(URL: apiMemesPaging(paging))
@@ -100,7 +104,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 						self.fetchedMemes.addObjectsFromArray(memesArray as [AnyObject])
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchMemes(paging + 1)
-							SVProgressHUD.dismiss()
 						})
 					}
 					else {
@@ -115,6 +118,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 				}
 				catch _ {
 					print("Unable to parse")
+					SVProgressHUD.showErrorWithStatus("Failed to fetch")
 					return
 				}
 				
@@ -246,8 +250,13 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	// MARK: - Search bar delegate
 	
 	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-		lastEditBarButton.enabled = false
-		photoGalleryButton.enabled = false
+		lastEditBarButton?.enabled = false
+		photoGalleryButton?.enabled = false
+	}
+	
+	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+		lastEditBarButton?.enabled = true
+		photoGalleryButton?.enabled = true
 	}
 	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -257,10 +266,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	func filterMemesWithSearchText(text: String) -> Void {
 		if (text.characters.count > 0) {
 			let predicate = NSPredicate(format: "name contains[cd] %@ OR tags contains[cd] %@", text, text)
-			memes = NSMutableArray(array: (fetchedMemes.filteredArrayUsingPredicate(predicate)))
+			memes = NSMutableArray(array: (allMemes.filteredArrayUsingPredicate(predicate)))
 		}
 		else {
-			memes = fetchedMemes
+			memes = allMemes
 		}
 		self.collectionView.reloadData()
 	}
@@ -298,12 +307,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			picker.navigationItem.title = "Select Image"
 			picker.sourceType = .PhotoLibrary
 			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-				let popupController = UIPopoverController(contentViewController: picker)
-				popupController.presentPopoverFromBarButtonItem(self.photoGalleryButton, permittedArrowDirections: .Any, animated: true)
+				picker.modalPresentationStyle = .Popover
+				picker.popoverPresentationController?.barButtonItem = self.photoGalleryButton
 			}
-			else {
-				self.presentViewController(picker, animated: true, completion: nil)
-			}
+			self.presentViewController(picker, animated: true, completion: nil)
 		}
 		let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (alertAction) in
 			if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
@@ -326,12 +333,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		alertController.addAction(cancelAction)
 
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			let popupController = UIPopoverController(contentViewController: alertController)
-			popupController.presentPopoverFromBarButtonItem(self.photoGalleryButton, permittedArrowDirections: .Any, animated: true)
+			alertController.modalPresentationStyle = .Popover
+			alertController.popoverPresentationController?.barButtonItem = self.photoGalleryButton
 		}
-		else {
-			self.presentViewController(alertController, animated: true, completion: nil)
-		}
+		self.presentViewController(alertController, animated: true, completion: nil)
 		
 	}
 	

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreData
+import SVProgressHUD
 import MessageUI
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
@@ -19,6 +21,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	@IBOutlet weak var memesCountLabel: UILabel!
 	
+	@IBOutlet var tableViewCells: [UITableViewCell]!
+	@IBOutlet var tableViewCellLabels: [UILabel]!
+	
+	var memes = NSMutableArray()
+	var fetchedMemes = NSMutableArray()
+	
+	var context: NSManagedObjectContext? = nil
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -29,8 +39,26 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		contEditing.on = SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)
 		darkMode.on = SettingsManager.sharedManager().getBool(kSettingsDarkMode)
 		uploadEnable.on = SettingsManager.sharedManager().getBool(kSettingsUploadMemes)
+		
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		context = appDelegate.managedObjectContext
 
+		updateCount()
+		updateViews()
     }
+	
+	func updateViews() -> Void {
+		self.tableView.backgroundColor = globalBackColor
+		for cell in tableViewCells {
+			cell.backgroundColor = globalBackColor
+			cell.textLabel?.textColor = globalTintColor
+			cell.textLabel?.font = UIFont(name: "EtelkaNarrowTextPro", size: 18)
+		}
+		for label in tableViewCellLabels {
+			label.textColor = globalTintColor
+			label.font = UIFont(name: "EtelkaNarrowTextPro", size: 18)
+		}
+	}
 	
 	// MARK: - Switches
 	
@@ -52,6 +80,23 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	@IBAction func darkModeSwitchAction(sender: AnyObject) {
 		let swtch = sender as! UISwitch
 		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsDarkMode)
+		updateGlobalTheme()
+		let redrawHelperVC = UIViewController()
+		redrawHelperVC.modalPresentationStyle = .FullScreen
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.splitViewController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
+		}
+		else {
+			self.navigationController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
+		}
+		self.dismissViewControllerAnimated(false, completion: nil)
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			if self.splitViewController?.viewControllers.count > 1 {
+				let editorVC = self.splitViewController?.viewControllers[1] as? EditorViewController
+				editorVC?.backgroundImageView.layoutSubviews()
+			}
+		}
+		updateViews()
 	}
 	
 	@IBAction func uploadEnableSwitchAction(sender: AnyObject) {
@@ -63,10 +108,23 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	// MARK: - Table view data source
 	
 	override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-		if (section == tableView.numberOfSections - 3) {
-			return "Last updated: \(SettingsManager.sharedManager().getLastUpdateDate())"
+		let noos = tableView.numberOfSections
+		switch section {
+			case 0:
+				return "Turning this on will dismiss the editing options as you select any option."
+			case 1:
+				return "Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings."
+			case 2:
+				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life."
+			case 4:
+				return "Check this if you want your \"creations\" to be uploaded or not."
+			case noos - 3:
+				return "Last updated: \(SettingsManager.sharedManager().getLastUpdateDate())"
+			case noos - 1:
+				return "Select or search a meme.\n\nAdd your own images.\n\nSwipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch to set text size.\n\nTwo finger pan to place top or bottom text, tap the button on the right to select. Shake to reset position.\n\nSwipe left to set bring up opacity panel.\n\nSwipe on text field to add default text.\n\nDouble tap to change case.\n\nShare with friends and the internet."
+			default:
+				return nil
 		}
-		return nil
 	}
 	
     // MARK: - Table view delegate
@@ -77,7 +135,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		
 		if (indexPath.section == tableView.numberOfSections - 3) {
 			// Update...
-			
+			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+			self.fetchedMemes = NSMutableArray()
+			self.fetchMemes(1)
 		}
 		
 		if (indexPath.section == tableView.numberOfSections - 2) {
@@ -109,12 +169,74 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	}
 	
 	func showSendMailErrorAlert() {
-		let sendMailErrorAlert = UIAlertView(title: "What year is this!", message: "Your device cannot send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "Dismiss")
-		sendMailErrorAlert.show()
+		let alertController = modalAlertControllerFor("What year is this!", message: "Your device cannot send e-mail.  Please check e-mail configuration and try again.")
+		self.presentViewController(alertController, animated: true, completion: nil)
 	}
 	
 	func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
 		controller.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	// MARK: - Fetch Memes
+	
+	func updateCount() -> Void {
+		let request = NSFetchRequest(entityName: "XMeme")
+		do {
+			let fetchedArray = try self.context?.executeFetchRequest(request)
+			memes = NSMutableArray(array: fetchedArray!)
+			self.memesCountLabel.text = "\(memes.count) Memes"
+		}
+		catch _ {
+			print("Error in fetching.")
+		}
+	}
+	
+	func fetchMemes(paging: Int) -> Void {
+		
+		let request = NSMutableURLRequest(URL: apiMemesPaging(paging))
+		request.HTTPMethod = "GET"
+		
+		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+			
+			if (error != nil) {
+				print("Error: %@", error?.localizedDescription)
+				return
+			}
+			
+			if (data != nil) {
+				
+				do {
+					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+					let code = json.valueForKey("code") as! Int
+					if (code == 200) {
+						let jsonmemes = json.valueForKey("data") as! NSArray
+						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: self.context!)!
+						self.fetchedMemes.addObjectsFromArray(memesArray as [AnyObject])
+						dispatch_async(dispatch_get_main_queue(), {
+							self.fetchMemes(paging + 1)
+						})
+					}
+					else {
+						self.memes = self.fetchedMemes
+						dispatch_async(dispatch_get_main_queue(), {
+							SettingsManager.sharedManager().saveLastUpdateDate()
+							self.tableView.reloadData()
+							self.updateCount()
+							SVProgressHUD.dismiss()
+						})
+						return
+					}
+				}
+				catch _ {
+					print("Unable to parse")
+					SVProgressHUD.showErrorWithStatus("Failed to fetch")
+					return
+				}
+				
+			}
+			
+			}.resume()
+		
 	}
 
     /*

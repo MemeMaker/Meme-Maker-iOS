@@ -8,8 +8,12 @@
 
 import UIKit
 
-class MyMemesViewController: UIViewController {
-
+class MyMemesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+	
+	@IBOutlet weak var collectionView: UICollectionView!
+	
+	var userCreations = NSMutableArray()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +24,26 @@ class MyMemesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+	// MARK: - Collection view data source
+	
+	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return 0
+	}
+	
+	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+		
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! MemesCollectionViewCell
+		
+		
+		
+		return cell
+		
+	}
 
     /*
     // MARK: - Navigation

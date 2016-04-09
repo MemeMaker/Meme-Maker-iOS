@@ -17,6 +17,7 @@ import TextFieldEffects
 enum EditorMode {
 	case Meme
 	case UserImage
+	case Viewer
 }
 
 class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate, TextAttributeChangingDelegate {
@@ -40,7 +41,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	var isEditingTop: Bool = true
 	
-	@IBOutlet weak var backgroundImageView: UIImageView!
+	@IBOutlet weak var backgroundImageView: BlurredImageView!
 	@IBOutlet weak var memeImageView: UIImageView!
 	
 	var fontTableVC: FontTableViewController!
@@ -88,9 +89,16 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				self.didSelectMeme(self.meme!)
 			}
 		}
-		else {
+		else if (editorMode == .UserImage) {
 			let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage"))
 			self.didPickImage(image!)
+		}
+		else if (editorMode == .Viewer) {
+			self.topTextField.enabled = false
+			self.bottomTextField.enabled = false
+			self.memeImageView.image = baseImage
+			self.backgroundImageView.image = baseImage
+			
 		}
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
@@ -161,24 +169,25 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		let imageSize = baseImage?.size as CGSize!
 		
-		let maxHeight = imageSize.height/2 - 5	// Max height of top and bottom texts
+		let maxHeight = imageSize.height/2	// Max height of top and bottom texts
+		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
 		
-		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
+		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
 		// Adjust top size
-		while (ceil(topTextRect.size.height) >= maxHeight) {
-			topTextAttr.fontSize -= 2;
-			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: topTextAttr.getTextAttributes(), context: nil)
+		while (ceil(topTextRect.size.height) > maxHeight) {
+			topTextAttr.fontSize -= 1;
+			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
-		bottomTextAttr.rect = CGRectMake(0, (baseImage!.size.height) - (expectedBottomSize.height), baseImage!.size.width, baseImage!.size.height/2);
+		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2);
 		// Adjust bottom size
-		while (ceil(bottomTextRect.size.height) >= maxHeight) {
-			bottomTextAttr.fontSize -= 2;
-			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, imageSize.height/2 - 5), options: .UsesLineFragmentOrigin, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		while (ceil(bottomTextRect.size.height) > maxHeight) {
+			bottomTextAttr.fontSize -= 1;
+			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
 			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2)
 		}
@@ -207,7 +216,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	@IBAction func saveImageAction(sender: AnyObject) {
-	
 		switch PermissionScope().statusPhotos() {
 			case .Unauthorized, .Unknown, .Disabled:
 				let pscope = PermissionScope()
@@ -220,7 +228,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			default:
 				saveImageToPhotos()
 		}
-		
+		saveUserCreation()
 	}
 	
 	func saveImageToPhotos() -> Void {
@@ -233,12 +241,11 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		let imageToShare = memeImageView.image
 		let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare!], applicationActivities: nil)
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			let popoverVC = UIPopoverController(contentViewController: activityVC)
-			popoverVC.presentPopoverFromRect(shareImageButton.frame, inView: self.view, permittedArrowDirections: .Any, animated: true)
+			activityVC.modalPresentationStyle = .Popover
+			activityVC.popoverPresentationController?.sourceView = self.shareImageButton
 		}
-		else {
-			self.presentViewController(activityVC, animated: true, completion: nil)
-		}
+		self.presentViewController(activityVC, animated: true, completion: nil)
+		saveUserCreation()
 	}
 	
 	
@@ -410,6 +417,17 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
     */
 	
 	// MARK: - Utility
+	
+	func saveUserCreation () -> Void {
+		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let context = appDelegate.managedObjectContext
+		if (editorMode == .Meme) {
+			XUserCreation.createOrUpdateUserCreationWithMeme(self.meme!, topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, dateCreated: NSDate(), context: context)
+		}
+		else if (editorMode == .UserImage) {
+			XUserCreation.createOrUpdateUserCreationWithUserImage(baseImage!, topText: self.topTextField.text!, bottomText: self.bottomTextField.text!, dateCreated: NSDate(), context: context)
+		}
+	}
 	
 	func downloadImageWithURL(URL: NSURL, filePath: String) -> Void {
 		SDWebImageDownloader.sharedDownloader().downloadImageWithURL(URL, options: .ProgressiveDownload, progress: nil, completed: { (image, data, error, success) in

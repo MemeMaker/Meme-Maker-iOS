@@ -21,13 +21,15 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	var isListCell: Bool = true {
 		didSet {
 			self.setNeedsDisplay()
+			tintColor = globalTintColor
+			memeNameLabel.textColor = globalTintColor
+			backgroundColor = globalBackColor
 			self.updateImageView()
 		}
 	}
 
 	@IBOutlet weak var memeImageView: UIImageView!
 	@IBOutlet weak var memeNameLabel: UILabel!
-//	@IBOutlet weak var memeDetailLabel: UILabel!
 	
 	override func drawRect(rect: CGRect) {
 		
@@ -35,8 +37,8 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			// Disclosure
 			let disclosurePath = UIBezierPath()
 			disclosurePath.lineWidth = 1.0;
-//			disclosurePath.lineCapStyle = .Round
-//			disclosurePath.lineJoinStyle = .Round
+			disclosurePath.lineCapStyle = .Round
+			disclosurePath.lineJoinStyle = .Round
 			disclosurePath.moveToPoint(CGPointMake(self.bounds.width - 12, self.center.y - 4))
 			disclosurePath.addLineToPoint(CGPointMake(self.bounds.width - 8, self.center.y))
 			disclosurePath.addLineToPoint(CGPointMake(self.bounds.width - 12, self.center.y + 4))
