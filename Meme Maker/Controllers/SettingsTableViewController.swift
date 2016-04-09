@@ -117,14 +117,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			case 2:
 				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life."
 			case 4:
-				return "Check this if you want your \"creations\" to be uploaded or not."
+				return "Check this if you want your \"creations\" to be uploaded to the server."
 			case noos - 3:
 				let formatter = NSDateFormatter()
 				formatter.dateFormat = "MMM dd yyyy, hh:mm a"
 				let date = SettingsManager.sharedManager().getLastUpdateDate()
 				return "Last updated: \(formatter.stringFromDate(date))"
 			case noos - 1:
-				return "Select or search a meme.\n\nAdd your own images.\n\nSwipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch to set text size.\n\nTwo finger pan to place top or bottom text, tap the button on the right to select. Shake to reset position.\n\nSwipe left to set bring up opacity panel.\n\nSwipe on text field to add default text.\n\nDouble tap to change case.\n\nShare with friends and the internet."
+				return "Swipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch on top or bottom of the image to set text size.\n\nTwo finger pan on top or bottom half to place top or bottom text, Shake or two finger double tap to reset position.\n\nSwipe right text field to add default text. Swipe left to clear text.\n\nDouble tap to change case.\n\n--------------------------\n\nMade by avikantz"
 			default:
 				return nil
 		}

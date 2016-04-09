@@ -20,7 +20,7 @@ enum EditorMode {
 	case Viewer
 }
 
-class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate, TextAttributeChangingDelegate {
+class EditorViewController: UIViewController, MemesViewControllerDelegate, UITextFieldDelegate, SwipableTextFieldDelegate, TextAttributeChangingDelegate, UIGestureRecognizerDelegate {
 	
 	var meme: XMeme?
 	
@@ -51,6 +51,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	var swipeDownGesture: UISwipeGestureRecognizer?
 	var pinchGestureRecognizer: UIPinchGestureRecognizer?
 	var doubleTapGesture: UITapGestureRecognizer?
+	var twoDoubleTapGesture: UITapGestureRecognizer?
+	var panGestureRecognizer: UIPanGestureRecognizer?
+	
+	var movingTop: Bool = true
 	
 	var baseImage: UIImage?
 	
@@ -85,6 +89,17 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		doubleTapGesture?.numberOfTapsRequired = 2
 		doubleTapGesture?.numberOfTouchesRequired = 1
 		self.view.addGestureRecognizer(doubleTapGesture!)
+		
+		twoDoubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(EditorViewController.resetOffset(_:)))
+		twoDoubleTapGesture?.numberOfTapsRequired = 2
+		twoDoubleTapGesture?.numberOfTouchesRequired = 2
+		self.view.addGestureRecognizer(twoDoubleTapGesture!)
+		
+		panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(EditorViewController.handlePan(_:)))
+		panGestureRecognizer?.minimumNumberOfTouches = 2
+		panGestureRecognizer?.maximumNumberOfTouches = 3
+		panGestureRecognizer?.delegate = self
+		self.view.addGestureRecognizer(panGestureRecognizer!)
 		
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
@@ -221,8 +236,14 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercaseString : topTextAttr.text;
 		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercaseString : bottomTextAttr.text;
 		
-		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
-		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
+		let topRect = CGRectMake(topTextAttr.rect.origin.x + topTextAttr.offset.x, topTextAttr.rect.origin.y + topTextAttr.offset.y, topTextAttr.rect.size.width, topTextAttr.rect.size.height)
+		let bottomRect = CGRectMake(bottomTextAttr.rect.origin.x + bottomTextAttr.offset.x, bottomTextAttr.rect.origin.y + bottomTextAttr.offset.y, bottomTextAttr.rect.size.width, bottomTextAttr.rect.size.height)
+
+		topText.drawInRect(topRect, withAttributes: topTextAttr.getTextAttributes())
+		bottomText.drawInRect(bottomRect, withAttributes: bottomTextAttr.getTextAttributes())
+		
+//		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
+//		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
 		
 		memeImageView.image = UIGraphicsGetImageFromCurrentImageContext()
 		
@@ -353,12 +374,48 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		cookImage()
 	}
 	
+	func handlePan(recognizer: UIPanGestureRecognizer) -> Void {
+		let translation = recognizer.translationInView(memeImageView)
+//		let location = recognizer.locationInView(self.memeImageView)
+		if (movingTop) {
+			topTextAttr.offset = CGPointMake(topTextAttr.offset.x + recognizer.velocityInView(self.view).x/80,
+			                                 topTextAttr.offset.y + recognizer.velocityInView(self.view).y/80);
+		}
+		else {
+			bottomTextAttr.offset = CGPointMake(bottomTextAttr.offset.x + recognizer.velocityInView(self.view).x/80,
+			                                    bottomTextAttr.offset.y + recognizer.velocityInView(self.view).y/80);
+		}
+		recognizer.setTranslation(translation, inView: self.memeImageView)
+		cookImage()
+	}
+	
 	func handleDoubleTap(recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.uppercase = !topTextAttr.uppercase
 		bottomTextAttr.uppercase = !bottomTextAttr.uppercase
 		topTextAttr.saveAttributes("topAttr")
 		bottomTextAttr.saveAttributes("bottomAttr")
 		cookImage()
+	}
+	
+	func resetOffset(recognizer: UITapGestureRecognizer) -> Void {
+		topTextAttr.offset = CGPointZero
+		topTextAttr.fontSize = 44
+		bottomTextAttr.offset = CGPointZero
+		bottomTextAttr.fontSize = 44
+		cookImage()
+	}
+	
+	override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+		resetOffset(twoDoubleTapGesture!)
+	}
+	
+	func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+		if (gestureRecognizer == self.panGestureRecognizer) {
+			let topRect = CGRectMake(memeImageView.bounds.origin.x, memeImageView.bounds.origin.y, memeImageView.bounds.size.width, memeImageView.bounds.size.height/2)
+			let location = gestureRecognizer.locationInView(self.memeImageView)
+			movingTop = (topRect.contains(location))
+		}
+		return true
 	}
 	
 	// MARK: - Text change selection delegate
