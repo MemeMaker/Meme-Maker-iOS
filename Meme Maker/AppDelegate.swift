@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		
 		SVProgressHUD.setDefaultMaskType(.Gradient)
-		SVProgressHUD.setDefaultStyle(.Dark)
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())

@@ -34,8 +34,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	var isListView: Bool = true
 	
-	var searchController: UISearchController?
-	
 	var memes = NSMutableArray()
 	var allMemes = NSMutableArray()
 	var fetchedMemes = NSMutableArray()

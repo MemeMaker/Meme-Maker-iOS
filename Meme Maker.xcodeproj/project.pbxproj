@@ -58,6 +58,8 @@
 		597D74901CB43866002C784B /* TrashHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D74751CB43866002C784B /* TrashHand.ttf */; };
 		59BC23BB1CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23B91CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift */; };
 		59BC23BC1CB7E2B8004D6673 /* XUserCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */; };
+		59BC23BE1CB8BACE004D6673 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BC23BD1CB8BACE004D6673 /* CoreData.framework */; };
+		59BC23C01CB8F1E6004D6673 /* ViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */; };
 		59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */; };
 		59EFF4CB1CB4DF6400EE3D27 /* SwipableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */; };
 		59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */; };
@@ -140,6 +142,8 @@
 		597D74751CB43866002C784B /* TrashHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = TrashHand.ttf; path = "Supporting Files/Fonts/TrashHand.ttf"; sourceTree = "<group>"; };
 		59BC23B91CB7E2B8004D6673 /* XUserCreation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XUserCreation+CoreDataProperties.swift"; path = "Model/XUserCreation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUserCreation.swift; path = Model/XUserCreation.swift; sourceTree = "<group>"; };
+		59BC23BD1CB8BACE004D6673 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewerCollectionViewCell.swift; path = Views/ViewerCollectionViewCell.swift; sourceTree = "<group>"; };
 		59EFF4C81CB4BB0000EE3D27 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XTextAttributes.swift; path = Model/XTextAttributes.swift; sourceTree = "<group>"; };
 		59EFF4CA1CB4DF6400EE3D27 /* SwipableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipableTextField.swift; path = Views/SwipableTextField.swift; sourceTree = "<group>"; };
 		59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontTableViewController.swift; path = Controllers/FontTableViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59BC23BE1CB8BACE004D6673 /* CoreData.framework in Frameworks */,
 				8BCF1B811523F871ECACFD0D /* Pods_Meme_Maker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +389,7 @@
 			children = (
 				593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */,
 				592293E51CB6897600219133 /* FontsTableViewCell.swift */,
+				59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 		E387C582D155737BA55B23FD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59BC23BD1CB8BACE004D6673 /* CoreData.framework */,
 				D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */,
 			);
 			name = Frameworks;
@@ -647,6 +654,7 @@
 				593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */,
 				593B82311CB222560073DC17 /* AppDelegate.swift in Sources */,
 				593B82751CB22B380073DC17 /* MyMemesViewController.swift in Sources */,
+				59BC23C01CB8F1E6004D6673 /* ViewerCollectionViewCell.swift in Sources */,
 				593B82691CB22AB90073DC17 /* MemesViewController.swift in Sources */,
 				592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */,
 				593B82391CB222560073DC17 /* Meme_Maker.xcdatamodeld in Sources */,

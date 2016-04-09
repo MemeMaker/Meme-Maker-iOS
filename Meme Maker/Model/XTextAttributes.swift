@@ -39,7 +39,7 @@ class XTextAttributes: NSObject {
 			setDefault()
 			
 			if (!NSFileManager.defaultManager().fileExistsAtPath(documentsPathForFileName(savename))) {
-				print("No such attribute file")
+//				print("No such attribute file")
 				return
 			}
 			

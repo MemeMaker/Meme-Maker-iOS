@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-let API_BASE_URL: String = "http://alpha-meme-maker.herokuapp.com/"
+let API_BASE_URL: String = "http://alpha-meme-maker.herokuapp.com"
 
 func apiMemesPaging(page: Int) -> NSURL {
-	return NSURL(string: "http://alpha-meme-maker.herokuapp.com/\(page)")!
+	return NSURL(string: "\(API_BASE_URL)/\(page)/")!
 }
 
 func apiParticularMeme(memeID: Int) -> NSURL {
-	return NSURL(string: "http://alpha-meme-maker.herokuapp.com/memes/\(memeID)")!
+	return NSURL(string: "\(API_BASE_URL)/memes/\(memeID)/")!
 }
 
 func apiSubmissionsPaging(page: Int) -> NSURL {
-	return NSURL(string: "http://alpha-meme-maker.herokuapp.com/submissions/\(page)")!
+	return NSURL(string: "\(API_BASE_URL)/submissions/\(page)/")!
 }
 
 func apiSubmissionsForMeme(memeID: Int) -> NSURL {
-	return NSURL(string: "http://alpha-meme-maker.herokuapp.com/memes/\(memeID)/submissions")!
+	return NSURL(string: "\(API_BASE_URL)/memes/\(memeID)/submissions/")!
 }
 
 func getDocumentsDirectory() -> String {
@@ -76,7 +76,11 @@ func getCircularImage(image: UIImage) -> UIImage {
 	image.drawInRect(imageRect)
 	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
-	return newImage
+	let ratio1 = 180/image.size.height
+	let ratio2 = 180/image.size.width
+	let ratio = min(ratio1, ratio2)
+	let resizedImage = getImageByResizingImage(newImage, ratio: ratio)
+	return resizedImage
 }
 
 func getSquareImage(image: UIImage) -> UIImage {
@@ -89,7 +93,11 @@ func getSquareImage(image: UIImage) -> UIImage {
 	image.drawInRect(imageRect)
 	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
-	return newImage
+	let ratio1 = 240/image.size.height
+	let ratio2 = 240/image.size.width
+	let ratio = min(ratio1, ratio2)
+	let resizedImage = getImageByResizingImage(newImage, ratio: ratio)
+	return resizedImage
 }
 
 func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
@@ -99,6 +107,59 @@ func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
 	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
 	return newImage
+}
+
+func getImageByDrawingOnImage(image: UIImage, topText: String, bottomText: String) -> UIImage {
+	
+	let ratio1 = 600/image.size.height
+	let ratio2 = 600/image.size.width
+	let ratio = min(ratio1, ratio2)
+	let baseImage = getImageByResizingImage(image, ratio: ratio)
+	
+	let imageSize = baseImage.size as CGSize!
+	let topTextAttr = XTextAttributes(savename: "topo")
+	topTextAttr.fontSize = 20
+	topTextAttr.text = topText
+	let bottomTextAttr = XTextAttributes(savename: "boto")
+	bottomTextAttr.text = bottomText
+	bottomTextAttr.fontSize = 20
+	
+	let maxHeight = imageSize.height/2	// Max height of top and bottom texts
+	let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
+	
+	var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+	topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
+	// Adjust top size
+	while (ceil(topTextRect.size.height) > maxHeight) {
+		topTextAttr.fontSize -= 1;
+		topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+	}
+	
+	var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+	var expectedBottomSize = bottomTextRect.size
+	// Bottom rect starts from bottom, not from center.y
+	bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2);
+	// Adjust bottom size
+	while (ceil(bottomTextRect.size.height) > maxHeight) {
+		bottomTextAttr.fontSize -= 1;
+		bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		expectedBottomSize = bottomTextRect.size
+		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2)
+	}
+	
+	UIGraphicsBeginImageContext(imageSize)
+	
+	baseImage.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
+	
+	topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
+	bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
+	
+	let newImage = UIGraphicsGetImageFromCurrentImageContext()
+	
+	UIGraphicsEndImageContext()
+	
+	return newImage
+	
 }
 
 func modalAlertControllerFor(title: String, message: String) -> UIAlertController {

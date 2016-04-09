@@ -56,6 +56,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	var topTextAttr: XTextAttributes!
 	var bottomTextAttr: XTextAttributes!
+	
+	// MARK: -
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,16 +95,15 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage"))
 			self.didPickImage(image!)
 		}
-		else if (editorMode == .Viewer) {
-			self.topTextField.enabled = false
-			self.bottomTextField.enabled = false
-			self.memeImageView.image = baseImage
-			self.backgroundImageView.image = baseImage
-			
-		}
+		updateForViewing()
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			self.dismissButton.hidden = true
+		}
+		
+		let notifCenter = NSNotificationCenter.defaultCenter()
+		notifCenter.addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification) in
+			
 		}
 		
     }
@@ -113,6 +114,20 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
     }
 	
 	// MARK: - Updating views
+	
+	func updateForViewing() -> Void {
+		self.topTextField.enabled = true
+		self.bottomTextField.enabled = true
+		if (editorMode == .Viewer) {
+			self.topTextField.enabled = false
+			self.bottomTextField.enabled = false
+			self.memeImageView.image = baseImage
+			self.topTextAttr.text = self.topTextField.text
+			self.bottomTextAttr.text = self.bottomTextField.text
+			cookImage()
+			self.backgroundImageView.image = baseImage
+		}
+	}
 	
 	func updateMemeViews() -> Void {
 		if (self.meme == nil) {
@@ -183,13 +198,13 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
-		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2);
+		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height);
 		// Adjust bottom size
 		while (ceil(bottomTextRect.size.height) > maxHeight) {
 			bottomTextAttr.fontSize -= 1;
 			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
-			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2)
+			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height)
 		}
 		
 		UIGraphicsBeginImageContext(imageSize)
@@ -407,14 +422,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	@IBAction func dismissAction(sender: AnyObject) {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
-
-	/*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 	
 	// MARK: - Utility
 	

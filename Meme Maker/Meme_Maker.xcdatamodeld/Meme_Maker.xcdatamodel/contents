@@ -5,7 +5,6 @@
         <attribute name="dateCreated" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="memeID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="meme" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMeme" inverseName="created" inverseEntity="XMeme" syncable="YES"/>
     </entity>
     <entity name="XMeme" representedClassName=".XMeme" syncable="YES">
         <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +16,6 @@
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="thumb" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="created" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="XCreated" inverseName="meme" inverseEntity="XCreated" syncable="YES"/>
     </entity>
     <entity name="XUserCreation" representedClassName=".XUserCreation" syncable="YES">
         <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,8 +26,8 @@
         <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="XCreated" positionX="1456" positionY="819" width="128" height="118"/>
-        <element name="XMeme" positionX="1233" positionY="792" width="135" height="193"/>
-        <element name="XUserCreation" positionX="1341" positionY="873" width="128" height="135"/>
+        <element name="XCreated" positionX="1474" positionY="914" width="128" height="103"/>
+        <element name="XMeme" positionX="1233" positionY="792" width="135" height="178"/>
+        <element name="XUserCreation" positionX="1492" positionY="729" width="128" height="135"/>
     </elements>
 </model>

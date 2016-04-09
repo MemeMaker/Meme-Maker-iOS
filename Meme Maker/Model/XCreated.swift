@@ -18,27 +18,33 @@ class XCreated: NSManagedObject {
 	
 	class func createOrUpdateSubmissionWithData(data: NSDictionary, context: NSManagedObjectContext) -> NSManagedObject {
 		
-		let ID: Int = (data.objectForKey("memeID")?.integerValue)!
-		let topText: String = data.objectForKey("topText") as! String
-		let bottomText: String = data.objectForKey("bottomText") as! String
+		print("data: \(data)")
 		
-		let fetchRequest = NSFetchRequest(entityName: "XMeme")
-		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", ID, topText, bottomText)
+		let ID: Int32 = (data.objectForKey("memeID")?.intValue)!
+		let topText = data.objectForKey("topText") as? String
+		let bottomText = data.objectForKey("bottomText") as? String
+		
+		let fetchRequest = NSFetchRequest(entityName: "XCreated")
+		fetchRequest.predicate = NSPredicate(format: "memeID == %i AND topText == %@ AND bottomText == %@", ID, topText!, bottomText!)
 		
 		var submission: XCreated!
 		
 		do {
 			let fetchedArray = try context.executeFetchRequest(fetchRequest)
 			if (fetchedArray.count > 0) {
-//			print("Submission \(ID) already present.")
+			print("Submission \(ID) already present.")
 				submission = fetchedArray.first as! XCreated
 			}
 			else {
-//				print("Inserting meme \(ID).")
+				print("Inserting submission \(ID).")
 				submission = NSEntityDescription.insertNewObjectForEntityForName("XCreated", inManagedObjectContext: context) as! XCreated
-				submission.memeID = (data.objectForKey("memeID")?.intValue)!
+				submission.memeID = ID
 				submission.topText = topText
 				submission.bottomText = bottomText
+				submission.dateCreated = data.objectForKey("dateCreated") as? String
+				let dateFormatter = NSDateFormatter.init()
+				dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+				submission.dateSubmission = dateFormatter.dateFromString(submission.dateCreated!)
 				
 			}
 		}
@@ -46,17 +52,12 @@ class XCreated: NSManagedObject {
 			
 		}
 		
-		submission.dateCreated = data.objectForKey("dateCreated")?.stringValue
-		let dateFormatter = NSDateFormatter.init()
-		dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-		submission.dateSubmission = dateFormatter.dateFromString(submission.dateCreated!)
-		
 		return submission
 	}
 	
 	class func getAllSubmissionsFromArray(array: NSArray, context: NSManagedObjectContext) -> NSArray? {
 		
-		let submissionsArray: NSMutableArray = NSMutableArray()
+		let submissionsArray = NSMutableArray()
 		
 		for dict in array {
 			let subm = self.createOrUpdateSubmissionWithData(dict as! NSDictionary, context: context)
@@ -72,6 +73,10 @@ class XCreated: NSManagedObject {
 		
 		return submissionsArray
 		
+	}
+	
+	override var description: String {
+		return "{\n\tmemeID = \(memeID),\n\tdateCreated = \(dateCreated!)\n}"
 	}
 
 }

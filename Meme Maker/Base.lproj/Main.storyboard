@@ -13,7 +13,6 @@
             <string>EtelkaNarrowTextPro</string>
             <string>EtelkaNarrowTextPro</string>
             <string>EtelkaNarrowTextPro</string>
-            <string>EtelkaNarrowTextPro</string>
         </mutableArray>
         <mutableArray key="Impact.ttf">
             <string>Impact</string>
@@ -33,9 +32,51 @@
                     <view key="view" contentMode="scaleToFill" id="V4F-M4-7Ck">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vP3-MJ-xDm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0oA-ux-9rD">
+                                    <size key="itemSize" width="160" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="m0f-G5-r5E" customClass="ViewerCollectionViewCell" customModule="Meme_Maker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="160" height="160"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="H0G-nC-eBw" id="BLJ-yq-i2l"/>
+                                    <outlet property="delegate" destination="H0G-nC-eBw" id="DWx-Pu-rhB"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vP3-MJ-xDm" firstAttribute="top" secondItem="IHm-HN-qHg" secondAttribute="bottom" constant="-64" id="GAw-HD-azw"/>
+                            <constraint firstItem="7id-pd-rEG" firstAttribute="top" secondItem="vP3-MJ-xDm" secondAttribute="bottom" constant="-49" id="giR-3D-5Jk"/>
+                            <constraint firstItem="vP3-MJ-xDm" firstAttribute="leading" secondItem="V4F-M4-7Ck" secondAttribute="leadingMargin" constant="-20" id="izX-e9-9xz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vP3-MJ-xDm" secondAttribute="trailing" constant="-20" id="xh1-1h-it0"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Browse" id="JOR-rn-UfK"/>
+                    <navigationItem key="navigationItem" title="Browse" id="JOR-rn-UfK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="skn-eq-TBG">
+                            <connections>
+                                <action selector="refershAction:" destination="H0G-nC-eBw" id="bTR-mX-ZQK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="vP3-MJ-xDm" id="dOe-sQ-GpK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QN2-9e-jQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -548,51 +589,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="wF8-3b-pX8" customClass="MemesCollectionViewCell" customModule="Meme_Maker" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="gridCell" id="wF8-3b-pX8" customClass="ViewerCollectionViewCell" customModule="Meme_Maker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="160" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fva-pu-zAK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                                </imageView>
-                                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B0J-3e-0pz">
-                                                    <rect key="frame" x="0.0" y="140" width="160" height="20"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999998807907104" translatesAutoresizingMaskIntoConstraints="NO" id="r5S-5b-mzw">
-                                                            <rect key="frame" x="4" y="0.0" width="152" height="20"/>
-                                                            <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="12"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="r5S-5b-mzw" firstAttribute="top" secondItem="B0J-3e-0pz" secondAttribute="top" id="GVa-pl-tv1"/>
-                                                        <constraint firstAttribute="trailing" secondItem="r5S-5b-mzw" secondAttribute="trailing" constant="4" id="Xsk-IQ-ZW6"/>
-                                                        <constraint firstAttribute="bottom" secondItem="r5S-5b-mzw" secondAttribute="bottom" id="cq2-Jn-siS"/>
-                                                        <constraint firstItem="r5S-5b-mzw" firstAttribute="leading" secondItem="B0J-3e-0pz" secondAttribute="leading" constant="4" id="ieU-zb-DPb"/>
-                                                        <constraint firstAttribute="height" constant="20" id="lS9-tv-IG8"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="Fva-pu-zAK" firstAttribute="top" secondItem="wF8-3b-pX8" secondAttribute="topMargin" constant="-8" id="30N-pQ-xmU"/>
-                                            <constraint firstItem="Fva-pu-zAK" firstAttribute="leading" secondItem="wF8-3b-pX8" secondAttribute="leadingMargin" constant="-8" id="Fnu-ma-2Xs"/>
-                                            <constraint firstItem="B0J-3e-0pz" firstAttribute="leading" secondItem="wF8-3b-pX8" secondAttribute="leadingMargin" constant="-8" id="SA5-mz-KmS"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="Fva-pu-zAK" secondAttribute="bottom" constant="-8" id="kY8-5C-oM1"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="B0J-3e-0pz" secondAttribute="bottom" constant="-8" id="nne-1n-U96"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="B0J-3e-0pz" secondAttribute="trailing" constant="-8" id="p5C-O9-Wph"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="Fva-pu-zAK" secondAttribute="trailing" constant="-8" id="t3M-xq-uig"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="memeImageView" destination="Fva-pu-zAK" id="w1k-Ce-DLV"/>
-                                            <outlet property="memeNameLabel" destination="r5S-5b-mzw" id="cfx-at-XpQ"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

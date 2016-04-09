@@ -15,12 +15,7 @@ class XUserCreation: NSManagedObject {
 // Insert code here to add functionality to your managed object subclass
 	
 	var dateCreated: NSDate? {
-		get {
-			let formatter = NSDateFormatter()
-			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-			return formatter.dateFromString(self.createdOn!)
-		}
-		set {
+		didSet {
 			let formatter = NSDateFormatter()
 			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 			self.createdOn = formatter.stringFromDate(dateCreated!)
@@ -30,7 +25,7 @@ class XUserCreation: NSManagedObject {
 	class func createOrUpdateUserCreationWithMeme(meme: XMeme, topText: String, bottomText: String, dateCreated: NSDate, context: NSManagedObjectContext) -> XUserCreation {
 		
 		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
-		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
+//		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
 		
 		var creation: XUserCreation!
 		
@@ -75,6 +70,10 @@ class XUserCreation: NSManagedObject {
 		let data = UIImageJPEGRepresentation(image, 0.8)
 		let filePath = userImagesPathForFileName(creation.createdOn!)
 		
+		if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+			print("\(#function) | file already present.")
+		}
+		
 		do {
 			try data?.writeToFile(filePath, options: .AtomicWrite)
 		}
@@ -90,6 +89,10 @@ class XUserCreation: NSManagedObject {
 		}
 
 		return creation
+	}
+	
+	override var description: String {
+		return "{\n\tisMeme = \(isMeme),\n\tcreated = \(createdOn!),\n\timagePath = \(imagePath!)\n}"
 	}
 	
 }

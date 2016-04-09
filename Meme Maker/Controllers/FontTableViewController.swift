@@ -130,11 +130,11 @@ class FontTableViewController: UITableViewController {
 			["displayName": "0% (Only outline)", "value": 0.0])
 		
 		let dOutlineThickness = NSMutableArray(objects:
-			["displayName": "4pt (Default)", "value": 4.0],
+			["displayName": "2pt (Default)", "value": 2.0],
+		    ["displayName": "1pt", "value": 1.0],
+		    ["displayName": "0pt (Only shadow)", "value": 0.0],
 			["displayName": "3pt", "value": 3.0],
-			["displayName": "2pt", "value": 2.0],
-			["displayName": "1pt", "value": 1.0],
-			["displayName": "0pt (Only shadow)", "value": 0.0],
+			["displayName": "4pt", "value": 4.0],
 			["displayName": "5pt", "value": 5.0],
 			["displayName": "6pt", "value": 6.0],
 			["displayName": "7pt", "value": 7.0])
