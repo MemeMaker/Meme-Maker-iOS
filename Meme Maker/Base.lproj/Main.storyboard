@@ -13,10 +13,10 @@
             <string>EtelkaNarrowTextPro</string>
             <string>EtelkaNarrowTextPro</string>
             <string>EtelkaNarrowTextPro</string>
+            <string>EtelkaNarrowTextPro</string>
+            <string>EtelkaNarrowTextPro</string>
         </mutableArray>
         <mutableArray key="Impact.ttf">
-            <string>Impact</string>
-            <string>Impact</string>
             <string>Impact</string>
         </mutableArray>
     </customFonts>
@@ -295,7 +295,7 @@
                                     <constraint firstAttribute="height" constant="44" id="qFg-gL-S9V"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
@@ -403,7 +403,7 @@
                                     <constraint firstAttribute="height" constant="44" id="g0g-ad-8zm"/>
                                 </constraints>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
@@ -633,7 +633,7 @@
                             <tableViewSection footerTitle="Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings." id="9pa-hd-kQh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wfU-ND-Oxl">
-                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfU-ND-Oxl" id="ceQ-L3-f0C">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -666,7 +666,7 @@
                             <tableViewSection footerTitle="Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life." id="LjE-Cu-nUi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sit-T7-2mu">
-                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sit-T7-2mu" id="QDb-Qn-PoF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -699,7 +699,7 @@
                             <tableViewSection footerTitle="" id="HIm-gx-Mho">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="csF-rY-6uh">
-                                        <rect key="frame" x="0.0" y="380.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="382" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="csF-rY-6uh" id="aKz-Do-q2o">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -732,7 +732,7 @@
                             <tableViewSection footerTitle="Check this if you want your &quot;creations&quot; to be uploaded or not." id="Wlt-PE-T4a">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1UU-mH-p8p">
-                                        <rect key="frame" x="0.0" y="460.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="462" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1UU-mH-p8p" id="7ID-Xa-gDv">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -765,7 +765,7 @@
                             <tableViewSection footerTitle="" id="rRy-E1-6f9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jid-Dn-5ln" style="IBUITableViewCellStyleDefault" id="tp6-cP-3pU">
-                                        <rect key="frame" x="0.0" y="549" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="551" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp6-cP-3pU" id="6DS-eb-3fX">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -789,7 +789,7 @@
                             <tableViewSection footerTitle="Last updated: 2016-04-06 19:35:12" id="Llo-l6-nge">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="INB-gA-zHN" detailTextLabel="Aes-Me-PcF" style="IBUITableViewCellStyleValue1" id="Lyq-Ae-kMZ">
-                                        <rect key="frame" x="0.0" y="629" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="631" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lyq-Ae-kMZ" id="E3A-TW-Qqm">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -817,7 +817,7 @@
                             <tableViewSection footerTitle="" id="XgW-oI-Rc7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="U7k-vA-1vG">
-                                        <rect key="frame" x="0.0" y="717.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="720" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U7k-vA-1vG" id="2Rm-bH-9WS">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -837,7 +837,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Mhr-7m-Z0Z">
-                                        <rect key="frame" x="0.0" y="761.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="764" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhr-7m-Z0Z" id="MFQ-Ln-J0e">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -861,7 +861,7 @@
                             <tableViewSection footerTitle="" id="S7i-53-zlj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="95W-Zc-Dcp" style="IBUITableViewCellStyleDefault" id="EeD-b3-hrH">
-                                        <rect key="frame" x="0.0" y="841.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="844" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeD-b3-hrH" id="2n2-PM-Tow">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -946,7 +946,7 @@ Share with friends and the internet.</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Thanking the following Awesome People for providing freeware fonts" id="xBk-gw-vB6">
-                                <mutableString key="footerTitle">Dieter Steffmann for "Arabella", ""Honey Script", "Tobago Poster", "Subway", "Rolling No One", "Prisma" and "Marketing Script" (steffmann.de)
+                                <string key="footerTitle">Dieter Steffmann for "Arabella", ""Honey Script", "Tobago Poster", "Subway", "Rolling No One", "Prisma" and "Marketing Script" (steffmann.de)
 
 Jenna Sue for "Jenna Sue" (jennasuedesign.com)
 				
@@ -974,7 +974,7 @@ Yeah Noah for "Existence"
 
 Malley F. for "Skipping Stones"
 
-Google Android Design for "Roboto" (https://www.google.com/design/spec/style/typography.html)</mutableString>
+Google Android Design for "Roboto" (https://www.google.com/design/spec/style/typography.html)</string>
                                 <cells/>
                             </tableViewSection>
                         </sections>

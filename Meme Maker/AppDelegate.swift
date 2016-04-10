@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		SVProgressHUD.setDefaultMaskType(.Gradient)
-		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			let splitVC: UISplitViewController = UISplitViewController.init()
@@ -34,11 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			splitVC.viewControllers = [tabBarVC, editorVC]
 			self.window?.rootViewController = splitVC
 		}
-		
-		updateGlobalTheme()
-		
-		IQKeyboardManager.sharedManager().enable = true
-		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
 		
 		let manager = SettingsManager.sharedManager()
 		let timesLaunched = manager.getInteger(kSettingsTimesLaunched)
@@ -56,6 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let bottomAttr = XTextAttributes(savename: "bottomAttr")
 			bottomAttr.saveAttributes("bottomAttr")
 		}
+		
+		SVProgressHUD.setDefaultMaskType(.Gradient)
+		
+		IQKeyboardManager.sharedManager().enable = true
+		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
+		
+		updateGlobalTheme()
 		
 		return true
 	}

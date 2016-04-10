@@ -59,6 +59,18 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.navigationItem.rightBarButtonItems = [self.searchBarButton, self.photoGalleryButton]
+			if let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
+				self.memeSelectionDelegate?.didPickImage(image)
+				self.editorVC?.memeNameLabel.text = "Last Edit"
+			}
+		}
+		
+    }
+	
+	override func viewDidAppear(animated: Bool) {
+		
 		let request = NSFetchRequest(entityName: "XMeme")
 		request.sortDescriptors = [NSSortDescriptor.init(key: "memeID", ascending: true)]
 		do {
@@ -70,14 +82,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			print("Error in fetching.")
 		}
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			self.navigationItem.rightBarButtonItems = [self.searchBarButton, self.photoGalleryButton]
-			if let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
-				self.memeSelectionDelegate?.didPickImage(image)
-				self.editorVC?.memeNameLabel.text = "Last Edit"
-			}
-		}
-		
 		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
 			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 			self.fetchedMemes = NSMutableArray()
@@ -86,9 +90,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
 		updateCollectionViewCells()
 		
-    }
-	
-	override func viewDidAppear(animated: Bool) {
 		self.collectionView.reloadData()
 	}
 	
@@ -215,12 +216,16 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
 		let meme = memes.objectAtIndex(indexPath.row) as! XMeme
 		
-		let image = UIImage(contentsOfFile: imagesPathForFileName("\(meme.memeID)"))
-		let data = UIImageJPEGRepresentation(image!, 0.8)
-		do {
-			try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+		if let image = UIImage(contentsOfFile: imagesPathForFileName("\(meme.memeID)")) {
+			let data = UIImageJPEGRepresentation(image, 0.8)
+			do {
+				try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+			}
+			catch _ {}
 		}
-		catch _ {}
+		else {
+			return
+		}
 		
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			self.memeSelectionDelegate?.didSelectMeme(meme)

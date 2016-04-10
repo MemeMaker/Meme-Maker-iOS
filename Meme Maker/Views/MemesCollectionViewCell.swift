@@ -30,7 +30,6 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			tintColor = globalTintColor
 			memeNameLabel.textColor = globalTintColor
 			backgroundColor = globalBackColor
-			self.updateImageView()
 		}
 	}
 
@@ -67,6 +66,8 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	
 	func updateImageView() -> Void {
 		
+		self.memeImageView.image = UIImage(named: "MemeBlank")
+		
 		let filePath = imagesPathForFileName("\(self.meme!.memeID)")
 		if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
 			if (self.isListCell) {
@@ -77,10 +78,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 				else {
 					let image = getCircularImage(UIImage(contentsOfFile: filePath)!)
 					let data = UIImagePNGRepresentation(image)
-					do {
-						try data?.writeToFile(filePathC, options: .AtomicWrite)
-					}
-					catch _ {}
+					data?.writeToFile(filePathC, atomically: true)
 					self.memeImageView.image = image
 				}
 			}
@@ -92,10 +90,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 				else {
 					let image = getSquareImage(UIImage(contentsOfFile: filePath)!)
 					let data = UIImageJPEGRepresentation(image, 0.8)
-					do {
-						try data?.writeToFile(filePathS, options: .AtomicWrite)
-					}
-					catch _ {}
+					data?.writeToFile(filePathS, atomically: true)
 					self.memeImageView.image = image
 				}
 			}
@@ -111,10 +106,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	func downloadImageWithURL(URL: NSURL, filePath: String) -> Void {
 		SDWebImageDownloader.sharedDownloader().downloadImageWithURL(URL, options: .ProgressiveDownload, progress: nil, completed: { (image, data, error, success) in
 			if (success && error == nil) {
-				do {
-					try data.writeToFile(filePath, options: .AtomicWrite)
-				}
-				catch _ {}
+				data.writeToFile(filePath, atomically: true)
 				dispatch_async(dispatch_get_main_queue(), {
 					self.updateImageView()
 				})

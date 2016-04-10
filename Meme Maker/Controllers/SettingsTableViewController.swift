@@ -54,6 +54,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			cell.backgroundColor = globalBackColor
 			cell.textLabel?.textColor = globalTintColor
 			cell.textLabel?.font = UIFont(name: "EtelkaNarrowTextPro", size: 18)
+			cell.detailTextLabel?.font = UIFont(name: "EtelkaNarrowTextPro", size: 18)
 		}
 		for label in tableViewCellLabels {
 			label.textColor = globalTintColor

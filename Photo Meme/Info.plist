@@ -2,11 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Impact.ttf</string>
+		<string>CaviarDreams.ttf</string>
 		<string>EtelkaNarrowTextPro.otf</string>
 		<string>Absender.ttf</string>
+		<string>BebasKai-Regular.otf</string>
+		<string>Rounded_Elegance.ttf</string>
+		<string>theboldfont.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Kenzo Regular.otf</string>
+		<string>Gravity-Book.otf</string>
+		<string>Existence-Light.ttf</string>
 		<string>StencilStd.otf</string>
 		<string>AvenirCondensedHand.ttf</string>
 		<string>LeagueGothic-Regular.otf</string>
@@ -32,8 +42,6 @@
 		<string>Artbrush.ttf</string>
 		<string>TobagoPoster.ttf</string>
 	</array>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Photo Meme</string>
 	<key>CFBundleExecutable</key>
