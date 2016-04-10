@@ -30,8 +30,16 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Impact.ttf</string>
+		<string>CaviarDreams.ttf</string>
 		<string>EtelkaNarrowTextPro.otf</string>
 		<string>Absender.ttf</string>
+		<string>BebasKai-Regular.otf</string>
+		<string>Rounded_Elegance.ttf</string>
+		<string>theboldfont.ttf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Kenzo Regular.otf</string>
+		<string>Gravity-Book.otf</string>
+		<string>Existence-Light.ttf</string>
 		<string>StencilStd.otf</string>
 		<string>AvenirCondensedHand.ttf</string>
 		<string>LeagueGothic-Regular.otf</string>

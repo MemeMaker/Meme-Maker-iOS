@@ -946,7 +946,9 @@ Share with friends and the internet.</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Thanking the following Awesome People for providing freeware fonts" id="xBk-gw-vB6">
-                                <string key="footerTitle">Jenna Sue for "Jenna Sue" (jennasuedesign.com)
+                                <mutableString key="footerTitle">Dieter Steffmann for "Arabella", ""Honey Script", "Tobago Poster", "Subway", "Rolling No One", "Prisma" and "Marketing Script" (steffmann.de)
+
+Jenna Sue for "Jenna Sue" (jennasuedesign.com)
 				
 Tudor Banciu for "Darkwoman" (spontaneousartattack.wordpress.com/author/tudy1311/)
 			
@@ -954,18 +956,25 @@ Angie Durbin for "Angelina" (www.rocketdogfonts.com)
 
 Daniel Midgley for "Daniel" (goodreasonblog.blogspot.com/p/fontery)
 
-Malley F. for "Skipping Stones"
-
 Luce Avérous for "Trashhand" (luce.averous.com)
-
-Dieter Steffmann for "Arabella", ""Honey Script", "Tobago Poster", "Subway", "Rolling No One", "Prisma" and "Marketing Script" (steffmann.de)
 
 Morris Fuller Benton for "League Gothic"
 
 Claude Pelletier for "Bolina" and "Louisa CP" (claudeserieux@gmail.com)
 
+Lauren Thompson for "Caviar Dreams" (http://www.nymfont.com) 
+
+Pindarots for "The Bold Font" (http://www.pindarots.com)
+
 Gary D. Jessey for "Art Brush"
-			</string>
+
+Vincenzo Vuono for "Gravity"
+
+Yeah Noah for "Existence"
+
+Malley F. for "Skipping Stones"
+
+Google Android Design for "Roboto" (https://www.google.com/design/spec/style/typography.html)</mutableString>
                                 <cells/>
                             </tableViewSection>
                         </sections>

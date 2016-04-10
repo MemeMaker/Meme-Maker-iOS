@@ -283,13 +283,6 @@ class FontTableViewController: UITableViewController {
 		let currentDict = selectedAttrs.objectAtIndex(currentFTType) as! NSDictionary
 		
 		cell.ticked = dict["value"]!.isEqual(currentDict["value"])
-//		
-//		if (dict["value"]!.isEqual(currentDict["value"])) {
-//			cell.imageView?.image = UIImage(named: "tickmark")
-//		}
-//		else {
-//			cell.imageView?.image = UIImage()
-//		}
 		
 		if (currentFTType == 0) {
 			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: 25)!
@@ -318,13 +311,13 @@ class FontTableViewController: UITableViewController {
 				topTextAttr.font = UIFont(name: fontName, size: topTextAttr.fontSize)!
 				bottomTextAttr.font = UIFont(name: fontName, size: bottomTextAttr.fontSize)!
 				// Specific fonts shouldn't have outlines
-				if ("AvenirCondensedHand Arabella Darkwoman angelina TrashHand JennaSue HoneyScript-Light daniel Bolina LouisaCP Prisma".containsString(fontName)) {
+				if ("AvenirCondensedHand Arabella Darkwoman angelina TrashHand JennaSue HoneyScript-Light daniel Bolina LouisaCP Prisma CaviarDreams Gravity-Book Existence-Light".containsString(fontName)) {
 					topTextAttr.outlineColor = UIColor.clearColor()
 					topTextAttr.strokeWidth = 0.0
 					bottomTextAttr.outlineColor = UIColor.clearColor()
 					bottomTextAttr.strokeWidth = 0.0
 				}
-				if ("AppleSDGothicNeo Copperplate LeagueGothic-Regular LeagueGothic-Italic EtelkaNarrowTextPro TrashHand Skipping_Stones MarketingScript Artbrush".containsString(fontName)) {
+				if ("AppleSDGothicNeo Copperplate LeagueGothic-Regular LeagueGothic-Italic EtelkaNarrowTextPro TrashHand Skipping_Stones MarketingScript Artbrush Roboto-Bold theboldfont".containsString(fontName)) {
 					topTextAttr.outlineColor = UIColor.blackColor()
 					topTextAttr.strokeWidth = 1.0
 					bottomTextAttr.outlineColor = UIColor.blackColor()

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59105F0F1CBA694400156B35 /* theboldfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59105F061CBA694400156B35 /* theboldfont.ttf */; };
+		59105F101CBA694400156B35 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59105F071CBA694400156B35 /* Roboto-Bold.ttf */; };
+		59105F121CBA694400156B35 /* Gravity-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59105F091CBA694400156B35 /* Gravity-Book.otf */; };
+		59105F131CBA694400156B35 /* Existence-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59105F0A1CBA694400156B35 /* Existence-Light.ttf */; };
+		59105F161CBA694400156B35 /* CaviarDreams.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59105F0D1CBA694400156B35 /* CaviarDreams.ttf */; };
 		592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E51CB6897600219133 /* FontsTableViewCell.swift */; };
 		592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E81CB694DF00219133 /* UnderlinedLabel.swift */; };
 		592293EC1CB6C35800219133 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293EB1CB6C35800219133 /* BlurredImageView.swift */; };
@@ -149,6 +154,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		59105F061CBA694400156B35 /* theboldfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = theboldfont.ttf; path = "Supporting Files/Fonts/theboldfont.ttf"; sourceTree = "<group>"; };
+		59105F071CBA694400156B35 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Supporting Files/Fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		59105F091CBA694400156B35 /* Gravity-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gravity-Book.otf"; path = "Supporting Files/Fonts/Gravity-Book.otf"; sourceTree = "<group>"; };
+		59105F0A1CBA694400156B35 /* Existence-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Existence-Light.ttf"; path = "Supporting Files/Fonts/Existence-Light.ttf"; sourceTree = "<group>"; };
+		59105F0D1CBA694400156B35 /* CaviarDreams.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CaviarDreams.ttf; path = "Supporting Files/Fonts/CaviarDreams.ttf"; sourceTree = "<group>"; };
 		592293E51CB6897600219133 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontsTableViewCell.swift; path = Views/FontsTableViewCell.swift; sourceTree = "<group>"; };
 		592293E81CB694DF00219133 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnderlinedLabel.swift; path = Views/UnderlinedLabel.swift; sourceTree = "<group>"; };
 		592293EB1CB6C35800219133 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurredImageView.swift; path = Views/BlurredImageView.swift; sourceTree = "<group>"; };
@@ -447,6 +457,11 @@
 			isa = PBXGroup;
 			children = (
 				59EFF4CF1CB57C6700EE3D27 /* fonts.json */,
+				59105F061CBA694400156B35 /* theboldfont.ttf */,
+				59105F071CBA694400156B35 /* Roboto-Bold.ttf */,
+				59105F091CBA694400156B35 /* Gravity-Book.otf */,
+				59105F0A1CBA694400156B35 /* Existence-Light.ttf */,
+				59105F0D1CBA694400156B35 /* CaviarDreams.ttf */,
 				597D745B1CB43866002C784B /* Absender.ttf */,
 				597D745C1CB43866002C784B /* angelina.ttf */,
 				597D745D1CB43866002C784B /* Arabella.ttf */,
@@ -773,9 +788,11 @@
 				597D74781CB43866002C784B /* Arabella.ttf in Resources */,
 				59EFF4D01CB57C6700EE3D27 /* fonts.json in Resources */,
 				597D748D1CB43866002C784B /* StencilStd.otf in Resources */,
+				59105F131CBA694400156B35 /* Existence-Light.ttf in Resources */,
 				597D747D1CB43866002C784B /* Darkwoman.otf in Resources */,
 				597D74761CB43866002C784B /* Absender.ttf in Resources */,
 				597D748F1CB43866002C784B /* TobagoPoster.ttf in Resources */,
+				59105F101CBA694400156B35 /* Roboto-Bold.ttf in Resources */,
 				597D747E1CB43866002C784B /* EtelkaNarrowTextPro.otf in Resources */,
 				593B823E1CB222560073DC17 /* LaunchScreen.storyboard in Resources */,
 				597D74811CB43866002C784B /* JennaSue.ttf in Resources */,
@@ -788,7 +805,10 @@
 				593B823B1CB222560073DC17 /* Assets.xcassets in Resources */,
 				597D74861CB43866002C784B /* LouisaCP.otf in Resources */,
 				597D74891CB43866002C784B /* Prisma.ttf in Resources */,
+				59105F161CBA694400156B35 /* CaviarDreams.ttf in Resources */,
 				597D748C1CB43866002C784B /* Skipping_Stones.ttf in Resources */,
+				59105F0F1CBA694400156B35 /* theboldfont.ttf in Resources */,
+				59105F121CBA694400156B35 /* Gravity-Book.otf in Resources */,
 				597D748E1CB43866002C784B /* Subway-Black.ttf in Resources */,
 				597D74881CB43866002C784B /* PoplarStd.otf in Resources */,
 				597D74791CB43866002C784B /* Artbrush.ttf in Resources */,
@@ -1261,6 +1281,7 @@
 				594C5AE51CBA291700273B75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -1,154 +1,174 @@
- [
+[
   {
-  "displayName": "Default",
-  "value": "Impact"
+    "displayName": "Default",
+    "value": "Impact"
   },
   {
-  "displayName": "Apple Gothic",
-  "value": "AppleSDGothicNeo-SemiBold"
+    "displayName": "Apple Gothic",
+    "value": "AppleSDGothicNeo-SemiBold"
   },
   {
-  "displayName": "Futura",
-  "value": "Futura-CondensedExtraBold"
+    "displayName": "Futura",
+    "value": "Futura-CondensedExtraBold"
   },
   {
-  "displayName": "Avenir Next",
-  "value": "AvenirNext-Bold"
+    "displayName": "Avenir Next",
+    "value": "AvenirNext-Bold"
   },
   {
-  "displayName": "Avenir Next - Hand",
-  "value": "AvenirCondensedHand"
+    "displayName": "Avenir Next - Hand",
+    "value": "AvenirCondensedHand"
   },
   {
-  "displayName": "Arabella",
-  "value": "Arabella"
+    "displayName": "Arabella",
+    "value": "Arabella"
   },
   {
-  "displayName": "Copperplate",
-  "value": "Copperplate"
+    "displayName": "Copperplate",
+    "value": "Copperplate"
   },
   {
-  "displayName": "Gill Sans",
-  "value": "GillSans-Bold"
+    "displayName": "Gill Sans",
+    "value": "GillSans-Bold"
   },
   {
-  "displayName": "Kailasa",
-  "value": "Kailasa-Bold"
+    "displayName": "Kailasa",
+    "value": "Kailasa-Bold"
   },
   {
-  "displayName": "Trebuchet MS",
-  "value": "TrebuchetMS-Bold"
+    "displayName": "Trebuchet MS",
+    "value": "TrebuchetMS-Bold"
   },
   {
-  "displayName": "Helvetica Neue",
-  "value": "HelveticaNeue-Bold"
+    "displayName": "Helvetica Neue",
+    "value": "HelveticaNeue-Bold"
   },
   {
-  "displayName": "Arial Hebrew",
-  "value": "ArialHebrew-Bold"
+    "displayName": "Arial Hebrew",
+    "value": "ArialHebrew-Bold"
   },
   {
-  "displayName": "Righteous",
-  "value": "Righteous-Regular"
+    "displayName": "Righteous",
+    "value": "Righteous-Regular"
   },
   {
-  "displayName": "Absender",
-  "value": "Absender"
+    "displayName": "Absender",
+    "value": "Absender"
   },
   {
-  "displayName": "League Gothic",
-  "value": "LeagueGothic-Regular"
+    "displayName": "League Gothic",
+    "value": "LeagueGothic-Regular"
   },
   {
-  "displayName": "League Gothic Italic",
-  "value": "LeagueGothic-Italic"
+    "displayName": "League Gothic Italic",
+    "value": "LeagueGothic-Italic"
   },
   {
-  "displayName": "Marker Felt",
-  "value": "MarkerFelt-Wide"
+    "displayName": "Caviar Dreams",
+    "value": "CaviarDreams"
   },
   {
-  "displayName": "Menlo",
-  "value": "Menlo-Bold"
+    "displayName": "Marker Felt",
+    "value": "MarkerFelt-Wide"
   },
   {
-  "displayName": "Etelka Narrow Text",
-  "value": "EtelkaNarrowTextPro"
+    "displayName": "Menlo",
+    "value": "Menlo-Bold"
   },
   {
-  "displayName": "Lithos Pro",
-  "value": "LithosPro-Black"
+    "displayName": "Etelka Narrow Text",
+    "value": "EtelkaNarrowTextPro"
   },
   {
-  "displayName": "Poplar",
-  "value": "PoplarStd"
+    "displayName": "Lithos Pro",
+    "value": "LithosPro-Black"
   },
   {
-  "displayName": "Stencil",
-  "value": "StencilStd"
+    "displayName": "The Bold Font",
+    "value": "theboldfont"
   },
   {
-  "displayName": "Darkwoman",
-  "value": "Darkwoman"
+    "displayName": "Poplar",
+    "value": "PoplarStd"
   },
   {
-  "displayName": "Angelina",
-  "value": "angelina"
+    "displayName": "Stencil",
+    "value": "StencilStd"
   },
   {
-  "displayName": "Trashand",
-  "value": "TrashHand"
+    "displayName": "Darkwoman",
+    "value": "Darkwoman"
   },
   {
-  "displayName": "Jenna Sue",
-  "value": "JennaSue"
+    "displayName": "Angelina",
+    "value": "angelina"
   },
   {
-  "displayName": "Honey Script",
-  "value": "HoneyScript-Light"
+    "displayName": "Trashand",
+    "value": "TrashHand"
   },
   {
-  "displayName": "Skipping Stones",
-  "value": "Skipping_Stones"
+    "displayName": "Jenna Sue",
+    "value": "JennaSue"
   },
   {
-  "displayName": "Daniel",
-  "value": "daniel"
+    "displayName": "Honey Script",
+    "value": "HoneyScript-Light"
   },
   {
-  "displayName": "Tobago Poster",
-  "value": "TobagoPoster"
+    "displayName": "Skipping Stones",
+    "value": "Skipping_Stones"
   },
   {
-  "displayName": "Subway",
-  "value": "Subway-Black"
+    "displayName": "Gravity",
+    "value": "Gravity-Book"
   },
   {
-  "displayName": "Rolling No One",
-  "value": "RollingNoOne-ExtraBold"
+    "displayName": "Roboto",
+    "value": "Roboto-Bold"
   },
   {
-  "displayName": "Marketing Script",
-  "value": "MarketingScript"
+    "displayName": "Daniel",
+    "value": "daniel"
   },
   {
-  "displayName": "Art Brush",
-  "value": "Artbrush"
+    "displayName": "Tobago Poster",
+    "value": "TobagoPoster"
   },
   {
-  "displayName": "Bolina",
-  "value": "Bolina"
+    "displayName": "Existence",
+    "value": "Existence-Light"
   },
   {
-  "displayName": "Louisa CP",
-  "value": "LouisaCP"
+    "displayName": "Subway",
+    "value": "Subway-Black"
   },
   {
-  "displayName": "Prisma",
-  "value": "Prisma"
+    "displayName": "Rolling No One",
+    "value": "RollingNoOne-ExtraBold"
   },
   {
-  "displayName": "Karate",
-  "value": "Karate"
+    "displayName": "Marketing Script",
+    "value": "MarketingScript"
+  },
+  {
+    "displayName": "Art Brush",
+    "value": "Artbrush"
+  },
+  {
+    "displayName": "Bolina",
+    "value": "Bolina"
+  },
+  {
+    "displayName": "Louisa CP",
+    "value": "LouisaCP"
+  },
+  {
+    "displayName": "Prisma",
+    "value": "Prisma"
+  },
+  {
+    "displayName": "Karate",
+    "value": "Karate"
   }
-  ]
+]
