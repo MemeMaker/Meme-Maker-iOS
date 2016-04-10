@@ -28,6 +28,7 @@
 		593B827F1CB24E000073DC17 /* XMeme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B827B1CB24E000073DC17 /* XMeme.swift */; };
 		593B82881CB287030073DC17 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B82871CB287030073DC17 /* PrefixHeader.swift */; };
 		593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */; };
+		594C5ACF1CBA0F0700273B75 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 594C5ACD1CBA0F0700273B75 /* Walkthrough.storyboard */; };
 		597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D74591CB3A4A1002C784B /* SettingsManager.swift */; };
 		597D74761CB43866002C784B /* Absender.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745B1CB43866002C784B /* Absender.ttf */; };
 		597D74771CB43866002C784B /* angelina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745C1CB43866002C784B /* angelina.ttf */; };
@@ -112,6 +113,7 @@
 		593B827B1CB24E000073DC17 /* XMeme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XMeme.swift; path = Model/XMeme.swift; sourceTree = "<group>"; };
 		593B82871CB287030073DC17 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefixHeader.swift; path = "Supporting Files/PrefixHeader.swift"; sourceTree = "<group>"; };
 		593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemesCollectionViewCell.swift; path = Views/MemesCollectionViewCell.swift; sourceTree = "<group>"; };
+		594C5ACE1CBA0F0700273B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Walkthrough.storyboard; sourceTree = "<group>"; };
 		597D74591CB3A4A1002C784B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Model/SettingsManager.swift; sourceTree = "<group>"; };
 		597D745B1CB43866002C784B /* Absender.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Absender.ttf; path = "Supporting Files/Fonts/Absender.ttf"; sourceTree = "<group>"; };
 		597D745C1CB43866002C784B /* angelina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = angelina.ttf; path = "Supporting Files/Fonts/angelina.ttf"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				593B82651CB222DF0073DC17 /* Launch */,
 				59EFF4CC1CB4DF6700EE3D27 /* Swipable Text Field */,
 				593B82891CB291060073DC17 /* Cells */,
+				594C5AD01CBA0F0C00273B75 /* Walkthrough */,
 				593B82341CB222560073DC17 /* Main.storyboard */,
 			);
 			name = Views;
@@ -392,6 +395,14 @@
 				59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		594C5AD01CBA0F0C00273B75 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				594C5ACD1CBA0F0700273B75 /* Walkthrough.storyboard */,
+			);
+			name = Walkthrough;
 			sourceTree = "<group>";
 		};
 		597D74581CB3A48E002C784B /* SettingsManager */ = {
@@ -573,6 +584,7 @@
 				597D74831CB43866002C784B /* LeagueGothic-Italic.otf in Resources */,
 				597D747F1CB43866002C784B /* HoneyScript-Light.ttf in Resources */,
 				597D747A1CB43866002C784B /* AvenirCondensedHand.ttf in Resources */,
+				594C5ACF1CBA0F0700273B75 /* Walkthrough.storyboard in Resources */,
 				597D74821CB43866002C784B /* Karate.ttf in Resources */,
 				593B82361CB222560073DC17 /* Main.storyboard in Resources */,
 			);
@@ -719,6 +731,14 @@
 				593B823D1CB222560073DC17 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		594C5ACD1CBA0F0700273B75 /* Walkthrough.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				594C5ACE1CBA0F0700273B75 /* Base */,
+			);
+			name = Walkthrough.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

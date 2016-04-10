@@ -32,8 +32,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	@IBOutlet weak var dismissButton: UIButton!
 	
 	@IBOutlet weak var settingsButton: UIButton!
-	@IBOutlet weak var topBottomEditButton: UIButton!
-	@IBOutlet weak var saveImageButton: UIButton!
 	@IBOutlet weak var shareImageButton: UIButton!
 	
 	@IBOutlet weak var topTextField: SwipableTextField!
@@ -53,13 +51,14 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	var doubleTapGesture: UITapGestureRecognizer?
 	var twoDoubleTapGesture: UITapGestureRecognizer?
 	var panGestureRecognizer: UIPanGestureRecognizer?
+	var longPressGestureRecognizer: UILongPressGestureRecognizer?
 	
 	var movingTop: Bool = true
 	
 	var baseImage: UIImage?
 	
-	var topTextAttr: XTextAttributes!
-	var bottomTextAttr: XTextAttributes!
+	var topTextAttr: XTextAttributes =  XTextAttributes(savename: "topAttr")
+	var bottomTextAttr: XTextAttributes = XTextAttributes(savename: "bottomAttr")
 	
 	// MARK: -
 
@@ -68,8 +67,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 
         // Do any additional setup after loading the view.
 		
-		topTextAttr = XTextAttributes(savename: "topAttr")
-		bottomTextAttr = XTextAttributes(savename: "bottomAttr")
+//		topTextAttr = XTextAttributes(savename: "topAttr")
+//		bottomTextAttr = XTextAttributes(savename: "bottomAttr")
 		
 		self.topTextField.swipeDelegate = self
 		self.bottomTextField.swipeDelegate = self
@@ -101,6 +100,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		panGestureRecognizer?.delegate = self
 		self.view.addGestureRecognizer(panGestureRecognizer!)
 		
+		longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditorViewController.handleLongPress(_:)))
+		longPressGestureRecognizer?.minimumPressDuration = 0.8
+		self.view.addGestureRecognizer(longPressGestureRecognizer!)
+		
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
 				self.didSelectMeme(self.meme!)
@@ -108,6 +111,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 		else if (editorMode == .UserImage) {
 			let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage"))
+			topTextAttr = XTextAttributes(savename: "topAttr")
+			bottomTextAttr = XTextAttributes(savename: "bottomAttr")
 			self.didPickImage(image!)
 		}
 		updateForViewing()
@@ -137,11 +142,18 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		self.topTextField.enabled = true
 		self.bottomTextField.enabled = true
 		if (editorMode == .Viewer) {
-			self.topTextField.enabled = false
-			self.bottomTextField.enabled = false
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				self.topTextField.enabled = false
+				self.bottomTextField.enabled = false
+				self.topTextAttr.text = self.topTextField.text
+				self.bottomTextAttr.text = self.bottomTextField.text
+			}
+			else {
+				self.topTextField.text = String(self.topTextAttr.text)
+				self.bottomTextField.text = String(self.bottomTextAttr.text)
+				self.memeNameLabel.text = self.title
+			}
 			self.memeImageView.image = baseImage
-			self.topTextAttr.text = self.topTextField.text
-			self.bottomTextAttr.text = self.bottomTextField.text
 			cookImage()
 			self.backgroundImageView.image = baseImage
 		}
@@ -154,9 +166,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			self.bottomTextField.enabled = false
 		}
 		else {
-			
 			// Meme is there, update views
-			
 			self.topTextField.enabled = true
 			self.bottomTextField.enabled = true
 			
@@ -177,7 +187,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				baseImage = UIImage(contentsOfFile: filePath)
 				self.memeImageView.image = baseImage
 				self.backgroundImageView.image = baseImage
-				self.view.backgroundColor = UIColor(gradientStyle: .Radial, withFrame: self.view.bounds, andColors: ColorsFromImage(baseImage!, withFlatScheme: true))
 				cookImage()
 			}
 			else {
@@ -186,14 +195,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				}
 			}
 		}
-		
-//		if isDarkMode() {
-//			self.navBarBackgroundView.backgroundColor = FlatNavyBlueDark()
-//		}
-//		else {
-//			self.navBarBackgroundView.backgroundColor = FlatGreenDark()
-//		}
-		
 	}
 	
 	// MARK: - Cooking
@@ -252,11 +253,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	// MARK: - Button Actions
-	
-	
-	@IBAction func topBottomEditAction(sender: AnyObject) {
-		
-	}
 	
 	@IBAction func saveImageAction(sender: AnyObject) {
 		switch PermissionScope().statusPhotos() {
@@ -349,6 +345,9 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				self.shouldDisplayFTVC = true
 			})
 		}
+		else {
+			self.dismissAction(self)
+		}
 	}
 	
 	func handlePinch(recognizer: UIPinchGestureRecognizer) -> Void {
@@ -416,6 +415,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			movingTop = (topRect.contains(location))
 		}
 		return true
+	}
+	
+	func handleLongPress(recognizer: UILongPressGestureRecognizer) {
+		shareImageAction(self.shareImageButton)
 	}
 	
 	// MARK: - Text change selection delegate
@@ -509,6 +512,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
     // MARK: - Navigation
 	
 	@IBAction func dismissAction(sender: AnyObject) {
+		let data = UIImageJPEGRepresentation(self.baseImage!, 0.8)
+		data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
+		self.topTextAttr.saveAttributes("topAttr")
+		self.bottomTextAttr.saveAttributes("bottomAttr")
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	

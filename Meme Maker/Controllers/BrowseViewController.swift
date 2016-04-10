@@ -22,6 +22,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	var context: NSManagedObjectContext? = nil
 	var fetchRequest: NSFetchRequest? = nil
 
+	var longPressGesture: UILongPressGestureRecognizer?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +48,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 				editorVC = self.splitViewController?.viewControllers[1] as? EditorViewController
 			}
 		}
+		
+		longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(BrowseViewController.handleLongPress(_:)))
+		longPressGesture?.minimumPressDuration = 0.8
+		collectionView.addGestureRecognizer(longPressGesture!)
 		
     }
 	
@@ -156,6 +162,23 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 		return 0
+	}
+	
+	func handleLongPress(recognizer: UILongPressGestureRecognizer) -> Void {
+		if let indexPath = collectionView.indexPathForItemAtPoint(recognizer.locationInView(self.collectionView)) {
+			let creation = creations.objectAtIndex(indexPath.row) as! XCreated
+			let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)"))
+			let editedImage = getImageByDrawingOnImage(baseImage!, topText: creation.topText!, bottomText: creation.bottomText!)
+			let textToShare = "Check out this funny meme!"
+			let imageToShare = editedImage
+			let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare], applicationActivities: nil)
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				activityVC.modalPresentationStyle = .Popover
+				activityVC.popoverPresentationController?.sourceView = self.collectionView
+			}
+			self.presentViewController(activityVC, animated: true) {
+			}
+		}
 	}
 
     /*

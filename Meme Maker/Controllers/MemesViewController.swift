@@ -9,13 +9,14 @@
 import UIKit
 import SVProgressHUD
 import CoreData
+import BWWalkthrough
 
 protocol MemesViewControllerDelegate {
 	func didSelectMeme(meme: XMeme) -> Void
 	func didPickImage(image: UIImage) -> Void
 }
 
-class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BWWalkthroughViewControllerDelegate {
 	
 	var editorVC: EditorViewController?
 	
@@ -50,6 +51,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
+		if (SettingsManager.sharedManager().getInteger(kSettingsTimesLaunched) == 1) {
+			showTutorial()
+		}
 		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
@@ -132,6 +137,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		if (NSFileManager.defaultManager().fileExistsAtPath(imagesPathForFileName("lastImage"))) {
 			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
 			editorVC.editorMode = .UserImage
+			editorVC.title = "Last Edit"
 			self.presentViewController(editorVC, animated: true, completion: nil)
 		}
 		else {
@@ -376,6 +382,25 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			}
 		}
 		
+	}
+	
+	// MARK: - Walkthrough and delegate
+	
+	func showTutorial() -> Void {
+		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
+		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
+		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
+		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
+		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
+		walkthrough.delegate = self
+		walkthrough.addViewController(page1)
+		walkthrough.addViewController(page2)
+		walkthrough.addViewController(page3)
+		self.presentViewController(walkthrough, animated: true, completion: nil)
+	}
+	
+	func walkthroughCloseButtonPressed() {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
     /*

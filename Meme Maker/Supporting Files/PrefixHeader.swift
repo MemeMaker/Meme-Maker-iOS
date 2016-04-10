@@ -118,11 +118,15 @@ func getImageByDrawingOnImage(image: UIImage, topText: String, bottomText: Strin
 	
 	let imageSize = baseImage.size as CGSize!
 	let topTextAttr = XTextAttributes(savename: "topo")
-	topTextAttr.fontSize = 20
+	topTextAttr.fontSize = 44
+	topTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 44)!
+	topTextAttr.strokeWidth = 0.5
 	topTextAttr.text = topText
 	let bottomTextAttr = XTextAttributes(savename: "boto")
 	bottomTextAttr.text = bottomText
-	bottomTextAttr.fontSize = 20
+	bottomTextAttr.fontSize = 44
+	bottomTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 44)!
+	bottomTextAttr.strokeWidth = 0.5
 	
 	let maxHeight = imageSize.height/2	// Max height of top and bottom texts
 	let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
@@ -151,8 +155,8 @@ func getImageByDrawingOnImage(image: UIImage, topText: String, bottomText: Strin
 	
 	baseImage.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
 	
-	topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
-	bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
+	topText.uppercaseString.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
+	bottomText.uppercaseString.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
 	
 	let newImage = UIGraphicsGetImageFromCurrentImageContext()
 	

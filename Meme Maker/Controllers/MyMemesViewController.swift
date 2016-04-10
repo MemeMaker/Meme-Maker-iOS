@@ -90,16 +90,21 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	// MARK: - Collection view delegate
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		
+		let ucreation = userCreations.objectAtIndex(indexPath.row) as! XUserCreation
+		let topTextAttr = XTextAttributes(savename: "topAttr")
+		let bottomTextAttr = XTextAttributes(savename: "bottomAttr")
+		topTextAttr.text = ucreation.topText!
+		bottomTextAttr.text = ucreation.bottomText!
+		topTextAttr.saveAttributes("topAttr")
+		bottomTextAttr.saveAttributes("bottomAttr")
+		var baseImage = UIImage()
+		if (ucreation.isMeme) {
+			baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(ucreation.memeID)"))!
+		}
+		else {
+			baseImage = UIImage(contentsOfFile: userImagesPathForFileName(ucreation.createdOn!))!
+		}
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			let ucreation = userCreations.objectAtIndex(indexPath.row) as! XUserCreation
-			var baseImage = UIImage()
-			if (ucreation.isMeme) {
-				baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(ucreation.memeID)"))!
-			}
-			else {
-				baseImage = UIImage(contentsOfFile: userImagesPathForFileName(ucreation.createdOn!))!
-			}
 			self.editorVC?.editorMode = .Viewer
 			self.editorVC?.baseImage = baseImage
 			self.editorVC?.memeNameLabel.text = "My memes"
@@ -108,7 +113,11 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 			self.editorVC?.updateForViewing()
 		}
 		else {
-			
+			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			editorVC.editorMode = .Viewer
+			editorVC.baseImage = baseImage
+			editorVC.title = "My Memes"
+			self.presentViewController(editorVC, animated: true, completion: nil)
 		}
 	}
 	

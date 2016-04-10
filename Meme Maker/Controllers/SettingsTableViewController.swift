@@ -10,8 +10,9 @@ import UIKit
 import CoreData
 import SVProgressHUD
 import MessageUI
+import BWWalkthrough
 
-class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
 	
 	@IBOutlet weak var autoDismiss: UISwitch!
 	@IBOutlet weak var resetSettings: UISwitch!
@@ -118,7 +119,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life."
 			case 4:
 				return "Check this if you want your \"creations\" to be uploaded to the server."
-			case noos - 3:
+			case noos - 4:
 				let formatter = NSDateFormatter()
 				formatter.dateFormat = "MMM dd yyyy, hh:mm a"
 				let date = SettingsManager.sharedManager().getLastUpdateDate()
@@ -136,14 +137,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		
 		tableView.deselectRowAtIndexPath(indexPath, animated: true)
 		
-		if (indexPath.section == tableView.numberOfSections - 3) {
+		if (indexPath.section == tableView.numberOfSections - 4) {
 			// Update...
 			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 			self.fetchedMemes = NSMutableArray()
 			self.fetchMemes(1)
 		}
 		
-		if (indexPath.section == tableView.numberOfSections - 2) {
+		if (indexPath.section == tableView.numberOfSections - 3) {
 			let mailComposeViewController = configuredMailComposeViewController()
 			if (indexPath.row == 0) {
 				mailComposeViewController.setSubject("Meme Maker Bug Report")
@@ -159,6 +160,30 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			}
 		}
 		
+		if (indexPath.section == tableView.numberOfSections - 2) {
+			// Tutorial!
+			showTutorial()
+		}
+		
+	}
+	
+	func showTutorial() -> Void {
+		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
+		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
+		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
+		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
+		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
+		walkthrough.delegate = self
+		walkthrough.addViewController(page1)
+		walkthrough.addViewController(page2)
+		walkthrough.addViewController(page3)
+		self.presentViewController(walkthrough, animated: true, completion: nil)
+	}
+	
+	// MARK: - Walkthrough delegate
+	
+	func walkthroughCloseButtonPressed() {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	// MARK: - Mail things

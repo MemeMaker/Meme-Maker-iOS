@@ -18,8 +18,6 @@ class XCreated: NSManagedObject {
 	
 	class func createOrUpdateSubmissionWithData(data: NSDictionary, context: NSManagedObjectContext) -> NSManagedObject {
 		
-		print("data: \(data)")
-		
 		let ID: Int32 = (data.objectForKey("memeID")?.intValue)!
 		let topText = data.objectForKey("topText") as? String
 		let bottomText = data.objectForKey("bottomText") as? String
