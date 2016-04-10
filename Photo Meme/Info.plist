@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Impact.ttf</string>
+		<string>EtelkaNarrowTextPro.otf</string>
+		<string>Absender.ttf</string>
+		<string>StencilStd.otf</string>
+		<string>AvenirCondensedHand.ttf</string>
+		<string>LeagueGothic-Regular.otf</string>
+		<string>Righteous-Regular.ttf</string>
+		<string>LeagueGothic-Italic.otf</string>
+		<string>Skipping_Stones.ttf</string>
+		<string>TrashHand.ttf</string>
+		<string>JennaSue.ttf</string>
+		<string>angelina.ttf</string>
+		<string>Darkwoman.otf</string>
+		<string>HoneyScript-Light.ttf</string>
+		<string>daniel.ttf</string>
+		<string>PoplarStd.otf</string>
+		<string>LithosPro-Black.otf</string>
+		<string>Subway-Black.ttf</string>
+		<string>Karate.ttf</string>
+		<string>MarketingScript.ttf</string>
+		<string>Prisma.ttf</string>
+		<string>LouisaCP.otf</string>
+		<string>RollingNoOne-ExtraBold.ttf</string>
+		<string>Arabella.ttf</string>
+		<string>Bolina.otf</string>
+		<string>Artbrush.ttf</string>
+		<string>TobagoPoster.ttf</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Photo Meme</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>PHSupportedMediaTypes</key>
+			<array>
+				<string>Image</string>
+			</array>
+		</dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>MainInterface</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.photo-editing</string>
+	</dict>
+</dict>
+</plist>

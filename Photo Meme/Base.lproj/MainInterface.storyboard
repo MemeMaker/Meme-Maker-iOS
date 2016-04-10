@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ObA-dk-sSI">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Impact.ttf">
+            <string>Impact</string>
+            <string>Impact</string>
+            <string>Impact</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--Photo Editing View Controller-->
+        <scene sceneID="7MM-of-jgj">
+            <objects>
+                <viewController id="ObA-dk-sSI" customClass="PhotoEditingViewController" customModule="Photo_Meme" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qkL-Od-lgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="n38-gi-rB5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zMn-AG-sqS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9pd-kP-fak" customClass="BlurredImageView" customModule="Photo_Meme" customModuleProvider="target">
+                                <rect key="frame" x="-20" y="-20" width="640" height="640"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Top Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIv-E3-BYS" customClass="SwipableTextField" customModule="Photo_Meme" customModuleProvider="target">
+                                <rect key="frame" x="16" y="32" width="568" height="44"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.59999999999999998" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="vAx-D8-aZX"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
+                                        <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="topTextChangedAction:" destination="ObA-dk-sSI" eventType="editingChanged" id="1he-28-fkw"/>
+                                    <outlet property="delegate" destination="ObA-dk-sSI" id="keY-I0-bMv"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aOf-Vm-qlQ">
+                                <rect key="frame" x="4" y="88" width="592" height="436"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bottom Text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bpb-nG-nvn" customClass="SwipableTextField" customModule="Photo_Meme" customModuleProvider="target">
+                                <rect key="frame" x="16" y="536" width="568" height="44"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.59999999999999998" alpha="0.75" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Cjh-ft-lOp"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="yes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="foregroundColor">
+                                        <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="bottomTextChangedAction:" destination="ObA-dk-sSI" eventType="editingChanged" id="VsQ-W6-zkB"/>
+                                    <outlet property="delegate" destination="ObA-dk-sSI" id="vvK-xT-0yg"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-Dh-9YT">
+                                <rect key="frame" x="536" y="534" width="48" height="48"/>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="IS9-bx-s8R"/>
+                                    <constraint firstAttribute="height" constant="48" id="iyQ-BG-mff"/>
+                                </constraints>
+                                <state key="normal" image="settings.png"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fontAction:" destination="ObA-dk-sSI" eventType="touchUpInside" id="fMd-zV-OJk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bkc-Dh-9YT" firstAttribute="trailing" secondItem="bpb-nG-nvn" secondAttribute="trailing" id="3uB-Tw-gOe"/>
+                            <constraint firstItem="aOf-Vm-qlQ" firstAttribute="top" secondItem="eIv-E3-BYS" secondAttribute="bottom" constant="12" id="45I-zM-R1z"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aOf-Vm-qlQ" secondAttribute="trailing" constant="-16" id="80c-ex-woS"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="9pd-kP-fak" secondAttribute="bottom" constant="-20" id="Hqb-Wl-t0b"/>
+                            <constraint firstItem="bpb-nG-nvn" firstAttribute="trailing" secondItem="eIv-E3-BYS" secondAttribute="trailing" id="K0I-ez-dml"/>
+                            <constraint firstItem="bpb-nG-nvn" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-4" id="M3f-jl-AxJ"/>
+                            <constraint firstItem="aOf-Vm-qlQ" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-16" id="PTi-ch-XGZ"/>
+                            <constraint firstItem="9pd-kP-fak" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" constant="-40" id="TKg-ip-aLl"/>
+                            <constraint firstItem="bkc-Dh-9YT" firstAttribute="centerY" secondItem="bpb-nG-nvn" secondAttribute="centerY" id="W58-vV-hDy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bpb-nG-nvn" secondAttribute="trailing" constant="-4" id="WV8-zE-XXz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eIv-E3-BYS" secondAttribute="trailing" constant="-4" id="YmO-j5-DVf"/>
+                            <constraint firstItem="eIv-E3-BYS" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-4" id="Zgp-bR-va4"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="bpb-nG-nvn" secondAttribute="bottom" constant="20" id="iAK-D9-f9B"/>
+                            <constraint firstItem="bpb-nG-nvn" firstAttribute="leading" secondItem="eIv-E3-BYS" secondAttribute="leading" id="lLk-vU-oT5"/>
+                            <constraint firstItem="9pd-kP-fak" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-40" id="p9J-CD-jQe"/>
+                            <constraint firstItem="eIv-E3-BYS" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" constant="12" id="uE7-6j-b1e"/>
+                            <constraint firstItem="bpb-nG-nvn" firstAttribute="top" secondItem="aOf-Vm-qlQ" secondAttribute="bottom" constant="12" id="vwr-Vz-pus"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9pd-kP-fak" secondAttribute="trailing" constant="-40" id="x9p-dH-hbu"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="9pd-kP-fak" id="25E-Cf-QSG"/>
+                        <outlet property="bottomTextField" destination="bpb-nG-nvn" id="wLA-tm-U9e"/>
+                        <outlet property="memeImageView" destination="aOf-Vm-qlQ" id="5Wa-ti-OAf"/>
+                        <outlet property="settingsButton" destination="bkc-Dh-9YT" id="sTw-kV-bzT"/>
+                        <outlet property="topTextField" destination="eIv-E3-BYS" id="q7A-vH-veU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="326" y="-128"/>
+        </scene>
+        <!--Fonts-->
+        <scene sceneID="Kc4-QL-fvd">
+            <objects>
+                <tableViewController storyboardIdentifier="FontVC" title="Fonts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ky-oI-VGV" customClass="FontTableViewController" customModule="Photo_Meme" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="f7T-l9-nET">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <color key="sectionIndexColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fontCell" rowHeight="70" id="GWq-yn-aWv" customClass="FontsTableViewCell" customModule="Photo_Meme" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="22" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GWq-yn-aWv" id="KKM-bl-TaY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCW-Ff-glu" customClass="UnderlinedLabel" customModule="Photo_Meme" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="12" width="291" height="45.5"/>
+                                            <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="25"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="drawsUnderline" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="QCW-Ff-glu" secondAttribute="bottom" constant="4" id="Gzh-Tb-dUS"/>
+                                        <constraint firstItem="QCW-Ff-glu" firstAttribute="top" secondItem="KKM-bl-TaY" secondAttribute="topMargin" constant="4" id="H3v-fu-Lea"/>
+                                        <constraint firstItem="QCW-Ff-glu" firstAttribute="centerY" secondItem="KKM-bl-TaY" secondAttribute="centerY" id="LGw-f0-jfL"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="QCW-Ff-glu" secondAttribute="trailing" constant="60" id="R4l-pz-hfQ"/>
+                                        <constraint firstItem="QCW-Ff-glu" firstAttribute="leading" secondItem="KKM-bl-TaY" secondAttribute="leadingMargin" constant="8" id="Y0Y-pP-eLp"/>
+                                        <constraint firstItem="QCW-Ff-glu" firstAttribute="centerX" secondItem="KKM-bl-TaY" secondAttribute="centerX" constant="-32" id="lMg-q8-et5"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="LGw-f0-jfL"/>
+                                            <exclude reference="lMg-q8-et5"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.94016203700000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="fontNameLabel" destination="QCW-Ff-glu" id="dk7-Wb-RH7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9Ky-oI-VGV" id="QMB-2f-tjq"/>
+                            <outlet property="delegate" destination="9Ky-oI-VGV" id="kIh-RR-pZ4"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="320"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fEs-Og-Cbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="923.5" y="-128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="settings.png" width="132" height="132"/>
+    </resources>
+</document>

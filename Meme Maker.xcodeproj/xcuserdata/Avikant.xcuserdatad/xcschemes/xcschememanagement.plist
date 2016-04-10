@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Photo Meme.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>593B824E1CB222570073DC17</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>594C5AD41CBA291700273B75</key>
 		<dict>
 			<key>primary</key>
 			<true/>

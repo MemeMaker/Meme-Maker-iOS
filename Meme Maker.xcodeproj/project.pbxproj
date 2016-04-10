@@ -29,6 +29,48 @@
 		593B82881CB287030073DC17 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B82871CB287030073DC17 /* PrefixHeader.swift */; };
 		593B828B1CB291510073DC17 /* MemesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */; };
 		594C5ACF1CBA0F0700273B75 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 594C5ACD1CBA0F0700273B75 /* Walkthrough.storyboard */; };
+		594C5AD71CBA291700273B75 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594C5AD61CBA291700273B75 /* PhotosUI.framework */; };
+		594C5AD91CBA291700273B75 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 594C5AD81CBA291700273B75 /* Photos.framework */; };
+		594C5ADC1CBA291700273B75 /* PhotoEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5ADB1CBA291700273B75 /* PhotoEditingViewController.swift */; };
+		594C5ADF1CBA291700273B75 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 594C5ADD1CBA291700273B75 /* MainInterface.storyboard */; };
+		594C5AE31CBA291700273B75 /* Photo Meme.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 594C5AD51CBA291700273B75 /* Photo Meme.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		594C5AEC1CBA2B6600273B75 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5AE91CBA2B6600273B75 /* BlurredImageView.swift */; };
+		594C5AED1CBA2B6600273B75 /* FontsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5AEA1CBA2B6600273B75 /* FontsTableViewCell.swift */; };
+		594C5AEE1CBA2B6600273B75 /* SwipableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5AEB1CBA2B6600273B75 /* SwipableTextField.swift */; };
+		594C5AF01CBA2BA400273B75 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5AEF1CBA2BA400273B75 /* UnderlinedLabel.swift */; };
+		594C5B121CBA2BEA00273B75 /* Absender.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF31CBA2BEA00273B75 /* Absender.ttf */; };
+		594C5B131CBA2BEA00273B75 /* angelina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF41CBA2BEA00273B75 /* angelina.ttf */; };
+		594C5B141CBA2BEA00273B75 /* Arabella.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF51CBA2BEA00273B75 /* Arabella.ttf */; };
+		594C5B151CBA2BEA00273B75 /* Artbrush.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF61CBA2BEA00273B75 /* Artbrush.ttf */; };
+		594C5B161CBA2BEA00273B75 /* AvenirCondensedHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF71CBA2BEA00273B75 /* AvenirCondensedHand.ttf */; };
+		594C5B171CBA2BEA00273B75 /* Bolina.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF81CBA2BEA00273B75 /* Bolina.otf */; };
+		594C5B181CBA2BEA00273B75 /* daniel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AF91CBA2BEA00273B75 /* daniel.ttf */; };
+		594C5B191CBA2BEA00273B75 /* Darkwoman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFA1CBA2BEA00273B75 /* Darkwoman.otf */; };
+		594C5B1A1CBA2BEA00273B75 /* EtelkaNarrowTextPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFB1CBA2BEA00273B75 /* EtelkaNarrowTextPro.otf */; };
+		594C5B1B1CBA2BEA00273B75 /* fonts.json in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFC1CBA2BEA00273B75 /* fonts.json */; };
+		594C5B1C1CBA2BEA00273B75 /* HoneyScript-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFD1CBA2BEA00273B75 /* HoneyScript-Light.ttf */; };
+		594C5B1D1CBA2BEA00273B75 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFE1CBA2BEA00273B75 /* Impact.ttf */; };
+		594C5B1E1CBA2BEA00273B75 /* JennaSue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5AFF1CBA2BEA00273B75 /* JennaSue.ttf */; };
+		594C5B1F1CBA2BEA00273B75 /* Karate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B001CBA2BEA00273B75 /* Karate.ttf */; };
+		594C5B201CBA2BEA00273B75 /* LeagueGothic-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B011CBA2BEA00273B75 /* LeagueGothic-Italic.otf */; };
+		594C5B211CBA2BEA00273B75 /* LeagueGothic-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B021CBA2BEA00273B75 /* LeagueGothic-Regular.otf */; };
+		594C5B221CBA2BEA00273B75 /* LithosPro-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B031CBA2BEA00273B75 /* LithosPro-Black.otf */; };
+		594C5B231CBA2BEA00273B75 /* LouisaCP.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B041CBA2BEA00273B75 /* LouisaCP.otf */; };
+		594C5B241CBA2BEA00273B75 /* MarketingScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B051CBA2BEA00273B75 /* MarketingScript.ttf */; };
+		594C5B251CBA2BEA00273B75 /* PoplarStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B061CBA2BEA00273B75 /* PoplarStd.otf */; };
+		594C5B261CBA2BEA00273B75 /* Prisma.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B071CBA2BEA00273B75 /* Prisma.ttf */; };
+		594C5B271CBA2BEA00273B75 /* Righteous-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B081CBA2BEA00273B75 /* Righteous-Regular.ttf */; };
+		594C5B281CBA2BEA00273B75 /* RollingNoOne-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B091CBA2BEA00273B75 /* RollingNoOne-ExtraBold.ttf */; };
+		594C5B291CBA2BEA00273B75 /* Skipping_Stones.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B0A1CBA2BEA00273B75 /* Skipping_Stones.ttf */; };
+		594C5B2A1CBA2BEA00273B75 /* StencilStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B0B1CBA2BEA00273B75 /* StencilStd.otf */; };
+		594C5B2B1CBA2BEA00273B75 /* Subway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B0C1CBA2BEA00273B75 /* Subway-Black.ttf */; };
+		594C5B2C1CBA2BEA00273B75 /* TobagoPoster.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B0D1CBA2BEA00273B75 /* TobagoPoster.ttf */; };
+		594C5B2D1CBA2BEA00273B75 /* TrashHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B0E1CBA2BEA00273B75 /* TrashHand.ttf */; };
+		594C5B2E1CBA2BEA00273B75 /* PrefixHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B0F1CBA2BEA00273B75 /* PrefixHeader.swift */; };
+		594C5B2F1CBA2BEA00273B75 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B101CBA2BEA00273B75 /* SettingsManager.swift */; };
+		594C5B301CBA2BEA00273B75 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */; };
+		594C5B321CBA2C5600273B75 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B311CBA2C5600273B75 /* FontTableViewController.swift */; };
+		594C5B341CBA5C2A00273B75 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B331CBA5C2A00273B75 /* settings.png */; };
 		597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D74591CB3A4A1002C784B /* SettingsManager.swift */; };
 		597D74761CB43866002C784B /* Absender.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745B1CB43866002C784B /* Absender.ttf */; };
 		597D74771CB43866002C784B /* angelina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745C1CB43866002C784B /* angelina.ttf */; };
@@ -83,7 +125,28 @@
 			remoteGlobalIDString = 593B822C1CB222560073DC17;
 			remoteInfo = "Meme Maker";
 		};
+		594C5AE11CBA291700273B75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 593B82251CB222560073DC17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 594C5AD41CBA291700273B75;
+			remoteInfo = "Photo Meme";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		594C5AE71CBA291700273B75 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				594C5AE31CBA291700273B75 /* Photo Meme.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		592293E51CB6897600219133 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontsTableViewCell.swift; path = Views/FontsTableViewCell.swift; sourceTree = "<group>"; };
@@ -114,6 +177,49 @@
 		593B82871CB287030073DC17 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrefixHeader.swift; path = "Supporting Files/PrefixHeader.swift"; sourceTree = "<group>"; };
 		593B828A1CB291510073DC17 /* MemesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemesCollectionViewCell.swift; path = Views/MemesCollectionViewCell.swift; sourceTree = "<group>"; };
 		594C5ACE1CBA0F0700273B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Walkthrough.storyboard; sourceTree = "<group>"; };
+		594C5AD51CBA291700273B75 /* Photo Meme.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Photo Meme.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		594C5AD61CBA291700273B75 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		594C5AD81CBA291700273B75 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		594C5ADB1CBA291700273B75 /* PhotoEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoEditingViewController.swift; sourceTree = "<group>"; };
+		594C5ADE1CBA291700273B75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		594C5AE01CBA291700273B75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		594C5AE91CBA2B6600273B75 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
+		594C5AEA1CBA2B6600273B75 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontsTableViewCell.swift; sourceTree = "<group>"; };
+		594C5AEB1CBA2B6600273B75 /* SwipableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipableTextField.swift; sourceTree = "<group>"; };
+		594C5AEF1CBA2BA400273B75 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinedLabel.swift; sourceTree = "<group>"; };
+		594C5AF31CBA2BEA00273B75 /* Absender.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Absender.ttf; sourceTree = "<group>"; };
+		594C5AF41CBA2BEA00273B75 /* angelina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = angelina.ttf; sourceTree = "<group>"; };
+		594C5AF51CBA2BEA00273B75 /* Arabella.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Arabella.ttf; sourceTree = "<group>"; };
+		594C5AF61CBA2BEA00273B75 /* Artbrush.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Artbrush.ttf; sourceTree = "<group>"; };
+		594C5AF71CBA2BEA00273B75 /* AvenirCondensedHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AvenirCondensedHand.ttf; sourceTree = "<group>"; };
+		594C5AF81CBA2BEA00273B75 /* Bolina.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bolina.otf; sourceTree = "<group>"; };
+		594C5AF91CBA2BEA00273B75 /* daniel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = daniel.ttf; sourceTree = "<group>"; };
+		594C5AFA1CBA2BEA00273B75 /* Darkwoman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Darkwoman.otf; sourceTree = "<group>"; };
+		594C5AFB1CBA2BEA00273B75 /* EtelkaNarrowTextPro.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EtelkaNarrowTextPro.otf; sourceTree = "<group>"; };
+		594C5AFC1CBA2BEA00273B75 /* fonts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fonts.json; sourceTree = "<group>"; };
+		594C5AFD1CBA2BEA00273B75 /* HoneyScript-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HoneyScript-Light.ttf"; sourceTree = "<group>"; };
+		594C5AFE1CBA2BEA00273B75 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		594C5AFF1CBA2BEA00273B75 /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
+		594C5B001CBA2BEA00273B75 /* Karate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Karate.ttf; sourceTree = "<group>"; };
+		594C5B011CBA2BEA00273B75 /* LeagueGothic-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeagueGothic-Italic.otf"; sourceTree = "<group>"; };
+		594C5B021CBA2BEA00273B75 /* LeagueGothic-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeagueGothic-Regular.otf"; sourceTree = "<group>"; };
+		594C5B031CBA2BEA00273B75 /* LithosPro-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LithosPro-Black.otf"; sourceTree = "<group>"; };
+		594C5B041CBA2BEA00273B75 /* LouisaCP.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LouisaCP.otf; sourceTree = "<group>"; };
+		594C5B051CBA2BEA00273B75 /* MarketingScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarketingScript.ttf; sourceTree = "<group>"; };
+		594C5B061CBA2BEA00273B75 /* PoplarStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PoplarStd.otf; sourceTree = "<group>"; };
+		594C5B071CBA2BEA00273B75 /* Prisma.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Prisma.ttf; sourceTree = "<group>"; };
+		594C5B081CBA2BEA00273B75 /* Righteous-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Righteous-Regular.ttf"; sourceTree = "<group>"; };
+		594C5B091CBA2BEA00273B75 /* RollingNoOne-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RollingNoOne-ExtraBold.ttf"; sourceTree = "<group>"; };
+		594C5B0A1CBA2BEA00273B75 /* Skipping_Stones.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Skipping_Stones.ttf; sourceTree = "<group>"; };
+		594C5B0B1CBA2BEA00273B75 /* StencilStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StencilStd.otf; sourceTree = "<group>"; };
+		594C5B0C1CBA2BEA00273B75 /* Subway-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Subway-Black.ttf"; sourceTree = "<group>"; };
+		594C5B0D1CBA2BEA00273B75 /* TobagoPoster.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TobagoPoster.ttf; sourceTree = "<group>"; };
+		594C5B0E1CBA2BEA00273B75 /* TrashHand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TrashHand.ttf; sourceTree = "<group>"; };
+		594C5B0F1CBA2BEA00273B75 /* PrefixHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefixHeader.swift; sourceTree = "<group>"; };
+		594C5B101CBA2BEA00273B75 /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTextAttributes.swift; sourceTree = "<group>"; };
+		594C5B311CBA2C5600273B75 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewController.swift; sourceTree = "<group>"; };
+		594C5B331CBA5C2A00273B75 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		597D74591CB3A4A1002C784B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Model/SettingsManager.swift; sourceTree = "<group>"; };
 		597D745B1CB43866002C784B /* Absender.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Absender.ttf; path = "Supporting Files/Fonts/Absender.ttf"; sourceTree = "<group>"; };
 		597D745C1CB43866002C784B /* angelina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = angelina.ttf; path = "Supporting Files/Fonts/angelina.ttf"; sourceTree = "<group>"; };
@@ -179,6 +285,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		594C5AD21CBA291700273B75 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				594C5AD71CBA291700273B75 /* PhotosUI.framework in Frameworks */,
+				594C5AD91CBA291700273B75 /* Photos.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -213,6 +328,7 @@
 				593B822F1CB222560073DC17 /* Meme Maker */,
 				593B82471CB222570073DC17 /* Meme MakerTests */,
 				593B82521CB222570073DC17 /* Meme MakerUITests */,
+				594C5ADA1CBA291700273B75 /* Photo Meme */,
 				593B822E1CB222560073DC17 /* Products */,
 				365E587CA3596868D8F543FE /* Pods */,
 				E387C582D155737BA55B23FD /* Frameworks */,
@@ -225,6 +341,7 @@
 				593B822D1CB222560073DC17 /* Meme Maker.app */,
 				593B82441CB222570073DC17 /* Meme MakerTests.xctest */,
 				593B824F1CB222570073DC17 /* Meme MakerUITests.xctest */,
+				594C5AD51CBA291700273B75 /* Photo Meme.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -405,6 +522,77 @@
 			name = Walkthrough;
 			sourceTree = "<group>";
 		};
+		594C5ADA1CBA291700273B75 /* Photo Meme */ = {
+			isa = PBXGroup;
+			children = (
+				594C5AF11CBA2BEA00273B75 /* Other */,
+				594C5AE81CBA2B6600273B75 /* Views */,
+				594C5ADB1CBA291700273B75 /* PhotoEditingViewController.swift */,
+				594C5B311CBA2C5600273B75 /* FontTableViewController.swift */,
+				594C5ADD1CBA291700273B75 /* MainInterface.storyboard */,
+				594C5AE01CBA291700273B75 /* Info.plist */,
+			);
+			path = "Photo Meme";
+			sourceTree = "<group>";
+		};
+		594C5AE81CBA2B6600273B75 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				594C5AEF1CBA2BA400273B75 /* UnderlinedLabel.swift */,
+				594C5AE91CBA2B6600273B75 /* BlurredImageView.swift */,
+				594C5AEA1CBA2B6600273B75 /* FontsTableViewCell.swift */,
+				594C5AEB1CBA2B6600273B75 /* SwipableTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		594C5AF11CBA2BEA00273B75 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				594C5AF21CBA2BEA00273B75 /* Fonts */,
+				594C5B331CBA5C2A00273B75 /* settings.png */,
+				594C5B0F1CBA2BEA00273B75 /* PrefixHeader.swift */,
+				594C5B101CBA2BEA00273B75 /* SettingsManager.swift */,
+				594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		594C5AF21CBA2BEA00273B75 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				594C5AF31CBA2BEA00273B75 /* Absender.ttf */,
+				594C5AF41CBA2BEA00273B75 /* angelina.ttf */,
+				594C5AF51CBA2BEA00273B75 /* Arabella.ttf */,
+				594C5AF61CBA2BEA00273B75 /* Artbrush.ttf */,
+				594C5AF71CBA2BEA00273B75 /* AvenirCondensedHand.ttf */,
+				594C5AF81CBA2BEA00273B75 /* Bolina.otf */,
+				594C5AF91CBA2BEA00273B75 /* daniel.ttf */,
+				594C5AFA1CBA2BEA00273B75 /* Darkwoman.otf */,
+				594C5AFB1CBA2BEA00273B75 /* EtelkaNarrowTextPro.otf */,
+				594C5AFC1CBA2BEA00273B75 /* fonts.json */,
+				594C5AFD1CBA2BEA00273B75 /* HoneyScript-Light.ttf */,
+				594C5AFE1CBA2BEA00273B75 /* Impact.ttf */,
+				594C5AFF1CBA2BEA00273B75 /* JennaSue.ttf */,
+				594C5B001CBA2BEA00273B75 /* Karate.ttf */,
+				594C5B011CBA2BEA00273B75 /* LeagueGothic-Italic.otf */,
+				594C5B021CBA2BEA00273B75 /* LeagueGothic-Regular.otf */,
+				594C5B031CBA2BEA00273B75 /* LithosPro-Black.otf */,
+				594C5B041CBA2BEA00273B75 /* LouisaCP.otf */,
+				594C5B051CBA2BEA00273B75 /* MarketingScript.ttf */,
+				594C5B061CBA2BEA00273B75 /* PoplarStd.otf */,
+				594C5B071CBA2BEA00273B75 /* Prisma.ttf */,
+				594C5B081CBA2BEA00273B75 /* Righteous-Regular.ttf */,
+				594C5B091CBA2BEA00273B75 /* RollingNoOne-ExtraBold.ttf */,
+				594C5B0A1CBA2BEA00273B75 /* Skipping_Stones.ttf */,
+				594C5B0B1CBA2BEA00273B75 /* StencilStd.otf */,
+				594C5B0C1CBA2BEA00273B75 /* Subway-Black.ttf */,
+				594C5B0D1CBA2BEA00273B75 /* TobagoPoster.ttf */,
+				594C5B0E1CBA2BEA00273B75 /* TrashHand.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		597D74581CB3A48E002C784B /* SettingsManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +631,8 @@
 			children = (
 				59BC23BD1CB8BACE004D6673 /* CoreData.framework */,
 				D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */,
+				594C5AD61CBA291700273B75 /* PhotosUI.framework */,
+				594C5AD81CBA291700273B75 /* Photos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -460,10 +650,12 @@
 				593B822B1CB222560073DC17 /* Resources */,
 				DA22D0AF047B6977159111E9 /* Embed Pods Frameworks */,
 				EBD458441C4FE4E3F0F20DED /* Copy Pods Resources */,
+				594C5AE71CBA291700273B75 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				594C5AE21CBA291700273B75 /* PBXTargetDependency */,
 			);
 			name = "Meme Maker";
 			productName = "Meme Maker";
@@ -506,6 +698,23 @@
 			productReference = 593B824F1CB222570073DC17 /* Meme MakerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		594C5AD41CBA291700273B75 /* Photo Meme */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 594C5AE61CBA291700273B75 /* Build configuration list for PBXNativeTarget "Photo Meme" */;
+			buildPhases = (
+				594C5AD11CBA291700273B75 /* Sources */,
+				594C5AD21CBA291700273B75 /* Frameworks */,
+				594C5AD31CBA291700273B75 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Photo Meme";
+			productName = "Photo Meme";
+			productReference = 594C5AD51CBA291700273B75 /* Photo Meme.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -528,6 +737,10 @@
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = 593B822C1CB222560073DC17;
 					};
+					594C5AD41CBA291700273B75 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = HN3SCP8A52;
+					};
 				};
 			};
 			buildConfigurationList = 593B82281CB222560073DC17 /* Build configuration list for PBXProject "Meme Maker" */;
@@ -546,6 +759,7 @@
 				593B822C1CB222560073DC17 /* Meme Maker */,
 				593B82431CB222570073DC17 /* Meme MakerTests */,
 				593B824E1CB222570073DC17 /* Meme MakerUITests */,
+				594C5AD41CBA291700273B75 /* Photo Meme */,
 			);
 		};
 /* End PBXProject section */
@@ -601,6 +815,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		594C5AD31CBA291700273B75 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				594C5B171CBA2BEA00273B75 /* Bolina.otf in Resources */,
+				594C5B161CBA2BEA00273B75 /* AvenirCondensedHand.ttf in Resources */,
+				594C5B2A1CBA2BEA00273B75 /* StencilStd.otf in Resources */,
+				594C5B201CBA2BEA00273B75 /* LeagueGothic-Italic.otf in Resources */,
+				594C5B231CBA2BEA00273B75 /* LouisaCP.otf in Resources */,
+				594C5B1B1CBA2BEA00273B75 /* fonts.json in Resources */,
+				594C5B341CBA5C2A00273B75 /* settings.png in Resources */,
+				594C5B221CBA2BEA00273B75 /* LithosPro-Black.otf in Resources */,
+				594C5B2B1CBA2BEA00273B75 /* Subway-Black.ttf in Resources */,
+				594C5B241CBA2BEA00273B75 /* MarketingScript.ttf in Resources */,
+				594C5B211CBA2BEA00273B75 /* LeagueGothic-Regular.otf in Resources */,
+				594C5B261CBA2BEA00273B75 /* Prisma.ttf in Resources */,
+				594C5B2D1CBA2BEA00273B75 /* TrashHand.ttf in Resources */,
+				594C5B141CBA2BEA00273B75 /* Arabella.ttf in Resources */,
+				594C5B181CBA2BEA00273B75 /* daniel.ttf in Resources */,
+				594C5B1F1CBA2BEA00273B75 /* Karate.ttf in Resources */,
+				594C5B1E1CBA2BEA00273B75 /* JennaSue.ttf in Resources */,
+				594C5B121CBA2BEA00273B75 /* Absender.ttf in Resources */,
+				594C5B281CBA2BEA00273B75 /* RollingNoOne-ExtraBold.ttf in Resources */,
+				594C5B2C1CBA2BEA00273B75 /* TobagoPoster.ttf in Resources */,
+				594C5B1C1CBA2BEA00273B75 /* HoneyScript-Light.ttf in Resources */,
+				594C5B131CBA2BEA00273B75 /* angelina.ttf in Resources */,
+				594C5B191CBA2BEA00273B75 /* Darkwoman.otf in Resources */,
+				594C5B1D1CBA2BEA00273B75 /* Impact.ttf in Resources */,
+				594C5B1A1CBA2BEA00273B75 /* EtelkaNarrowTextPro.otf in Resources */,
+				594C5B151CBA2BEA00273B75 /* Artbrush.ttf in Resources */,
+				594C5B271CBA2BEA00273B75 /* Righteous-Regular.ttf in Resources */,
+				594C5B291CBA2BEA00273B75 /* Skipping_Stones.ttf in Resources */,
+				594C5ADF1CBA291700273B75 /* MainInterface.storyboard in Resources */,
+				594C5B251CBA2BEA00273B75 /* PoplarStd.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +952,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		594C5AD11CBA291700273B75 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				594C5B2E1CBA2BEA00273B75 /* PrefixHeader.swift in Sources */,
+				594C5ADC1CBA291700273B75 /* PhotoEditingViewController.swift in Sources */,
+				594C5AED1CBA2B6600273B75 /* FontsTableViewCell.swift in Sources */,
+				594C5B2F1CBA2BEA00273B75 /* SettingsManager.swift in Sources */,
+				594C5B301CBA2BEA00273B75 /* XTextAttributes.swift in Sources */,
+				594C5AEE1CBA2B6600273B75 /* SwipableTextField.swift in Sources */,
+				594C5B321CBA2C5600273B75 /* FontTableViewController.swift in Sources */,
+				594C5AEC1CBA2B6600273B75 /* BlurredImageView.swift in Sources */,
+				594C5AF01CBA2BA400273B75 /* UnderlinedLabel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -713,6 +980,11 @@
 			isa = PBXTargetDependency;
 			target = 593B822C1CB222560073DC17 /* Meme Maker */;
 			targetProxy = 593B82501CB222570073DC17 /* PBXContainerItemProxy */;
+		};
+		594C5AE21CBA291700273B75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 594C5AD41CBA291700273B75 /* Photo Meme */;
+			targetProxy = 594C5AE11CBA291700273B75 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -739,6 +1011,14 @@
 				594C5ACE1CBA0F0700273B75 /* Base */,
 			);
 			name = Walkthrough.storyboard;
+			sourceTree = "<group>";
+		};
+		594C5ADD1CBA291700273B75 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				594C5ADE1CBA291700273B75 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -836,6 +1116,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Meme Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -852,6 +1133,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Meme Maker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -907,6 +1189,32 @@
 			};
 			name = Release;
 		};
+		594C5AE41CBA291700273B75 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Photo Meme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		594C5AE51CBA291700273B75 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Photo Meme/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -945,6 +1253,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		594C5AE61CBA291700273B75 /* Build configuration list for PBXNativeTarget "Photo Meme" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				594C5AE41CBA291700273B75 /* Debug */,
+				594C5AE51CBA291700273B75 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
