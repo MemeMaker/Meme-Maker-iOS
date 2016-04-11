@@ -49,10 +49,7 @@ class XMeme: NSManagedObject {
 		meme.image = data.objectForKey("image") as? String
 		meme.imageURL = NSURL(string: meme.image!)
 		meme.thumb = data.objectForKey("thumb") as? String
-		let rankString = data.objectForKey("rank") as? String
-		if (rankString != nil) {
-			meme.rank = Int32("0\(rankString)")!
-		}
+		meme.rank = (data.objectForKey("rank")?.intValue)!
 	
 		return meme
 		

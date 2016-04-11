@@ -276,6 +276,10 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	@IBAction func shareImageAction(sender: AnyObject) {
+		let data = UIImageJPEGRepresentation(self.baseImage!, 0.8)
+		data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
+		self.topTextAttr.saveAttributes("topAttr")
+		self.bottomTextAttr.saveAttributes("bottomAttr")
 		let textToShare = "Check out this funny meme I made..."
 		let imageToShare = memeImageView.image
 		let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare!], applicationActivities: nil)
@@ -421,7 +425,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		shareImageAction(self.shareImageButton)
 	}
 	
-	// MARK: - Text change selection delegate
+	// MARK: - Text change delegate
 	
 	func didUpdateTextAttributes(topTextAttributes: XTextAttributes, bottomTextAttributes: XTextAttributes) {
 		topTextAttr = topTextAttributes
@@ -455,6 +459,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	@IBAction func topTextChangedAction(sender: AnyObject) {
 		topTextAttr.text = "\(topTextField.text!)"
+		topTextAttr.saveAttributes("topAttr")
 		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
 			cookImage()
 		}
@@ -462,6 +467,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	
 	@IBAction func bottomTextChangedAction(sender: AnyObject) {
 		bottomTextAttr.text = "\(bottomTextField.text!)"
+		bottomTextAttr.saveAttributes("bottomAttr")
 		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
 			cookImage()
 		}
@@ -525,21 +531,23 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		print("Uploading...")
 		
-		let URLString = "\(API_BASE_URL)/\(meme?.memeID)/submissions/"
+		let URLString = "\(API_BASE_URL)/memes/\(meme!.memeID)/submissions/"
 		let URL = NSURL(string: URLString)
+		
+		print("upload url: \(URLString)")
 		
 		let request = NSMutableURLRequest(URL: URL!)
 		request.HTTPMethod = "POST"
 		
-		let postBodyString = "topText=\(topTextAttr.text)&bottomText=\(bottomTextAttr.text)" as NSString
-		let postData = postBodyString.dataUsingEncoding(NSASCIIStringEncoding)
-		
+		let postBodyString =  NSString(format: "topText=%@&bottomText=%@", topTextAttr.text!, bottomTextAttr.text!)
+		let postData = postBodyString.dataUsingEncoding(NSUTF8StringEncoding)
 		request.HTTPBody = postData
 		
 		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
 			
 			if (error != nil) {
 				// Handle error...
+				print("Upload failed")
 				return
 			}
 			

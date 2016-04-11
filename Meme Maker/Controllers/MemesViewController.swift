@@ -33,7 +33,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
 	
-	var isListView: Bool = true {
+	var isListView: Bool = false {
 		didSet {
 			SettingsManager.sharedManager().setBool(isListView, key: kSettingsViewModeIsList)
 		}
@@ -88,9 +88,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			self.fetchMemes(1)
 		}
 		
+		isListView = SettingsManager.sharedManager().getBool(kSettingsViewModeIsList)
 		updateCollectionViewCells()
-		
-		self.collectionView.reloadData()
 	}
 	
 	func fetchMemes(paging: Int) -> Void {
@@ -180,6 +179,29 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.collectionView.reloadData()
 	}
 	
+	@IBAction func sortAction(sender: AnyObject) {
+		let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .ActionSheet)
+		let nameSort = UIAlertAction(title: "Alphabetical", style: .Default) { (action) in
+			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "name", ascending: true)])
+			self.collectionView.reloadData()
+		}
+		let popSort = UIAlertAction(title: "Popularity", style: .Default) { (action) in
+			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "rank", ascending: true)])
+			self.collectionView.reloadData()
+		}
+		let defSort = UIAlertAction(title: "Default", style: .Default) { (action) in
+			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "memeID", ascending: true)])
+			self.collectionView.reloadData()
+		}
+		alertController.addAction(nameSort)
+		alertController.addAction(popSort)
+		alertController.addAction(defSort)
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			alertController.modalPresentationStyle = .Popover
+			alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+		}
+		self.presentViewController(alertController, animated: true, completion: nil)
+	}
 
 	// MARK: - Collection view data source
 	

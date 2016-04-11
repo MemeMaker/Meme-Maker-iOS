@@ -30,6 +30,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			tintColor = globalTintColor
 			memeNameLabel.textColor = globalTintColor
 			backgroundColor = globalBackColor
+			self.updateImageView()
 		}
 	}
 
@@ -66,8 +67,6 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	
 	func updateImageView() -> Void {
 		
-		self.memeImageView.image = UIImage(named: "MemeBlank")
-		
 		let filePath = imagesPathForFileName("\(self.meme!.memeID)")
 		if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
 			if (self.isListCell) {
@@ -96,6 +95,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			}
 		}
 		else {
+			self.memeImageView.image = UIImage(named: "MemeBlank")
 			if let URL = meme?.imageURL {
 				self.downloadImageWithURL(URL, filePath: filePath)
 			}

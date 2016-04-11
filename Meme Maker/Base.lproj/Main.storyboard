@@ -231,12 +231,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Memes" id="2Ag-1U-4uA">
-                        <barButtonItem key="leftBarButtonItem" image="collectionViewIcon" id="vhw-WI-rh3">
-                            <inset key="imageInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
-                            <connections>
-                                <action selector="toggleListGridAction:" destination="C0s-Ur-iqW" id="616-XA-fxj"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem image="collectionViewIcon" id="vhw-WI-rh3">
+                                <inset key="imageInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <connections>
+                                    <action selector="toggleListGridAction:" destination="C0s-Ur-iqW" id="616-XA-fxj"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="SortButton" id="STn-TW-xSP">
+                                <inset key="imageInsets" minX="-24" minY="0.0" maxX="24" maxY="0.0"/>
+                                <connections>
+                                    <action selector="sortAction:" destination="C0s-Ur-iqW" id="Vq7-jY-UAL"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem image="MagnifyingGlass" id="Coz-Sg-ByD">
                                 <inset key="imageInsets" minX="-8" minY="0.0" maxX="8" maxY="0.0"/>
@@ -633,7 +641,7 @@
                             <tableViewSection footerTitle="Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings." id="9pa-hd-kQh">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wfU-ND-Oxl">
-                                        <rect key="frame" x="0.0" y="188" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfU-ND-Oxl" id="ceQ-L3-f0C">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -666,7 +674,7 @@
                             <tableViewSection footerTitle="Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life." id="LjE-Cu-nUi">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sit-T7-2mu">
-                                        <rect key="frame" x="0.0" y="277" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sit-T7-2mu" id="QDb-Qn-PoF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -699,7 +707,7 @@
                             <tableViewSection footerTitle="" id="HIm-gx-Mho">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="csF-rY-6uh">
-                                        <rect key="frame" x="0.0" y="382" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="380.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="csF-rY-6uh" id="aKz-Do-q2o">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -732,7 +740,7 @@
                             <tableViewSection footerTitle="Check this if you want your &quot;creations&quot; to be uploaded or not." id="Wlt-PE-T4a">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1UU-mH-p8p">
-                                        <rect key="frame" x="0.0" y="462" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="460.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1UU-mH-p8p" id="7ID-Xa-gDv">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -765,7 +773,7 @@
                             <tableViewSection footerTitle="" id="rRy-E1-6f9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jid-Dn-5ln" style="IBUITableViewCellStyleDefault" id="tp6-cP-3pU">
-                                        <rect key="frame" x="0.0" y="551" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="549" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp6-cP-3pU" id="6DS-eb-3fX">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -789,7 +797,7 @@
                             <tableViewSection footerTitle="Last updated: 2016-04-06 19:35:12" id="Llo-l6-nge">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="INB-gA-zHN" detailTextLabel="Aes-Me-PcF" style="IBUITableViewCellStyleValue1" id="Lyq-Ae-kMZ">
-                                        <rect key="frame" x="0.0" y="631" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="629" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lyq-Ae-kMZ" id="E3A-TW-Qqm">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -817,7 +825,7 @@
                             <tableViewSection footerTitle="" id="XgW-oI-Rc7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="U7k-vA-1vG">
-                                        <rect key="frame" x="0.0" y="720" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="717.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U7k-vA-1vG" id="2Rm-bH-9WS">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -837,7 +845,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Mhr-7m-Z0Z">
-                                        <rect key="frame" x="0.0" y="764" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="761.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhr-7m-Z0Z" id="MFQ-Ln-J0e">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -861,7 +869,7 @@
                             <tableViewSection footerTitle="" id="S7i-53-zlj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="95W-Zc-Dcp" style="IBUITableViewCellStyleDefault" id="EeD-b3-hrH">
-                                        <rect key="frame" x="0.0" y="844" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="841.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeD-b3-hrH" id="2n2-PM-Tow">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -1098,6 +1106,7 @@ Google Android Design for "Roboto" (https://www.google.com/design/spec/style/typ
         <image name="PhotoGallery" width="26" height="26"/>
         <image name="Redo" width="30" height="30"/>
         <image name="Settings" width="26" height="26"/>
+        <image name="SortButton" width="20" height="20"/>
         <image name="collectionViewIcon" width="20" height="20"/>
         <image name="crossButton" width="24" height="24"/>
         <image name="tableViewIcon" width="20" height="20"/>

@@ -48,8 +48,10 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
         // Do any additional setup after loading the view.
 		
 		topTextAttr.setDefault()
+		topTextAttr.text = ""
 		topTextAttr.saveAttributes("topAttr")
 		bottomTextAttr.setDefault()
+		bottomTextAttr.text = ""
 		bottomTextAttr.saveAttributes("bottomAttr")
 		
 		self.topTextField.swipeDelegate = self

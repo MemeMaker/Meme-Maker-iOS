@@ -53,6 +53,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		longPressGesture?.minimumPressDuration = 0.8
 		collectionView.addGestureRecognizer(longPressGesture!)
 		
+		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 || creations.count == 0 {
+			self.refershAction(self)
+		}
+		
     }
 	
 	@IBAction func refershAction(sender: AnyObject) {
