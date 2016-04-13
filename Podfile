@@ -13,6 +13,8 @@ pod 'ChameleonFramework/Swift'
 pod 'PermissionScope'
 pod 'BWWalkthrough'
 pod 'SSZipArchive'
+pod 'DZNEmptyDataSet'
+pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
 
 end
 

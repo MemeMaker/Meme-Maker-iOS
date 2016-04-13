@@ -72,6 +72,7 @@
 		594C5B301CBA2BEA00273B75 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */; };
 		594C5B321CBA2C5600273B75 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B311CBA2C5600273B75 /* FontTableViewController.swift */; };
 		594C5B341CBA5C2A00273B75 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B331CBA5C2A00273B75 /* settings.png */; };
+		59505D0C1CBE6BA400518E56 /* RowCountPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59505D0B1CBE6BA400518E56 /* RowCountPickerTableViewController.swift */; };
 		595E1CC71CBE21150061D270 /* AcknowledgementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */; };
 		595E1CCD1CBE26620061D270 /* fontAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCB1CBE26620061D270 /* fontAck.json */; };
 		595E1CCE1CBE26620061D270 /* libsAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCC1CBE26620061D270 /* libsAck.json */; };
@@ -242,6 +243,7 @@
 		594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTextAttributes.swift; sourceTree = "<group>"; };
 		594C5B311CBA2C5600273B75 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewController.swift; sourceTree = "<group>"; };
 		594C5B331CBA5C2A00273B75 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		59505D0B1CBE6BA400518E56 /* RowCountPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RowCountPickerTableViewController.swift; path = Controllers/RowCountPickerTableViewController.swift; sourceTree = "<group>"; };
 		595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsTableViewController.swift; path = Controllers/AcknowledgementsTableViewController.swift; sourceTree = "<group>"; };
 		595E1CCB1CBE26620061D270 /* fontAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fontAck.json; sourceTree = "<group>"; };
 		595E1CCC1CBE26620061D270 /* libsAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = libsAck.json; sourceTree = "<group>"; };
@@ -427,13 +429,11 @@
 		593B82611CB222BA0073DC17 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				593B82681CB22AB90073DC17 /* MemesViewController.swift */,
-				593B82721CB22B2E0073DC17 /* BrowseViewController.swift */,
-				593B82741CB22B380073DC17 /* MyMemesViewController.swift */,
-				593B82701CB22B210073DC17 /* SettingsTableViewController.swift */,
-				595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */,
-				593B82761CB22CC80073DC17 /* EditorViewController.swift */,
-				59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */,
+				59505D111CBE6BC500518E56 /* Main */,
+				59505D101CBE6BBF00518E56 /* Browse */,
+				59505D0F1CBE6BB800518E56 /* My Memes */,
+				59505D0E1CBE6BB000518E56 /* Editor */,
+				59505D0D1CBE6BA800518E56 /* Settings */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -653,6 +653,49 @@
 				594C5B0E1CBA2BEA00273B75 /* TrashHand.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		59505D0D1CBE6BA800518E56 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				593B82701CB22B210073DC17 /* SettingsTableViewController.swift */,
+				595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */,
+				59505D0B1CBE6BA400518E56 /* RowCountPickerTableViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		59505D0E1CBE6BB000518E56 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				593B82761CB22CC80073DC17 /* EditorViewController.swift */,
+				59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
+		59505D0F1CBE6BB800518E56 /* My Memes */ = {
+			isa = PBXGroup;
+			children = (
+				593B82741CB22B380073DC17 /* MyMemesViewController.swift */,
+			);
+			name = "My Memes";
+			sourceTree = "<group>";
+		};
+		59505D101CBE6BBF00518E56 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				593B82721CB22B2E0073DC17 /* BrowseViewController.swift */,
+			);
+			name = Browse;
+			sourceTree = "<group>";
+		};
+		59505D111CBE6BC500518E56 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				593B82681CB22AB90073DC17 /* MemesViewController.swift */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 		595E1CCA1CBE26620061D270 /* Acknowledgements */ = {
@@ -1103,6 +1146,7 @@
 				593B827E1CB24E000073DC17 /* XMeme+CoreDataProperties.swift in Sources */,
 				59BC23BC1CB7E2B8004D6673 /* XUserCreation.swift in Sources */,
 				593B82771CB22CC80073DC17 /* EditorViewController.swift in Sources */,
+				59505D0C1CBE6BA400518E56 /* RowCountPickerTableViewController.swift in Sources */,
 				592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */,
 				593B827F1CB24E000073DC17 /* XMeme.swift in Sources */,
 			);

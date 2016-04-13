@@ -9,8 +9,10 @@
 import UIKit
 import SVProgressHUD
 import CoreData
+import DZNEmptyDataSet
+import ReachabilitySwift
 
-class BrowseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class BrowseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 	
 	var editorVC: EditorViewController?
 	
@@ -23,6 +25,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	var fetchRequest: NSFetchRequest? = nil
 
 	var longPressGesture: UILongPressGestureRecognizer?
+	
+	// MARK: -
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +61,21 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			self.refershAction(self)
 		}
 		
+		self.collectionView.emptyDataSetDelegate = self
+		self.collectionView.emptyDataSetSource = self
+		
     }
 	
 	@IBAction func refershAction(sender: AnyObject) {
 		SVProgressHUD.showWithStatus("Loading...")
-		self.fetchedCreations = NSMutableArray()
-		self.fetchCreations(1)
+		do {
+			let _ = try Reachability.reachabilityForInternetConnection()
+			self.fetchedCreations = NSMutableArray()
+			self.fetchCreations(1)
+		}
+		catch _ {
+			SVProgressHUD.showErrorWithStatus("No connection!")
+		}
 	}
 	
 	func fetchCreations(paging: Int) -> Void {
@@ -183,6 +196,30 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			self.presentViewController(activityVC, animated: true) {
 			}
 		}
+	}
+	
+	// MARK: - DZN Empty Data Set
+	
+	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let title = NSAttributedString(string: "No memes to browse!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSForegroundColorAttributeName: globalTintColor])
+		return title
+	}
+	
+	func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
+		return title
+	}
+	
+	func backgroundColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
+		return globalBackColor
+	}
+	
+	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+		return creations.count == 0
+	}
+	
+	func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+		refershAction(self)
 	}
 
     /*

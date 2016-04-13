@@ -11,6 +11,7 @@ import CoreData
 import SVProgressHUD
 import MessageUI
 import BWWalkthrough
+import ReachabilitySwift
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
 	
@@ -21,6 +22,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	@IBOutlet weak var uploadEnable: UISwitch!
 	
 	@IBOutlet weak var memesCountLabel: UILabel!
+	
+	@IBOutlet weak var memesPerRowLabel: UILabel!
 	
 	@IBOutlet var tableViewCells: [UITableViewCell]!
 	@IBOutlet var tableViewCellLabels: [UILabel]!
@@ -57,6 +60,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		updateCount()
 		updateViews()
     }
+	
+	override func viewWillAppear(animated: Bool) {
+		self.memesPerRowLabel.text = "\(SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid))"
+	}
 	
 	func updateViews() -> Void {
 		self.tableView.backgroundColor = globalBackColor
@@ -158,8 +165,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		if (indexPath.section == tableView.numberOfSections - 4) {
 			// Update...
 			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
-			self.fetchedMemes = NSMutableArray()
-			self.fetchMemes(1)
+			do {
+				let _ = try Reachability.reachabilityForInternetConnection()
+				self.fetchedMemes = NSMutableArray()
+				self.fetchMemes(1)
+			}
+			catch _ {
+				SVProgressHUD.showErrorWithStatus("No connection!")
+			}
 		}
 		
 		if (indexPath.section == tableView.numberOfSections - 3) {

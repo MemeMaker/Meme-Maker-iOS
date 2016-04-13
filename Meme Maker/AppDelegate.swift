@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			manager.setBool(true, key: kSettingsContinuousEditing)
 			manager.setBool(true, key: kSettingsDarkMode)
 			manager.setBool(true, key: kSettingsUploadMemes)
+			manager.setInteger(3, key: kSettingsNumberOfElementsInGrid)
 			manager.setObject("rank", key: kSettingsLastSortKey)
 			print("Unarchiving to \(getImagesFolder())")
 			SSZipArchive.unzipFileAtPath(NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "zip"), toDestination: getImagesFolder())
@@ -53,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			topAttr.saveAttributes("topAttr")
 			let bottomAttr = XTextAttributes(savename: "bottomAttr")
 			bottomAttr.saveAttributes("bottomAttr")
+		}
+		if (SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) < 3 || SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) > 7) {
+			SettingsManager.sharedManager().setInteger(3, key: kSettingsNumberOfElementsInGrid)
+		}
+		if ("rank memeID name".containsString(SettingsManager.sharedManager().getObject(kSettingsLastSortKey) as! String)) {
+			SettingsManager.sharedManager().setObject("rank", key: kSettingsLastSortKey)
 		}
 		
 		SVProgressHUD.setDefaultMaskType(.Gradient)

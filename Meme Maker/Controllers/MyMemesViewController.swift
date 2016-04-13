@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import DZNEmptyDataSet
 
-class MyMemesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MyMemesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 	
 	@IBOutlet weak var collectionView: UICollectionView!
 	
@@ -42,6 +43,9 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(MyMemesViewController.handleLongPress(_:)))
 		longPressGesture?.minimumPressDuration = 0.8
 		collectionView.addGestureRecognizer(longPressGesture!)
+		
+		self.collectionView.emptyDataSetSource = self
+		self.collectionView.emptyDataSetDelegate = self
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -131,6 +135,26 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 		return 0
+	}
+	
+	// MARK: - DZN Empty Data Set
+	
+	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let title = NSAttributedString(string: "No memes!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSForegroundColorAttributeName: globalTintColor])
+		return title
+	}
+	
+	func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let title = NSAttributedString(string: "Go create a meme and share it!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor])
+		return title
+	}
+	
+	func backgroundColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
+		return globalBackColor
+	}
+	
+	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+		return userCreations.count == 0
 	}
 	
 	// MARK: - Handle long press

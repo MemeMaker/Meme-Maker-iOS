@@ -10,13 +10,15 @@ import UIKit
 import SVProgressHUD
 import CoreData
 import BWWalkthrough
+import DZNEmptyDataSet
+import ReachabilitySwift
 
 protocol MemesViewControllerDelegate {
 	func didSelectMeme(meme: XMeme) -> Void
 	func didPickImage(image: UIImage) -> Void
 }
 
-class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BWWalkthroughViewControllerDelegate {
+class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BWWalkthroughViewControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 	
 	var editorVC: EditorViewController?
 	
@@ -32,6 +34,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var lastEditBarButton: UIBarButtonItem!
 	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
+	
+	var memesPerRow : Int = 3
 	
 	var isListView: Bool = false {
 		didSet {
@@ -67,6 +71,9 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			}
 		}
 		
+		self.collectionView.emptyDataSetSource = self
+		self.collectionView.emptyDataSetDelegate = self
+		
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -76,7 +83,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			request.sortDescriptors = [NSSortDescriptor.init(key: lastSortKey as? String, ascending: true)]
 		}
 		else {
-			request.sortDescriptors = [NSSortDescriptor.init(key: "memeID", ascending: true)]
+			request.sortDescriptors = [NSSortDescriptor.init(key: "rank", ascending: true)]
 		}
 		do {
 			let fetchedArray = try self.context?.executeFetchRequest(request)
@@ -91,12 +98,20 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 //			if (SettingsManager.sharedManager().getInteger(kSettingsTimesLaunched) != 1) {
 				SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 //			}
-			self.fetchedMemes = NSMutableArray()
-			self.fetchMemes(1)
+			do {
+				let _ = try Reachability.reachabilityForInternetConnection()
+				self.fetchedMemes = NSMutableArray()
+				self.fetchMemes(1)
+			}
+			catch _ {
+				SVProgressHUD.showErrorWithStatus("No connection!")
+			}
 		}
-		
+		memesPerRow = SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid)
 		isListView = SettingsManager.sharedManager().getBool(kSettingsViewModeIsList)
 		updateCollectionViewCells()
+		
+		self.filterMemesWithSearchText(self.searchBar.text!)
 	}
 	
 	func fetchMemes(paging: Int) -> Void {
@@ -241,6 +256,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}
 		else {
 			cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! MemesCollectionViewCell
+			cell.labelContainerView?.hidden = (memesPerRow > 4)
 		}
 		
 		let meme = self.memes.objectAtIndex(indexPath.row) as! XMeme
@@ -285,7 +301,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		if (isListView) {
 			return CGSizeMake(self.view.bounds.width, 60)
 		}
-		return CGSizeMake(self.collectionView.bounds.width/3, self.collectionView.bounds.width/3)
+		return CGSizeMake(self.collectionView.bounds.width/CGFloat(memesPerRow), self.collectionView.bounds.width/CGFloat(memesPerRow))
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -294,6 +310,47 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 		return 0
+	}
+	
+	// MARK: - DZN Empty Data Set
+	
+	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let attrs = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSForegroundColorAttributeName: globalTintColor]
+		let title = NSMutableAttributedString(string: "No memes found!", attributes: attrs)
+		if (self.searchBar.text?.characters.count > 0) {
+			title.setAttributedString(NSAttributedString(string: "No results", attributes: attrs))
+		}
+		return title
+	}
+	
+	func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+		let desc = NSAttributedString(string: "This shouldn't happen!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
+		if (self.searchBar.text?.characters.count > 0) {
+			return nil
+		}
+		return desc
+	}
+	
+	func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 22)!, NSForegroundColorAttributeName: globalTintColor])
+		if (self.searchBar.text?.characters.count > 0) {
+			return nil
+		}
+		return title
+	}
+	
+	func backgroundColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
+		return globalBackColor
+	}
+	
+	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+		return memes.count == 0
+	}
+	
+	func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+		SVProgressHUD.showWithStatus("Fetching Memes!")
+		fetchedMemes = NSMutableArray()
+		fetchMemes(1)
 	}
 	
 	// MARK: - Scroll view delegate

@@ -18,6 +18,7 @@ let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
 let kSettingsDarkMode				= "DarkMode"
 let kSettingsViewModeIsList			= "MemeListViewModeIsList"
 let kSettingsLastSortKey			= "LastSortOrderKey"
+let kSettingsNumberOfElementsInGrid	= "NumberOfElementsInGrid"
 
 var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
 var globalTintColor: UIColor = UIColor(hexString: "326400")

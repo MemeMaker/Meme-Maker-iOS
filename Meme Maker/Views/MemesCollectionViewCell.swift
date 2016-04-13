@@ -35,6 +35,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 
 	@IBOutlet weak var memeImageView: UIImageView!
 	@IBOutlet weak var memeNameLabel: UILabel!
+	@IBOutlet weak var labelContainerView: UIView!
 	
 	override func drawRect(rect: CGRect) {
 		
@@ -87,7 +88,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 				}
 				else {
 					let image = getSquareImage(UIImage(contentsOfFile: filePath)!)
-					let data = UIImageJPEGRepresentation(image, 0.8)
+					let data = UIImagePNGRepresentation(image)
 					data?.writeToFile(filePathS, atomically: true)
 					self.memeImageView.image = image
 				}
