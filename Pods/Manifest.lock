@@ -3,29 +3,35 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - GPUImage (0.1.7)
   - IQKeyboardManagerSwift (4.0.0)
   - PermissionScope (1.0.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SSZipArchive (1.1)
   - SVProgressHUD (2.0.2)
   - TextFieldEffects (1.2.0)
 
 DEPENDENCIES:
   - BWWalkthrough
   - ChameleonFramework/Swift
+  - GPUImage
   - IQKeyboardManagerSwift
   - PermissionScope
   - SDWebImage (~> 3.7)
+  - SSZipArchive
   - SVProgressHUD
   - TextFieldEffects
 
 SPEC CHECKSUMS:
   BWWalkthrough: 760b70d2a1b3f970a520806b771aa3f787fdc4cf
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   IQKeyboardManagerSwift: ede2a27b4e1ce053d03073b9c7fa439322f5e405
   PermissionScope: 860828c5516d349b6f49e5491799cfef33c5ccc7
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SSZipArchive: de3d215ab73f87db627f81f2ce24f1731e3886c3
   SVProgressHUD: e4020e23badbd7cc61bc4a80d3c1da57f166a978
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 

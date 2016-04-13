@@ -12,6 +12,14 @@ pod 'TextFieldEffects'
 pod 'ChameleonFramework/Swift'
 pod 'PermissionScope'
 pod 'BWWalkthrough'
+pod 'SSZipArchive'
+
+end
+
+target 'Photo Meme' do
+
+pod 'IQKeyboardManagerSwift'
+pod 'TextFieldEffects'
 
 end
 

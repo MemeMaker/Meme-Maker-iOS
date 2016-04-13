@@ -8,79 +8,76 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>BWWalkthrough.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>ChameleonFramework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
+		</dict>
+		<key>GPUImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>PermissionScope.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Pods-Meme Maker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
+		</dict>
+		<key>Pods-Photo Meme.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
+		</dict>
+		<key>SSZipArchive.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SVProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>TextFieldEffects.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0563D47D6545E50C18D9A7D4D0F080AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>17664F8F0232329D875EC690EB653867</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C8183765AF1B563C1F8FCE705B3D40C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>25762C60052059A398835FC5A3273688</key>
+		<key>456042FB3866E83B4445158940BD819A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -90,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67867050B6858139A84D7D7C7A7E740D</key>
+		<key>724A81D49CBBB0FC2C0F44855828D9A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -100,17 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BACE9648957B9D6617098CD72D93406F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C55E46AC6A1E70A6AA25E306AE545375</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6796B8D9E5532EC6BDA09608E477B18</key>
+		<key>DFDDD6D23FDBCE3F6EFA284F44DEB0EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E8C41F22F612590953460251038D391E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E9B5C577F89B2F2EBCB51E034A136673</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EA0DD8ED489933744D70DD4A9719ED01</key>
 		<dict>
 			<key>primary</key>
 			<true/>

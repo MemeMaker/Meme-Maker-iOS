@@ -83,7 +83,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(EditorViewController.dismissFontAction(_:)))
 		swipeDownGesture?.direction = .Down
 		self.view.addGestureRecognizer(swipeDownGesture!)
-		
+
 		doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(EditorViewController.handleDoubleTap(_:)))
 		doubleTapGesture?.numberOfTapsRequired = 2
 		doubleTapGesture?.numberOfTouchesRequired = 1
@@ -246,7 +246,11 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 //		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
 //		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
 		
-		memeImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		memeImageView.image = image
+		
+//		let sepiaFilter = GPUImageSepiaFilter()
+//		memeImageView.image = sepiaFilter.imageByFilteringImage(image)
 		
 		UIGraphicsEndImageContext()
 		

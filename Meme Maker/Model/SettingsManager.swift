@@ -17,6 +17,7 @@ let kSettingsUploadMemes			= "EnableMemeUpload"
 let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
 let kSettingsDarkMode				= "DarkMode"
 let kSettingsViewModeIsList			= "MemeListViewModeIsList"
+let kSettingsLastSortKey			= "LastSortOrderKey"
 
 var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
 var globalTintColor: UIColor = UIColor(hexString: "326400")
@@ -64,7 +65,7 @@ func updateGlobalTheme () -> Void {
 	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor]
 	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor.colorWithAlphaComponent(0.8)]
 	
-	SVProgressHUD.setFont(UIFont(name: "EtelkaNarrowTextPro", size: 18))
+	SVProgressHUD.setFont(UIFont(name: "EtelkaNarrowTextPro", size: 16))
 	SVProgressHUD.setBackgroundColor(globalBackColor)
 	SVProgressHUD.setForegroundColor(globalTintColor)
 }

@@ -126,7 +126,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				let date = SettingsManager.sharedManager().getLastUpdateDate()
 				return "Last updated: \(formatter.stringFromDate(date))"
 			case noos - 1:
-				return "Swipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch on top or bottom of the image to set text size.\n\nTwo finger pan on top or bottom half to place top or bottom text, Shake or two finger double tap to reset position.\n\nSwipe right text field to add default text. Swipe left to clear text.\n\nDouble tap to change case.\n\n--------------------------\n\nMade by avikantz"
+				return "Swipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch on top or bottom of the image to set text size.\n\nTwo finger pan on top or bottom half to place top or bottom text, Shake or two finger double tap to reset position.\n\nSwipe right text field to add default text. Swipe left to clear text.\n\nDouble tap to change case.\n\n--------------------------\n\n"
 			default:
 				return nil
 		}
@@ -174,10 +174,12 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
 		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
 		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
+		let page4 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage4")
 		walkthrough.delegate = self
 		walkthrough.addViewController(page1)
 		walkthrough.addViewController(page2)
 		walkthrough.addViewController(page3)
+		walkthrough.addViewController(page4)
 		self.presentViewController(walkthrough, animated: true, completion: nil)
 	}
 	
@@ -235,12 +237,20 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			if (data != nil) {
 				
 				do {
+					
+					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
+					
 					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
 					let code = json.valueForKey("code") as! Int
 					if (code == 200) {
 						let jsonmemes = json.valueForKey("data") as! NSArray
-						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: self.context!)!
-						self.fetchedMemes.addObjectsFromArray(memesArray as [AnyObject])
+						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
+						for meme in memesArray {
+							self.fetchedMemes.addObject(meme)
+						}
+						try asyncContext.save()
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchMemes(paging + 1)
 						})

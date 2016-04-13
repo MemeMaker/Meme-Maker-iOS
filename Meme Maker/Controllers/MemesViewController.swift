@@ -72,7 +72,12 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	override func viewDidAppear(animated: Bool) {
 		
 		let request = NSFetchRequest(entityName: "XMeme")
-		request.sortDescriptors = [NSSortDescriptor.init(key: "memeID", ascending: true)]
+		if let lastSortKey = SettingsManager.sharedManager().getObject(kSettingsLastSortKey) {
+			request.sortDescriptors = [NSSortDescriptor.init(key: lastSortKey as? String, ascending: true)]
+		}
+		else {
+			request.sortDescriptors = [NSSortDescriptor.init(key: "memeID", ascending: true)]
+		}
 		do {
 			let fetchedArray = try self.context?.executeFetchRequest(request)
 			memes = NSMutableArray(array: fetchedArray!)
@@ -102,12 +107,19 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			}
 			if (data != nil) {
 				do {
+					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
+					
 					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
 					let code = json.valueForKey("code") as! Int
 					if (code == 200) {
 						let jsonmemes = json.valueForKey("data") as! NSArray
-						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: self.context!)!
-						self.fetchedMemes.addObjectsFromArray(memesArray as [AnyObject])
+						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
+						for meme in memesArray {
+							self.fetchedMemes.addObject(meme)
+						}
+						try asyncContext.save()
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchMemes(paging + 1)
 						})
@@ -183,19 +195,24 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .ActionSheet)
 		let nameSort = UIAlertAction(title: "Alphabetical", style: .Default) { (action) in
 			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "name", ascending: true)])
+			SettingsManager.sharedManager().setObject("name", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
 		let popSort = UIAlertAction(title: "Popularity", style: .Default) { (action) in
 			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "rank", ascending: true)])
+			SettingsManager.sharedManager().setObject("rank", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
 		let defSort = UIAlertAction(title: "Default", style: .Default) { (action) in
 			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "memeID", ascending: true)])
+			SettingsManager.sharedManager().setObject("memeID", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
 		alertController.addAction(nameSort)
 		alertController.addAction(popSort)
 		alertController.addAction(defSort)
+		alertController.addAction(cancelAction)
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			alertController.modalPresentationStyle = .Popover
 			alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
@@ -297,6 +314,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
 		self.filterMemesWithSearchText(searchText)
+	}
+	
+	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+		searchBar.resignFirstResponder()
 	}
 	
 	func filterMemesWithSearchText(text: String) -> Void {
@@ -419,10 +440,12 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
 		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
 		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
+		let page4 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage4")
 		walkthrough.delegate = self
 		walkthrough.addViewController(page1)
 		walkthrough.addViewController(page2)
 		walkthrough.addViewController(page3)
+		walkthrough.addViewController(page4)
 		self.presentViewController(walkthrough, animated: true, completion: nil)
 	}
 	

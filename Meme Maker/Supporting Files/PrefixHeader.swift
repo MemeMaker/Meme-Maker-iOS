@@ -44,6 +44,17 @@ func imagesPathForFileName(name: String) -> String {
 	return directoryPath.stringByAppendingString("\(name).jpg")
 }
 
+func getImagesFolder() -> String {
+	let directoryPath = getDocumentsDirectory().stringByAppendingString("/images/")
+	let manager = NSFileManager.defaultManager()
+	if (!manager.fileExistsAtPath(directoryPath)) {
+		do {
+			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+		} catch _ { }
+	}
+	return directoryPath
+}
+
 func userImagesPathForFileName(name: String) -> String {
 	let directoryPath = getDocumentsDirectory().stringByAppendingString("/userImages/")
 	let manager = NSFileManager.defaultManager()

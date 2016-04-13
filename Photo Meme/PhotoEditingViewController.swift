@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import PhotosUI
+import TextFieldEffects
 import IQKeyboardManagerSwift
 
 class PhotoEditingViewController: UIViewController, PHContentEditingController, UITextFieldDelegate, SwipableTextFieldDelegate, TextAttributeChangingDelegate, UIGestureRecognizerDelegate {

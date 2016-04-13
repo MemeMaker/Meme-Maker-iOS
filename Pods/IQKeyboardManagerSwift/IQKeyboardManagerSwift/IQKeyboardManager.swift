@@ -362,8 +362,10 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 let isAcceptAsFirstResponder = goPrevious()
                 
                 if isAcceptAsFirstResponder && textFieldRetain.previousInvocation.target != nil && textFieldRetain.previousInvocation.selector != nil {
-                    
-                    UIApplication.sharedApplication().sendAction(textFieldRetain.previousInvocation.selector!, to: textFieldRetain.previousInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+					
+					#if TARGET_IS_EXTENSION
+						UIApplication.sharedApplication().sendAction(textFieldRetain.previousInvocation.selector!, to: textFieldRetain.previousInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+					#endif
                 }
             }
         }
@@ -384,8 +386,10 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 let isAcceptAsFirstResponder = goNext()
                 
                 if isAcceptAsFirstResponder && textFieldRetain.nextInvocation.target != nil && textFieldRetain.nextInvocation.selector != nil {
-                    
-                    UIApplication.sharedApplication().sendAction(textFieldRetain.nextInvocation.selector!, to: textFieldRetain.nextInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+					
+                    #if TARGET_IS_EXTENSION
+						UIApplication.sharedApplication().sendAction(textFieldRetain.nextInvocation.selector!, to: textFieldRetain.nextInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+					#endif
                 }
             }
         }
@@ -405,8 +409,10 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             let isResignedFirstResponder = resignFirstResponder()
             
             if isResignedFirstResponder && textFieldRetain.doneInvocation.target != nil  && textFieldRetain.doneInvocation.selector != nil{
-                
-                UIApplication.sharedApplication().sendAction(textFieldRetain.doneInvocation.selector!, to: textFieldRetain.doneInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+				
+				#if TARGET_IS_EXTENSION
+					UIApplication.sharedApplication().sendAction(textFieldRetain.doneInvocation.selector!, to: textFieldRetain.doneInvocation.target, from: textFieldRetain, forEvent: UIEvent())
+				#endif
             }
         }
     }
@@ -699,12 +705,15 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             }
 
             /*  (Bug ID: #23, #25, #73)   */
-            let originalKeyWindow = UIApplication.sharedApplication().keyWindow
+			#if TARGET_IS_EXTENSION
+				let originalKeyWindow = UIApplication.sharedApplication().keyWindow
             
-            //If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
-            if originalKeyWindow != nil && (Static.keyWindow == nil || Static.keyWindow != originalKeyWindow) {
-                Static.keyWindow = originalKeyWindow
-            }
+				//If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
+				if originalKeyWindow != nil && (Static.keyWindow == nil || Static.keyWindow != originalKeyWindow) {
+					Static.keyWindow = originalKeyWindow
+				}
+					
+			#endif
 
             //Return KeyWindow
             return Static.keyWindow
@@ -793,9 +802,13 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         let newKeyboardDistanceFromTextField = (textFieldView.keyboardDistanceFromTextField == kIQUseDefaultKeyboardDistance) ? keyboardDistanceFromTextField : textFieldView.keyboardDistanceFromTextField
         var kbSize = _kbSize
         kbSize.height += newKeyboardDistanceFromTextField
-
-        let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
-        
+		
+		#if TARGET_IS_EXTENSION
+			let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
+		#else
+			let statusBarFrame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
+		#endif
+		
         //  (Bug ID: #250)
         var layoutGuidePosition = IQLayoutGuidePosition.None
         

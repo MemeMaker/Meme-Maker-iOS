@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02A4845D9F7E842A74E53085 /* Pods_Photo_Meme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BF1B13199885C07D1E7579 /* Pods_Photo_Meme.framework */; };
 		592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E51CB6897600219133 /* FontsTableViewCell.swift */; };
 		592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E81CB694DF00219133 /* UnderlinedLabel.swift */; };
 		592293EC1CB6C35800219133 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293EB1CB6C35800219133 /* BlurredImageView.swift */; };
@@ -71,6 +72,11 @@
 		594C5B301CBA2BEA00273B75 /* XTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */; };
 		594C5B321CBA2C5600273B75 /* FontTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C5B311CBA2C5600273B75 /* FontTableViewController.swift */; };
 		594C5B341CBA5C2A00273B75 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 594C5B331CBA5C2A00273B75 /* settings.png */; };
+		595E1CC71CBE21150061D270 /* AcknowledgementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */; };
+		595E1CCD1CBE26620061D270 /* fontAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCB1CBE26620061D270 /* fontAck.json */; };
+		595E1CCE1CBE26620061D270 /* libsAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCC1CBE26620061D270 /* libsAck.json */; };
+		596012AF1CBD4AA9001196F6 /* defaultMemes.dat in Resources */ = {isa = PBXBuildFile; fileRef = 596012AD1CBD4AA9001196F6 /* defaultMemes.dat */; };
+		596012B01CBD4AA9001196F6 /* defaultMemes.zip in Resources */ = {isa = PBXBuildFile; fileRef = 596012AE1CBD4AA9001196F6 /* defaultMemes.zip */; };
 		597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D74591CB3A4A1002C784B /* SettingsManager.swift */; };
 		597D74761CB43866002C784B /* Absender.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745B1CB43866002C784B /* Absender.ttf */; };
 		597D74771CB43866002C784B /* angelina.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 597D745C1CB43866002C784B /* angelina.ttf */; };
@@ -103,6 +109,10 @@
 		59BC23BC1CB7E2B8004D6673 /* XUserCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */; };
 		59BC23BE1CB8BACE004D6673 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BC23BD1CB8BACE004D6673 /* CoreData.framework */; };
 		59BC23C01CB8F1E6004D6673 /* ViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */; };
+		59D244AF1CBD2C7A00477A66 /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59D244AB1CBD2C7A00477A66 /* 01.jpg */; };
+		59D244B01CBD2C7A00477A66 /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59D244AC1CBD2C7A00477A66 /* 02.jpg */; };
+		59D244B11CBD2C7A00477A66 /* 03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59D244AD1CBD2C7A00477A66 /* 03.jpg */; };
+		59D244B21CBD2C7A00477A66 /* 04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59D244AE1CBD2C7A00477A66 /* 04.jpg */; };
 		59ED09DD1CBB7AE000817D4D /* theboldfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59ED09D81CBB7AE000817D4D /* theboldfont.ttf */; };
 		59ED09DE1CBB7AE000817D4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59ED09D91CBB7AE000817D4D /* Roboto-Bold.ttf */; };
 		59ED09DF1CBB7AE000817D4D /* Gravity-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59ED09DA1CBB7AE000817D4D /* Gravity-Book.otf */; };
@@ -159,6 +169,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A1E74CE2FF0EB2F06D26630 /* Pods-Photo Meme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo Meme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme.debug.xcconfig"; sourceTree = "<group>"; };
 		592293E51CB6897600219133 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontsTableViewCell.swift; path = Views/FontsTableViewCell.swift; sourceTree = "<group>"; };
 		592293E81CB694DF00219133 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnderlinedLabel.swift; path = Views/UnderlinedLabel.swift; sourceTree = "<group>"; };
 		592293EB1CB6C35800219133 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurredImageView.swift; path = Views/BlurredImageView.swift; sourceTree = "<group>"; };
@@ -230,6 +241,11 @@
 		594C5B111CBA2BEA00273B75 /* XTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XTextAttributes.swift; sourceTree = "<group>"; };
 		594C5B311CBA2C5600273B75 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontTableViewController.swift; sourceTree = "<group>"; };
 		594C5B331CBA5C2A00273B75 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsTableViewController.swift; path = Controllers/AcknowledgementsTableViewController.swift; sourceTree = "<group>"; };
+		595E1CCB1CBE26620061D270 /* fontAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fontAck.json; sourceTree = "<group>"; };
+		595E1CCC1CBE26620061D270 /* libsAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = libsAck.json; sourceTree = "<group>"; };
+		596012AD1CBD4AA9001196F6 /* defaultMemes.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = defaultMemes.dat; sourceTree = "<group>"; };
+		596012AE1CBD4AA9001196F6 /* defaultMemes.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = defaultMemes.zip; sourceTree = "<group>"; };
 		597D74591CB3A4A1002C784B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Model/SettingsManager.swift; sourceTree = "<group>"; };
 		597D745B1CB43866002C784B /* Absender.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Absender.ttf; path = "Supporting Files/Fonts/Absender.ttf"; sourceTree = "<group>"; };
 		597D745C1CB43866002C784B /* angelina.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = angelina.ttf; path = "Supporting Files/Fonts/angelina.ttf"; sourceTree = "<group>"; };
@@ -262,6 +278,10 @@
 		59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XUserCreation.swift; path = Model/XUserCreation.swift; sourceTree = "<group>"; };
 		59BC23BD1CB8BACE004D6673 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		59BC23BF1CB8F1E6004D6673 /* ViewerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewerCollectionViewCell.swift; path = Views/ViewerCollectionViewCell.swift; sourceTree = "<group>"; };
+		59D244AB1CBD2C7A00477A66 /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
+		59D244AC1CBD2C7A00477A66 /* 02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 02.jpg; sourceTree = "<group>"; };
+		59D244AD1CBD2C7A00477A66 /* 03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 03.jpg; sourceTree = "<group>"; };
+		59D244AE1CBD2C7A00477A66 /* 04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 04.jpg; sourceTree = "<group>"; };
 		59ED09D81CBB7AE000817D4D /* theboldfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = theboldfont.ttf; path = "Supporting Files/Fonts/theboldfont.ttf"; sourceTree = "<group>"; };
 		59ED09D91CBB7AE000817D4D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "Supporting Files/Fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		59ED09DA1CBB7AE000817D4D /* Gravity-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gravity-Book.otf"; path = "Supporting Files/Fonts/Gravity-Book.otf"; sourceTree = "<group>"; };
@@ -277,6 +297,8 @@
 		59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontTableViewController.swift; path = Controllers/FontTableViewController.swift; sourceTree = "<group>"; };
 		59EFF4CF1CB57C6700EE3D27 /* fonts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = fonts.json; path = "Supporting Files/Fonts/fonts.json"; sourceTree = "<group>"; };
 		B2012CFA4C567A3C4E9C3225 /* Pods-Meme Maker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.debug.xcconfig"; sourceTree = "<group>"; };
+		B7BF1B13199885C07D1E7579 /* Pods_Photo_Meme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Photo_Meme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74F5119C288D20FD689A043 /* Pods-Photo Meme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo Meme.release.xcconfig"; path = "Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme.release.xcconfig"; sourceTree = "<group>"; };
 		D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Meme_Maker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E731F34C267B577755D7DDA1 /* Pods-Meme Maker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Meme Maker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Meme Maker/Pods-Meme Maker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -311,6 +333,7 @@
 			files = (
 				594C5AD71CBA291700273B75 /* PhotosUI.framework in Frameworks */,
 				594C5AD91CBA291700273B75 /* Photos.framework in Frameworks */,
+				02A4845D9F7E842A74E53085 /* Pods_Photo_Meme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +345,8 @@
 			children = (
 				B2012CFA4C567A3C4E9C3225 /* Pods-Meme Maker.debug.xcconfig */,
 				E731F34C267B577755D7DDA1 /* Pods-Meme Maker.release.xcconfig */,
+				1A1E74CE2FF0EB2F06D26630 /* Pods-Photo Meme.debug.xcconfig */,
+				C74F5119C288D20FD689A043 /* Pods-Photo Meme.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -404,6 +429,7 @@
 				593B82721CB22B2E0073DC17 /* BrowseViewController.swift */,
 				593B82741CB22B380073DC17 /* MyMemesViewController.swift */,
 				593B82701CB22B210073DC17 /* SettingsTableViewController.swift */,
+				595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */,
 				593B82761CB22CC80073DC17 /* EditorViewController.swift */,
 				59EFF4CD1CB5767C00EE3D27 /* FontTableViewController.swift */,
 			);
@@ -415,9 +441,9 @@
 			children = (
 				592293EA1CB6C34800219133 /* ImageViews */,
 				592293E71CB694D500219133 /* Labels */,
-				593B82651CB222DF0073DC17 /* Launch */,
 				59EFF4CC1CB4DF6700EE3D27 /* Swipable Text Field */,
 				593B82891CB291060073DC17 /* Cells */,
+				593B82651CB222DF0073DC17 /* Launch */,
 				594C5AD01CBA0F0C00273B75 /* Walkthrough */,
 				593B82341CB222560073DC17 /* Main.storyboard */,
 			);
@@ -456,6 +482,9 @@
 		593B82661CB222ED0073DC17 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				595E1CCA1CBE26620061D270 /* Acknowledgements */,
+				596012AC1CBD4AA9001196F6 /* Default */,
+				59D244AA1CBD2C7A00477A66 /* Tutorial Images */,
 				593B82821CB252A50073DC17 /* Global */,
 				593B823F1CB222560073DC17 /* Info.plist */,
 				593B82671CB222F30073DC17 /* Fonts */,
@@ -623,6 +652,26 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		595E1CCA1CBE26620061D270 /* Acknowledgements */ = {
+			isa = PBXGroup;
+			children = (
+				595E1CCB1CBE26620061D270 /* fontAck.json */,
+				595E1CCC1CBE26620061D270 /* libsAck.json */,
+			);
+			name = Acknowledgements;
+			path = "Supporting Files/Acknowledgements";
+			sourceTree = "<group>";
+		};
+		596012AC1CBD4AA9001196F6 /* Default */ = {
+			isa = PBXGroup;
+			children = (
+				596012AD1CBD4AA9001196F6 /* defaultMemes.dat */,
+				596012AE1CBD4AA9001196F6 /* defaultMemes.zip */,
+			);
+			name = Default;
+			path = "Supporting Files/Default";
+			sourceTree = "<group>";
+		};
 		597D74581CB3A48E002C784B /* SettingsManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,6 +687,18 @@
 				59BC23BA1CB7E2B8004D6673 /* XUserCreation.swift */,
 			);
 			name = "User Creation";
+			sourceTree = "<group>";
+		};
+		59D244AA1CBD2C7A00477A66 /* Tutorial Images */ = {
+			isa = PBXGroup;
+			children = (
+				59D244AB1CBD2C7A00477A66 /* 01.jpg */,
+				59D244AC1CBD2C7A00477A66 /* 02.jpg */,
+				59D244AD1CBD2C7A00477A66 /* 03.jpg */,
+				59D244AE1CBD2C7A00477A66 /* 04.jpg */,
+			);
+			name = "Tutorial Images";
+			path = "Supporting Files/Tutorial Images";
 			sourceTree = "<group>";
 		};
 		59EFF4C71CB4BAD700EE3D27 /* TextAttributes */ = {
@@ -663,6 +724,7 @@
 				D1E739797FDF36A4DE413DA6 /* Pods_Meme_Maker.framework */,
 				594C5AD61CBA291700273B75 /* PhotosUI.framework */,
 				594C5AD81CBA291700273B75 /* Photos.framework */,
+				B7BF1B13199885C07D1E7579 /* Pods_Photo_Meme.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -732,9 +794,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 594C5AE61CBA291700273B75 /* Build configuration list for PBXNativeTarget "Photo Meme" */;
 			buildPhases = (
+				17805A606A17FD4636D0E032 /* Check Pods Manifest.lock */,
 				594C5AD11CBA291700273B75 /* Sources */,
 				594C5AD21CBA291700273B75 /* Frameworks */,
 				594C5AD31CBA291700273B75 /* Resources */,
+				25DF778621606DC84D2B6124 /* Embed Pods Frameworks */,
+				B3E76D14DA59A85A60484B94 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -799,7 +864,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59D244B11CBD2C7A00477A66 /* 03.jpg in Resources */,
 				59ED09DF1CBB7AE000817D4D /* Gravity-Book.otf in Resources */,
+				595E1CCD1CBE26620061D270 /* fontAck.json in Resources */,
 				597D74901CB43866002C784B /* TrashHand.ttf in Resources */,
 				597D74781CB43866002C784B /* Arabella.ttf in Resources */,
 				59EFF4D01CB57C6700EE3D27 /* fonts.json in Resources */,
@@ -812,14 +879,18 @@
 				593B823E1CB222560073DC17 /* LaunchScreen.storyboard in Resources */,
 				597D74811CB43866002C784B /* JennaSue.ttf in Resources */,
 				597D747C1CB43866002C784B /* daniel.ttf in Resources */,
+				59D244B01CBD2C7A00477A66 /* 02.jpg in Resources */,
+				596012AF1CBD4AA9001196F6 /* defaultMemes.dat in Resources */,
 				597D74871CB43866002C784B /* MarketingScript.ttf in Resources */,
 				597D74801CB43866002C784B /* Impact.ttf in Resources */,
 				597D74851CB43866002C784B /* LithosPro-Black.otf in Resources */,
 				59ED09E01CBB7AE000817D4D /* Existence-Light.ttf in Resources */,
 				597D748A1CB43866002C784B /* Righteous-Regular.ttf in Resources */,
+				59D244AF1CBD2C7A00477A66 /* 01.jpg in Resources */,
 				59ED09E11CBB7AE000817D4D /* CaviarDreams.ttf in Resources */,
 				597D747B1CB43866002C784B /* Bolina.otf in Resources */,
 				593B823B1CB222560073DC17 /* Assets.xcassets in Resources */,
+				595E1CCE1CBE26620061D270 /* libsAck.json in Resources */,
 				597D74861CB43866002C784B /* LouisaCP.otf in Resources */,
 				59ED09DD1CBB7AE000817D4D /* theboldfont.ttf in Resources */,
 				597D74891CB43866002C784B /* Prisma.ttf in Resources */,
@@ -830,12 +901,14 @@
 				597D74841CB43866002C784B /* LeagueGothic-Regular.otf in Resources */,
 				597D748B1CB43866002C784B /* RollingNoOne-ExtraBold.ttf in Resources */,
 				597D74771CB43866002C784B /* angelina.ttf in Resources */,
+				59D244B21CBD2C7A00477A66 /* 04.jpg in Resources */,
 				597D74831CB43866002C784B /* LeagueGothic-Italic.otf in Resources */,
 				597D747F1CB43866002C784B /* HoneyScript-Light.ttf in Resources */,
 				597D747A1CB43866002C784B /* AvenirCondensedHand.ttf in Resources */,
 				594C5ACF1CBA0F0700273B75 /* Walkthrough.storyboard in Resources */,
 				597D74821CB43866002C784B /* Karate.ttf in Resources */,
 				593B82361CB222560073DC17 /* Main.storyboard in Resources */,
+				596012B01CBD4AA9001196F6 /* defaultMemes.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +971,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		17805A606A17FD4636D0E032 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		20985CF8EF5E1831AFCC8FC5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -911,6 +999,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		25DF778621606DC84D2B6124 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3E76D14DA59A85A60484B94 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA22D0AF047B6977159111E9 /* Embed Pods Frameworks */ = {
@@ -964,6 +1082,7 @@
 				593B827C1CB24E000073DC17 /* XCreated+CoreDataProperties.swift in Sources */,
 				59EFF4CE1CB5767C00EE3D27 /* FontTableViewController.swift in Sources */,
 				59EFF4C91CB4BB0000EE3D27 /* XTextAttributes.swift in Sources */,
+				595E1CC71CBE21150061D270 /* AcknowledgementsTableViewController.swift in Sources */,
 				593B82731CB22B2E0073DC17 /* BrowseViewController.swift in Sources */,
 				593B827D1CB24E000073DC17 /* XCreated.swift in Sources */,
 				597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */,
@@ -1231,11 +1350,15 @@
 		};
 		594C5AE41CBA291700273B75 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A1E74CE2FF0EB2F06D26630 /* Pods-Photo Meme.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = TARGET_IS_EXTENSION;
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TARGET_IS_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1244,11 +1367,15 @@
 		};
 		594C5AE51CBA291700273B75 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C74F5119C288D20FD689A043 /* Pods-Photo Meme.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = TARGET_IS_EXTENSION;
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TARGET_IS_EXTENSION\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

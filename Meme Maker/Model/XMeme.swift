@@ -66,13 +66,6 @@ class XMeme: NSManagedObject {
 			
 		}
 		
-		do {
-			try context.save()
-		}
-		catch _ {
-			print("Unable to save");
-		}
-		
 		return memesArray
 		
 	}

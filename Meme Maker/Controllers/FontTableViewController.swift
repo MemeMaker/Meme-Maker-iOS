@@ -48,6 +48,8 @@ class FontTableViewController: UITableViewController {
 	
 	var currentFTType: Int = 0
 	
+	var cellFontSize: CGFloat = 18
+	
 	var swipeLeft: UISwipeGestureRecognizer?
 	var swipeRight: UISwipeGestureRecognizer?
 	
@@ -89,6 +91,13 @@ class FontTableViewController: UITableViewController {
 				dFonts = NSMutableArray(array: jsonData)
 			}
 			catch _ {}
+		}
+		
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			cellFontSize = 25
+		}
+		else {
+			cellFontSize = 18
 		}
 		
 		// For now I'm gonna hard-code these values, maybe later move them to JSON or server
@@ -285,10 +294,10 @@ class FontTableViewController: UITableViewController {
 		cell.ticked = dict["value"]!.isEqual(currentDict["value"])
 		
 		if (currentFTType == 0) {
-			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: 25)!
+			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: cellFontSize)!
 		}
 		else {
-			cell.fontNameLabel?.font = UIFont(name: "Impact", size: 25)!
+			cell.fontNameLabel?.font = UIFont(name: "Impact", size: cellFontSize)!
 		}
 
 		return cell
@@ -359,6 +368,13 @@ class FontTableViewController: UITableViewController {
 		
 		self.textAttrChangeDelegate?.didUpdateTextAttributes(topTextAttr, bottomTextAttributes: bottomTextAttr)
 		
+	}
+	
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			return 70
+		}
+		return 50
 	}
 	
 	override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

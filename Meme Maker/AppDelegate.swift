@@ -11,6 +11,7 @@ import ChameleonFramework
 import CoreData
 import SVProgressHUD
 import IQKeyboardManagerSwift
+import SSZipArchive
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			manager.setBool(true, key: kSettingsContinuousEditing)
 			manager.setBool(true, key: kSettingsDarkMode)
 			manager.setBool(true, key: kSettingsUploadMemes)
+			manager.setObject("rank", key: kSettingsLastSortKey)
+			print("Unarchiving to \(getImagesFolder())")
+			SSZipArchive.unzipFileAtPath(NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "zip"), toDestination: getImagesFolder())
+			saveDefaultMemes()
 		}
 		manager.setInteger(timesLaunched + 1, key: kSettingsTimesLaunched)
 		if manager.getBool(kSettingsResetSettingsOnLaunch) {
@@ -58,6 +63,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		updateGlobalTheme()
 		
 		return true
+	}
+	
+	func saveDefaultMemes() -> Void {
+		
+		let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "dat")!)
+		
+		if (data != nil) {
+			do {
+				let jsonmemes = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+				let _ = XMeme.getAllMemesFromArray(jsonmemes as! NSArray, context: managedObjectContext)!
+				try managedObjectContext.save()
+			}
+			catch _ {
+				print("Unable to parse")
+				return
+			}
+		}
+		
 	}
 
 	func applicationWillResignActive(application: UIApplication) {
@@ -102,7 +125,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
 	    // Create the coordinator and store
 	    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-	    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+	    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("MemeMaker.sqlite")
 	    var failureReason = "There was an error creating or loading the application's saved data."
 	    do {
 	        try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
