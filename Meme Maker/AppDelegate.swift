@@ -69,25 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		updateGlobalTheme()
 		
+		AppDelegate.updateActivityIcons("")
+		
 		return true
-	}
-	
-	func saveDefaultMemes() -> Void {
-		
-		let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "dat")!)
-		
-		if (data != nil) {
-			do {
-				let jsonmemes = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-				let _ = XMeme.getAllMemesFromArray(jsonmemes as! NSArray, context: managedObjectContext)!
-				try managedObjectContext.save()
-			}
-			catch _ {
-				print("Unable to parse")
-				return
-			}
-		}
-		
 	}
 
 	func applicationWillResignActive(application: UIApplication) {
@@ -112,6 +96,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.
 		self.saveContext()
+	}
+	
+	// MARK: - Utility
+	
+	func saveDefaultMemes() -> Void {
+		let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "dat")!)
+		if (data != nil) {
+			do {
+				let jsonmemes = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+				let _ = XMeme.getAllMemesFromArray(jsonmemes as! NSArray, context: managedObjectContext)!
+				try managedObjectContext.save()
+			}
+			catch _ {
+				print("Unable to parse")
+				return
+			}
+		}
+	}
+	
+	class func updateActivityIcons(leSubtitle: String) -> Void {
+		if (UI_USER_INTERFACE_IDIOM() == .Phone) {
+			var shortcutItems : [UIApplicationShortcutItem] = []
+			let shortcut1 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.create", localizedTitle: "Create", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "new"), userInfo: nil
+			)
+			shortcutItems.append(shortcut1)
+			if let _ = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
+				let shortcut2 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.lastedit", localizedTitle: "Last Edit", localizedSubtitle: leSubtitle, icon: UIApplicationShortcutIcon.init(templateImageName: "Undo"), userInfo: nil
+				)
+				shortcutItems.append(shortcut2)
+			}
+			let application = UIApplication.sharedApplication()
+			application.shortcutItems = shortcutItems
+		}
+	}
+	
+	// MARK: - Shortcut icons
+	
+	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+		if (shortcutItem.type.containsString("lastedit")) {
+			let tabBarVC = self.window?.rootViewController as! UITabBarController
+			let navC = tabBarVC.viewControllers?.first as! UINavigationController
+			let memesVC = navC.viewControllers.first as! MemesViewController
+			memesVC.performSegueWithIdentifier("LastEditSegue", sender: memesVC)
+		}
 	}
 
 	// MARK: - Core Data stack

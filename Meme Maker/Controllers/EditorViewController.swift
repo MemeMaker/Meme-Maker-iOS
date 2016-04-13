@@ -107,6 +107,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		if (editorMode == .Meme) {
 			if (self.meme != nil) {
 				self.didSelectMeme(self.meme!)
+				AppDelegate.updateActivityIcons(self.meme!.name!)
 			}
 		}
 		else if (editorMode == .UserImage) {
@@ -114,6 +115,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			topTextAttr = XTextAttributes(savename: "topAttr")
 			bottomTextAttr = XTextAttributes(savename: "bottomAttr")
 			self.didPickImage(image!)
+			AppDelegate.updateActivityIcons("")
 		}
 		updateForViewing()
 		
@@ -153,6 +155,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 				self.bottomTextField.text = String(self.bottomTextAttr.text)
 				self.memeNameLabel.text = self.title
 			}
+			AppDelegate.updateActivityIcons("")
 			self.memeImageView.image = baseImage
 			cookImage()
 			self.backgroundImageView.image = baseImage

@@ -277,6 +277,7 @@
                         <outlet property="searchBar" destination="HOc-Zx-qw9" id="KV1-5I-vOP"/>
                         <outlet property="searchBarButton" destination="Coz-Sg-ByD" id="Pxd-co-6PW"/>
                         <outlet property="searchPlaceholderTopConstraint" destination="umC-y9-9jM" id="Ns5-vi-510"/>
+                        <segue destination="7z0-ic-X6o" kind="presentation" identifier="LastEditSegue" id="Eu7-ih-5Ds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9SR-vL-fZl" userLabel="First Responder" sceneMemberID="firstResponder"/>
