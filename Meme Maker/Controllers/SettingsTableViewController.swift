@@ -28,6 +28,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	var memes = NSMutableArray()
 	var fetchedMemes = NSMutableArray()
 	
+	var quotes = NSMutableArray()
+	
 	var context: NSManagedObjectContext? = nil
 	
     override func viewDidLoad() {
@@ -44,6 +46,14 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 
+		if let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("quotes", ofType: "json")!) {
+			do {
+				let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSArray
+				quotes = NSMutableArray(array: jsonData)
+			}
+			catch _ {}
+		}
+		
 		updateCount()
 		updateViews()
     }
@@ -109,6 +119,13 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 
 	// MARK: - Table view data source
 	
+	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		if (section == 0) {
+			return quotes.objectAtIndex(random() % quotes.count) as? String
+		}
+		return ""
+	}
+	
 	override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		let noos = tableView.numberOfSections
 		switch section {
@@ -117,7 +134,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			case 1:
 				return "Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings."
 			case 2:
-				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life."
+				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life. If enabled, you need to press enter to generate text after "
 			case 4:
 				return "Check this if you want your \"creations\" to be uploaded to the server."
 			case noos - 4:

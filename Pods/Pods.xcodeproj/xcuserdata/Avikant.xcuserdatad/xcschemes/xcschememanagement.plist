@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>GPUImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,17 +62,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0563D47D6545E50C18D9A7D4D0F080AB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>17664F8F0232329D875EC690EB653867</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>456042FB3866E83B4445158940BD819A</key>
+		<key>3255FB8B4FB8D313CAE92385E4A91C0E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4CBA5F0E05C83058D6548656758C90D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>724A81D49CBBB0FC2C0F44855828D9A8</key>
+		<key>6564CE87BDEB8761311314765A8A526C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77CF9957EDF968B7B68A52CB693C1658</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BACE9648957B9D6617098CD72D93406F</key>
+		<key>BDD90FE2322F196F69C3C600DCED1C62</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DFDDD6D23FDBCE3F6EFA284F44DEB0EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E8C41F22F612590953460251038D391E</key>
+		<key>DEC67CEA9A7CF79616630CCAD9994569</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E9B5C577F89B2F2EBCB51E034A136673</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA0DD8ED489933744D70DD4A9719ED01</key>
 		<dict>
 			<key>primary</key>
 			<true/>

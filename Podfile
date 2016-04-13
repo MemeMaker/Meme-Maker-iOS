@@ -18,7 +18,6 @@ end
 
 target 'Photo Meme' do
 
-pod 'IQKeyboardManagerSwift'
 pod 'TextFieldEffects'
 
 end

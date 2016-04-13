@@ -75,6 +75,7 @@
 		595E1CC71CBE21150061D270 /* AcknowledgementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */; };
 		595E1CCD1CBE26620061D270 /* fontAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCB1CBE26620061D270 /* fontAck.json */; };
 		595E1CCE1CBE26620061D270 /* libsAck.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CCC1CBE26620061D270 /* libsAck.json */; };
+		595E1CD11CBE29600061D270 /* quotes.json in Resources */ = {isa = PBXBuildFile; fileRef = 595E1CD01CBE29600061D270 /* quotes.json */; };
 		596012AF1CBD4AA9001196F6 /* defaultMemes.dat in Resources */ = {isa = PBXBuildFile; fileRef = 596012AD1CBD4AA9001196F6 /* defaultMemes.dat */; };
 		596012B01CBD4AA9001196F6 /* defaultMemes.zip in Resources */ = {isa = PBXBuildFile; fileRef = 596012AE1CBD4AA9001196F6 /* defaultMemes.zip */; };
 		597D745A1CB3A4A1002C784B /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D74591CB3A4A1002C784B /* SettingsManager.swift */; };
@@ -244,6 +245,7 @@
 		595E1CC61CBE21150061D270 /* AcknowledgementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcknowledgementsTableViewController.swift; path = Controllers/AcknowledgementsTableViewController.swift; sourceTree = "<group>"; };
 		595E1CCB1CBE26620061D270 /* fontAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fontAck.json; sourceTree = "<group>"; };
 		595E1CCC1CBE26620061D270 /* libsAck.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = libsAck.json; sourceTree = "<group>"; };
+		595E1CD01CBE29600061D270 /* quotes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = quotes.json; sourceTree = "<group>"; };
 		596012AD1CBD4AA9001196F6 /* defaultMemes.dat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = defaultMemes.dat; sourceTree = "<group>"; };
 		596012AE1CBD4AA9001196F6 /* defaultMemes.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = defaultMemes.zip; sourceTree = "<group>"; };
 		597D74591CB3A4A1002C784B /* SettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsManager.swift; path = Model/SettingsManager.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 		593B82661CB222ED0073DC17 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				595E1CCF1CBE29600061D270 /* Quotes */,
 				595E1CCA1CBE26620061D270 /* Acknowledgements */,
 				596012AC1CBD4AA9001196F6 /* Default */,
 				59D244AA1CBD2C7A00477A66 /* Tutorial Images */,
@@ -660,6 +663,15 @@
 			);
 			name = Acknowledgements;
 			path = "Supporting Files/Acknowledgements";
+			sourceTree = "<group>";
+		};
+		595E1CCF1CBE29600061D270 /* Quotes */ = {
+			isa = PBXGroup;
+			children = (
+				595E1CD01CBE29600061D270 /* quotes.json */,
+			);
+			name = Quotes;
+			path = "Supporting Files/Quotes";
 			sourceTree = "<group>";
 		};
 		596012AC1CBD4AA9001196F6 /* Default */ = {
@@ -878,6 +890,7 @@
 				597D747E1CB43866002C784B /* EtelkaNarrowTextPro.otf in Resources */,
 				593B823E1CB222560073DC17 /* LaunchScreen.storyboard in Resources */,
 				597D74811CB43866002C784B /* JennaSue.ttf in Resources */,
+				595E1CD11CBE29600061D270 /* quotes.json in Resources */,
 				597D747C1CB43866002C784B /* daniel.ttf in Resources */,
 				59D244B01CBD2C7A00477A66 /* 02.jpg in Resources */,
 				596012AF1CBD4AA9001196F6 /* defaultMemes.dat in Resources */,
@@ -1358,7 +1371,7 @@
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TARGET_IS_EXTENSION\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1375,7 +1388,7 @@
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"TARGET_IS_EXTENSION\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

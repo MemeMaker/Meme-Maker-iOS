@@ -88,7 +88,9 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}
 		
 		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
-			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+//			if (SettingsManager.sharedManager().getInteger(kSettingsTimesLaunched) != 1) {
+				SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+//			}
 			self.fetchedMemes = NSMutableArray()
 			self.fetchMemes(1)
 		}
@@ -446,7 +448,12 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		walkthrough.addViewController(page2)
 		walkthrough.addViewController(page3)
 		walkthrough.addViewController(page4)
-		self.presentViewController(walkthrough, animated: true, completion: nil)
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			self.splitViewController?.presentViewController(walkthrough, animated: true, completion: nil)
+		}
+		else {
+			self.navigationController?.presentViewController(walkthrough, animated: true, completion: nil)
+		}
 	}
 	
 	func walkthroughCloseButtonPressed() {

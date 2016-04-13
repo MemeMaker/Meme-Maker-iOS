@@ -363,9 +363,9 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 if isAcceptAsFirstResponder && textFieldRetain.previousInvocation.target != nil && textFieldRetain.previousInvocation.selector != nil {
 					
-					#if TARGET_IS_EXTENSION
+//					#if TARGET_IS_EXTENSION
 						UIApplication.sharedApplication().sendAction(textFieldRetain.previousInvocation.selector!, to: textFieldRetain.previousInvocation.target, from: textFieldRetain, forEvent: UIEvent())
-					#endif
+//					#endif
                 }
             }
         }
@@ -387,9 +387,9 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 if isAcceptAsFirstResponder && textFieldRetain.nextInvocation.target != nil && textFieldRetain.nextInvocation.selector != nil {
 					
-                    #if TARGET_IS_EXTENSION
+//                    #if TARGET_IS_EXTENSION
 						UIApplication.sharedApplication().sendAction(textFieldRetain.nextInvocation.selector!, to: textFieldRetain.nextInvocation.target, from: textFieldRetain, forEvent: UIEvent())
-					#endif
+//					#endif
                 }
             }
         }
@@ -410,9 +410,9 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             
             if isResignedFirstResponder && textFieldRetain.doneInvocation.target != nil  && textFieldRetain.doneInvocation.selector != nil{
 				
-				#if TARGET_IS_EXTENSION
+//				#if TARGET_IS_EXTENSION
 					UIApplication.sharedApplication().sendAction(textFieldRetain.doneInvocation.selector!, to: textFieldRetain.doneInvocation.target, from: textFieldRetain, forEvent: UIEvent())
-				#endif
+//				#endif
             }
         }
     }
@@ -705,7 +705,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             }
 
             /*  (Bug ID: #23, #25, #73)   */
-			#if TARGET_IS_EXTENSION
+//			#if TARGET_IS_EXTENSION
 				let originalKeyWindow = UIApplication.sharedApplication().keyWindow
             
 				//If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
@@ -713,7 +713,7 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
 					Static.keyWindow = originalKeyWindow
 				}
 					
-			#endif
+//			#endif
 
             //Return KeyWindow
             return Static.keyWindow
@@ -803,11 +803,11 @@ public class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         var kbSize = _kbSize
         kbSize.height += newKeyboardDistanceFromTextField
 		
-		#if TARGET_IS_EXTENSION
+//		#if TARGET_IS_EXTENSION
 			let statusBarFrame = UIApplication.sharedApplication().statusBarFrame
-		#else
-			let statusBarFrame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
-		#endif
+//		#else
+//			let statusBarFrame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, UIScreen.mainScreen().bounds.size.height)
+//		#endif
 		
         //  (Bug ID: #250)
         var layoutGuidePosition = IQLayoutGuidePosition.None
