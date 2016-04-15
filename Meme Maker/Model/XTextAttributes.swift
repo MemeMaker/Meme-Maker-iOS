@@ -180,9 +180,13 @@ class XTextAttributes: NSObject {
 		// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
 		let topTextAttr = XTextAttributes(savename: "topAttr")
 		topTextAttr.text = ""
+		topTextAttr.offset = CGPointZero
+		topTextAttr.fontSize = 44
 		topTextAttr.saveAttributes("topAttr")
 		let bottomTextAttr = XTextAttributes(savename: "bottomAttr")
 		bottomTextAttr.text = ""
+		bottomTextAttr.offset = CGPointZero
+		bottomTextAttr.fontSize = 44
 		bottomTextAttr.saveAttributes("bottomAttr")
 	}
 	

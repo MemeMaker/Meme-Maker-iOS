@@ -40,18 +40,23 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	override func drawRect(rect: CGRect) {
 		
 		if (isListCell) {
+			
+			if isDarkMode() {
+				UIColor.darkGrayColor().setStroke()
+			}
+			else {
+				UIColor.lightGrayColor().setStroke()
+			}
+			
 			// Disclosure
-			/*
 			let disclosurePath = UIBezierPath()
 			disclosurePath.lineWidth = 1.0;
 			disclosurePath.lineCapStyle = .Round
 			disclosurePath.lineJoinStyle = .Round
-			disclosurePath.moveToPoint(CGPointMake(self.bounds.width - 12, self.center.y - 4))
-			disclosurePath.addLineToPoint(CGPointMake(self.bounds.width - 8, self.center.y))
-			disclosurePath.addLineToPoint(CGPointMake(self.bounds.width - 12, self.center.y + 4))
-			UIColor.lightGrayColor().setStroke()
+			disclosurePath.moveToPoint(CGPointMake(self.frame.width - 20, self.frame.height/2 - 6))
+			disclosurePath.addLineToPoint(CGPointMake(self.frame.width - 15, self.frame.height/2))
+			disclosurePath.addLineToPoint(CGPointMake(self.frame.width - 20, self.frame.height/2 + 6))
 			disclosurePath.stroke()
-			*/
 
 			// Separator
 			let beizerPath = UIBezierPath()
@@ -59,7 +64,6 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			beizerPath.lineCapStyle = .Round
 			beizerPath.moveToPoint(CGPointMake(self.bounds.height + 8, self.bounds.height - 0.5))
 			beizerPath.addLineToPoint(CGPointMake(self.bounds.width, self.bounds.height - 0.5))
-			UIColor.lightGrayColor().setStroke()
 			beizerPath.stroke()
 		}
 		

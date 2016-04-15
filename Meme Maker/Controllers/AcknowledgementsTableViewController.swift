@@ -35,6 +35,13 @@ class AcknowledgementsTableViewController: UITableViewController {
 		
 		tableView.backgroundColor = globalBackColor
 		
+		if isDarkMode() {
+			self.tableView.separatorColor = UIColor.darkGrayColor()
+		}
+		else {
+			self.tableView.separatorColor = UIColor.lightGrayColor()
+		}
+		
     }
 	
 	// MARK: - Table view data source

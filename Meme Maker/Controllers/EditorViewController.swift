@@ -210,7 +210,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		let imageSize = baseImage?.size as CGSize!
 		
-		let maxHeight = imageSize.height/2	// Max height of top and bottom texts
+		let maxHeight = imageSize.height/2 + 2	// Max height of top and bottom texts
 		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
 		
 		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
@@ -246,14 +246,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		topText.drawInRect(topRect, withAttributes: topTextAttr.getTextAttributes())
 		bottomText.drawInRect(bottomRect, withAttributes: bottomTextAttr.getTextAttributes())
 		
-//		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
-//		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
-		
 		let image = UIGraphicsGetImageFromCurrentImageContext()
 		memeImageView.image = image
-		
-//		let sepiaFilter = GPUImageSepiaFilter()
-//		memeImageView.image = sepiaFilter.imageByFilteringImage(image)
 		
 		UIGraphicsEndImageContext()
 		
@@ -287,9 +281,8 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
 		self.topTextAttr.saveAttributes("topAttr")
 		self.bottomTextAttr.saveAttributes("bottomAttr")
-		let textToShare = "Check out this funny meme I made..."
 		let imageToShare = memeImageView.image
-		let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare!], applicationActivities: nil)
+		let activityVC = UIActivityViewController(activityItems: [imageToShare!], applicationActivities: nil)
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 			activityVC.modalPresentationStyle = .Popover
 			activityVC.popoverPresentationController?.sourceView = self.shareImageButton

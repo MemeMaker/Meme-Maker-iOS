@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B0149D43E7B06ED6647BCA8D'
+               BlueprintIdentifier = 'CADB80AE26CCBA74D0E7E422'
                BlueprintName = 'BWWalkthrough'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'BWWalkthrough.framework'>

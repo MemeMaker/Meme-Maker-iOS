@@ -52,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if manager.getBool(kSettingsResetSettingsOnLaunch) {
 			let topAttr = XTextAttributes(savename: "topAttr")
 			topAttr.saveAttributes("topAttr")
+			topAttr.setDefault()
 			let bottomAttr = XTextAttributes(savename: "bottomAttr")
+			bottomAttr.setDefault()
 			bottomAttr.saveAttributes("bottomAttr")
 		}
 		if (SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) < 3 || SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) > 7) {
@@ -63,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		
 		SVProgressHUD.setDefaultMaskType(.Gradient)
+		SVProgressHUD.setDefaultStyle(.Custom)
 		
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
@@ -98,6 +101,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.saveContext()
 	}
 	
+	func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
+		if (url.isFileReferenceURL()) {
+			let data = NSData(contentsOfURL: url)
+			data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
+//			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+			var editorVC: EditorViewController?
+			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+				let svc = self.window?.rootViewController as! UISplitViewController
+				if (svc.viewControllers.count > 1) {
+					editorVC = svc.viewControllers[1] as? EditorViewController
+					editorVC?.editorMode = EditorMode.Viewer
+				}
+			}
+			else {
+				let tabBarVC = self.window?.rootViewController as! UITabBarController
+				let navC = tabBarVC.viewControllers?.first as! UINavigationController
+				let memesVC = navC.viewControllers.first as! MemesViewController
+				memesVC.performSegueWithIdentifier("LastEditSegue", sender: memesVC)
+			}
+			return true
+		}
+		return false
+	}
+	
 	// MARK: - Utility
 	
 	func saveDefaultMemes() -> Void {
@@ -118,14 +145,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	class func updateActivityIcons(leSubtitle: String) -> Void {
 		if (UI_USER_INTERFACE_IDIOM() == .Phone) {
 			var shortcutItems : [UIApplicationShortcutItem] = []
-			let shortcut1 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.create", localizedTitle: "Create", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "new"), userInfo: nil
-			)
+			let shortcut1 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.create", localizedTitle: "Create", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "new"), userInfo: nil)
 			shortcutItems.append(shortcut1)
 			if let _ = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
-				let shortcut2 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.lastedit", localizedTitle: "Last Edit", localizedSubtitle: leSubtitle, icon: UIApplicationShortcutIcon.init(templateImageName: "Undo"), userInfo: nil
-				)
+				let shortcut2 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.lastedit", localizedTitle: "Last Edit", localizedSubtitle: leSubtitle, icon: UIApplicationShortcutIcon.init(templateImageName: "Undo"), userInfo: nil)
 				shortcutItems.append(shortcut2)
 			}
+			let shortcut3 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.mymemes", localizedTitle: "My Memes", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "PhotoGallery"), userInfo: nil)
+			shortcutItems.append(shortcut3)
 			let application = UIApplication.sharedApplication()
 			application.shortcutItems = shortcutItems
 		}
@@ -139,6 +166,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let navC = tabBarVC.viewControllers?.first as! UINavigationController
 			let memesVC = navC.viewControllers.first as! MemesViewController
 			memesVC.performSegueWithIdentifier("LastEditSegue", sender: memesVC)
+		}
+		if (shortcutItem.type.containsString("mymemes")) {
+			let tabBarVC = self.window?.rootViewController as! UITabBarController
+			tabBarVC.selectedIndex = 2
 		}
 	}
 

@@ -10,15 +10,15 @@ import UIKit
 import SVProgressHUD
 import ChameleonFramework
 
-let kSettingsTimesLaunched			= "TimesLaunched"
-let kSettingsContinuousEditing		= "ContinuousEditing"
-let kSettingsAutoDismiss			= "AutoDismiss"
-let kSettingsUploadMemes			= "EnableMemeUpload"
-let kSettingsResetSettingsOnLaunch	= "ResetSettingsOnLaunch"
-let kSettingsDarkMode				= "DarkMode"
-let kSettingsViewModeIsList			= "MemeListViewModeIsList"
-let kSettingsLastSortKey			= "LastSortOrderKey"
-let kSettingsNumberOfElementsInGrid	= "NumberOfElementsInGrid"
+let kSettingsTimesLaunched			= "kTimesLaunched"
+let kSettingsContinuousEditing		= "kContinuousEditing"
+let kSettingsAutoDismiss			= "kAutoDismiss"
+let kSettingsUploadMemes			= "kEnableMemeUpload"
+let kSettingsResetSettingsOnLaunch	= "kResetSettingsOnLaunch"
+let kSettingsDarkMode				= "kDarkMode"
+let kSettingsViewModeIsList			= "kMemeListViewModeIsList"
+let kSettingsLastSortKey			= "kLastSortOrderKey"
+let kSettingsNumberOfElementsInGrid	= "kNumberOfElementsInGrid"
 
 var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
 var globalTintColor: UIColor = UIColor(hexString: "326400")
@@ -27,10 +27,13 @@ func updateGlobalTheme () -> Void {
 	if isDarkMode() {
 		globalBackColor = UIColor(white: 0.12, alpha: 1)
 		globalTintColor = UIColor(hexString: "AAFA78")
+		UIApplication.sharedApplication().statusBarStyle = .LightContent
+		
 	}
 	else {
 		globalBackColor = UIColor(hexString: "EFF0EF")
 		globalTintColor = UIColor(hexString: "326400")
+		UIApplication.sharedApplication().statusBarStyle = .Default
 	}
 	
 	UINavigationBar.appearance().backgroundColor = globalBackColor

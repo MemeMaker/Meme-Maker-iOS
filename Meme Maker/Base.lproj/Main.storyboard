@@ -277,6 +277,12 @@
                         <outlet property="searchBar" destination="HOc-Zx-qw9" id="KV1-5I-vOP"/>
                         <outlet property="searchBarButton" destination="Coz-Sg-ByD" id="Pxd-co-6PW"/>
                         <outlet property="searchPlaceholderTopConstraint" destination="umC-y9-9jM" id="Ns5-vi-510"/>
+                        <outlet property="sortBarButton" destination="STn-TW-xSP" id="JY9-y6-S7l"/>
+                        <outletCollection property="barButtons" destination="vhw-WI-rh3" collectionClass="NSMutableArray" id="TzZ-xz-u9A"/>
+                        <outletCollection property="barButtons" destination="STn-TW-xSP" collectionClass="NSMutableArray" id="XYY-0M-o58"/>
+                        <outletCollection property="barButtons" destination="Coz-Sg-ByD" collectionClass="NSMutableArray" id="HXa-sr-hiI"/>
+                        <outletCollection property="barButtons" destination="2kE-Yj-G3d" collectionClass="NSMutableArray" id="JeA-2f-6om"/>
+                        <outletCollection property="barButtons" destination="aEK-o5-lIs" collectionClass="NSMutableArray" id="Wyf-7B-JVp"/>
                         <segue destination="7z0-ic-X6o" kind="presentation" identifier="LastEditSegue" id="Eu7-ih-5Ds"/>
                     </connections>
                 </viewController>
@@ -786,7 +792,7 @@
                                                     <rect key="frame" x="15" y="12" width="161.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uHm-1T-VDE">
@@ -1025,7 +1031,7 @@ Share with friends and the internet.</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="21r-aQ-TSa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="cellID" textLabel="EYZ-rM-gfr" style="IBUITableViewCellStyleDefault" id="pZF-dv-d1v">
                                 <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
@@ -1038,7 +1044,7 @@ Share with friends and the internet.</string>
                                             <rect key="frame" x="15" y="0.0" width="546" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="EtelkaNarrowTextPro" family="Etelka Text Pro" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

@@ -242,33 +242,43 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="1FDown" translatesAutoresizingMaskIntoConstraints="NO" id="PBz-in-Qk2">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="1FDown" translatesAutoresizingMaskIntoConstraints="NO" id="PBz-in-Qk2">
                                 <rect key="frame" x="452" y="132" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="qzx-ZX-o8U">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="96"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="128" id="v13-fH-UC7">
+                                        <variation key="widthClass=compact" constant="96"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="160"/>
+                                    </constraint>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dismiss" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah4-AC-PP8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dismiss" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ah4-AC-PP8">
                                 <rect key="frame" x="452" y="260" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="1FLR" translatesAutoresizingMaskIntoConstraints="NO" id="wOX-QV-ELt">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="1FLR" translatesAutoresizingMaskIntoConstraints="NO" id="wOX-QV-ELt">
                                 <rect key="frame" x="324" y="300" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Navigate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39l-D3-7ih">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Navigate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39l-D3-7ih">
                                 <rect key="frame" x="324" y="428" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="1FLongPress" translatesAutoresizingMaskIntoConstraints="NO" id="4Jk-4U-Rhn">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="1FLongPress" translatesAutoresizingMaskIntoConstraints="NO" id="4Jk-4U-Rhn">
                                 <rect key="frame" x="196" y="132" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold (Share)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TV5-fW-wpQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hold (Share)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TV5-fW-wpQ">
                                 <rect key="frame" x="196" y="260" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
@@ -279,6 +289,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ah4-AC-PP8" firstAttribute="leading" secondItem="PBz-in-Qk2" secondAttribute="leading" id="3NQ-hk-Bpe"/>
+                            <constraint firstItem="wOX-QV-ELt" firstAttribute="width" secondItem="PBz-in-Qk2" secondAttribute="width" id="496-vM-msL"/>
                             <constraint firstItem="8qD-1J-zIJ" firstAttribute="leading" secondItem="OzS-ar-vna" secondAttribute="leadingMargin" constant="-20" id="4Oq-vW-tG3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PBz-in-Qk2" secondAttribute="trailing" id="4sT-c3-gJi"/>
                             <constraint firstItem="TV5-fW-wpQ" firstAttribute="trailing" secondItem="4Jk-4U-Rhn" secondAttribute="trailing" id="5AC-jz-6Qm"/>
@@ -286,12 +297,15 @@
                             <constraint firstItem="TV5-fW-wpQ" firstAttribute="leading" secondItem="4Jk-4U-Rhn" secondAttribute="leading" id="7nh-sa-bOr"/>
                             <constraint firstItem="YpR-Xe-GHu" firstAttribute="top" secondItem="8qD-1J-zIJ" secondAttribute="bottom" id="9AU-Oh-vnC"/>
                             <constraint firstItem="TV5-fW-wpQ" firstAttribute="top" secondItem="4Jk-4U-Rhn" secondAttribute="bottom" id="BJg-xQ-KDr"/>
+                            <constraint firstItem="wOX-QV-ELt" firstAttribute="height" secondItem="PBz-in-Qk2" secondAttribute="height" id="C0K-GY-qxx"/>
                             <constraint firstItem="ah4-AC-PP8" firstAttribute="top" secondItem="PBz-in-Qk2" secondAttribute="bottom" id="EW0-dH-7IL"/>
                             <constraint firstItem="4Jk-4U-Rhn" firstAttribute="trailing" secondItem="wOX-QV-ELt" secondAttribute="leading" id="J8z-bt-tkL"/>
                             <constraint firstItem="wOX-QV-ELt" firstAttribute="centerX" secondItem="OzS-ar-vna" secondAttribute="centerX" id="K74-hG-qIt"/>
+                            <constraint firstItem="4Jk-4U-Rhn" firstAttribute="height" secondItem="PBz-in-Qk2" secondAttribute="height" id="Kag-sp-fpn"/>
                             <constraint firstItem="4Jk-4U-Rhn" firstAttribute="top" secondItem="PBz-in-Qk2" secondAttribute="top" id="Ng7-Kt-ve8"/>
                             <constraint firstItem="PBz-in-Qk2" firstAttribute="top" secondItem="jUm-bb-HcP" secondAttribute="bottom" constant="112" id="R86-TH-tO7"/>
                             <constraint firstItem="8qD-1J-zIJ" firstAttribute="top" secondItem="jUm-bb-HcP" secondAttribute="bottom" constant="-20" id="T6x-5l-nQj"/>
+                            <constraint firstItem="4Jk-4U-Rhn" firstAttribute="width" secondItem="PBz-in-Qk2" secondAttribute="width" id="Taj-Ar-BFL"/>
                             <constraint firstItem="8qD-1J-zIJ" firstAttribute="width" secondItem="OzS-ar-vna" secondAttribute="height" multiplier="4/3" id="UyY-LL-Asm"/>
                             <constraint firstItem="39l-D3-7ih" firstAttribute="top" secondItem="wOX-QV-ELt" secondAttribute="bottom" id="XJ2-9J-ekd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8qD-1J-zIJ" secondAttribute="trailing" constant="-20" id="YHm-ew-zZF"/>
@@ -351,33 +365,45 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="2FDoubleTap" translatesAutoresizingMaskIntoConstraints="NO" id="OuN-GY-UXz">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="2FDoubleTap" translatesAutoresizingMaskIntoConstraints="NO" id="OuN-GY-UXz">
                                 <rect key="frame" x="452" y="132" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OuN-GY-UXz" secondAttribute="height" multiplier="1:1" id="VSe-zV-Faq"/>
+                                    <constraint firstAttribute="height" constant="128" id="WQF-qV-5CL"/>
+                                    <constraint firstAttribute="width" constant="128" id="eLX-nH-zL8">
+                                        <variation key="widthClass=compact" constant="96"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WQF-qV-5CL"/>
+                                    </mask>
+                                </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-hb-UHf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Position" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-hb-UHf">
                                 <rect key="frame" x="452" y="260" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="2FSpread" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-FK-xO6">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="2FSpread" translatesAutoresizingMaskIntoConstraints="NO" id="SJ2-FK-xO6">
                                 <rect key="frame" x="324" y="300" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-7P-M3W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-7P-M3W">
                                 <rect key="frame" x="324" y="428" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="2FMove" translatesAutoresizingMaskIntoConstraints="NO" id="GHr-6c-9RX">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="2FMove" translatesAutoresizingMaskIntoConstraints="NO" id="GHr-6c-9RX">
                                 <rect key="frame" x="196" y="132" width="128" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJH-Tv-8uU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bJH-Tv-8uU">
                                 <rect key="frame" x="196" y="260" width="128" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Gravity-Book" family="Gravity" pointSize="17"/>
@@ -390,6 +416,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="OuN-GY-UXz" secondAttribute="trailing" id="70m-b7-hKX"/>
                             <constraint firstItem="yAG-7P-M3W" firstAttribute="leading" secondItem="SJ2-FK-xO6" secondAttribute="leading" id="7F5-dG-riE"/>
                             <constraint firstItem="SJ2-FK-xO6" firstAttribute="centerX" secondItem="XKI-w0-bXJ" secondAttribute="centerX" id="7hR-96-pte"/>
+                            <constraint firstItem="GHr-6c-9RX" firstAttribute="width" secondItem="OuN-GY-UXz" secondAttribute="width" id="BdS-yx-CDA"/>
                             <constraint firstItem="OuN-GY-UXz" firstAttribute="top" secondItem="Glf-E1-QY1" secondAttribute="bottom" constant="112" id="E3w-bx-QgV"/>
                             <constraint firstItem="SJ2-FK-xO6" firstAttribute="top" secondItem="OuN-GY-UXz" secondAttribute="bottom" constant="40" id="FMe-fH-4wo"/>
                             <constraint firstItem="V8p-62-Xop" firstAttribute="width" secondItem="XKI-w0-bXJ" secondAttribute="height" multiplier="4/3" id="G0B-sL-8Ga"/>
@@ -403,14 +430,17 @@
                             <constraint firstItem="GHr-6c-9RX" firstAttribute="bottom" secondItem="OuN-GY-UXz" secondAttribute="bottom" id="Q4L-LB-3A3"/>
                             <constraint firstItem="GHr-6c-9RX" firstAttribute="top" secondItem="OuN-GY-UXz" secondAttribute="top" id="R25-J0-azW"/>
                             <constraint firstItem="bJH-Tv-8uU" firstAttribute="leading" secondItem="GHr-6c-9RX" secondAttribute="leading" id="cmA-jI-6mF"/>
+                            <constraint firstItem="SJ2-FK-xO6" firstAttribute="width" secondItem="OuN-GY-UXz" secondAttribute="width" id="cnd-sA-PJw"/>
                             <constraint firstItem="bJH-Tv-8uU" firstAttribute="top" secondItem="GHr-6c-9RX" secondAttribute="bottom" id="e6s-zD-WXs"/>
                             <constraint firstItem="V8p-62-Xop" firstAttribute="top" secondItem="Glf-E1-QY1" secondAttribute="bottom" constant="-20" id="fH9-yF-5Wp"/>
+                            <constraint firstItem="GHr-6c-9RX" firstAttribute="width" secondItem="OuN-GY-UXz" secondAttribute="height" multiplier="1:1" id="gWk-V0-VQq"/>
                             <constraint firstItem="OuN-GY-UXz" firstAttribute="centerX" secondItem="XKI-w0-bXJ" secondAttribute="centerX" id="gmp-t3-p0D"/>
                             <constraint firstItem="aEB-hb-UHf" firstAttribute="leading" secondItem="OuN-GY-UXz" secondAttribute="leading" id="hfN-mW-dQH"/>
                             <constraint firstItem="SJ2-FK-xO6" firstAttribute="bottom" secondItem="OuN-GY-UXz" secondAttribute="bottom" id="i4h-Ok-a8f"/>
                             <constraint firstItem="yAG-7P-M3W" firstAttribute="top" secondItem="SJ2-FK-xO6" secondAttribute="bottom" id="kfs-iM-wdt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="V8p-62-Xop" secondAttribute="trailing" constant="-20" id="llP-12-HGt"/>
                             <constraint firstItem="GHr-6c-9RX" firstAttribute="trailing" secondItem="SJ2-FK-xO6" secondAttribute="leading" id="mqz-rx-Ibn"/>
+                            <constraint firstItem="SJ2-FK-xO6" firstAttribute="width" secondItem="OuN-GY-UXz" secondAttribute="height" multiplier="1:1" id="vOj-NL-0LD"/>
                             <constraint firstItem="bJH-Tv-8uU" firstAttribute="trailing" secondItem="GHr-6c-9RX" secondAttribute="trailing" id="vpA-va-q39"/>
                         </constraints>
                         <variation key="default">

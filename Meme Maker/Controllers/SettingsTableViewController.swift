@@ -67,6 +67,12 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	func updateViews() -> Void {
 		self.tableView.backgroundColor = globalBackColor
+		if isDarkMode() {
+			self.tableView.separatorColor = UIColor.darkGrayColor()
+		}
+		else {
+			self.tableView.separatorColor = UIColor.lightGrayColor()
+		}
 		for cell in tableViewCells {
 			cell.backgroundColor = globalBackColor
 			cell.textLabel?.textColor = globalTintColor
@@ -106,7 +112,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			self.splitViewController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
 		}
 		else {
-			self.navigationController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
+			self.tabBarController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
 		}
 		self.dismissViewControllerAnimated(false, completion: nil)
 		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
@@ -141,7 +147,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			case 1:
 				return "Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings."
 			case 2:
-				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life. If enabled, you need to press enter to generate text after "
+				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life. If enabled, you need to press return to generate text after editing."
 			case 4:
 				return "Check this if you want your \"creations\" to be uploaded to the server."
 			case noos - 4:
@@ -261,6 +267,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 			
 			if (error != nil) {
 				print("Error: %@", error?.localizedDescription)
+				dispatch_async(dispatch_get_main_queue(), {
+					SVProgressHUD.showErrorWithStatus("No connection!")
+				})
 				return
 			}
 			

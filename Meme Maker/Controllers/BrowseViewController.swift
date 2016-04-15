@@ -87,6 +87,9 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			
 			if (error != nil) {
 				print("Error: %@", error?.localizedDescription)
+				dispatch_async(dispatch_get_main_queue(), {
+					SVProgressHUD.showErrorWithStatus("No connection!")
+				})
 				return
 			}
 			
@@ -186,9 +189,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			let creation = creations.objectAtIndex(indexPath.row) as! XCreated
 			let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)"))
 			let editedImage = getImageByDrawingOnImage(baseImage!, topText: creation.topText!, bottomText: creation.bottomText!)
-			let textToShare = "Check out this funny meme!"
-			let imageToShare = editedImage
-			let activityVC = UIActivityViewController(activityItems: [textToShare, imageToShare], applicationActivities: nil)
+			let activityVC = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
 			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
 				activityVC.modalPresentationStyle = .Popover
 				activityVC.popoverPresentationController?.sourceView = self.collectionView

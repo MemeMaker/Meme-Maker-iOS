@@ -55,6 +55,8 @@ class FontTableViewController: UITableViewController {
 	var fDataSource = NSMutableArray()
 	
 	var selectedAttrs = NSMutableArray()
+	
+	var fontSize: CGFloat = 18
 
     override func viewDidLoad() {
 		
@@ -90,6 +92,13 @@ class FontTableViewController: UITableViewController {
 				dFonts = NSMutableArray(array: jsonData)
 			}
 			catch _ {}
+		}
+		
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			fontSize = 25
+		}
+		else {
+			fontSize = 18
 		}
 		
 		// For now I'm gonna hard-code these values, maybe later move them to JSON or server
@@ -295,16 +304,23 @@ class FontTableViewController: UITableViewController {
 //		}
 		
 		if (currentFTType == 0) {
-			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: 25)!
+			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: fontSize)!
 		}
 		else {
-			cell.fontNameLabel?.font = UIFont(name: "Impact", size: 25)!
+			cell.fontNameLabel?.font = UIFont(name: "Impact", size: fontSize)!
 		}
 
 		return cell
-    }
+	}
 	
 	// MARK: - Table view delegate
+	
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			return 70
+		}
+		return 52
+	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		

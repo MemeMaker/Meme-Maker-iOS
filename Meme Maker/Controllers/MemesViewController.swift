@@ -34,8 +34,13 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	@IBOutlet weak var lastEditBarButton: UIBarButtonItem!
 	@IBOutlet weak var photoGalleryButton: UIBarButtonItem!
 	@IBOutlet weak var listViewToggleBarButton: UIBarButtonItem!
+	@IBOutlet weak var sortBarButton: UIBarButtonItem!
+	
+	@IBOutlet var barButtons: [UIBarButtonItem]!
+	
 	
 	var memesPerRow : Int = 3
+	var shouldRefershOnAppear: Bool = false
 	
 	var isListView: Bool = false {
 		didSet {
@@ -74,10 +79,33 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.collectionView.emptyDataSetSource = self
 		self.collectionView.emptyDataSetDelegate = self
 		
+		self.fetchLocalMemes()
+		
+		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
+			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+			do {
+				let _ = try Reachability.reachabilityForInternetConnection()
+				self.fetchedMemes = NSMutableArray()
+				self.fetchMemes(1)
+			}
+			catch _ {
+				SVProgressHUD.showErrorWithStatus("No connection!")
+			}
+		}
+		
     }
 	
-	override func viewDidAppear(animated: Bool) {
-		
+	override func viewWillAppear(animated: Bool) {
+		if (shouldRefershOnAppear) {
+			fetchLocalMemes()
+		}
+	}
+	
+	override func viewDidDisappear(animated: Bool) {
+		shouldRefershOnAppear = true
+	}
+	
+	func fetchLocalMemes() -> Void {
 		let request = NSFetchRequest(entityName: "XMeme")
 		if let lastSortKey = SettingsManager.sharedManager().getObject(kSettingsLastSortKey) {
 			request.sortDescriptors = [NSSortDescriptor.init(key: lastSortKey as? String, ascending: true)]
@@ -94,19 +122,6 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			print("Error in fetching.")
 		}
 		
-		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
-//			if (SettingsManager.sharedManager().getInteger(kSettingsTimesLaunched) != 1) {
-				SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
-//			}
-			do {
-				let _ = try Reachability.reachabilityForInternetConnection()
-				self.fetchedMemes = NSMutableArray()
-				self.fetchMemes(1)
-			}
-			catch _ {
-				SVProgressHUD.showErrorWithStatus("No connection!")
-			}
-		}
 		memesPerRow = SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid)
 		isListView = SettingsManager.sharedManager().getBool(kSettingsViewModeIsList)
 		updateCollectionViewCells()
@@ -119,7 +134,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		request.HTTPMethod = "GET"
 		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
 			if (error != nil) {
-				print("Error: %@", error?.localizedDescription)
+				print("Error: ", error?.localizedDescription)
+				dispatch_async(dispatch_get_main_queue(), {
+					SVProgressHUD.showErrorWithStatus("No connection!")
+				})
 				return
 			}
 			if (data != nil) {
@@ -145,6 +163,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 						self.memes = self.fetchedMemes
 						dispatch_async(dispatch_get_main_queue(), {
 							SettingsManager.sharedManager().saveLastUpdateDate()
+							self.shouldRefershOnAppear = true
 							self.collectionView.reloadData()
 							SVProgressHUD.dismiss()
 						})
