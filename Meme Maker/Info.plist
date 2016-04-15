@@ -57,10 +57,10 @@
 			<key>CFBundleURLIconFile</key>
 			<string>ExportIcon</string>
 			<key>CFBundleURLName</key>
-			<string>com.avikantz.meme_maker</string>
+			<string>com.avikantz.mememaker</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.avikantz.meme_maker</string>
+				<string>com.avikantz.mememaker</string>
 			</array>
 		</dict>
 	</array>

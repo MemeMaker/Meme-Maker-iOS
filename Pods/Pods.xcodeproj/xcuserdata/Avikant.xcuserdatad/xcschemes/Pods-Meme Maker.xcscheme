@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'DF566911361DD4203479C993'
+               BlueprintIdentifier = 'AF5C4DA3D09B94397991918D'
                BlueprintName = 'Pods-Meme Maker'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Meme_Maker.framework'>

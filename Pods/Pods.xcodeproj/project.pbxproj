@@ -51,13 +51,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>00A45829F8B77CAC38F558F2E835853D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>15B948136F49C35B5549BB9F98FE83B0</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>00F762972FB0D4D7CEC1F09AF40AD6CD</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -192,20 +185,6 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
-		<key>0EB018838E29811CE2DD566C45347D79</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B90D47D95DF3279C0127F93278BDCB91</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>0ED790F023D788D161F2A916F9148DDB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -218,17 +197,6 @@
 			<string>JiroTextField.swift</string>
 			<key>path</key>
 			<string>TextFieldEffects/TextFieldEffects/JiroTextField.swift</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0F4D41B57D54AA0AA96A623B986A0581</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-Photo Meme.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -377,6 +345,21 @@
 			<key>remoteInfo</key>
 			<string>ChameleonFramework</string>
 		</dict>
+		<key>13804B0C531F5F589322EE47B56C0539</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>BWWalkthrough.bundle</string>
+			<key>path</key>
+			<string>BWWalkthrough.bundle</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>14002352DE7D3CAB3F25B769616F638E</key>
 		<dict>
 			<key>isa</key>
@@ -462,19 +445,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>15B948136F49C35B5549BB9F98FE83B0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>15E113F19F49C0C0472242BD6E849A1B</key>
 		<dict>
 			<key>fileRef</key>
@@ -530,7 +500,7 @@
 			<key>productName</key>
 			<string>DZNEmptyDataSet</string>
 			<key>productReference</key>
-			<string>ECEA399756842CC0A8E14E3C3798C346</string>
+			<string>7390163456A3AE687F16654F3642EACA</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -558,7 +528,7 @@
 			<key>productName</key>
 			<string>BWWalkthrough</string>
 			<key>productReference</key>
-			<string>2DBDF7D4F549DF466606AFA81E187989</string>
+			<string>2DC30EC3A0797143BE64E76EB50E3D65</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -582,28 +552,6 @@
 			<string>76F39ADB478202333AB75979618B10D5</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>18DD131AA8E8E97947DA45421EA31DFA</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E07B311D82868076990AA06B242A5F75</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>1929787127D73F884A87222C6FA7BA29</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>BWWalkthrough.bundle</string>
-			<key>path</key>
-			<string>BWWalkthrough.bundle</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>199B6BE3CACD2B1A41534FE739F398DC</key>
 		<dict>
@@ -661,21 +609,6 @@
 			<string>SDWebImage/SDWebImageCompat.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1D3710E0443180BBF3BD58B515F45B81</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>IQKeyboardManagerSwift.framework</string>
-			<key>path</key>
-			<string>IQKeyboardManagerSwift.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>1E11764067A3FE3683F412DF7BCE2D79</key>
 		<dict>
@@ -795,32 +728,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>2299A103444AD4D7D76D99A9D8865582</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-Photo Meme.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>22CCEFC59E994FFBC390D9D4A4A7CAF5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>22DC2D74E9117167CD17FD04C327EB9D</key>
 		<dict>
@@ -1000,21 +907,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2859ACB86C2BC88CD52A2CBC6E4117C1</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>PermissionScope.framework</string>
-			<key>path</key>
-			<string>PermissionScope.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>28FDF4E1D90A4EDACF35B51C53C5A3AF</key>
 		<dict>
 			<key>fileRef</key>
@@ -1101,19 +993,6 @@
 			<string>7D30D8590A3DF9A0750DD08BCD322401</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>2A9A4312490384AC9F24165D1C7ACA3E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-Meme Maker.release.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>2AB224F5CD42033ABD9D24FF7DF75C7F</key>
 		<dict>
@@ -1224,7 +1103,7 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2DBDF7D4F549DF466606AFA81E187989</key>
+		<key>2DC30EC3A0797143BE64E76EB50E3D65</key>
 		<dict>
 			<key>explicitFileType</key>
 			<string>wrapper.framework</string>
@@ -1355,33 +1234,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3255FB8B4FB8D313CAE92385E4A91C0E</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>36D0DE274DB6818D954B9280BFAF74DE</string>
-			<key>buildPhases</key>
-			<array>
-				<string>AE6EC4E792029AD680155BA85786B520</string>
-				<string>55186BDFA1850620EBF600AC86F70C4C</string>
-				<string>4CA2CD396574E58ECEA7D8DD8A56DDA7</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>4FEAF4AE1C96EF5A50A7E5845AB0E2CF</string>
-			</array>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Pods-Photo Meme</string>
-			<key>productName</key>
-			<string>Pods-Photo Meme</string>
-			<key>productReference</key>
-			<string>DEDC69FE89F3D5FA3EB625157CA9C56E</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
 		<key>32B8AEA869EA2F2600B6EF0321D4525B</key>
 		<dict>
 			<key>children</key>
@@ -1457,21 +1309,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>34941E52F837A0D2F2DB8E7C6592B5C7</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_Meme_Maker.framework</string>
-			<key>path</key>
-			<string>Pods_Meme_Maker.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>351D7AEB6A0C1AAB2267AD1216CE8B63</key>
 		<dict>
 			<key>fileRef</key>
@@ -1505,72 +1342,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>35DD46FB57FE028BAAB28FBAF630F839</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>2299A103444AD4D7D76D99A9D8865582</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>APPLICATION_EXTENSION_API_ONLY</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-Photo Meme/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-Photo Meme/Pods-Photo Meme.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_Photo_Meme</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
 		<key>3651B61A60C4C40AA0AED7D5805B79E0</key>
 		<dict>
 			<key>isa</key>
@@ -1581,20 +1352,6 @@
 			<string>6292CC40BCA04C7B63B7B430242BE4CD</string>
 			<key>targetProxy</key>
 			<string>B5FF103FF639231E2424D997AB6795D8</string>
-		</dict>
-		<key>36D0DE274DB6818D954B9280BFAF74DE</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>35DD46FB57FE028BAAB28FBAF630F839</string>
-				<string>630DD88E060F980F9089E68585D88916</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
 		</dict>
 		<key>380B28E95BB83B5F70BB4C4A26C29EC4</key>
 		<dict>
@@ -1660,6 +1417,19 @@
 			<string>ChameleonMacros.h</string>
 			<key>path</key>
 			<string>Pod/Classes/Objective-C/ChameleonMacros.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>39ED3BE82E74482F96C8641FFCA853CB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-frameworks.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1765,6 +1535,21 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>3D169116B90DD7C8132D9DE4E03740CF</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>TextFieldEffects.framework</string>
+			<key>path</key>
+			<string>TextFieldEffects.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>3E6218E2AF7DED58E28FBD076CCA8575</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1843,6 +1628,19 @@
 			<string>IQUITextFieldView+Additions.swift</string>
 			<key>path</key>
 			<string>IQKeyboardManagerSwift/Categories/IQUITextFieldView+Additions.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3FAF83D0DE555D12B666C39816699308</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1951,7 +1749,7 @@
 			<key>productName</key>
 			<string>TextFieldEffects</string>
 			<key>productReference</key>
-			<string>D8227A4D9DBAF0A0C63258CA099C9E25</string>
+			<string>3D169116B90DD7C8132D9DE4E03740CF</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -1967,6 +1765,21 @@
 			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>42404AD944790A2D0D9398417E99CE48</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>PermissionScope.framework</string>
+			<key>path</key>
+			<string>PermissionScope.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>43165AC20F19B0CFE5FFDD87D69150D4</key>
 		<dict>
@@ -2158,34 +1971,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>4ABDE6D8CA86C78DA410FAB6097CF255</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4B51D6F52BA009D84E2244485F8254D8</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>SDWebImage.framework</string>
-			<key>path</key>
-			<string>SDWebImage.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>4BAC9D952A2EE78D2D797BB9C89741B6</key>
 		<dict>
 			<key>children</key>
@@ -2267,19 +2052,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>4CA2CD396574E58ECEA7D8DD8A56DDA7</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>0EB018838E29811CE2DD566C45347D79</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>4D61E1A61A677138A123A54CB52FB2C2</key>
 		<dict>
 			<key>fileRef</key>
@@ -2325,36 +2097,12 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
-		<key>4EC47AFB3718875D2B63808AC466EE57</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>4EDA196C738F73286B1E396FB59E2443</key>
 		<dict>
 			<key>fileRef</key>
 			<string>5CD5F59E01D3B21211D7DAAAFFB152AE</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>4FEAF4AE1C96EF5A50A7E5845AB0E2CF</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>TextFieldEffects</string>
-			<key>target</key>
-			<string>42054F718B75E2C3A55A578C601DB9F5</string>
-			<key>targetProxy</key>
-			<string>AF1866DDC629C0C5B6BCBBCD2DC92754</string>
 		</dict>
 		<key>5090EDC7A199A86773FB3C5A7D1EBD1D</key>
 		<dict>
@@ -2401,7 +2149,7 @@
 			<key>productName</key>
 			<string>ChameleonFramework</string>
 			<key>productReference</key>
-			<string>FAB8F40F49AFF2F2D14393594ACCDB7E</string>
+			<string>DF0323C0BD4C2F391D02B5442230117F</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -2515,19 +2263,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>55186BDFA1850620EBF600AC86F70C4C</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>18DD131AA8E8E97947DA45421EA31DFA</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>557952FEDD8A6E7FFF0EE5B4844D70A2</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2547,6 +2282,32 @@
 			<string>E9D52B9B7A2574C6F77315B364DED79E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>55E2C4A24DDD06044FAA699E5762DCCC</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7D38EAB37F783C6CF8C3D7845E79205C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>56339610A8CD8DDDBC88DBAC1049F33E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>56448AD4F3EFEE1B84C70E6828C9FBAA</key>
 		<dict>
@@ -2658,30 +2419,6 @@
 			<key>remoteInfo</key>
 			<string>SVProgressHUD</string>
 		</dict>
-		<key>57D2F23EFB02D0D596262A23FA84BFE9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>7BB476A90F771A1088674DE926ECB2AB</string>
-				<string>0F4D41B57D54AA0AA96A623B986A0581</string>
-				<string>ECBE5B78FE4C4E0B5C4C5062B4E414A5</string>
-				<string>66243C2AD08A823E37D4C35969CFE07B</string>
-				<string>15B948136F49C35B5549BB9F98FE83B0</string>
-				<string>9E522A021F3E1608FA0A21FBA37360D7</string>
-				<string>D7766DEA55FC46344AC07C7BE0778212</string>
-				<string>B90D47D95DF3279C0127F93278BDCB91</string>
-				<string>2299A103444AD4D7D76D99A9D8865582</string>
-				<string>830DD8E76938B7E10FC4DDD68B947F89</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-Photo Meme</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-Photo Meme</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>5800A6CA872E976DCFF71FE9F8128C3F</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2724,30 +2461,6 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>5B7E9A387910D6A19F34D8DD0BFFE5B9</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>F7F4E8095725087F1F7D1E3A9C0E6F12</string>
-				<string>66C34555F2236B0CC182A9ECD257E2C9</string>
-				<string>4EC47AFB3718875D2B63808AC466EE57</string>
-				<string>22CCEFC59E994FFBC390D9D4A4A7CAF5</string>
-				<string>A3607F1D3A9C212DC4FA35EDBB2FAAEA</string>
-				<string>4ABDE6D8CA86C78DA410FAB6097CF255</string>
-				<string>69303681971D3ECE7FFDEAA04BD4D256</string>
-				<string>C695BE8F5E844EBC627AB8D5CCC03DD2</string>
-				<string>F87B0D108415E33DD003FFD705630523</string>
-				<string>2A9A4312490384AC9F24165D1C7ACA3E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Pods-Meme Maker</string>
-			<key>path</key>
-			<string>Target Support Files/Pods-Meme Maker</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>5C645793198F372C3197C5C0D70364F6</key>
 		<dict>
@@ -2954,7 +2667,7 @@
 			<key>productName</key>
 			<string>Pods-Meme Maker</string>
 			<key>productReference</key>
-			<string>34941E52F837A0D2F2DB8E7C6592B5C7</string>
+			<string>C9CB8932D0B6FE40E52D0C8C61C07EE9</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -2970,6 +2683,62 @@
 			<string>SSZipArchive/minizip/ioapi.c</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>60B4079D7E4B4E5999A1A29DCE1F79D7</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>CCA7E75413131EA11640EDE558FD390D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/TextFieldEffects/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/TextFieldEffects/TextFieldEffects.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>TextFieldEffects</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
 		</dict>
 		<key>60DE1DC10FA19191683913D542A25437</key>
 		<dict>
@@ -3012,7 +2781,7 @@
 			<key>productName</key>
 			<string>SSZipArchive</string>
 			<key>productReference</key>
-			<string>FD52FC92BC071F1EE06A7A902739F594</string>
+			<string>E4C8F6D96B4E1D9FB349A9AA941C39DA</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -3044,73 +2813,9 @@
 			<key>productName</key>
 			<string>SDWebImage</string>
 			<key>productReference</key>
-			<string>4B51D6F52BA009D84E2244485F8254D8</string>
+			<string>B5C79485F16A3D6055B381722729F0DD</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>630DD88E060F980F9089E68585D88916</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>830DD8E76938B7E10FC4DDD68B947F89</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>APPLICATION_EXTENSION_API_ONLY</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Pods-Photo Meme/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Pods-Photo Meme/Pods-Photo Meme.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>Pods_Photo_Meme</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 		<key>6337EDAF03AB9BDEC65AC8670B3687C1</key>
 		<dict>
@@ -3258,19 +2963,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>66243C2AD08A823E37D4C35969CFE07B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-acknowledgements.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>6656C5F1B0BAFB32F11F2B3651A2D401</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3292,17 +2984,6 @@
 			<string>622D5FBF096013DCCB66A1317140B46D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>66C34555F2236B0CC182A9ECD257E2C9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>Pods-Meme Maker.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>6708CEE76D0CA04B6F969B4DF979B285</key>
 		<dict>
@@ -3395,19 +3076,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>69303681971D3ECE7FFDEAA04BD4D256</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>69581CD637A9550E0CB6BF591B8C9510</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3482,21 +3150,6 @@
 			<string>SSZipArchive/aes/pwd2key.c</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6CAB4100FF5AC7F4D6D22BF84E2B59DD</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>ReachabilitySwift.framework</string>
-			<key>path</key>
-			<string>ReachabilitySwift.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>6D13149A4AE0E1FADFDCAE9E8EAFBC35</key>
 		<dict>
@@ -3617,7 +3270,7 @@
 			<key>productName</key>
 			<string>ReachabilitySwift</string>
 			<key>productReference</key>
-			<string>6CAB4100FF5AC7F4D6D22BF84E2B59DD</string>
+			<string>80B126E2AE036EF7B1A4CE07F86FF580</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -3705,6 +3358,21 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>7390163456A3AE687F16654F3642EACA</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>DZNEmptyDataSet.framework</string>
+			<key>path</key>
+			<string>DZNEmptyDataSet.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>73CCDE10FFBB1DACED58827D6C947A19</key>
 		<dict>
@@ -3947,6 +3615,19 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
+		<key>791EF67C7539BEE232E679657244C3AF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>79B9EF3C6428B7A734F296059B2756CD</key>
 		<dict>
 			<key>fileRef</key>
@@ -4038,19 +3719,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>7BB476A90F771A1088674DE926ECB2AB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>7C17B864ADC6BC1F87E0EA278902E6DE</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4102,6 +3770,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>7CB98F3E3CE882AEAFCC2E9796867CE1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7CE754A83FD30668213F4592248DEC4A</key>
 		<dict>
 			<key>fileRef</key>
@@ -4124,6 +3805,30 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>7D38EAB37F783C6CF8C3D7845E79205C</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7CB98F3E3CE882AEAFCC2E9796867CE1</string>
+				<string>91EAF491CCAED3DE7EF70C74B44CBF30</string>
+				<string>791EF67C7539BEE232E679657244C3AF</string>
+				<string>8EAC5C4844A4E8B3A0419E700BDCBBE1</string>
+				<string>56339610A8CD8DDDBC88DBAC1049F33E</string>
+				<string>39ED3BE82E74482F96C8641FFCA853CB</string>
+				<string>CD7490EDE876CC0BC8EFAC24EB2CCF00</string>
+				<string>3FAF83D0DE555D12B666C39816699308</string>
+				<string>F7A7DDD1BACF509DAA9A6395774889B1</string>
+				<string>97B248A98AF41C64C484E7B0935CB694</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-Meme Maker</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-Meme Maker</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7D886426B3A9F3628535B7F3B97F6EE6</key>
 		<dict>
 			<key>fileRef</key>
@@ -4143,8 +3848,8 @@
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>0F75DF6C7C5F002280EC53F48E80B587</string>
 				<string>305DCBB744480AE71888E4B2BDDCA021</string>
-				<string>B515B281872AFA21D9050AC5A3334444</string>
-				<string>DA3609883A8A8AB3BD554EAA8B6A8344</string>
+				<string>953D30BCEC4FF5BE9F31652F11810846</string>
+				<string>55E2C4A24DDD06044FAA699E5762DCCC</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -4226,6 +3931,21 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
+		<key>80B126E2AE036EF7B1A4CE07F86FF580</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>ReachabilitySwift.framework</string>
+			<key>path</key>
+			<string>ReachabilitySwift.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>80F6966B63B59E878C04B26B9A09635C</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -4263,19 +3983,6 @@
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
 			<string>BWWalkthrough-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>830DD8E76938B7E10FC4DDD68B947F89</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-Photo Meme.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -4541,8 +4248,8 @@
 		<dict>
 			<key>buildConfigurations</key>
 			<array>
-				<string>A8E704AB22B1436F3663EE1A83595AB0</string>
-				<string>BEE52C81C8229B5AEF510AC952FE0486</string>
+				<string>8BED6ECF44230546B749A8219DA0905A</string>
+				<string>60B4079D7E4B4E5999A1A29DCE1F79D7</string>
 			</array>
 			<key>defaultConfigurationIsVisible</key>
 			<string>0</string>
@@ -4605,6 +4312,64 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>8BED6ECF44230546B749A8219DA0905A</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>CCA7E75413131EA11640EDE558FD390D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/TextFieldEffects/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/TextFieldEffects/TextFieldEffects.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>TextFieldEffects</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>8C33CF2E75F42C27E3CEC65EA4B95B36</key>
 		<dict>
@@ -4709,6 +4474,19 @@
 			<string>text.plist.xml</string>
 			<key>path</key>
 			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8EAC5C4844A4E8B3A0419E700BDCBBE1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-acknowledgements.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -4824,6 +4602,17 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>91EAF491CCAED3DE7EF70C74B44CBF30</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-Meme Maker.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>91F4942ECBA865B638CBD8A13F9B90E6</key>
 		<dict>
 			<key>fileRef</key>
@@ -4885,6 +4674,30 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>953D30BCEC4FF5BE9F31652F11810846</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>13804B0C531F5F589322EE47B56C0539</string>
+				<string>2DC30EC3A0797143BE64E76EB50E3D65</string>
+				<string>DF0323C0BD4C2F391D02B5442230117F</string>
+				<string>7390163456A3AE687F16654F3642EACA</string>
+				<string>F3E1DF82E16419132CF9C81A6071E5D3</string>
+				<string>42404AD944790A2D0D9398417E99CE48</string>
+				<string>C9CB8932D0B6FE40E52D0C8C61C07EE9</string>
+				<string>80B126E2AE036EF7B1A4CE07F86FF580</string>
+				<string>B5C79485F16A3D6055B381722729F0DD</string>
+				<string>E4C8F6D96B4E1D9FB349A9AA941C39DA</string>
+				<string>D361F362FF78708450871DC6B24DAC16</string>
+				<string>3D169116B90DD7C8132D9DE4E03740CF</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>956D1AFC875B73BBBC1AFE70DB5F4350</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4924,6 +4737,19 @@
 			<string>UIScrollView+EmptyDataSet.h</string>
 			<key>path</key>
 			<string>Source/UIScrollView+EmptyDataSet.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>97B248A98AF41C64C484E7B0935CB694</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-Meme Maker.release.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -5139,23 +4965,10 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>9E522A021F3E1608FA0A21FBA37360D7</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>9EC5E1C96159985569487210E9D23A1E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A3607F1D3A9C212DC4FA35EDBB2FAAEA</string>
+			<string>56339610A8CD8DDDBC88DBAC1049F33E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -5319,19 +5132,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>A3607F1D3A9C212DC4FA35EDBB2FAAEA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>A371D9F716AF507FF01A593DD0D9DFDF</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -5353,7 +5153,7 @@
 			<key>productName</key>
 			<string>BWWalkthrough-BWWalkthrough</string>
 			<key>productReference</key>
-			<string>1929787127D73F884A87222C6FA7BA29</string>
+			<string>13804B0C531F5F589322EE47B56C0539</string>
 			<key>productType</key>
 			<string>com.apple.product-type.bundle</string>
 		</dict>
@@ -5627,66 +5427,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A8E704AB22B1436F3663EE1A83595AB0</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>CCA7E75413131EA11640EDE558FD390D</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>APPLICATION_EXTENSION_API_ONLY</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/TextFieldEffects/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/TextFieldEffects/TextFieldEffects.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>TextFieldEffects</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>SWIFT_OPTIMIZATION_LEVEL</key>
-				<string>-Onone</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
 		<key>AB4B5C88E07B3889749403865E30301E</key>
 		<dict>
 			<key>fileRef</key>
@@ -5807,19 +5547,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>AE6EC4E792029AD680155BA85786B520</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>00A45829F8B77CAC38F558F2E835853D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>AE91EB583290CAF67468EE68021F7163</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5871,19 +5598,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>AF1866DDC629C0C5B6BCBBCD2DC92754</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>42054F718B75E2C3A55A578C601DB9F5</string>
-			<key>remoteInfo</key>
-			<string>TextFieldEffects</string>
 		</dict>
 		<key>AF9FDFE994A206795619E469B68C614E</key>
 		<dict>
@@ -6003,7 +5717,7 @@
 		<key>B2C8E5A296C5B334919DE92FB1418F9C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C695BE8F5E844EBC627AB8D5CCC03DD2</string>
+			<string>3FAF83D0DE555D12B666C39816699308</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -6073,31 +5787,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B515B281872AFA21D9050AC5A3334444</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>1929787127D73F884A87222C6FA7BA29</string>
-				<string>2DBDF7D4F549DF466606AFA81E187989</string>
-				<string>FAB8F40F49AFF2F2D14393594ACCDB7E</string>
-				<string>ECEA399756842CC0A8E14E3C3798C346</string>
-				<string>1D3710E0443180BBF3BD58B515F45B81</string>
-				<string>2859ACB86C2BC88CD52A2CBC6E4117C1</string>
-				<string>34941E52F837A0D2F2DB8E7C6592B5C7</string>
-				<string>DEDC69FE89F3D5FA3EB625157CA9C56E</string>
-				<string>6CAB4100FF5AC7F4D6D22BF84E2B59DD</string>
-				<string>4B51D6F52BA009D84E2244485F8254D8</string>
-				<string>FD52FC92BC071F1EE06A7A902739F594</string>
-				<string>D0E5752E438DF4DD67C015374A883243</string>
-				<string>D8227A4D9DBAF0A0C63258CA099C9E25</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>B559495531A10BD5B2A6600DCD90795B</key>
 		<dict>
 			<key>fileRef</key>
@@ -6125,6 +5814,21 @@
 					<string>Project</string>
 				</array>
 			</dict>
+		</dict>
+		<key>B5C79485F16A3D6055B381722729F0DD</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>SDWebImage.framework</string>
+			<key>path</key>
+			<string>SDWebImage.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>B5FF103FF639231E2424D997AB6795D8</key>
 		<dict>
@@ -6311,19 +6015,6 @@
 			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework</string>
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>B90D47D95DF3279C0127F93278BDCB91</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B92049DB69371648D272A9FF1CFB835B</key>
 		<dict>
@@ -6528,64 +6219,6 @@
 			<string>2428AD398404D6E8174BF9833D12F75C</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>BEE52C81C8229B5AEF510AC952FE0486</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>CCA7E75413131EA11640EDE558FD390D</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>APPLICATION_EXTENSION_API_ONLY</key>
-				<string>YES</string>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/TextFieldEffects/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/TextFieldEffects/TextFieldEffects.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>TextFieldEffects</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 		<key>BEEC689A5E835808DA107F947ED5182F</key>
 		<dict>
@@ -6872,7 +6505,7 @@
 			<key>productName</key>
 			<string>PermissionScope</string>
 			<key>productReference</key>
-			<string>2859ACB86C2BC88CD52A2CBC6E4117C1</string>
+			<string>42404AD944790A2D0D9398417E99CE48</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -6889,19 +6522,6 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>C695BE8F5E844EBC627AB8D5CCC03DD2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>Pods-Meme Maker-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C6AF31D2841C2228764B0FDEF509C785</key>
 		<dict>
@@ -6936,7 +6556,7 @@
 		<key>C7AB1CF09A93096C63DB114E01EF8BEC</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>2A9A4312490384AC9F24165D1C7ACA3E</string>
+			<string>97B248A98AF41C64C484E7B0935CB694</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -7030,6 +6650,21 @@
 				</array>
 			</dict>
 		</dict>
+		<key>C9CB8932D0B6FE40E52D0C8C61C07EE9</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_Meme_Maker.framework</string>
+			<key>path</key>
+			<string>Pods_Meme_Maker.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>C9FD53269436787A675D096EC4B02628</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7095,7 +6730,7 @@
 		<key>CBC9DCAAC15813F9C9A9599E7DC92B7A</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>F87B0D108415E33DD003FFD705630523</string>
+			<string>F7A7DDD1BACF509DAA9A6395774889B1</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -7306,6 +6941,19 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>CD7490EDE876CC0BC8EFAC24EB2CCF00</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-Meme Maker-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>CD800DBA52E3C13DC3473B1AD36738B6</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -7444,21 +7092,6 @@
 				<string>-DOS_OBJECT_USE_OBJC=0</string>
 			</dict>
 		</dict>
-		<key>D0E5752E438DF4DD67C015374A883243</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>SVProgressHUD.framework</string>
-			<key>path</key>
-			<string>SVProgressHUD.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>D19884072904A4EDAC0B6089BEF858B9</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7588,6 +7221,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>D361F362FF78708450871DC6B24DAC16</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>SVProgressHUD.framework</string>
+			<key>path</key>
+			<string>SVProgressHUD.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>D36BC9B0C925A5244E16EE70E4809EE6</key>
 		<dict>
 			<key>fileRef</key>
@@ -7639,7 +7287,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>B515B281872AFA21D9050AC5A3334444</string>
+			<string>953D30BCEC4FF5BE9F31652F11810846</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -7655,7 +7303,6 @@
 				<string>E9B5C577F89B2F2EBCB51E034A136673</string>
 				<string>C55E46AC6A1E70A6AA25E306AE545375</string>
 				<string>5FD85A2A129B8D5D88BE120DCE59C344</string>
-				<string>3255FB8B4FB8D313CAE92385E4A91C0E</string>
 				<string>712AFC7B88225B2EA04545215CC262BE</string>
 				<string>62F7A3D0B990E1D544628D72405EBD76</string>
 				<string>6292CC40BCA04C7B63B7B430242BE4CD</string>
@@ -7714,19 +7361,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D7766DEA55FC46344AC07C7BE0778212</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.script.sh</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-resources.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D8050B7C630936D282E28D6095940EE7</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -7739,21 +7373,6 @@
 			<string>SSZipArchive/aes/hmac.c</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D8227A4D9DBAF0A0C63258CA099C9E25</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>TextFieldEffects.framework</string>
-			<key>path</key>
-			<string>TextFieldEffects.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>D91CA9C9279510A6ED416FD7285FAB9E</key>
 		<dict>
@@ -7798,20 +7417,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DA3609883A8A8AB3BD554EAA8B6A8344</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>5B7E9A387910D6A19F34D8DD0BFFE5B9</string>
-				<string>57D2F23EFB02D0D596262A23FA84BFE9</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Targets Support Files</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>DBD6075192B4419BF22A3A7A839921D2</key>
 		<dict>
 			<key>containerPortal</key>
@@ -7845,7 +7450,14 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DEDC69FE89F3D5FA3EB625157CA9C56E</key>
+		<key>DEDFC7B3F6D3C2BAA090F9F02786BCD2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>13804B0C531F5F589322EE47B56C0539</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DF0323C0BD4C2F391D02B5442230117F</key>
 		<dict>
 			<key>explicitFileType</key>
 			<string>wrapper.framework</string>
@@ -7854,18 +7466,11 @@
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>Pods_Photo_Meme.framework</string>
+			<string>ChameleonFramework.framework</string>
 			<key>path</key>
-			<string>Pods_Photo_Meme.framework</string>
+			<string>ChameleonFramework.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>DEDFC7B3F6D3C2BAA090F9F02786BCD2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1929787127D73F884A87222C6FA7BA29</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>DF219FD494E3D7CDF9D3FF016C52D116</key>
 		<dict>
@@ -8096,6 +7701,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>E4C8F6D96B4E1D9FB349A9AA941C39DA</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>SSZipArchive.framework</string>
+			<key>path</key>
+			<string>SSZipArchive.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>E6607DC2A6A1952296A9654FAC4B6DC3</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -8306,7 +7926,7 @@
 			<key>productName</key>
 			<string>IQKeyboardManagerSwift</string>
 			<key>productReference</key>
-			<string>1D3710E0443180BBF3BD58B515F45B81</string>
+			<string>F3E1DF82E16419132CF9C81A6071E5D3</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -8411,19 +8031,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>ECBE5B78FE4C4E0B5C4C5062B4E414A5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text</string>
-			<key>path</key>
-			<string>Pods-Photo Meme-acknowledgements.markdown</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>ECDACFC19BA4FB3379A3A7EE1891EFD1</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -8452,21 +8059,6 @@
 					<string>Project</string>
 				</array>
 			</dict>
-		</dict>
-		<key>ECEA399756842CC0A8E14E3C3798C346</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>DZNEmptyDataSet.framework</string>
-			<key>path</key>
-			<string>DZNEmptyDataSet.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>EDA03B702C4868742C101FB842DAB905</key>
 		<dict>
@@ -8733,6 +8325,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>F3E1DF82E16419132CF9C81A6071E5D3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>IQKeyboardManagerSwift.framework</string>
+			<key>path</key>
+			<string>IQKeyboardManagerSwift.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
 		<key>F44D7EDCDB64297ABA9B1B8B89C879B1</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -8770,7 +8377,7 @@
 			<key>productName</key>
 			<string>SVProgressHUD</string>
 			<key>productReference</key>
-			<string>D0E5752E438DF4DD67C015374A883243</string>
+			<string>D361F362FF78708450871DC6B24DAC16</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -8802,16 +8409,16 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F7F4E8095725087F1F7D1E3A9C0E6F12</key>
+		<key>F7A7DDD1BACF509DAA9A6395774889B1</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>Info.plist</string>
+			<string>Pods-Meme Maker.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -8834,19 +8441,6 @@
 			<string>ZipArchive.h</string>
 			<key>path</key>
 			<string>SSZipArchive/ZipArchive.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>F87B0D108415E33DD003FFD705630523</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>Pods-Meme Maker.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -8881,21 +8475,6 @@
 			<string>DZNEmptyDataSet</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FAB8F40F49AFF2F2D14393594ACCDB7E</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>ChameleonFramework.framework</string>
-			<key>path</key>
-			<string>ChameleonFramework.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>FB0AF43DCC74442C20B48E4EBC284E86</key>
 		<dict>
@@ -8987,21 +8566,6 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>FD52FC92BC071F1EE06A7A902739F594</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>SSZipArchive.framework</string>
-			<key>path</key>
-			<string>SSZipArchive.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>FD5F0ECA9C77D6296EDA013360EF40F6</key>
 		<dict>

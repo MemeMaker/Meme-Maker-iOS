@@ -18,12 +18,6 @@ pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.sw
 
 end
 
-target 'Photo Meme' do
-
-pod 'TextFieldEffects'
-
-end
-
 target 'Meme MakerTests' do
 
 end
