@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			manager.setBool(false, key: kSettingsResetSettingsOnLaunch)
 			manager.setBool(true, key: kSettingsContinuousEditing)
 			manager.setBool(true, key: kSettingsDarkMode)
-			manager.setBool(true, key: kSettingsUploadMemes)
+			manager.setBool(false, key: kSettingsUploadMemes)
 			manager.setInteger(3, key: kSettingsNumberOfElementsInGrid)
 			manager.setObject("rank", key: kSettingsLastSortKey)
 			print("Unarchiving to \(getImagesFolder())")
@@ -68,6 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		SVProgressHUD.setDefaultStyle(.Custom)
 		
 		IQKeyboardManager.sharedManager().enable = true
+		IQKeyboardManager.sharedManager().overrideKeyboardAppearance = true
 		IQKeyboardManager.sharedManager().preventShowingBottomBlankSpace = true
 		
 		updateGlobalTheme()
@@ -101,8 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.saveContext()
 	}
 	
+	// MARK: - Handle URL Opens
+	
 	func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-		if (url.isFileReferenceURL()) {
+		if (url.absoluteString.containsString(".jpg")) {
 			let data = NSData(contentsOfURL: url)
 			data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
 //			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())

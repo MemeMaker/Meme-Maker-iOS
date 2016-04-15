@@ -102,7 +102,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 			self.memeImageView.image = UIImage(named: "MemeBlank")
 			if let URLString = meme?.image {
 				if let URL = NSURL(string: URLString) {
-					print("Downloading image \'\(meme!.memeID)\'")
+//					print("Downloading image \'\(meme!.memeID)\'")
 					self.downloadImageWithURL(URL, filePath: filePath)
 				}
 			}

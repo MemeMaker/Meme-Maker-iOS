@@ -16,7 +16,7 @@ class BlurredImageView: UIImageView {
 		
 		blurView?.removeFromSuperview()
 		
-		let blurEffect = UIBlurEffect(style: .Light)
+		let blurEffect = UIBlurEffect(style: .Dark)
 		blurView = UIVisualEffectView(effect: blurEffect)
 		
 		blurView?.frame = self.bounds

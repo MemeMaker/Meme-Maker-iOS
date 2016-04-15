@@ -17,7 +17,7 @@
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>public.jpg</string>
+				<string>public.jpeg</string>
 			</array>
 		</dict>
 		<dict>
@@ -49,8 +49,23 @@
 	<string>4.69</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLIconFile</key>
+			<string>ExportIcon</string>
+			<key>CFBundleURLName</key>
+			<string>com.avikantz.meme_maker</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.avikantz.meme_maker</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>6</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -104,6 +119,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -122,24 +139,32 @@
 			<string>Image</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.gif</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ExportIcon</string>
 		</dict>
 		<dict>
 			<key>UTTypeDescription</key>
 			<string>Image</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.png</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ExportIcon</string>
 		</dict>
 		<dict>
 			<key>UTTypeDescription</key>
 			<string>Image</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.jpg</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ExportIcon</string>
 		</dict>
 		<dict>
 			<key>UTTypeDescription</key>
 			<string>Image</string>
 			<key>UTTypeIdentifier</key>
 			<string>public.jpeg</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>ExportIcon</string>
 		</dict>
 	</array>
 </dict>

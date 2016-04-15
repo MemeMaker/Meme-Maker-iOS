@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		02A4845D9F7E842A74E53085 /* Pods_Photo_Meme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BF1B13199885C07D1E7579 /* Pods_Photo_Meme.framework */; };
+		590AADBF1CC12B3D00B03A8B /* ExportIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 590AADBE1CC12B3D00B03A8B /* ExportIcon.jpg */; };
 		592293E61CB6897600219133 /* FontsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E51CB6897600219133 /* FontsTableViewCell.swift */; };
 		592293E91CB694DF00219133 /* UnderlinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293E81CB694DF00219133 /* UnderlinedLabel.swift */; };
 		592293EC1CB6C35800219133 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592293EB1CB6C35800219133 /* BlurredImageView.swift */; };
@@ -172,6 +173,7 @@
 
 /* Begin PBXFileReference section */
 		1A1E74CE2FF0EB2F06D26630 /* Pods-Photo Meme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo Meme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme.debug.xcconfig"; sourceTree = "<group>"; };
+		590AADBE1CC12B3D00B03A8B /* ExportIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ExportIcon.jpg; sourceTree = "<group>"; };
 		592293E51CB6897600219133 /* FontsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontsTableViewCell.swift; path = Views/FontsTableViewCell.swift; sourceTree = "<group>"; };
 		592293E81CB694DF00219133 /* UnderlinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnderlinedLabel.swift; path = Views/UnderlinedLabel.swift; sourceTree = "<group>"; };
 		592293EB1CB6C35800219133 /* BlurredImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlurredImageView.swift; path = Views/BlurredImageView.swift; sourceTree = "<group>"; };
@@ -489,8 +491,8 @@
 				596012AC1CBD4AA9001196F6 /* Default */,
 				59D244AA1CBD2C7A00477A66 /* Tutorial Images */,
 				593B82821CB252A50073DC17 /* Global */,
-				593B823F1CB222560073DC17 /* Info.plist */,
 				593B82671CB222F30073DC17 /* Fonts */,
+				593B823F1CB222560073DC17 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -747,6 +749,7 @@
 		59D244AA1CBD2C7A00477A66 /* Tutorial Images */ = {
 			isa = PBXGroup;
 			children = (
+				590AADBE1CC12B3D00B03A8B /* ExportIcon.jpg */,
 				59D244AB1CBD2C7A00477A66 /* 01.jpg */,
 				59D244AC1CBD2C7A00477A66 /* 02.jpg */,
 				59D244AD1CBD2C7A00477A66 /* 03.jpg */,
@@ -963,6 +966,7 @@
 				597D747A1CB43866002C784B /* AvenirCondensedHand.ttf in Resources */,
 				594C5ACF1CBA0F0700273B75 /* Walkthrough.storyboard in Resources */,
 				597D74821CB43866002C784B /* Karate.ttf in Resources */,
+				590AADBF1CC12B3D00B03A8B /* ExportIcon.jpg in Resources */,
 				593B82361CB222560073DC17 /* Main.storyboard in Resources */,
 				596012B01CBD4AA9001196F6 /* defaultMemes.zip in Resources */,
 			);

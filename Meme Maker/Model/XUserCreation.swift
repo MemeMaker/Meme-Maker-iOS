@@ -59,13 +59,28 @@ class XUserCreation: NSManagedObject {
 	
 	class func createOrUpdateUserCreationWithUserImage(image: UIImage, topText: String, bottomText: String, dateCreated: NSDate, context: NSManagedObjectContext) -> XUserCreation {
 		
+		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
+		fetchRequest.predicate = NSPredicate(format: "topText == %@ AND bottomText == %@", topText, bottomText)
+		
 		var creation: XUserCreation!
 		
-		creation = NSEntityDescription.insertNewObjectForEntityForName("XUserCreation", inManagedObjectContext: context) as! XUserCreation
-		creation.topText = topText
-		creation.bottomText = bottomText
-		creation.dateCreated = dateCreated
-		creation.isMeme = false
+		do {
+			let fetchedArray = try context.executeFetchRequest(fetchRequest)
+			if (fetchedArray.count > 0) {
+				creation = fetchedArray.first as! XUserCreation
+			}
+			else {
+				creation = NSEntityDescription.insertNewObjectForEntityForName("XUserCreation", inManagedObjectContext: context) as! XUserCreation
+				creation.topText = topText
+				creation.bottomText = bottomText
+				creation.dateCreated = dateCreated
+				creation.isMeme = false
+				
+			}
+		}
+		catch _ {
+		}
+		
 		
 		let data = UIImageJPEGRepresentation(image, 0.8)
 		let filePath = userImagesPathForFileName(creation.createdOn!)

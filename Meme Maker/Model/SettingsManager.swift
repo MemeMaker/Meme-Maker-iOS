@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import ChameleonFramework
+import IQKeyboardManagerSwift
 
 let kSettingsTimesLaunched			= "kTimesLaunched"
 let kSettingsContinuousEditing		= "kContinuousEditing"
@@ -28,12 +29,13 @@ func updateGlobalTheme () -> Void {
 		globalBackColor = UIColor(white: 0.12, alpha: 1)
 		globalTintColor = UIColor(hexString: "AAFA78")
 		UIApplication.sharedApplication().statusBarStyle = .LightContent
-		
+		IQKeyboardManager.sharedManager().keyboardAppearance = .Dark
 	}
 	else {
 		globalBackColor = UIColor(hexString: "EFF0EF")
 		globalTintColor = UIColor(hexString: "326400")
 		UIApplication.sharedApplication().statusBarStyle = .Default
+		IQKeyboardManager.sharedManager().keyboardAppearance = .Light
 	}
 	
 	UINavigationBar.appearance().backgroundColor = globalBackColor
