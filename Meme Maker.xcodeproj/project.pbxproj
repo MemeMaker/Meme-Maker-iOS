@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02A4845D9F7E842A74E53085 /* Pods_Photo_Meme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BF1B13199885C07D1E7579 /* Pods_Photo_Meme.framework */; };
 		590AADBF1CC12B3D00B03A8B /* ExportIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 590AADBE1CC12B3D00B03A8B /* ExportIcon.jpg */; };
 		590AADC31CC169EF00B03A8B /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590AADC11CC169EF00B03A8B /* KaedeTextField.swift */; };
 		590AADC51CC16A6E00B03A8B /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590AADC41CC16A6E00B03A8B /* TextFieldsEffects.swift */; };
@@ -343,7 +342,6 @@
 			files = (
 				594C5AD71CBA291700273B75 /* PhotosUI.framework in Frameworks */,
 				594C5AD91CBA291700273B75 /* Photos.framework in Frameworks */,
-				02A4845D9F7E842A74E53085 /* Pods_Photo_Meme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,12 +864,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 594C5AE61CBA291700273B75 /* Build configuration list for PBXNativeTarget "Photo Meme" */;
 			buildPhases = (
-				17805A606A17FD4636D0E032 /* Check Pods Manifest.lock */,
 				594C5AD11CBA291700273B75 /* Sources */,
 				594C5AD21CBA291700273B75 /* Frameworks */,
 				594C5AD31CBA291700273B75 /* Resources */,
-				25DF778621606DC84D2B6124 /* Embed Pods Frameworks */,
-				B3E76D14DA59A85A60484B94 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1044,21 +1039,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17805A606A17FD4636D0E032 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		20985CF8EF5E1831AFCC8FC5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1072,36 +1052,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		25DF778621606DC84D2B6124 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3E76D14DA59A85A60484B94 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Photo Meme/Pods-Photo Meme-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DA22D0AF047B6977159111E9 /* Embed Pods Frameworks */ = {
@@ -1426,7 +1376,6 @@
 		};
 		594C5AE41CBA291700273B75 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A1E74CE2FF0EB2F06D26630 /* Pods-Photo Meme.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1434,7 +1383,7 @@
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1444,7 +1393,6 @@
 		};
 		594C5AE51CBA291700273B75 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C74F5119C288D20FD689A043 /* Pods-Photo Meme.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1452,7 +1400,7 @@
 				INFOPLIST_FILE = "Photo Meme/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avikantz.Meme-Maker.Photo-Meme";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

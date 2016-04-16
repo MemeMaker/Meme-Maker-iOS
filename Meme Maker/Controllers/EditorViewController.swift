@@ -13,6 +13,7 @@ import SVProgressHUD
 import CoreData
 import SDWebImage
 import TextFieldEffects
+import IQKeyboardManagerSwift
 
 enum EditorMode {
 	case Meme
@@ -137,6 +138,46 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	/*
+	override func viewDidAppear(animated: Bool) {
+		if (UIScreen.mainScreen().bounds.size.height < 500) {
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.willShowKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
+			NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditorViewController.willHideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+		}
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		if (UIScreen.mainScreen().bounds.size.height < 500) {
+			NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+			NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+		}
+	}
+	
+	// MARK: - Keyboard
+	
+	func willShowKeyboard(notification: NSNotification) -> Void {
+		if (self.bottomTextField.isFirstResponder()) {
+			let dict = notification.userInfo
+			let rect = dict![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
+			let height = rect?.size.height
+			UIView.animateWithDuration(0.3) {
+				self.view.layer.transform = CATransform3DMakeTranslation(0, -height!, 0)
+			}
+		}
+		else {
+			UIView.animateWithDuration(0.3) {
+				self.view.layer.transform = CATransform3DMakeTranslation(0, 0, 0)
+			}
+		}
+	}
+	
+	func willHideKeyboard(notification: NSNotification) -> Void {
+		UIView.animateWithDuration(0.3) {
+			self.view.layer.transform = CATransform3DMakeTranslation(0, 0, 0)
+		}
+	}
+	*/
 	
 	// MARK: - Updating views
 	

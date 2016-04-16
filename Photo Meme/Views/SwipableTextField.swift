@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TextFieldEffects
 
 protocol SwipableTextFieldDelegate {
 	func textFieldDidSwipeLeft(textField: SwipableTextField) -> Void
