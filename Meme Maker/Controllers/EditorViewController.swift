@@ -330,11 +330,11 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 		self.presentViewController(activityVC, animated: true) { 
 			self.saveUserCreation()
-			if (self.editorMode == .Meme) {
-				if (SettingsManager.sharedManager().getBool(kSettingsUploadMemes)) {
-					self.uploadMemeToServer()
-				}
-			}
+//			if (self.editorMode == .Meme) {
+//				if (SettingsManager.sharedManager().getBool(kSettingsUploadMemes)) {
+//					self.uploadMemeToServer()
+//				}
+//			}
 		}
 	}
 	

@@ -63,7 +63,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vP3-MJ-xDm" firstAttribute="top" secondItem="IHm-HN-qHg" secondAttribute="bottom" constant="-64" id="GAw-HD-azw"/>
-                            <constraint firstItem="7id-pd-rEG" firstAttribute="top" secondItem="vP3-MJ-xDm" secondAttribute="bottom" constant="-49" id="giR-3D-5Jk"/>
+                            <constraint firstItem="7id-pd-rEG" firstAttribute="top" secondItem="vP3-MJ-xDm" secondAttribute="bottom" id="giR-3D-5Jk"/>
                             <constraint firstItem="vP3-MJ-xDm" firstAttribute="leading" secondItem="V4F-M4-7Ck" secondAttribute="leadingMargin" constant="-20" id="izX-e9-9xz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vP3-MJ-xDm" secondAttribute="trailing" constant="-20" id="xh1-1h-it0"/>
                         </constraints>
@@ -499,7 +499,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="G6q-FD-u8P" kind="relationship" relationship="viewControllers" id="dzy-GY-RSo"/>
-                        <segue destination="xlZ-A5-nHQ" kind="relationship" relationship="viewControllers" id="akP-PG-rDf"/>
                         <segue destination="ERC-XZ-RT5" kind="relationship" relationship="viewControllers" id="78M-qu-qJJ"/>
                         <segue destination="sDP-cO-ZKP" kind="relationship" relationship="viewControllers" id="9qR-Vq-EbA"/>
                     </connections>
@@ -746,43 +745,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection footerTitle="Check this if you want your &quot;creations&quot; to be uploaded or not." id="Wlt-PE-T4a">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1UU-mH-p8p">
-                                        <rect key="frame" x="0.0" y="462" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1UU-mH-p8p" id="7ID-Xa-gDv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload my memes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hYw-TU-XBE">
-                                                    <rect key="frame" x="16" y="11" width="511" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9n1-u2-Vnh">
-                                                    <rect key="frame" x="535" y="6" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="uploadEnableSwitchAction:" destination="QKo-7O-ovZ" eventType="valueChanged" id="YwZ-HO-lkm"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="9n1-u2-Vnh" firstAttribute="leading" secondItem="hYw-TU-XBE" secondAttribute="trailing" constant="8" id="Eda-X1-mmx"/>
-                                                <constraint firstItem="9n1-u2-Vnh" firstAttribute="centerY" secondItem="7ID-Xa-gDv" secondAttribute="centerY" id="Hw1-vE-haA"/>
-                                                <constraint firstItem="hYw-TU-XBE" firstAttribute="centerY" secondItem="7ID-Xa-gDv" secondAttribute="centerY" id="Ohc-gq-dd5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="9n1-u2-Vnh" secondAttribute="trailing" constant="8" id="gsr-2c-n3r"/>
-                                                <constraint firstItem="hYw-TU-XBE" firstAttribute="leading" secondItem="7ID-Xa-gDv" secondAttribute="leadingMargin" constant="8" id="yh5-9H-G1a"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection footerTitle="" id="shT-tV-XZP">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="SVw-Pa-O1v" detailTextLabel="uHm-1T-VDE" style="IBUITableViewCellStyleValue1" id="IEk-TA-JLw">
-                                        <rect key="frame" x="0.0" y="551" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="462" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IEk-TA-JLw" id="Pcj-Rc-0jc">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -813,7 +779,7 @@
                             <tableViewSection footerTitle="" id="rRy-E1-6f9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Jid-Dn-5ln" style="IBUITableViewCellStyleDefault" id="tp6-cP-3pU">
-                                        <rect key="frame" x="0.0" y="631" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="542" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp6-cP-3pU" id="6DS-eb-3fX">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -837,7 +803,7 @@
                             <tableViewSection footerTitle="Last updated: 2016-04-06 19:35:12" id="Llo-l6-nge">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="INB-gA-zHN" detailTextLabel="Aes-Me-PcF" style="IBUITableViewCellStyleValue1" id="Lyq-Ae-kMZ">
-                                        <rect key="frame" x="0.0" y="711" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="622" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lyq-Ae-kMZ" id="E3A-TW-Qqm">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -865,7 +831,7 @@
                             <tableViewSection footerTitle="" id="XgW-oI-Rc7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="U7k-vA-1vG">
-                                        <rect key="frame" x="0.0" y="800" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="711" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U7k-vA-1vG" id="2Rm-bH-9WS">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -885,7 +851,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Mhr-7m-Z0Z">
-                                        <rect key="frame" x="0.0" y="844" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="755" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mhr-7m-Z0Z" id="MFQ-Ln-J0e">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -909,7 +875,7 @@
                             <tableViewSection footerTitle="" id="S7i-53-zlj">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="95W-Zc-Dcp" style="IBUITableViewCellStyleDefault" id="EeD-b3-hrH">
-                                        <rect key="frame" x="0.0" y="924" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="835" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EeD-b3-hrH" id="2n2-PM-Tow">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -963,12 +929,10 @@ Share with friends and the internet.</string>
                         <outlet property="memesCountLabel" destination="Aes-Me-PcF" id="yEl-za-QOk"/>
                         <outlet property="memesPerRowLabel" destination="uHm-1T-VDE" id="2E3-lR-chr"/>
                         <outlet property="resetSettings" destination="ReN-fW-4nQ" id="6e4-Oy-Qjv"/>
-                        <outlet property="uploadEnable" destination="9n1-u2-Vnh" id="KzG-7z-2if"/>
                         <outletCollection property="tableViewCells" destination="4Q5-BW-L4V" collectionClass="NSMutableArray" id="eRd-F7-dAD"/>
                         <outletCollection property="tableViewCells" destination="wfU-ND-Oxl" collectionClass="NSMutableArray" id="Eu4-NI-thB"/>
                         <outletCollection property="tableViewCells" destination="Sit-T7-2mu" collectionClass="NSMutableArray" id="Ozx-Uy-fbZ"/>
                         <outletCollection property="tableViewCells" destination="csF-rY-6uh" collectionClass="NSMutableArray" id="ZH8-g0-u18"/>
-                        <outletCollection property="tableViewCells" destination="1UU-mH-p8p" collectionClass="NSMutableArray" id="VBa-Vr-EF7"/>
                         <outletCollection property="tableViewCells" destination="tp6-cP-3pU" collectionClass="NSMutableArray" id="wVw-jp-viW"/>
                         <outletCollection property="tableViewCells" destination="Lyq-Ae-kMZ" collectionClass="NSMutableArray" id="ztk-U8-t7b"/>
                         <outletCollection property="tableViewCells" destination="U7k-vA-1vG" collectionClass="NSMutableArray" id="2aw-zQ-gvP"/>
@@ -977,7 +941,6 @@ Share with friends and the internet.</string>
                         <outletCollection property="tableViewCellLabels" destination="8ga-I1-Cv1" collectionClass="NSMutableArray" id="MxL-1R-d01"/>
                         <outletCollection property="tableViewCellLabels" destination="Qte-SY-utP" collectionClass="NSMutableArray" id="W5S-QP-QWC"/>
                         <outletCollection property="tableViewCellLabels" destination="PMN-h9-cVo" collectionClass="NSMutableArray" id="eMg-MA-5sj"/>
-                        <outletCollection property="tableViewCellLabels" destination="hYw-TU-XBE" collectionClass="NSMutableArray" id="JTE-jN-XzJ"/>
                         <outletCollection property="tableViewCells" destination="EeD-b3-hrH" collectionClass="NSMutableArray" id="xNj-qm-fqb"/>
                         <outletCollection property="tableViewCells" destination="IEk-TA-JLw" collectionClass="NSMutableArray" id="8AY-Qw-xGr"/>
                     </connections>

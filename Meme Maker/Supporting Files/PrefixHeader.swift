@@ -115,7 +115,7 @@ func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
 	let imageRect = CGRectMake(0, 0, image.size.width * ratio, image.size.height * ratio)
 	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * ratio, image.size.height * ratio))
 	image.drawInRect(imageRect)
-	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+	let newImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
 	return newImage
 }

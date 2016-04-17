@@ -11,6 +11,7 @@ import SVProgressHUD
 import CoreData
 import DZNEmptyDataSet
 import ReachabilitySwift
+import SDWebImage
 
 class BrowseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 	
@@ -69,9 +70,11 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	@IBAction func refershAction(sender: AnyObject) {
 		SVProgressHUD.showWithStatus("Loading...")
 		do {
-			let _ = try Reachability.reachabilityForInternetConnection()
-			self.fetchedCreations = NSMutableArray()
-			self.fetchCreations(1)
+			let reachability = try Reachability.reachabilityForInternetConnection()
+			if (reachability.isReachable()) {
+				self.fetchedCreations = NSMutableArray()
+				self.fetchCreations(1)
+			}
 		}
 		catch _ {
 			SVProgressHUD.showErrorWithStatus("No connection!")
@@ -96,19 +99,26 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			if (data != nil) {
 				
 				do {
+					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
+					
 					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
 					let code = json.valueForKey("code") as! Int
 					if (code == 200) {
 						let jsoncreations = json.valueForKey("data") as! NSArray
-						let creationsArray = XCreated.getAllSubmissionsFromArray(jsoncreations, context: self.context!)!
-						self.fetchedCreations.addObjectsFromArray(creationsArray as [AnyObject])
+						let creationsArray = XCreated.getAllSubmissionsFromArray(jsoncreations, context: asyncContext)!
+						for creation in creationsArray {
+							self.fetchedCreations.addObject(creation)
+						}
+						try asyncContext.save()
 						dispatch_async(dispatch_get_main_queue(), {
 							self.fetchCreations(paging + 1)
 						})
 					}
 					else {
-						self.creations = self.fetchedCreations
 						dispatch_async(dispatch_get_main_queue(), {
+							self.creations = NSMutableArray(array: self.fetchedCreations as [AnyObject])
 							self.collectionView.reloadData()
 							SVProgressHUD.dismiss()
 						})
@@ -143,11 +153,41 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		
 		let creation = creations.objectAtIndex(indexPath.row) as! XCreated
 		
-		let image = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)"))
+		let imagePath = imagesPathForFileName("\(creation.memeID)")
+		if let image = UIImage(contentsOfFile: imagePath) {
+			cell.image = image
+		}
+		else {
+			var meme: XMeme!
+			let fetchRequest = NSFetchRequest(entityName: "XMeme")
+			fetchRequest.predicate = NSPredicate(format: "memeID == %li", creation.memeID)
+			do {
+				let fetchedArray = try self.context!.executeFetchRequest(fetchRequest)
+				if (fetchedArray.count > 0) {
+					meme = fetchedArray.first as! XMeme
+					if let imageURLString = meme.image {
+						let imageURL = NSURL(string: imageURLString)
+						dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+							let data = NSData(contentsOfURL: imageURL!)
+							data?.writeToFile(imagePath, atomically: true)
+							if let dimage = UIImage(data: data!) {
+								cell.image = dimage
+							}
+						})
+					}
+				}
+			}
+			catch _ {
+				
+			}
+		}
 		
-		cell.topText = creation.topText!.uppercaseString
-		cell.bottomText = creation.bottomText!.uppercaseString
-		cell.image = image!
+		if let topText = creation.topText {
+			cell.topText = topText.uppercaseString
+		}
+		if let bottomText = creation.bottomText {
+			cell.bottomText = bottomText.uppercaseString
+		}
 		
 		return cell
 		
@@ -187,14 +227,15 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	func handleLongPress(recognizer: UILongPressGestureRecognizer) -> Void {
 		if let indexPath = collectionView.indexPathForItemAtPoint(recognizer.locationInView(self.collectionView)) {
 			let creation = creations.objectAtIndex(indexPath.row) as! XCreated
-			let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)"))
-			let editedImage = getImageByDrawingOnImage(baseImage!, topText: creation.topText!, bottomText: creation.bottomText!)
-			let activityVC = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
-			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-				activityVC.modalPresentationStyle = .Popover
-				activityVC.popoverPresentationController?.sourceView = self.collectionView
-			}
-			self.presentViewController(activityVC, animated: true) {
+			if let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)")) {
+				let editedImage = getImageByDrawingOnImage(baseImage, topText: creation.topText!, bottomText: creation.bottomText!)
+				let activityVC = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
+				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+					activityVC.modalPresentationStyle = .Popover
+					activityVC.popoverPresentationController?.sourceView = self.collectionView
+				}
+				self.presentViewController(activityVC, animated: true) {
+				}
 			}
 		}
 	}

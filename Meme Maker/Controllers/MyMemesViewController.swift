@@ -48,7 +48,7 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		self.collectionView.emptyDataSetDelegate = self
     }
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewWillAppear(animated: Bool) {
 		do {
 			let fetchedArray = try context?.executeFetchRequest(fetchRequest!)
 			userCreations = NSMutableArray(array: fetchedArray!)

@@ -44,7 +44,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		resetSettings.on = SettingsManager.sharedManager().getBool(kSettingsResetSettingsOnLaunch)
 		contEditing.on = SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)
 		darkMode.on = SettingsManager.sharedManager().getBool(kSettingsDarkMode)
-		uploadEnable.on = SettingsManager.sharedManager().getBool(kSettingsUploadMemes)
+//		uploadEnable.on = SettingsManager.sharedManager().getBool(kSettingsUploadMemes)
 		
 		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
@@ -148,8 +148,8 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				return "Enabling this function will reset the text editing settings on launch, i.e. no preservations in settings."
 			case 2:
 				return "Turning this off will prevent generation of text on image as you enter it, but may help in saving battery life. If enabled, you need to press return to generate text after editing."
-			case 4:
-				return "Check this if you want your \"creations\" to be uploaded to the server."
+//			case 4:
+//				return "Check this if you want your \"creations\" to be uploaded to the server."
 			case noos - 4:
 				let formatter = NSDateFormatter()
 				formatter.dateFormat = "MMM dd yyyy, hh:mm a"

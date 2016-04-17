@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 
 class XCreated: NSManagedObject {
 
@@ -60,13 +60,6 @@ class XCreated: NSManagedObject {
 		for dict in array {
 			let subm = self.createOrUpdateSubmissionWithData(dict as! NSDictionary, context: context)
 			submissionsArray.addObject(subm)
-		}
-		
-		do {
-			try context.save()
-		}
-		catch _ {
-			print("Unable to save");
 		}
 		
 		return submissionsArray

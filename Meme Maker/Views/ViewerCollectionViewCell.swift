@@ -34,9 +34,15 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 		super.drawRect(rect)
 		
 		let size = max(self.bounds.size.width, self.bounds.size.height)
-		let ratio = size/max(image.size.width, image.size.height)
+		var ratio: CGFloat = 1
+		if max(image.size.width, image.size.height) > 0 {
+			ratio = size/max(image.size.width, image.size.height)
+		}
 		
-		let baseImage = getImageByResizingImage(image, ratio: ratio)
+		var baseImage = UIImage()
+		if (image.size.width > 10) {
+			baseImage = getImageByResizingImage(image, ratio: ratio)
+		}
 		
 		let topTextAttr = XTextAttributes(savename: "topo")
 		topTextAttr.fontSize = 20
