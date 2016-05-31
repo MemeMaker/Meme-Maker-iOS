@@ -82,7 +82,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.fetchLocalMemes()
 		
 		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
-			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+//			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+			print("Fetching latest memes, just for you!")
 			do {
 				let _ = try Reachability.reachabilityForInternetConnection()
 				self.fetchedMemes = NSMutableArray()
@@ -105,7 +106,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		shouldRefershOnAppear = true
 	}
 	
-	func fetchLocalMemes() -> Void {
+	func fetchLocalMemes() {
 		let request = NSFetchRequest(entityName: "XMeme")
 		if let lastSortKey = SettingsManager.sharedManager().getObject(kSettingsLastSortKey) {
 			request.sortDescriptors = [NSSortDescriptor.init(key: lastSortKey as? String, ascending: true)]
@@ -160,12 +161,17 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 						})
 					}
 					else {
-						self.memes = self.fetchedMemes
 						dispatch_async(dispatch_get_main_queue(), {
-							SettingsManager.sharedManager().saveLastUpdateDate()
-							self.shouldRefershOnAppear = true
-							self.collectionView.reloadData()
-							SVProgressHUD.dismiss()
+							if (self.fetchedMemes.count >= self.memes.count) {
+								print("Finished updating all memes!")
+								self.memes = NSMutableArray(array: self.fetchedMemes)
+								SettingsManager.sharedManager().saveLastUpdateDate()
+	//							SVProgressHUD.dismiss()
+								dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+									self.shouldRefershOnAppear = true
+									self.viewWillAppear(true)
+								})
+							}
 						})
 						return
 					}
@@ -411,6 +417,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 		self.searchBar.text = ""
+		searchBarButton.image = UIImage(named: "MagnifyingGlass")
 		self.filterMemesWithSearchText("")
 		self.searchBar.resignFirstResponder()
 		UIView.animateWithDuration(0.15) {
