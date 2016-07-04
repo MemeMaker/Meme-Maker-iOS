@@ -254,22 +254,25 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		let maxHeight = imageSize.height/2 + 2	// Max height of top and bottom texts
 		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
 		
-		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercaseString : topTextAttr.text;
+		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercaseString : bottomTextAttr.text;
+		
+		var topTextRect = topText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) > maxHeight) {
 			topTextAttr.fontSize -= 1;
-			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+			topTextRect = topText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var bottomTextRect = bottomText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
 		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height);
 		// Adjust bottom size
 		while (ceil(bottomTextRect.size.height) > maxHeight) {
 			bottomTextAttr.fontSize -= 1;
-			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			bottomTextRect = bottomText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
 			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height)
 		}
@@ -277,9 +280,6 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		UIGraphicsBeginImageContext(imageSize)
 		
 		baseImage?.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
-		
-		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercaseString : topTextAttr.text;
-		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercaseString : bottomTextAttr.text;
 		
 		let topRect = CGRectMake(topTextAttr.rect.origin.x + topTextAttr.offset.x, topTextAttr.rect.origin.y + topTextAttr.offset.y, topTextAttr.rect.size.width, topTextAttr.rect.size.height)
 		let bottomRect = CGRectMake(bottomTextAttr.rect.origin.x + bottomTextAttr.offset.x, bottomTextAttr.rect.origin.y + bottomTextAttr.offset.y, bottomTextAttr.rect.size.width, bottomTextAttr.rect.size.height)
