@@ -159,6 +159,7 @@ class XTextAttributes: NSObject {
 		
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.alignment = alignment
+		paragraphStyle.maximumLineHeight = fontSize
 		
 		attr[NSParagraphStyleAttributeName] = paragraphStyle
 		
@@ -168,8 +169,8 @@ class XTextAttributes: NSObject {
 		
 		let shadow = NSShadow()
 		shadow.shadowColor = outlineColor
-		shadow.shadowOffset = CGSizeMake(1, 1)
-		shadow.shadowBlurRadius = 1
+		shadow.shadowOffset = CGSizeMake(0.1, 0.1)
+		shadow.shadowBlurRadius = 0.8
 		attr[NSShadowAttributeName] = shadow
 		
 		return attr
