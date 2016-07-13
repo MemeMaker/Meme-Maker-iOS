@@ -5,11 +5,12 @@
 --------------------
 ##Screens
 
-[![](http://a4.mzstatic.com/us/r30/Purple1/v4/e1/05/ff/e105ffe3-5db2-054d-074b-07e446233bd5/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
-[![](http://a4.mzstatic.com/us/r30/Purple4/v4/a3/a6/5e/a3a65e3d-bb66-7edb-793d-793649c5f18f/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
-[![](http://a3.mzstatic.com/us/r30/Purple49/v4/4d/af/e9/4dafe98c-0199-113e-71f3-a35af8d45e2a/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
-[![](http://a2.mzstatic.com/us/r30/Purple4/v4/4d/1b/19/4d1b1955-4097-61c8-4eae-d1f5b9221b59/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
-[![](http://a5.mzstatic.com/us/r30/Purple49/v4/29/2e/d0/292ed056-08bf-d631-195b-b67d3da49798/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a5.mzstatic.com/us/r30/Purple20/v4/8b/f3/00/8bf30030-cb42-3cbd-7c67-f53503a713c8/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a1.mzstatic.com/us/r30/Purple20/v4/eb/7b/2e/eb7b2e0b-5bdf-d996-44f2-fbc4adb8f253/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a3.mzstatic.com/us/r30/Purple30/v4/64/57/b0/6457b004-ac61-86b0-5ac9-40b9eaa3e882/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a1.mzstatic.com/us/r30/Purple20/v4/81/5c/8d/815c8de1-569f-f3bc-c639-2a2075911b8c/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a3.mzstatic.com/us/r30/Purple18/v4/63/10/87/631087ff-5be3-a5ff-3983-f271e43fef1d/screen480x480.jpeg)](https://itunes.apple.com/app/id962121383)
+[![](http://a2.mzstatic.com/us/r30/Purple20/v4/09/37/d3/0937d3af-7279-8989-f8e0-121e71040013/screen480x480.jpeg)](https://itunes.apple.com/app/id962121383)
 
 --------------------
 ##Features
@@ -47,3 +48,12 @@
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) to easily handle empty data sets.
 - [SSZipArchive](https://github.com/soffes/ssziparchive) as zip archive utility.
 - [BWWalkthrough](https://github.com/ariok/BWWalkthrough) as drop in walkthrough screen utility.
+
+
+--------------------
+
+## macOS Version
+
+**The ~~OS X~~ macOS version of the app is available on the [Mac App Store](https://itunes.apple.com/app/id1132989104) and on [GitHub](https://github.com/MemeMaker/Meme-Maker-Mac).**
+
+[![Get the app from Mac App Store](http://www.perfectdiettracker.com/wordpress/wp-content/uploads/2011/01/macappstore.png)](https://itunes.apple.com/app/id962121383)

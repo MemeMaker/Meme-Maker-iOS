@@ -59,7 +59,7 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
 		
 		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(self.bounds.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRectMake(4, 0, self.bounds.width - 8, self.bounds.height/2)
+		topTextAttr.rect = CGRectMake(4, 4, self.bounds.width - 8, self.bounds.height/2 - 4)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) >= maxHeight) {
 			topTextAttr.fontSize -= 1;

@@ -258,7 +258,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercaseString : bottomTextAttr.text;
 		
 		var topTextRect = topText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
+		topTextAttr.rect = CGRectMake(0, 8, imageSize.width, imageSize.height/2 - 8)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) > maxHeight) {
 			topTextAttr.fontSize -= 1;
@@ -391,7 +391,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			})
 		}
 		else {
-			self.dismissAction(self)
+			self.view.endEditing(true)
 		}
 	}
 	
