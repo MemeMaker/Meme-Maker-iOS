@@ -12,6 +12,30 @@ import CoreData
 import DZNEmptyDataSet
 import ReachabilitySwift
 import SDWebImage
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class BrowseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
 	
@@ -34,13 +58,13 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 
         // Do any additional setup after loading the view.
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
 		let request = NSFetchRequest(entityName: "XCreated")
 		request.sortDescriptors = [NSSortDescriptor.init(key: "dateCreated", ascending: false)]
 		do {
-			let fetchedArray = try self.context?.executeFetchRequest(request)
+			let fetchedArray = try self.context?.fetch(request)
 			creations = NSMutableArray(array: fetchedArray!)
 			fetchedCreations = NSMutableArray(array: fetchedArray!)
 		}
@@ -48,7 +72,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			print("Error in fetching.")
 		}
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
 			if self.splitViewController?.viewControllers.count > 1 {
 				editorVC = self.splitViewController?.viewControllers[1] as? EditorViewController
 			}
@@ -58,7 +82,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		longPressGesture?.minimumPressDuration = 0.8
 		collectionView.addGestureRecognizer(longPressGesture!)
 		
-		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 || creations.count == 0 {
+		if (Date().timeIntervalSince(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 || creations.count == 0 {
 			self.refershAction(self)
 		}
 		
@@ -67,8 +91,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		
     }
 	
-	@IBAction func refershAction(sender: AnyObject) {
-		SVProgressHUD.showWithStatus("Loading...")
+	@IBAction func refershAction(_ sender: AnyObject) {
+		SVProgressHUD.show(withStatus: "Loading...")
 		do {
 			let reachability = try Reachability.reachabilityForInternetConnection()
 			if (reachability.isReachable()) {
@@ -77,21 +101,21 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			}
 		}
 		catch _ {
-			SVProgressHUD.showErrorWithStatus("No connection!")
+			SVProgressHUD.showError(withStatus: "No connection!")
 		}
 	}
 	
-	func fetchCreations(paging: Int) -> Void {
+	func fetchCreations(_ paging: Int) -> Void {
 		
-		let request = NSMutableURLRequest(URL: apiSubmissionsPaging(paging))
-		request.HTTPMethod = "GET"
+		let request = NSMutableURLRequest(url: apiSubmissionsPaging(paging))
+		request.httpMethod = "GET"
 		
-		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			
 			if (error != nil) {
 				print("Error: %@", error?.localizedDescription)
-				dispatch_async(dispatch_get_main_queue(), {
-					SVProgressHUD.showErrorWithStatus("No connection!")
+				DispatchQueue.main.async(execute: {
+					SVProgressHUD.showError(withStatus: "No connection!")
 				})
 				return
 			}
@@ -100,24 +124,24 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 				
 				do {
 					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
-					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-					let code = json.valueForKey("code") as! Int
+					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+					let code = json.value(forKey: "code") as! Int
 					if (code == 200) {
-						let jsoncreations = json.valueForKey("data") as! NSArray
+						let jsoncreations = json.value(forKey: "data") as! NSArray
 						let creationsArray = XCreated.getAllSubmissionsFromArray(jsoncreations, context: asyncContext)!
 						for creation in creationsArray {
-							self.fetchedCreations.addObject(creation)
+							self.fetchedCreations.add(creation)
 						}
 						try asyncContext.save()
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							self.fetchCreations(paging + 1)
 						})
 					}
 					else {
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							self.creations = NSMutableArray(array: self.fetchedCreations as [AnyObject])
 							self.collectionView.reloadData()
 							SVProgressHUD.dismiss()
@@ -127,31 +151,31 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 				}
 				catch _ {
 					print("\(#function) | Unable to parse")
-					SVProgressHUD.showErrorWithStatus("Failed to fetch")
+					SVProgressHUD.showError(withStatus: "Failed to fetch")
 					return
 				}
 				
 			}
 			
-		}.resume()
+		}) .resume()
 		
 	}
 	
 	// MARK: - Collection view data source
 	
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1
 	}
 	
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return creations.count
 	}
 	
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! ViewerCollectionViewCell
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as! ViewerCollectionViewCell
 		
-		let creation = creations.objectAtIndex(indexPath.row) as! XCreated
+		let creation = creations.object(at: indexPath.row) as! XCreated
 		
 		let imagePath = imagesPathForFileName("\(creation.memeID)")
 		if let image = UIImage(contentsOfFile: imagePath) {
@@ -162,14 +186,14 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 			let fetchRequest = NSFetchRequest(entityName: "XMeme")
 			fetchRequest.predicate = NSPredicate(format: "memeID == %li", creation.memeID)
 			do {
-				let fetchedArray = try self.context!.executeFetchRequest(fetchRequest)
+				let fetchedArray = try self.context!.fetch(fetchRequest)
 				if (fetchedArray.count > 0) {
 					meme = fetchedArray.first as! XMeme
 					if let imageURLString = meme.image {
-						let imageURL = NSURL(string: imageURLString)
-						dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-							let data = NSData(contentsOfURL: imageURL!)
-							data?.writeToFile(imagePath, atomically: true)
+						let imageURL = URL(string: imageURLString)
+						DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
+							let data = try? Data(contentsOf: imageURL!)
+							try? data?.write(to: URL(fileURLWithPath: imagePath), options: [.atomic])
 							if let dimage = UIImage(data: data!) {
 								cell.image = dimage
 							}
@@ -183,10 +207,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		}
 		
 		if let topText = creation.topText {
-			cell.topText = topText.uppercaseString
+			cell.topText = topText.uppercased()
 		}
 		if let bottomText = creation.bottomText {
-			cell.bottomText = bottomText.uppercaseString
+			cell.bottomText = bottomText.uppercased()
 		}
 		
 		return cell
@@ -195,12 +219,12 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	// MARK: - Collection view delegate
 	
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			let creation = creations.objectAtIndex(indexPath.row) as! XCreated
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
+			let creation = creations.object(at: indexPath.row) as! XCreated
 			let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)"))
-			self.editorVC?.editorMode = .Viewer
+			self.editorVC?.editorMode = .viewer
 			self.editorVC?.baseImage = baseImage
 			self.editorVC?.topTextField.text = creation.topText!
 			self.editorVC?.bottomTextField.text = creation.bottomText!
@@ -212,29 +236,29 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		}
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		return CGSizeMake(self.collectionView.bounds.width/2, self.collectionView.bounds.width/2)
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: self.collectionView.bounds.width/2, height: self.collectionView.bounds.width/2)
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 		return 0
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 		return 0
 	}
 	
-	func handleLongPress(recognizer: UILongPressGestureRecognizer) -> Void {
-		if let indexPath = collectionView.indexPathForItemAtPoint(recognizer.locationInView(self.collectionView)) {
-			let creation = creations.objectAtIndex(indexPath.row) as! XCreated
+	func handleLongPress(_ recognizer: UILongPressGestureRecognizer) -> Void {
+		if let indexPath = collectionView.indexPathForItem(at: recognizer.location(in: self.collectionView)) {
+			let creation = creations.object(at: indexPath.row) as! XCreated
 			if let baseImage = UIImage(contentsOfFile: imagesPathForFileName("\(creation.memeID)")) {
 				let editedImage = getImageByDrawingOnImage(baseImage, topText: creation.topText!, bottomText: creation.bottomText!)
 				let activityVC = UIActivityViewController(activityItems: [editedImage], applicationActivities: nil)
-				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-					activityVC.modalPresentationStyle = .Popover
+				if (UI_USER_INTERFACE_IDIOM() == .pad) {
+					activityVC.modalPresentationStyle = .popover
 					activityVC.popoverPresentationController?.sourceView = self.collectionView
 				}
-				self.presentViewController(activityVC, animated: true) {
+				self.present(activityVC, animated: true) {
 				}
 			}
 		}
@@ -242,25 +266,25 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	// MARK: - DZN Empty Data Set
 	
-	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
 		let title = NSAttributedString(string: "No memes to browse!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 24)!, NSForegroundColorAttributeName: globalTintColor])
 		return title
 	}
 	
-	func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+	func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
 		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
 		return title
 	}
 	
-	func backgroundColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
+	func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
 		return globalBackColor
 	}
 	
-	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+	func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
 		return creations.count == 0
 	}
 	
-	func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
+	func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
 		refershAction(self)
 	}
 

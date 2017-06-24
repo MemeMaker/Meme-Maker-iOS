@@ -10,25 +10,25 @@ import UIKit
 import TextFieldEffects
 
 protocol SwipableTextFieldDelegate {
-	func textFieldDidSwipeLeft(textField: SwipableTextField) -> Void
-	func textFieldDidSwipeRight(textField: SwipableTextField) -> Void
+	func textFieldDidSwipeLeft(_ textField: SwipableTextField) -> Void
+	func textFieldDidSwipeRight(_ textField: SwipableTextField) -> Void
 }
 
-public class SwipableTextField: KaedeTextField {
+open class SwipableTextField: KaedeTextField {
 	
 	var swipeDelegate: SwipableTextFieldDelegate?
 	
-	private var swipeLeft: UISwipeGestureRecognizer?
-	private var swipeRight: UISwipeGestureRecognizer?
+	fileprivate var swipeLeft: UISwipeGestureRecognizer?
+	fileprivate var swipeRight: UISwipeGestureRecognizer?
 	
-	override public func willMoveToSuperview(newSuperview: UIView!) {
+	override open func willMove(toSuperview newSuperview: UIView!) {
 		self.layer.cornerRadius = 4.0
-		super.willMoveToSuperview(newSuperview)
+		super.willMove(toSuperview: newSuperview)
 		swipeLeft = UISwipeGestureRecognizer.init(target: self, action: #selector(swipeLeftAction))
-		swipeLeft?.direction = .Left
+		swipeLeft?.direction = .left
 		self.addGestureRecognizer(swipeLeft!)
 		swipeRight = UISwipeGestureRecognizer.init(target: self, action: #selector(swipeRightAction))
-		swipeRight?.direction = .Right
+		swipeRight?.direction = .right
 		self.addGestureRecognizer(swipeRight!)
 	}
 	

@@ -60,11 +60,11 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		self.view.addGestureRecognizer(pinchGestureRecognizer!)
 		
 		swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(PhotoEditingViewController.fontAction(_:)))
-		swipeUpGesture?.direction = .Up
+		swipeUpGesture?.direction = .up
 		self.view.addGestureRecognizer(swipeUpGesture!)
 		
 		swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(PhotoEditingViewController.dismissFontAction(_:)))
-		swipeDownGesture?.direction = .Down
+		swipeDownGesture?.direction = .down
 		self.view.addGestureRecognizer(swipeDownGesture!)
 		
 		doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(PhotoEditingViewController.handleDoubleTap(_:)))
@@ -86,76 +86,76 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		self.memeImageView.image = baseImage
 		self.backgroundImageView.image = baseImage
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PhotoEditingViewController.willShowKeyboard(_:)), name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PhotoEditingViewController.willHideKeyboard(_:)), name: UIKeyboardWillHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(PhotoEditingViewController.willShowKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(PhotoEditingViewController.willHideKeyboard(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 		
     }
 	
 	// MARK: - Keyboard
 	
-	func willShowKeyboard(notification: NSNotification) -> Void {
-		if (self.bottomTextField.isFirstResponder()) {
+	func willShowKeyboard(_ notification: Notification) -> Void {
+		if (self.bottomTextField.isFirstResponder) {
 			let dict = notification.userInfo
-			let rect = dict![UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
-			let height = rect?.size.height
-			UIView.animateWithDuration(0.3) { 
-				self.view.layer.transform = CATransform3DMakeTranslation(0, -height!, 0)
-			}
+			let rect = dict![UIKeyboardFrameEndUserInfoKey] as! CGRect
+			let height = rect.size.height
+			UIView.animate(withDuration: 0.3, animations: {
+				self.view.layer.transform = CATransform3DMakeTranslation(0, -height, 0)
+			}) 
 		}
 		else {
-			UIView.animateWithDuration(0.3) {
+			UIView.animate(withDuration: 0.3, animations: {
 				self.view.layer.transform = CATransform3DMakeTranslation(0, 0, 0)
-			}
+			}) 
 		}
 	}
 	
-	func willHideKeyboard(notification: NSNotification) -> Void {
-		UIView.animateWithDuration(0.3) { 
+	func willHideKeyboard(_ notification: Notification) -> Void {
+		UIView.animate(withDuration: 0.3, animations: { 
 			self.view.layer.transform = CATransform3DMakeTranslation(0, 0, 0)
-		}
+		}) 
 	}
 	
 	// MARK: - Cooking
 	
 	func cookImage() -> Void {
 		
-		let imageSize = baseImage?.size as CGSize!
+		let imageSize = (baseImage?.size)!
 		
-		let maxHeight = imageSize.height/2	// Max height of top and bottom texts
-		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
+		let maxHeight = (imageSize.height) / 2	// Max height of top and bottom texts
+		let stringDrawingOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 		
-		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercaseString : topTextAttr.text;
-		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercaseString : bottomTextAttr.text;
+		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercased : String(topTextAttr.text);
+		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercased : String(bottomTextAttr.text);
 		
-		var topTextRect = topText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
+		var topTextRect = topText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextAttr.rect = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height/2)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) > maxHeight) {
 			topTextAttr.fontSize -= 1;
-			topTextRect = topText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+			topTextRect = topText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var bottomTextRect = bottomText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
-		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height);
+		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: expectedBottomSize.height);
 		// Adjust bottom size
 		while (ceil(bottomTextRect.size.height) > maxHeight) {
 			bottomTextAttr.fontSize -= 1;
-			bottomTextRect = bottomText.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			bottomTextRect = bottomText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
-			bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, expectedBottomSize.height)
+			bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: expectedBottomSize.height)
 		}
 		
 		UIGraphicsBeginImageContext(imageSize)
 		
-		baseImage!.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
+		baseImage!.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
 		
-		let topRect = CGRectMake(topTextAttr.rect.origin.x + topTextAttr.offset.x, topTextAttr.rect.origin.y + topTextAttr.offset.y, topTextAttr.rect.size.width, topTextAttr.rect.size.height)
-		let bottomRect = CGRectMake(bottomTextAttr.rect.origin.x + bottomTextAttr.offset.x, bottomTextAttr.rect.origin.y + bottomTextAttr.offset.y, bottomTextAttr.rect.size.width, bottomTextAttr.rect.size.height)
+		let topRect = CGRect(x: topTextAttr.rect.origin.x + topTextAttr.offset.x, y: topTextAttr.rect.origin.y + topTextAttr.offset.y, width: topTextAttr.rect.size.width, height: topTextAttr.rect.size.height)
+		let bottomRect = CGRect(x: bottomTextAttr.rect.origin.x + bottomTextAttr.offset.x, y: bottomTextAttr.rect.origin.y + bottomTextAttr.offset.y, width: bottomTextAttr.rect.size.width, height: bottomTextAttr.rect.size.height)
 		
-		topText.drawInRect(topRect, withAttributes: topTextAttr.getTextAttributes())
-		bottomText.drawInRect(bottomRect, withAttributes: bottomTextAttr.getTextAttributes())
+		topText.draw(in: topRect, withAttributes: topTextAttr.getTextAttributes())
+		bottomText.draw(in: bottomRect, withAttributes: bottomTextAttr.getTextAttributes())
 		
 		memeImageView.image = UIGraphicsGetImageFromCurrentImageContext()
 		
@@ -165,7 +165,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 	
 	// MARK: - Text change selection delegate
 	
-	func didUpdateTextAttributes(topTextAttributes: XTextAttributes, bottomTextAttributes: XTextAttributes) {
+	func didUpdateTextAttributes(_ topTextAttributes: XTextAttributes, bottomTextAttributes: XTextAttributes) {
 		topTextAttr = topTextAttributes
 		bottomTextAttr = bottomTextAttributes
 		cookImage()
@@ -173,17 +173,17 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 	
 	// MARK: - Text field delegate
 	
-	@IBAction func topTextChangedAction(sender: AnyObject) {
-		topTextAttr.text = "\(topTextField.text!)"
+	@IBAction func topTextChangedAction(_ sender: AnyObject) {
+		topTextAttr.text = "\(topTextField.text!)" as NSString
 		cookImage()
 	}
 	
-	@IBAction func bottomTextChangedAction(sender: AnyObject) {
-		bottomTextAttr.text = "\(bottomTextField.text!)"
+	@IBAction func bottomTextChangedAction(_ sender: AnyObject) {
+		bottomTextAttr.text = "\(bottomTextField.text!)" as NSString
 		cookImage()
 	}
 	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		if (textField == self.topTextField) {
 			self.bottomTextField.becomeFirstResponder()
 		}
@@ -194,7 +194,7 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		return true
 	}
 	
-	func textFieldDidSwipeLeft(textField: SwipableTextField) {
+	func textFieldDidSwipeLeft(_ textField: SwipableTextField) {
 		textField.text = ""
 		if (textField == self.topTextField) {
 			self.topTextChangedAction(textField)
@@ -207,48 +207,48 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 
 	// MARK: - Gesture handlers
 	
-	@IBAction func fontAction(sender: AnyObject) -> Void {
+	@IBAction func fontAction(_ sender: AnyObject) -> Void {
 		self.view.endEditing(true)
 		if (shouldDisplayFTVC) {
 			shouldDisplayFTVC = false
-			fontTableVC = self.storyboard?.instantiateViewControllerWithIdentifier("FontVC") as! FontTableViewController
+			fontTableVC = self.storyboard?.instantiateViewController(withIdentifier: "FontVC") as! FontTableViewController
 			fontTableVC.textAttrChangeDelegate = self
 			fontTableVC.topTextAttr = topTextAttr
 			fontTableVC.bottomTextAttr = bottomTextAttr
 			
-			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-				fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height, self.view.frame.size.width - 200, 390)
+			if (UI_USER_INTERFACE_IDIOM() == .pad) {
+				fontTableVC.view.frame = CGRect(x: 100, y: self.view.frame.size.height, width: self.view.frame.size.width - 200, height: 390)
 			}
 			else {
-				fontTableVC.view.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 270)
+				fontTableVC.view.frame = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: 270)
 			}
 			
 			self.addChildViewController(fontTableVC)
 			self.view.addSubview(fontTableVC.view)
 			
-			fontTableVC?.didMoveToParentViewController(self)
+			fontTableVC?.didMove(toParentViewController: self)
 			
-			UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .CurveEaseInOut, animations: {
-				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-					self.fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height - 400, self.view.frame.size.width - 200, 390);
+			UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: UIViewAnimationOptions(), animations: {
+				if (UI_USER_INTERFACE_IDIOM() == .pad) {
+					self.fontTableVC.view.frame = CGRect(x: 100, y: self.view.frame.size.height - 400, width: self.view.frame.size.width - 200, height: 390);
 				}
 				else {
-					self.fontTableVC.view.frame = CGRectMake(5, self.view.frame.size.height - 275, self.view.frame.size.width - 10, 270);
+					self.fontTableVC.view.frame = CGRect(x: 5, y: self.view.frame.size.height - 275, width: self.view.frame.size.width - 10, height: 270);
 				}
 			}, completion: nil)
 			
 		}
 	}
 	
-	func dismissFontAction(sender: AnyObject) -> Void {
+	func dismissFontAction(_ sender: AnyObject) -> Void {
 		self.view.endEditing(true)
 		if (shouldDisplayFTVC == false) {
-			UIView.animateWithDuration(0.15, animations: {
-				if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-					self.fontTableVC.view.frame = CGRectMake(100, self.view.frame.size.height, self.view.frame.size.width - 200, 390)
+			UIView.animate(withDuration: 0.15, animations: {
+				if (UI_USER_INTERFACE_IDIOM() == .pad) {
+					self.fontTableVC.view.frame = CGRect(x: 100, y: self.view.frame.size.height, width: self.view.frame.size.width - 200, height: 390)
 				}
 				else {
-					self.fontTableVC.view.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 270)
+					self.fontTableVC.view.frame = CGRect(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: 270)
 				}
 				self.fontTableVC.view.alpha = 0
 				}, completion: { (success) in
@@ -259,10 +259,10 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		}
 	}
 	
-	func handlePinch(recognizer: UIPinchGestureRecognizer) -> Void {
+	func handlePinch(_ recognizer: UIPinchGestureRecognizer) -> Void {
 		let fontScale = 0.3 * recognizer.velocity
-		let point = recognizer.locationInView(self.memeImageView)
-		let topRect = CGRectMake(0, 0, self.memeImageView.bounds.size.width, self.memeImageView.bounds.size.height/2)
+		let point = recognizer.location(in: self.memeImageView)
+		let topRect = CGRect(x: 0, y: 0, width: self.memeImageView.bounds.size.width, height: self.memeImageView.bounds.size.height/2)
 		if (topRect.contains(point)) {
 			if (recognizer.scale > 1) {
 				topTextAttr.fontSize = min(topTextAttr.fontSize + fontScale, 150)
@@ -282,45 +282,48 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		cookImage()
 	}
 	
-	func handlePan(recognizer: UIPanGestureRecognizer) -> Void {
-		let translation = recognizer.translationInView(memeImageView)
+	func handlePan(_ recognizer: UIPanGestureRecognizer) -> Void {
+		let translation = recognizer.translation(in: memeImageView)
 		//		let location = recognizer.locationInView(self.memeImageView)
 		if (movingTop) {
-			topTextAttr.offset = CGPointMake(topTextAttr.offset.x + recognizer.velocityInView(self.view).x/80,
-			                                 topTextAttr.offset.y + recognizer.velocityInView(self.view).y/80);
+			topTextAttr.offset = CGPoint(x: topTextAttr.offset.x + recognizer.velocity(in: self.view).x/80,
+			                                 y: topTextAttr.offset.y + recognizer.velocity(in: self.view).y/80);
 		}
 		else {
-			bottomTextAttr.offset = CGPointMake(bottomTextAttr.offset.x + recognizer.velocityInView(self.view).x/80,
-			                                    bottomTextAttr.offset.y + recognizer.velocityInView(self.view).y/80);
+			bottomTextAttr.offset = CGPoint(x: bottomTextAttr.offset.x + recognizer.velocity(in: self.view).x/80,
+			                                    y: bottomTextAttr.offset.y + recognizer.velocity(in: self.view).y/80);
 		}
-		recognizer.setTranslation(translation, inView: self.memeImageView)
+		recognizer.setTranslation(translation, in: self.memeImageView)
 		cookImage()
 	}
 	
-	func handleDoubleTap(recognizer: UITapGestureRecognizer) -> Void {
+	func handleDoubleTap(_ recognizer: UITapGestureRecognizer) -> Void {
 		topTextAttr.uppercase = !topTextAttr.uppercase
 		bottomTextAttr.uppercase = !bottomTextAttr.uppercase
-		topTextAttr.saveAttributes("topAttr")
-		bottomTextAttr.saveAttributes("bottomAttr")
+		let ret1 = topTextAttr.saveAttributes("topAttr")
+		let ret2 = bottomTextAttr.saveAttributes("bottomAttr")
+		if (ret1 && ret2) {
+			print("Save success")
+		}
 		cookImage()
 	}
 	
-	func resetOffset(recognizer: UITapGestureRecognizer) -> Void {
-		topTextAttr.offset = CGPointZero
+	func resetOffset(_ recognizer: UITapGestureRecognizer) -> Void {
+		topTextAttr.offset = CGPoint.zero
 		topTextAttr.fontSize = 44
-		bottomTextAttr.offset = CGPointZero
+		bottomTextAttr.offset = CGPoint.zero
 		bottomTextAttr.fontSize = 44
 		cookImage()
 	}
 	
-	override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+	override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
 		resetOffset(twoDoubleTapGesture!)
 	}
 	
-	func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+	func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 		if (gestureRecognizer == self.panGestureRecognizer) {
-			let topRect = CGRectMake(memeImageView.bounds.origin.x, memeImageView.bounds.origin.y, memeImageView.bounds.size.width, memeImageView.bounds.size.height/2)
-			let location = gestureRecognizer.locationInView(self.memeImageView)
+			let topRect = CGRect(x: memeImageView.bounds.origin.x, y: memeImageView.bounds.origin.y, width: memeImageView.bounds.size.width, height: memeImageView.bounds.size.height/2)
+			let location = gestureRecognizer.location(in: self.memeImageView)
 			movingTop = (topRect.contains(location))
 		}
 		return true
@@ -329,19 +332,19 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 
     // MARK: - PHContentEditingController
 
-    func canHandleAdjustmentData(adjustmentData: PHAdjustmentData?) -> Bool {
+    func canHandle(_ adjustmentData: PHAdjustmentData) -> Bool {
         // Inspect the adjustmentData to determine whether your extension can work with past edits.
         // (Typically, you use its formatIdentifier and formatVersion properties to do this.)
         return false
     }
 
-    func startContentEditingWithInput(contentEditingInput: PHContentEditingInput?, placeholderImage: UIImage) {
+    func startContentEditing(with contentEditingInput: PHContentEditingInput, placeholderImage: UIImage) {
         // Present content for editing, and keep the contentEditingInput for use when closing the edit session.
         // If you returned true from canHandleAdjustmentData:, contentEditingInput has the original image and adjustment data.
         // If you returned false, the contentEditingInput has past edits "baked in".
 		
 		self.baseImage = placeholderImage
-		self.baseImageFullSize = UIImage(data: NSData(contentsOfURL: (contentEditingInput?.fullSizeImageURL!)!)!)
+		self.baseImageFullSize = UIImage(data: try! Data(contentsOf: (contentEditingInput.fullSizeImageURL!)))
 		
 		let ratio1 = 1024/(baseImage?.size.width)!
 		let ratio2 = 1024/(baseImage?.size.height)!
@@ -358,54 +361,54 @@ class PhotoEditingViewController: UIViewController, PHContentEditingController, 
 		
     }
 
-    func finishContentEditingWithCompletionHandler(completionHandler: ((PHContentEditingOutput!) -> Void)!) {
+    func finishContentEditing(completionHandler: @escaping (PHContentEditingOutput?) -> Void) {
         // Update UI to reflect that editing has finished and output is being rendered.
 		
 		self.view.endEditing(true)
 		
 		// Now render for the full size image
 		
-		let imageSize = self.baseImage?.size as CGSize!
-		let fullImageSize = self.baseImageFullSize?.size as CGSize!
+		let imageSize = self.baseImage!.size
+		let fullImageSize = self.baseImageFullSize!.size
 		let ratio = fullImageSize.width/imageSize.width
 		
 		UIGraphicsBeginImageContext(fullImageSize)
 		
-		self.baseImageFullSize!.drawInRect(CGRectMake(0, 0, fullImageSize.width, fullImageSize.height))
+		self.baseImageFullSize!.draw(in: CGRect(x: 0, y: 0, width: fullImageSize.width, height: fullImageSize.height))
 		
 		self.topTextAttr.fontSize = self.topTextAttr.fontSize * ratio
 		self.bottomTextAttr.fontSize = self.bottomTextAttr.fontSize * ratio
 		
-		self.topTextAttr.offset = CGPointMake(self.topTextAttr.offset.x * ratio, self.topTextAttr.offset.y * ratio)
-		self.bottomTextAttr.offset = CGPointMake(self.bottomTextAttr.offset.x * ratio, self.bottomTextAttr.offset.y * ratio)
+		self.topTextAttr.offset = CGPoint(x: self.topTextAttr.offset.x * ratio, y: self.topTextAttr.offset.y * ratio)
+		self.bottomTextAttr.offset = CGPoint(x: self.bottomTextAttr.offset.x * ratio, y: self.bottomTextAttr.offset.y * ratio)
 		
-		let topText = self.topTextAttr.uppercase ? self.topTextAttr.text.uppercaseString : self.topTextAttr.text;
-		let bottomText = self.bottomTextAttr.uppercase ? self.bottomTextAttr.text.uppercaseString : self.bottomTextAttr.text;
+		let topText = self.topTextAttr.uppercase ? self.topTextAttr.text.uppercased : String(self.topTextAttr.text)
+		let bottomText = self.bottomTextAttr.uppercase ? self.bottomTextAttr.text.uppercased : String(self.bottomTextAttr.text)
 		
-		let topRect = CGRectMake(self.topTextAttr.rect.origin.x * ratio + self.topTextAttr.offset.x, self.topTextAttr.rect.origin.y * ratio + self.topTextAttr.offset.y, self.topTextAttr.rect.size.width * ratio, self.topTextAttr.rect.size.height * ratio)
+		let topRect = CGRect(x: self.topTextAttr.rect.origin.x * ratio + self.topTextAttr.offset.x, y: self.topTextAttr.rect.origin.y * ratio + self.topTextAttr.offset.y, width: self.topTextAttr.rect.size.width * ratio, height: self.topTextAttr.rect.size.height * ratio)
 		
-		let bottomRect = CGRectMake(self.bottomTextAttr.rect.origin.x * ratio + self.bottomTextAttr.offset.x, self.bottomTextAttr.rect.origin.y * ratio + self.bottomTextAttr.offset.y, self.bottomTextAttr.rect.size.width * ratio, self.bottomTextAttr.rect.size.height * ratio)
+		let bottomRect = CGRect(x: self.bottomTextAttr.rect.origin.x * ratio + self.bottomTextAttr.offset.x, y: self.bottomTextAttr.rect.origin.y * ratio + self.bottomTextAttr.offset.y, width: self.bottomTextAttr.rect.size.width * ratio, height: self.bottomTextAttr.rect.size.height * ratio)
 		
-		topText.drawInRect(topRect, withAttributes: self.topTextAttr.getTextAttributes())
-		bottomText.drawInRect(bottomRect, withAttributes: self.bottomTextAttr.getTextAttributes())
+		topText.draw(in: topRect, withAttributes: self.topTextAttr.getTextAttributes())
+		bottomText.draw(in: bottomRect, withAttributes: self.bottomTextAttr.getTextAttributes())
 		
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		
         // Render and provide output on a background queue.
-        dispatch_async(dispatch_get_global_queue(CLong(DISPATCH_QUEUE_PRIORITY_DEFAULT), 0)) {
+        DispatchQueue.main.async {
             // Create editing output from the editing input.
             let output = PHContentEditingOutput(contentEditingInput: self.input!)
 			
-			let archivedData = NSKeyedArchiver.archivedDataWithRootObject(["Meme maker version": 4.69, "Date created": NSDate(), "topTextAttributes": self.topTextAttr.getTextAttributes(), "bottomTextAttributes": self.bottomTextAttr.getTextAttributes()])
+			let archivedData = NSKeyedArchiver.archivedData(withRootObject: ["Meme maker version": 4.69, "Date created": Date(), "topTextAttributes": self.topTextAttr.getTextAttributes(), "bottomTextAttributes": self.bottomTextAttr.getTextAttributes()])
             
             // Provide new adjustments and render output to given location.
 			
              output.adjustmentData = PHAdjustmentData(formatIdentifier: "com.avikantz.Meme-Maker.Photo-Meme", formatVersion: "4.69", data: archivedData)
-             let renderedJPEGData = UIImageJPEGRepresentation(newImage, 1.0)
-             renderedJPEGData!.writeToURL(output.renderedContentURL, atomically: true)
+             let renderedJPEGData = UIImageJPEGRepresentation(newImage!, 1.0)
+             try? renderedJPEGData!.write(to: output.renderedContentURL, options: [.atomic])
 			
             // Call completion handler to commit edit to Photos.
-            completionHandler?(output)
+            completionHandler(output)
             
             // Clean up temporary files, etc.
         }

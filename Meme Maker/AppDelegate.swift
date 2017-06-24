@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 import CoreData
 import SVProgressHUD
 import IQKeyboardManagerSwift
@@ -18,16 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
+			let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 			let splitVC: UISplitViewController = UISplitViewController.init()
 			let tabBarVC = self.window?.rootViewController as! UITabBarController
 			let memesVCNav = tabBarVC.viewControllers?.first as! UINavigationController
 			let memesVC = memesVCNav.viewControllers.first as! MemesViewController
-			let editorVC = storyboard.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			let editorVC = storyboard.instantiateViewController(withIdentifier: "EditorVC") as! EditorViewController
 			memesVC.memeSelectionDelegate = editorVC
 			memesVC.editorVC = editorVC
 			splitVC.viewControllers = [tabBarVC, editorVC]
@@ -45,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			manager.setInteger(3, key: kSettingsNumberOfElementsInGrid)
 			manager.setObject("rank", key: kSettingsLastSortKey)
 			print("Unarchiving to \(getImagesFolder())")
-			SSZipArchive.unzipFileAtPath(NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "zip"), toDestination: getImagesFolder())
+			SSZipArchive.unzipFile(atPath: Bundle.main.path(forResource: "defaultMemes", ofType: "zip"), toDestination: getImagesFolder())
 			saveDefaultMemes()
 		}
 		manager.setInteger(timesLaunched + 1, key: kSettingsTimesLaunched)
@@ -60,12 +59,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if (SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) < 3 || SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) > 7) {
 			SettingsManager.sharedManager().setInteger(3, key: kSettingsNumberOfElementsInGrid)
 		}
-		if ("rank memeID name".containsString(SettingsManager.sharedManager().getObject(kSettingsLastSortKey) as! String)) {
+		if ("rank memeID name".contains(SettingsManager.sharedManager().getObject(kSettingsLastSortKey) as! String)) {
 			SettingsManager.sharedManager().setObject("rank", key: kSettingsLastSortKey)
 		}
 		
-		SVProgressHUD.setDefaultMaskType(.Gradient)
-		SVProgressHUD.setDefaultStyle(.Custom)
+		SVProgressHUD.setDefaultMaskType(.gradient)
+		SVProgressHUD.setDefaultStyle(.custom)
 		
 		IQKeyboardManager.sharedManager().enable = true
 		IQKeyboardManager.sharedManager().overrideKeyboardAppearance = true
@@ -78,25 +77,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 
-	func applicationWillResignActive(application: UIApplication) {
+	func applicationWillResignActive(_ application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 	}
 
-	func applicationDidEnterBackground(application: UIApplication) {
+	func applicationDidEnterBackground(_ application: UIApplication) {
 		// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 		// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 	}
 
-	func applicationWillEnterForeground(application: UIApplication) {
+	func applicationWillEnterForeground(_ application: UIApplication) {
 		// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 	}
 
-	func applicationDidBecomeActive(application: UIApplication) {
+	func applicationDidBecomeActive(_ application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 	}
 
-	func applicationWillTerminate(application: UIApplication) {
+	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 		// Saves changes in the application's managed object context before the application terminates.
 		self.saveContext()
@@ -104,24 +103,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	// MARK: - Handle URL Opens
 	
-	func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-		if (url.absoluteString.containsString(".jpg")) {
-			let data = NSData(contentsOfURL: url)
-			data?.writeToFile(imagesPathForFileName("lastImage"), atomically: true)
+	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+		if (url.absoluteString.contains(".jpg")) {
+			let data = try? Data(contentsOf: url)
+			try? data?.write(to: URL(fileURLWithPath: imagesPathForFileName("lastImage")), options: [.atomic])
 //			let storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
 			var editorVC: EditorViewController?
-			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+			if (UI_USER_INTERFACE_IDIOM() == .pad) {
 				let svc = self.window?.rootViewController as! UISplitViewController
 				if (svc.viewControllers.count > 1) {
 					editorVC = svc.viewControllers[1] as? EditorViewController
-					editorVC?.editorMode = EditorMode.Viewer
+					editorVC?.editorMode = EditorMode.viewer
 				}
 			}
 			else {
 				let tabBarVC = self.window?.rootViewController as! UITabBarController
 				let navC = tabBarVC.viewControllers?.first as! UINavigationController
 				let memesVC = navC.viewControllers.first as! MemesViewController
-				memesVC.performSegueWithIdentifier("LastEditSegue", sender: memesVC)
+				memesVC.performSegue(withIdentifier: "LastEditSegue", sender: memesVC)
 			}
 			return true
 		}
@@ -131,10 +130,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	// MARK: - Utility
 	
 	func saveDefaultMemes() -> Void {
-		let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("defaultMemes", ofType: "dat")!)
+		let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "defaultMemes", ofType: "dat")!))
 		if (data != nil) {
 			do {
-				let jsonmemes = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+				let jsonmemes = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
 				let _ = XMeme.getAllMemesFromArray(jsonmemes as! NSArray, context: managedObjectContext)!
 				try managedObjectContext.save()
 			}
@@ -145,8 +144,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 	
-	class func updateActivityIcons(leSubtitle: String) -> Void {
-		if (UI_USER_INTERFACE_IDIOM() == .Phone) {
+	class func updateActivityIcons(_ leSubtitle: String) -> Void {
+		if (UI_USER_INTERFACE_IDIOM() == .phone) {
 			var shortcutItems : [UIApplicationShortcutItem] = []
 			let shortcut1 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.create", localizedTitle: "Create", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "new"), userInfo: nil)
 			shortcutItems.append(shortcut1)
@@ -156,21 +155,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			}
 			let shortcut3 = UIMutableApplicationShortcutItem(type: "com.avikantz.meme-maker.mymemes", localizedTitle: "My Memes", localizedSubtitle: nil, icon: UIApplicationShortcutIcon.init(templateImageName: "PhotoGallery"), userInfo: nil)
 			shortcutItems.append(shortcut3)
-			let application = UIApplication.sharedApplication()
+			let application = UIApplication.shared
 			application.shortcutItems = shortcutItems
 		}
 	}
 	
 	// MARK: - Shortcut icons
 	
-	func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-		if (shortcutItem.type.containsString("lastedit")) {
+	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+		if (shortcutItem.type.contains("lastedit")) {
 			let tabBarVC = self.window?.rootViewController as! UITabBarController
 			let navC = tabBarVC.viewControllers?.first as! UINavigationController
 			let memesVC = navC.viewControllers.first as! MemesViewController
-			memesVC.performSegueWithIdentifier("LastEditSegue", sender: memesVC)
+			memesVC.performSegue(withIdentifier: "LastEditSegue", sender: memesVC)
 		}
-		if (shortcutItem.type.containsString("mymemes")) {
+		if (shortcutItem.type.contains("mymemes")) {
 			let tabBarVC = self.window?.rootViewController as! UITabBarController
 			tabBarVC.selectedIndex = 2
 		}
@@ -178,30 +177,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	// MARK: - Core Data stack
 
-	lazy var applicationDocumentsDirectory: NSURL = {
+	lazy var applicationDocumentsDirectory: URL = {
 	    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.avikantz.Meme_Maker" in the application's documents Application Support directory.
-	    let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+	    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 	    return urls[urls.count-1]
 	}()
 
 	lazy var managedObjectModel: NSManagedObjectModel = {
 	    // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-	    let modelURL = NSBundle.mainBundle().URLForResource("Meme_Maker", withExtension: "momd")!
-	    return NSManagedObjectModel(contentsOfURL: modelURL)!
+	    let modelURL = Bundle.main.url(forResource: "Meme_Maker", withExtension: "momd")!
+	    return NSManagedObjectModel(contentsOf: modelURL)!
 	}()
 
 	lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 	    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
 	    // Create the coordinator and store
 	    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-	    let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("MemeMaker.sqlite")
+	    let url = self.applicationDocumentsDirectory.appendingPathComponent("MemeMaker.sqlite")
 	    var failureReason = "There was an error creating or loading the application's saved data."
 	    do {
-	        try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+	        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
 	    } catch {
 	        // Report any error we got.
 	        var dict = [String: AnyObject]()
-	        dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
+	        dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
 	        dict[NSLocalizedFailureReasonErrorKey] = failureReason
 
 	        dict[NSUnderlyingErrorKey] = error as NSError
@@ -218,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	lazy var managedObjectContext: NSManagedObjectContext = {
 	    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
 	    let coordinator = self.persistentStoreCoordinator
-	    var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+	    var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 	    managedObjectContext.persistentStoreCoordinator = coordinator
 	    return managedObjectContext
 	}()

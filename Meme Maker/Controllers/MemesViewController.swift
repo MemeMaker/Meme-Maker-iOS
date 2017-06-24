@@ -12,10 +12,34 @@ import CoreData
 import BWWalkthrough
 import DZNEmptyDataSet
 import ReachabilitySwift
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 protocol MemesViewControllerDelegate {
-	func didSelectMeme(meme: XMeme) -> Void
-	func didPickImage(image: UIImage) -> Void
+	func didSelectMeme(_ meme: XMeme) -> Void
+	func didPickImage(_ image: UIImage) -> Void
 }
 
 class MemesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BWWalkthroughViewControllerDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
@@ -65,10 +89,10 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			showTutorial()
 		}
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
 			self.navigationItem.rightBarButtonItems = [self.searchBarButton, self.photoGalleryButton]
 			if let image = UIImage(contentsOfFile: imagesPathForFileName("lastImage")) {
 				self.memeSelectionDelegate?.didPickImage(image)
@@ -81,7 +105,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
 		self.fetchLocalMemes()
 		
-		if (NSDate().timeIntervalSinceDate(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
+		if (Date().timeIntervalSince(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
 //			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 			print("Fetching latest memes, just for you!")
 			do {
@@ -90,19 +114,19 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 				self.fetchMemes(1)
 			}
 			catch _ {
-				SVProgressHUD.showErrorWithStatus("No connection!")
+				SVProgressHUD.showError(withStatus: "No connection!")
 			}
 		}
 		
     }
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if (shouldRefershOnAppear) {
 			fetchLocalMemes()
 		}
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		shouldRefershOnAppear = true
 	}
 	
@@ -115,7 +139,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			request.sortDescriptors = [NSSortDescriptor.init(key: "rank", ascending: true)]
 		}
 		do {
-			let fetchedArray = try self.context?.executeFetchRequest(request)
+			let fetchedArray = try self.context?.fetch(request)
 			memes = NSMutableArray(array: fetchedArray!)
 			allMemes = NSMutableArray(array: fetchedArray!)
 		}
@@ -130,44 +154,44 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.filterMemesWithSearchText(self.searchBar.text!)
 	}
 	
-	func fetchMemes(paging: Int) -> Void {
-		let request = NSMutableURLRequest(URL: apiMemesPaging(paging))
-		request.HTTPMethod = "GET"
-		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+	func fetchMemes(_ paging: Int) -> Void {
+		let request = NSMutableURLRequest(url: apiMemesPaging(paging))
+		request.httpMethod = "GET"
+		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			if (error != nil) {
 				print("Error: ", error?.localizedDescription)
-				dispatch_async(dispatch_get_main_queue(), {
-					SVProgressHUD.showErrorWithStatus("No connection!")
+				DispatchQueue.main.async(execute: {
+					SVProgressHUD.showError(withStatus: "No connection!")
 				})
 				return
 			}
 			if (data != nil) {
 				do {
 					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
-					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-					let code = json.valueForKey("code") as! Int
+					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+					let code = json.value(forKey: "code") as! Int
 					if (code == 200) {
-						let jsonmemes = json.valueForKey("data") as! NSArray
+						let jsonmemes = json.value(forKey: "data") as! NSArray
 						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
 						for meme in memesArray {
-							self.fetchedMemes.addObject(meme)
+							self.fetchedMemes.add(meme)
 						}
 						try asyncContext.save()
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							self.fetchMemes(paging + 1)
 						})
 					}
 					else {
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							if (self.fetchedMemes.count >= self.memes.count) {
 								print("Finished updating all memes!")
 								self.memes = NSMutableArray(array: self.fetchedMemes)
 								SettingsManager.sharedManager().saveLastUpdateDate()
 	//							SVProgressHUD.dismiss()
-								dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+								DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double((Int64)(1 * NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: {
 									self.shouldRefershOnAppear = true
 									self.viewWillAppear(true)
 								})
@@ -178,33 +202,33 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 				}
 				catch _ {
 					print("Unable to parse")
-					SVProgressHUD.showErrorWithStatus("Failed to fetch")
+					SVProgressHUD.showError(withStatus: "Failed to fetch")
 					return
 				}
 			}
-		}.resume()
+		}) .resume()
 	}
 	
 	// MARK: - Bar Button Actions
 
-	@IBAction func lastEditAction(sender: AnyObject) {
-		if (NSFileManager.defaultManager().fileExistsAtPath(imagesPathForFileName("lastImage"))) {
-			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-			editorVC.editorMode = .UserImage
+	@IBAction func lastEditAction(_ sender: AnyObject) {
+		if (FileManager.default.fileExists(atPath: imagesPathForFileName("lastImage"))) {
+			let editorVC = self.storyboard?.instantiateViewController(withIdentifier: "EditorVC") as! EditorViewController
+			editorVC.editorMode = .userImage
 			editorVC.title = "Last Edit"
-			self.presentViewController(editorVC, animated: true, completion: nil)
+			self.present(editorVC, animated: true, completion: nil)
 		}
 		else {
 			let alertC = modalAlertControllerFor("No last edit", message: "Go on, pick a meme from the list below, or choose your own.")
-			self.presentViewController(alertC, animated: true, completion: nil)
+			self.present(alertC, animated: true, completion: nil)
 		}
 	}
 	
-	@IBAction func searchAction(sender: AnyObject) {
+	@IBAction func searchAction(_ sender: AnyObject) {
 		let searchBarButton = sender as! UIBarButtonItem
 		if (searchPlaceholderTopConstraint.constant == -44) {
 			searchBarButton.image = UIImage(named: "crossButton")
-			UIView.animateWithDuration(0.15, animations: {
+			UIView.animate(withDuration: 0.15, animations: {
 				self.searchPlaceholderTopConstraint.constant = 0
 				self.collectionViewToSearchViewConstraint.constant = -64
 				}, completion: { (done) in
@@ -217,7 +241,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		}
 	}
 	
-	@IBAction func toggleListGridAction(sender: AnyObject) {
+	@IBAction func toggleListGridAction(_ sender: AnyObject) {
 		self.isListView = !self.isListView
 		updateCollectionViewCells()
 	}
@@ -233,58 +257,58 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.collectionView.reloadData()
 	}
 	
-	@IBAction func sortAction(sender: AnyObject) {
-		let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .ActionSheet)
-		let nameSort = UIAlertAction(title: "Alphabetical", style: .Default) { (action) in
-			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "name", ascending: true)])
+	@IBAction func sortAction(_ sender: AnyObject) {
+		let alertController = UIAlertController(title: "Sort", message: nil, preferredStyle: .actionSheet)
+		let nameSort = UIAlertAction(title: "Alphabetical", style: .default) { (action) in
+			self.memes.sort(using: [NSSortDescriptor.init(key: "name", ascending: true)])
 			SettingsManager.sharedManager().setObject("name", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
-		let popSort = UIAlertAction(title: "Popularity", style: .Default) { (action) in
-			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "rank", ascending: true)])
+		let popSort = UIAlertAction(title: "Popularity", style: .default) { (action) in
+			self.memes.sort(using: [NSSortDescriptor.init(key: "rank", ascending: true)])
 			SettingsManager.sharedManager().setObject("rank", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
-		let defSort = UIAlertAction(title: "Default", style: .Default) { (action) in
-			self.memes.sortUsingDescriptors([NSSortDescriptor.init(key: "memeID", ascending: true)])
+		let defSort = UIAlertAction(title: "Default", style: .default) { (action) in
+			self.memes.sort(using: [NSSortDescriptor.init(key: "memeID", ascending: true)])
 			SettingsManager.sharedManager().setObject("memeID", key: kSettingsLastSortKey)
 			self.collectionView.reloadData()
 		}
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 		alertController.addAction(nameSort)
 		alertController.addAction(popSort)
 		alertController.addAction(defSort)
 		alertController.addAction(cancelAction)
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			alertController.modalPresentationStyle = .Popover
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
+			alertController.modalPresentationStyle = .popover
 			alertController.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
 		}
-		self.presentViewController(alertController, animated: true, completion: nil)
+		self.present(alertController, animated: true, completion: nil)
 	}
 
 	// MARK: - Collection view data source
 	
-	func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return 1;
 	}
 	
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return self.memes.count;
 	}
 	
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		let cell: MemesCollectionViewCell!
 			
 		if (isListView) {
-			cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("listCell", forIndexPath: indexPath) as! MemesCollectionViewCell
+			cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as! MemesCollectionViewCell
 		}
 		else {
-			cell = self.collectionView.dequeueReusableCellWithReuseIdentifier("gridCell", forIndexPath: indexPath) as! MemesCollectionViewCell
-			cell.labelContainerView?.hidden = (memesPerRow > 4)
+			cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "gridCell", for: indexPath) as! MemesCollectionViewCell
+			cell.labelContainerView?.isHidden = (memesPerRow > 4)
 		}
 		
-		let meme = self.memes.objectAtIndex(indexPath.row) as! XMeme
+		let meme = self.memes.object(at: indexPath.row) as! XMeme
 		
 		cell.meme = meme
 		cell.isListCell = self.isListView
@@ -294,14 +318,14 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	// MARK: - Collection view delegate
 	
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
-		let meme = memes.objectAtIndex(indexPath.row) as! XMeme
+		let meme = memes.object(at: indexPath.row) as! XMeme
 		
 		if let image = UIImage(contentsOfFile: imagesPathForFileName("\(meme.memeID)")) {
 			let data = UIImageJPEGRepresentation(image, 0.8)
 			do {
-				try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+				try data?.write(to: URL(fileURLWithPath: imagesPathForFileName("lastImage")), options: .atomicWrite)
 			}
 			catch _ {}
 		}
@@ -309,37 +333,37 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 			return
 		}
 		
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
 			self.memeSelectionDelegate?.didSelectMeme(meme)
 		}
 		else {
 			// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
 			XTextAttributes.clearTopAndBottomTexts()
-			let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
+			let editorVC = self.storyboard?.instantiateViewController(withIdentifier: "EditorVC") as! EditorViewController
 			editorVC.meme = meme
-			editorVC.editorMode = .Meme
-			self.presentViewController(editorVC, animated: true, completion: nil)
+			editorVC.editorMode = .meme
+			self.present(editorVC, animated: true, completion: nil)
 		}
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		if (isListView) {
-			return CGSizeMake(self.view.bounds.width, 60)
+			return CGSize(width: self.view.bounds.width, height: 60)
 		}
-		return CGSizeMake(self.collectionView.bounds.width/CGFloat(memesPerRow), self.collectionView.bounds.width/CGFloat(memesPerRow))
+		return CGSize(width: self.collectionView.bounds.width/CGFloat(memesPerRow), height: self.collectionView.bounds.width/CGFloat(memesPerRow))
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
 		return 0
 	}
 	
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 		return 0
 	}
 	
 	// MARK: - DZN Empty Data Set
 	
-	func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
 		let attrs = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSForegroundColorAttributeName: globalTintColor]
 		let title = NSMutableAttributedString(string: "No memes found!", attributes: attrs)
 		if (self.searchBar.text?.characters.count > 0) {
@@ -348,7 +372,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		return title
 	}
 	
-	func descriptionForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
+	func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
 		let desc = NSAttributedString(string: "This shouldn't happen!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 18)!, NSForegroundColorAttributeName: globalTintColor])
 		if (self.searchBar.text?.characters.count > 0) {
 			return nil
@@ -356,7 +380,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		return desc
 	}
 	
-	func buttonTitleForEmptyDataSet(scrollView: UIScrollView!, forState state: UIControlState) -> NSAttributedString! {
+	func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
 		let title = NSAttributedString(string: "Reload!", attributes: [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 22)!, NSForegroundColorAttributeName: globalTintColor])
 		if (self.searchBar.text?.characters.count > 0) {
 			return nil
@@ -364,50 +388,50 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		return title
 	}
 	
-	func backgroundColorForEmptyDataSet(scrollView: UIScrollView!) -> UIColor! {
+	func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
 		return globalBackColor
 	}
 	
-	func emptyDataSetShouldDisplay(scrollView: UIScrollView!) -> Bool {
+	func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
 		return memes.count == 0
 	}
 	
-	func emptyDataSetDidTapButton(scrollView: UIScrollView!) {
-		SVProgressHUD.showWithStatus("Fetching Memes!")
+	func emptyDataSetDidTapButton(_ scrollView: UIScrollView!) {
+		SVProgressHUD.show(withStatus: "Fetching Memes!")
 		fetchedMemes = NSMutableArray()
 		fetchMemes(1)
 	}
 	
 	// MARK: - Scroll view delegate
 	
-	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		self.searchBar.resignFirstResponder()
 	}
 	
 	// MARK: - Search bar delegate
 	
-	func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-		lastEditBarButton?.enabled = false
-		photoGalleryButton?.enabled = false
+	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+		lastEditBarButton?.isEnabled = false
+		photoGalleryButton?.isEnabled = false
 	}
 	
-	func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-		lastEditBarButton?.enabled = true
-		photoGalleryButton?.enabled = true
+	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+		lastEditBarButton?.isEnabled = true
+		photoGalleryButton?.isEnabled = true
 	}
 	
-	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		self.filterMemesWithSearchText(searchText)
 	}
 	
-	func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 	}
 	
-	func filterMemesWithSearchText(text: String) -> Void {
+	func filterMemesWithSearchText(_ text: String) -> Void {
 		if (text.characters.count > 0) {
 			let predicate = NSPredicate(format: "name contains[cd] %@ OR tags contains[cd] %@", text, text)
-			memes = NSMutableArray(array: (allMemes.filteredArrayUsingPredicate(predicate)))
+			memes = NSMutableArray(array: (allMemes.filtered(using: predicate)))
 		}
 		else {
 			memes = allMemes
@@ -415,15 +439,15 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		self.collectionView.reloadData()
 	}
 	
-	func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 		self.searchBar.text = ""
 		searchBarButton.image = UIImage(named: "MagnifyingGlass")
 		self.filterMemesWithSearchText("")
 		self.searchBar.resignFirstResponder()
-		UIView.animateWithDuration(0.15) {
+		UIView.animate(withDuration: 0.15, animations: {
 			self.searchPlaceholderTopConstraint.constant = -44
 			self.collectionViewToSearchViewConstraint.constant = -64
-		}
+		}) 
 	}
 	
 //	// NO: - Search controller delagate
@@ -438,55 +462,55 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	// MARK: - Camera or Gallery pickup
 	
-	@IBAction func photoGalleryAction(sender: AnyObject) {
+	@IBAction func photoGalleryAction(_ sender: AnyObject) {
 		
-		let alertController = UIAlertController(title: "Select source", message: "", preferredStyle: .ActionSheet)
+		let alertController = UIAlertController(title: "Select source", message: "", preferredStyle: .actionSheet)
 		
-		let photoGalleryAction = UIAlertAction(title: "Photo Gallery", style: .Default) { (alertAction) in
+		let photoGalleryAction = UIAlertAction(title: "Photo Gallery", style: .default) { (alertAction) in
 			let picker = UIImagePickerController()
 			picker.delegate = self
 			picker.allowsEditing = false
 			picker.navigationItem.title = "Select Image"
-			picker.sourceType = .PhotoLibrary
-			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-				picker.modalPresentationStyle = .Popover
+			picker.sourceType = .photoLibrary
+			if (UI_USER_INTERFACE_IDIOM() == .pad) {
+				picker.modalPresentationStyle = .popover
 				picker.popoverPresentationController?.barButtonItem = self.photoGalleryButton
 			}
-			self.presentViewController(picker, animated: true, completion: nil)
+			self.present(picker, animated: true, completion: nil)
 		}
-		let cameraAction = UIAlertAction(title: "Camera", style: .Default) { (alertAction) in
-			if (UIImagePickerController.isSourceTypeAvailable(.Camera)) {
+		let cameraAction = UIAlertAction(title: "Camera", style: .default) { (alertAction) in
+			if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
 				let picker = UIImagePickerController()
 				picker.delegate = self
 				picker.allowsEditing = false
-				picker.sourceType = .Camera
-				picker.cameraCaptureMode = .Photo
-				self.presentViewController(picker, animated: true, completion: nil)
+				picker.sourceType = .camera
+				picker.cameraCaptureMode = .photo
+				self.present(picker, animated: true, completion: nil)
 			}
 			else {
 				let alertC = modalAlertControllerFor("Error", message: "Camera not found")
-				self.presentViewController(alertC, animated: true, completion: nil)
+				self.present(alertC, animated: true, completion: nil)
 			}
 		}
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 		
 		alertController.addAction(photoGalleryAction)
 		alertController.addAction(cameraAction)
 		alertController.addAction(cancelAction)
 
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			alertController.modalPresentationStyle = .Popover
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
+			alertController.modalPresentationStyle = .popover
 			alertController.popoverPresentationController?.barButtonItem = self.photoGalleryButton
 		}
-		self.presentViewController(alertController, animated: true, completion: nil)
+		self.present(alertController, animated: true, completion: nil)
 		
 	}
 	
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		self.dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		self.dismiss(animated: true, completion: nil)
 	}
 	
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		
 		let image = info[UIImagePickerControllerOriginalImage] as! UIImage
 		
@@ -498,20 +522,20 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		
 		let data = UIImageJPEGRepresentation(newImage, 0.8)
 		do {
-			try data?.writeToFile(imagesPathForFileName("lastImage"), options: .AtomicWrite)
+			try data?.write(to: URL(fileURLWithPath: imagesPathForFileName("lastImage")), options: .atomicWrite)
 		}
 		catch _ {}
 		
-		self.dismissViewControllerAnimated(true) { 
-			if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		self.dismiss(animated: true) { 
+			if (UI_USER_INTERFACE_IDIOM() == .pad) {
 				self.memeSelectionDelegate?.didPickImage(newImage)
 			}
 			else {
 				// We don't want text to retain while selecting new meme on iPhone, let it be there on iPad
 				XTextAttributes.clearTopAndBottomTexts()
-				let editorVC = self.storyboard?.instantiateViewControllerWithIdentifier("EditorVC") as! EditorViewController
-				editorVC.editorMode = .UserImage
-				self.presentViewController(editorVC, animated: true, completion: nil)
+				let editorVC = self.storyboard?.instantiateViewController(withIdentifier: "EditorVC") as! EditorViewController
+				editorVC.editorMode = .userImage
+				self.present(editorVC, animated: true, completion: nil)
 			}
 		}
 		
@@ -522,16 +546,16 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	func showTutorial() -> Void {
 		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
 		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
-		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
-		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
-		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
-		let page4 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage4")
+		let page1 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage1")
+		let page2 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage2")
+		let page3 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage3")
+		let page4 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage4")
 		walkthrough.delegate = self
 		walkthrough.addViewController(page1)
 		walkthrough.addViewController(page2)
 		walkthrough.addViewController(page3)
 		walkthrough.addViewController(page4)
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
 			self.splitViewController?.presentViewController(walkthrough, animated: true, completion: nil)
 		}
 		else {
@@ -540,12 +564,12 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func walkthroughCloseButtonPressed() {
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 	
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if (segue.identifier == "LastEditSegue") {
 			self.lastEditAction(self)
 		}

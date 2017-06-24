@@ -10,50 +10,74 @@
 #define _SSZIPARCHIVE_H
 
 #import <Foundation/Foundation.h>
-#include "Common.h"
+#include "SSZipCommon.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+extern NSString *const SSZipArchiveErrorDomain;
+typedef NS_ENUM(NSInteger, SSZipArchiveErrorCode) {
+    SSZipArchiveErrorCodeFailedOpenZipFile      = -1,
+    SSZipArchiveErrorCodeFailedOpenFirstFile    = -2,
+    SSZipArchiveErrorCodeFileInfoNotLoadable    = -3,
+    SSZipArchiveErrorCodeFileContentNotReadable = -4,
+};
 
 @protocol SSZipArchiveDelegate;
 
 @interface SSZipArchive : NSObject
 
+// Password check
++ (BOOL)isFilePasswordProtectedAtPath:(NSString *)path;
++ (BOOL)isPasswordValidForArchiveAtPath:(NSString *)path password:(NSString *)pw error:(NSError * __nullable * __nullable)error NS_SWIFT_NOTHROW;
+
 // Unzip
 + (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(nullable id<SSZipArchiveDelegate>)delegate;
 
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError * *)error;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError * *)error delegate:(id<SSZipArchiveDelegate>)delegate;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(nullable NSString *)password error:(NSError * *)error;
++ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(nullable NSString *)password error:(NSError * *)error delegate:(nullable id<SSZipArchiveDelegate>)delegate NS_REFINED_FOR_SWIFT;
+
++ (BOOL)unzipFileAtPath:(NSString *)path
+          toDestination:(NSString *)destination
+     preserveAttributes:(BOOL)preserveAttributes
+              overwrite:(BOOL)overwrite
+               password:(nullable NSString *)password
+                  error:(NSError * *)error
+               delegate:(nullable id<SSZipArchiveDelegate>)delegate;
 
 + (BOOL)unzipFileAtPath:(NSString *)path
     toDestination:(NSString *)destination
     progressHandler:(void (^)(NSString *entry, unz_file_info zipInfo, long entryNumber, long total))progressHandler
-    completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError *error))completionHandler;
+    completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError * __nullable error))completionHandler;
 
 + (BOOL)unzipFileAtPath:(NSString *)path
     toDestination:(NSString *)destination
     overwrite:(BOOL)overwrite
-    password:(NSString *)password
+    password:(nullable NSString *)password
     progressHandler:(void (^)(NSString *entry, unz_file_info zipInfo, long entryNumber, long total))progressHandler
-    completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError *error))completionHandler;
+    completionHandler:(void (^)(NSString *path, BOOL succeeded, NSError * __nullable error))completionHandler;
 
 // Zip
 
 // without password
 + (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths;
 + (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath;
-+ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirector;
+
++ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory;
 
 // with password, password could be nil
-+ (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths withPassword:(NSString *)password;
-+ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath withPassword:(NSString *)password;
-+ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory withPassword:(NSString *)password;
++ (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)paths withPassword:(nullable NSString *)password;
++ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath withPassword:(nullable NSString *)password;
++ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory withPassword:(nullable NSString *)password;
++ (BOOL)createZipFileAtPath:(NSString *)path withContentsOfDirectory:(NSString *)directoryPath keepParentDirectory:(BOOL)keepParentDirectory withPassword:(nullable NSString *)password andProgressHandler:(void(^ _Nullable)(NSUInteger entryNumber, NSUInteger total))progressHandler;
 
 - (instancetype)initWithPath:(NSString *)path;
-@property (NS_NONATOMIC_IOSONLY, readonly, getter = isOpen) BOOL open;
-- (BOOL)writeFile:(NSString *)path withPassword:(NSString *)password;
-- (BOOL)writeFolderAtPath:(NSString *)path withFolderName:(NSString *)folderName withPassword:(NSString *)password;
-- (BOOL)writeFileAtPath:(NSString *)path withFileName:(NSString *)fileName withPassword:(NSString *)password;
-- (BOOL)writeData:(NSData *)data filename:(NSString *)filename withPassword:(NSString *)password;
-@property (NS_NONATOMIC_IOSONLY, readonly, getter = isClosed) BOOL close;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL open;
+- (BOOL)writeFile:(NSString *)path withPassword:(nullable NSString *)password;
+- (BOOL)writeFolderAtPath:(NSString *)path withFolderName:(NSString *)folderName withPassword:(nullable NSString *)password;
+- (BOOL)writeFileAtPath:(NSString *)path withFileName:(nullable NSString *)fileName withPassword:(nullable NSString *)password;
+- (BOOL)writeData:(NSData *)data filename:(nullable NSString *)filename withPassword:(nullable NSString *)password;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL close;
 
 @end
 
@@ -73,5 +97,7 @@
 - (void)zipArchiveDidUnzipArchiveFile:(NSString *)zipFile entryPath:(NSString *)entryPath destPath:(NSString *)destPath;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* _SSZIPARCHIVE_H */

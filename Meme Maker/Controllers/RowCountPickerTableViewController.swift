@@ -22,16 +22,16 @@ class RowCountPickerTableViewController: UITableViewController {
 	
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cellID", forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
 
 		let index = indexPath.row + 3
 		
@@ -40,22 +40,22 @@ class RowCountPickerTableViewController: UITableViewController {
 		cell.textLabel?.textColor = globalTintColor
 		
 		if (SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid) == index) {
-			cell.accessoryType = .Checkmark
+			cell.accessoryType = .checkmark
 		}
 		else {
-			cell.accessoryType = .None
+			cell.accessoryType = .none
 		}
 
         return cell
     }
 	
-	override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		return "The larger the value, the more memes you can see at once, but they become hard to click as well. Recommended value is 3 or 4."
 	}
 
 	// MARK: - Table view data source
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let index = indexPath.row + 3
 		SettingsManager.sharedManager().setInteger(index, key: kSettingsNumberOfElementsInGrid)
 		tableView.reloadData()

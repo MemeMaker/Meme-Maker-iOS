@@ -10,9 +10,9 @@ import UIKit
 import SDWebImage
 
 private enum CellMode {
-	case Meme
-	case Created
-	case UserCreation
+	case meme
+	case created
+	case userCreation
 }
 
 class MemesCollectionViewCell: UICollectionViewCell {
@@ -37,33 +37,33 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var memeNameLabel: UILabel!
 	@IBOutlet weak var labelContainerView: UIView!
 	
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		
 		if (isListCell) {
 			
 			if isDarkMode() {
-				UIColor.darkGrayColor().setStroke()
+				UIColor.darkGray.setStroke()
 			}
 			else {
-				UIColor.lightGrayColor().setStroke()
+				UIColor.lightGray.setStroke()
 			}
 			
 			// Disclosure
 			let disclosurePath = UIBezierPath()
 			disclosurePath.lineWidth = 1.0;
-			disclosurePath.lineCapStyle = .Round
-			disclosurePath.lineJoinStyle = .Round
-			disclosurePath.moveToPoint(CGPointMake(self.frame.width - 20, self.frame.height/2 - 6))
-			disclosurePath.addLineToPoint(CGPointMake(self.frame.width - 15, self.frame.height/2))
-			disclosurePath.addLineToPoint(CGPointMake(self.frame.width - 20, self.frame.height/2 + 6))
+			disclosurePath.lineCapStyle = .round
+			disclosurePath.lineJoinStyle = .round
+			disclosurePath.move(to: CGPoint(x: self.frame.width - 20, y: self.frame.height/2 - 6))
+			disclosurePath.addLine(to: CGPoint(x: self.frame.width - 15, y: self.frame.height/2))
+			disclosurePath.addLine(to: CGPoint(x: self.frame.width - 20, y: self.frame.height/2 + 6))
 			disclosurePath.stroke()
 
 			// Separator
 			let beizerPath = UIBezierPath()
 			beizerPath.lineWidth = 0.5
-			beizerPath.lineCapStyle = .Round
-			beizerPath.moveToPoint(CGPointMake(self.bounds.height + 8, self.bounds.height - 0.5))
-			beizerPath.addLineToPoint(CGPointMake(self.bounds.width, self.bounds.height - 0.5))
+			beizerPath.lineCapStyle = .round
+			beizerPath.move(to: CGPoint(x: self.bounds.height + 8, y: self.bounds.height - 0.5))
+			beizerPath.addLine(to: CGPoint(x: self.bounds.width, y: self.bounds.height - 0.5))
 			beizerPath.stroke()
 		}
 		
@@ -72,28 +72,28 @@ class MemesCollectionViewCell: UICollectionViewCell {
 	func updateImageView() -> Void {
 		
 		let filePath = imagesPathForFileName("\(self.meme!.memeID)")
-		if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+		if (FileManager.default.fileExists(atPath: filePath)) {
 			if (self.isListCell) {
 				let filePathC = imagesPathForFileName("\(self.meme!.memeID)c")
-				if (NSFileManager.defaultManager().fileExistsAtPath(filePathC)) {
+				if (FileManager.default.fileExists(atPath: filePathC)) {
 					self.memeImageView.image = UIImage(contentsOfFile: filePathC)
 				}
 				else {
 					let image = getCircularImage(UIImage(contentsOfFile: filePath)!)
 					let data = UIImagePNGRepresentation(image)
-					data?.writeToFile(filePathC, atomically: true)
+					try? data?.write(to: URL(fileURLWithPath: filePathC), options: [.atomic])
 					self.memeImageView.image = image
 				}
 			}
 			else {
 				let filePathS = imagesPathForFileName("\(self.meme!.memeID)s")
-				if (NSFileManager.defaultManager().fileExistsAtPath(filePathS)) {
+				if (FileManager.default.fileExists(atPath: filePathS)) {
 					self.memeImageView.image = UIImage(contentsOfFile: filePathS)
 				}
 				else {
 					let image = getSquareImage(UIImage(contentsOfFile: filePath)!)
 					let data = UIImagePNGRepresentation(image)
-					data?.writeToFile(filePathS, atomically: true)
+					try? data?.write(to: URL(fileURLWithPath: filePathS), options: [.atomic])
 					self.memeImageView.image = image
 				}
 			}
@@ -101,7 +101,7 @@ class MemesCollectionViewCell: UICollectionViewCell {
 		else {
 			self.memeImageView.image = UIImage(named: "MemeBlank")
 			if let URLString = meme?.image {
-				if let URL = NSURL(string: URLString) {
+				if let URL = URL(string: URLString) {
 //					print("Downloading image \'\(meme!.memeID)\'")
 					self.downloadImageWithURL(URL, filePath: filePath)
 				}
@@ -110,11 +110,11 @@ class MemesCollectionViewCell: UICollectionViewCell {
 		
 	}
 	
-	func downloadImageWithURL(URL: NSURL, filePath: String) -> Void {
-		SDWebImageDownloader.sharedDownloader().downloadImageWithURL(URL, options: .ProgressiveDownload, progress: nil, completed: { (image, data, error, success) in
+	func downloadImageWithURL(_ URL: Foundation.URL, filePath: String) -> Void {
+		SDWebImageDownloader.shared().downloadImage(with: URL, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
 			if (success && error == nil) {
-				data.writeToFile(filePath, atomically: true)
-				dispatch_async(dispatch_get_main_queue(), {
+				data?.write(toFile: filePath, atomically: true)
+				DispatchQueue.main.async(execute: {
 					self.updateImageView()
 				})
 			}

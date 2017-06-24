@@ -11,81 +11,81 @@ import UIKit
 
 let API_BASE_URL: String = "http://alpha-meme-maker.herokuapp.com"
 
-func apiMemesPaging(page: Int) -> NSURL {
-	return NSURL(string: "\(API_BASE_URL)/\(page)/")!
+func apiMemesPaging(_ page: Int) -> URL {
+	return URL(string: "\(API_BASE_URL)/\(page)/")!
 }
 
-func apiParticularMeme(memeID: Int) -> NSURL {
-	return NSURL(string: "\(API_BASE_URL)/memes/\(memeID)/")!
+func apiParticularMeme(_ memeID: Int) -> URL {
+	return URL(string: "\(API_BASE_URL)/memes/\(memeID)/")!
 }
 
-func apiSubmissionsPaging(page: Int) -> NSURL {
-	return NSURL(string: "\(API_BASE_URL)/submissions/\(page)/")!
+func apiSubmissionsPaging(_ page: Int) -> URL {
+	return URL(string: "\(API_BASE_URL)/submissions/\(page)/")!
 }
 
-func apiSubmissionsForMeme(memeID: Int) -> NSURL {
-	return NSURL(string: "\(API_BASE_URL)/memes/\(memeID)/submissions/")!
+func apiSubmissionsForMeme(_ memeID: Int) -> URL {
+	return URL(string: "\(API_BASE_URL)/memes/\(memeID)/submissions/")!
 }
 
 func getDocumentsDirectory() -> String {
-	let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+	let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
 	let documentsDirectory = paths[0]
 	return documentsDirectory
 }
 
-func imagesPathForFileName(name: String) -> String {
-	let directoryPath = getDocumentsDirectory().stringByAppendingString("/images/")
-	let manager = NSFileManager.defaultManager()
-	if (!manager.fileExistsAtPath(directoryPath)) {
+func imagesPathForFileName(_ name: String) -> String {
+	let directoryPath = getDocumentsDirectory() + "/images/"
+	let manager = FileManager.default
+	if (!manager.fileExists(atPath: directoryPath)) {
 		do {
-			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+			try manager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
 		} catch _ { }
 	}
-	return directoryPath.stringByAppendingString("\(name).jpg")
+	return directoryPath + "\(name).jpg"
 }
 
 func getImagesFolder() -> String {
-	let directoryPath = getDocumentsDirectory().stringByAppendingString("/images/")
-	let manager = NSFileManager.defaultManager()
-	if (!manager.fileExistsAtPath(directoryPath)) {
+	let directoryPath = getDocumentsDirectory() + "/images/"
+	let manager = FileManager.default
+	if (!manager.fileExists(atPath: directoryPath)) {
 		do {
-			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+			try manager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
 		} catch _ { }
 	}
 	return directoryPath
 }
 
-func userImagesPathForFileName(name: String) -> String {
-	let directoryPath = getDocumentsDirectory().stringByAppendingString("/userImages/")
-	let manager = NSFileManager.defaultManager()
-	if (!manager.fileExistsAtPath(directoryPath)) {
+func userImagesPathForFileName(_ name: String) -> String {
+	let directoryPath = getDocumentsDirectory() + "/userImages/"
+	let manager = FileManager.default
+	if (!manager.fileExists(atPath: directoryPath)) {
 		do {
-			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+			try manager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
 		} catch _ { }
 	}
-	return directoryPath.stringByAppendingString("\(name).jpg")
+	return directoryPath + "\(name).jpg"
 }
 
-func documentsPathForFileName(name: String) -> String {
-	let directoryPath = getDocumentsDirectory().stringByAppendingString("/resources/")
-	let manager = NSFileManager.defaultManager()
-	if (!manager.fileExistsAtPath(directoryPath)) {
+func documentsPathForFileName(_ name: String) -> String {
+	let directoryPath = getDocumentsDirectory() + "/resources/"
+	let manager = FileManager.default
+	if (!manager.fileExists(atPath: directoryPath)) {
 		do {
-			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+			try manager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
 		} catch _ { }
 	}
-	return directoryPath.stringByAppendingString("\(name).dat")
+	return directoryPath + "\(name).dat"
 }
 
-func getCircularImage(image: UIImage) -> UIImage {
+func getCircularImage(_ image: UIImage) -> UIImage {
 	let minwh = min(image.size.width, image.size.height)
-	let centerRect = CGRectMake((image.size.width - minwh)/2, (image.size.height - minwh)/2, minwh, minwh)
-	let imageRect = CGRectMake(0, 0, image.size.width, image.size.height)
+	let centerRect = CGRect(x: (image.size.width - minwh)/2, y: (image.size.height - minwh)/2, width: minwh, height: minwh)
+	let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 	UIGraphicsBeginImageContext(imageRect.size)
-	let maskPath = UIBezierPath(ovalInRect: centerRect)
+	let maskPath = UIBezierPath(ovalIn: centerRect)
 	maskPath.addClip()
-	image.drawInRect(imageRect)
-	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+	image.draw(in: imageRect)
+	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
 	UIGraphicsEndImageContext()
 	let ratio1 = 180/image.size.height
 	let ratio2 = 180/image.size.width
@@ -94,15 +94,15 @@ func getCircularImage(image: UIImage) -> UIImage {
 	return resizedImage
 }
 
-func getSquareImage(image: UIImage) -> UIImage {
+func getSquareImage(_ image: UIImage) -> UIImage {
 	let minwh = min(image.size.width, image.size.height)
-	let centerRect = CGRectMake((image.size.width - minwh)/2, (image.size.height - minwh)/2, minwh, minwh)
-	let imageRect = CGRectMake(0, 0, image.size.width, image.size.height)
+	let centerRect = CGRect(x: (image.size.width - minwh)/2, y: (image.size.height - minwh)/2, width: minwh, height: minwh)
+	let imageRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 	UIGraphicsBeginImageContext(imageRect.size)
 	let maskPath = UIBezierPath(rect: centerRect)
 	maskPath.addClip()
-	image.drawInRect(imageRect)
-	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+	image.draw(in: imageRect)
+	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
 	UIGraphicsEndImageContext()
 	let ratio1 = 240/image.size.height
 	let ratio2 = 240/image.size.width
@@ -111,16 +111,16 @@ func getSquareImage(image: UIImage) -> UIImage {
 	return resizedImage
 }
 
-func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
-	let imageRect = CGRectMake(0, 0, image.size.width * ratio, image.size.height * ratio)
-	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * ratio, image.size.height * ratio))
-	image.drawInRect(imageRect)
+func getImageByResizingImage(_ image: UIImage, ratio: CGFloat) -> UIImage {
+	let imageRect = CGRect(x: 0, y: 0, width: image.size.width * ratio, height: image.size.height * ratio)
+	UIGraphicsBeginImageContext(CGSize(width: image.size.width * ratio, height: image.size.height * ratio))
+	image.draw(in: imageRect)
 	let newImage = UIGraphicsGetImageFromCurrentImageContext()
 	UIGraphicsEndImageContext()
-	return newImage
+	return newImage!
 }
 
-func getImageByDrawingOnImage(image: UIImage, topText: String, bottomText: String) -> UIImage {
+func getImageByDrawingOnImage(_ image: UIImage, topText: String, bottomText: String) -> UIImage {
 	
 	let ratio1 = 600/image.size.height
 	let ratio2 = 600/image.size.width
@@ -132,54 +132,54 @@ func getImageByDrawingOnImage(image: UIImage, topText: String, bottomText: Strin
 	topTextAttr.fontSize = 44
 	topTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 44)!
 	topTextAttr.strokeWidth = 0.5
-	topTextAttr.text = topText
+	topTextAttr.text = topText as NSString
 	let bottomTextAttr = XTextAttributes(savename: "boto")
-	bottomTextAttr.text = bottomText
+	bottomTextAttr.text = bottomText as NSString
 	bottomTextAttr.fontSize = 44
 	bottomTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 44)!
 	bottomTextAttr.strokeWidth = 0.5
 	
-	let maxHeight = imageSize.height/2	// Max height of top and bottom texts
-	let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
+	let maxHeight = imageSize?.height/2	// Max height of top and bottom texts
+	let stringDrawingOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 	
-	var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-	topTextAttr.rect = CGRectMake(0, 0, imageSize.width, imageSize.height/2)
+	var topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+	topTextAttr.rect = CGRect(x: 0, y: 0, width: imageSize?.width, height: imageSize.height/2)
 	// Adjust top size
 	while (ceil(topTextRect.size.height) > maxHeight) {
 		topTextAttr.fontSize -= 1;
-		topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 	}
 	
-	var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+	var bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 	var expectedBottomSize = bottomTextRect.size
 	// Bottom rect starts from bottom, not from center.y
-	bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2);
+	bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: imageSize.height/2);
 	// Adjust bottom size
 	while (ceil(bottomTextRect.size.height) > maxHeight) {
 		bottomTextAttr.fontSize -= 1;
-		bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(imageSize.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		expectedBottomSize = bottomTextRect.size
-		bottomTextAttr.rect = CGRectMake(0, (imageSize.height) - (expectedBottomSize.height), imageSize.width, imageSize.height/2)
+		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: imageSize.height/2)
 	}
 	
-	UIGraphicsBeginImageContext(imageSize)
+	UIGraphicsBeginImageContext(imageSize!)
 	
-	baseImage.drawInRect(CGRectMake(0, 0, imageSize.width, imageSize.height))
+	baseImage.draw(in: CGRect(x: 0, y: 0, width: imageSize?.width, height: imageSize.height))
 	
-	topText.uppercaseString.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
-	bottomText.uppercaseString.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
+	topText.uppercased().draw(in: topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
+	bottomText.uppercased().draw(in: bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
 	
 	let newImage = UIGraphicsGetImageFromCurrentImageContext()
 	
 	UIGraphicsEndImageContext()
 	
-	return newImage
+	return newImage!
 	
 }
 
-func modalAlertControllerFor(title: String, message: String) -> UIAlertController {
-	let alertC = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-	let cancelA = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+func modalAlertControllerFor(_ title: String, message: String) -> UIAlertController {
+	let alertC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+	let cancelA = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
 	alertC.addAction(cancelA)
 	return alertC
 }
@@ -198,7 +198,7 @@ extension UIDevice {
 		uname(&systemInfo)
 		let machineMirror = Mirror(reflecting: systemInfo.machine)
 		let identifier = machineMirror.children.reduce("") { identifier, element in
-			guard let value = element.value as? Int8 where value != 0 else { return identifier }
+			guard let value = element.value as? Int8, value != 0 else { return identifier }
 			return identifier + String(UnicodeScalar(UInt8(value)))
 		}
 		switch identifier {
@@ -232,10 +232,10 @@ extension UIDevice {
 }
 
 extension UIImage {
-	func drawInRectAspectFill(rect: CGRect) {
+	func drawInRectAspectFill(_ rect: CGRect) {
 		let targetSize = rect.size
 		let scaledImage: UIImage
-		if targetSize == CGSizeZero {
+		if targetSize == CGSize.zero {
 			scaledImage = self
 		}
 		else {
@@ -243,10 +243,10 @@ extension UIImage {
 			let scalingFactor = targetSize.width / self.size.width > targetSize.height / self.size.height ? targetSize.width / self.size.width: targetSize.height / self.size.height
 			let newSize = CGSize(width: self.size.width * scalingFactor, height: self.size.height * scalingFactor)
 			UIGraphicsBeginImageContext(targetSize)
-			self.drawInRect(CGRect(origin: CGPoint(x: (targetSize.width - newSize.width) / 2, y: (targetSize.height - newSize.height) / 2), size: newSize))
-			scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+			self.draw(in: CGRect(origin: CGPoint(x: (targetSize.width - newSize.width) / 2, y: (targetSize.height - newSize.height) / 2), size: newSize))
+			scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
 			UIGraphicsEndImageContext()
 		}
-		scaledImage.drawInRect(rect)
+		scaledImage.draw(in: rect)
 	}
 }

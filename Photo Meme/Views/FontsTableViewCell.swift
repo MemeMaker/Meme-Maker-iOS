@@ -23,16 +23,16 @@ class FontsTableViewCell: UITableViewCell {
 		}
 	}
 	
-	override func drawRect(rect: CGRect) {
-		super.drawRect(rect)
+	override func draw(_ rect: CGRect) {
+		super.draw(rect)
 		if (ticked) {
 			let w = self.bounds.size.width
 			let h = self.bounds.size.height
-			tickPath.moveToPoint(CGPointMake(w - 60, h - 40))
-			tickPath.addLineToPoint(CGPointMake(w - 48, h - 16))
-			tickPath.addLineToPoint(CGPointMake(w - 16, h - 60))
-			tickPath.addLineToPoint(CGPointMake(w - 48, h - 28))
-			tickPath.closePath()
+			tickPath.move(to: CGPoint(x: w - 60, y: h - 40))
+			tickPath.addLine(to: CGPoint(x: w - 48, y: h - 16))
+			tickPath.addLine(to: CGPoint(x: w - 16, y: h - 60))
+			tickPath.addLine(to: CGPoint(x: w - 48, y: h - 28))
+			tickPath.close()
 			UIColor(red: 50/255, green: 100/255, blue: 0, alpha: 1).setFill()
 			tickPath.fill()
 		}
@@ -43,7 +43,7 @@ class FontsTableViewCell: UITableViewCell {
         // Initialization code
     }
 	
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

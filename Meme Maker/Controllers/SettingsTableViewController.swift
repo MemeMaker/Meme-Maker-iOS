@@ -12,6 +12,30 @@ import SVProgressHUD
 import MessageUI
 import BWWalkthrough
 import ReachabilitySwift
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate, BWWalkthroughViewControllerDelegate {
 	
@@ -40,18 +64,18 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		
 		self.navigationItem.title = "Settings"
 		
-		autoDismiss.on = SettingsManager.sharedManager().getBool(kSettingsAutoDismiss)
-		resetSettings.on = SettingsManager.sharedManager().getBool(kSettingsResetSettingsOnLaunch)
-		contEditing.on = SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)
-		darkMode.on = SettingsManager.sharedManager().getBool(kSettingsDarkMode)
+		autoDismiss.isOn = SettingsManager.sharedManager().getBool(kSettingsAutoDismiss)
+		resetSettings.isOn = SettingsManager.sharedManager().getBool(kSettingsResetSettingsOnLaunch)
+		contEditing.isOn = SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)
+		darkMode.isOn = SettingsManager.sharedManager().getBool(kSettingsDarkMode)
 //		uploadEnable.on = SettingsManager.sharedManager().getBool(kSettingsUploadMemes)
 		
-		let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 
-		if let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("quotes", ofType: "json")!) {
+		if let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "quotes", ofType: "json")!)) {
 			do {
-				let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSArray
+				let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSArray
 				quotes = NSMutableArray(array: jsonData)
 			}
 			catch _ {}
@@ -61,17 +85,17 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		updateViews()
     }
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		self.memesPerRowLabel.text = "\(SettingsManager.sharedManager().getInteger(kSettingsNumberOfElementsInGrid))"
 	}
 	
 	func updateViews() -> Void {
 		self.tableView.backgroundColor = globalBackColor
 		if isDarkMode() {
-			self.tableView.separatorColor = UIColor.darkGrayColor()
+			self.tableView.separatorColor = UIColor.darkGray
 		}
 		else {
-			self.tableView.separatorColor = UIColor.lightGrayColor()
+			self.tableView.separatorColor = UIColor.lightGray
 		}
 		for cell in tableViewCells {
 			cell.backgroundColor = globalBackColor
@@ -87,35 +111,35 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	// MARK: - Switches
 	
-	@IBAction func autoDismissSwitchAction(sender: AnyObject) {
+	@IBAction func autoDismissSwitchAction(_ sender: AnyObject) {
 		let swtch = sender as! UISwitch
-		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsAutoDismiss)
+		SettingsManager.sharedManager().setBool(swtch.isOn, key: kSettingsAutoDismiss)
 	}
 	
-	@IBAction func resetSettingsOnLaunchSwitchAction(sender: AnyObject) {
+	@IBAction func resetSettingsOnLaunchSwitchAction(_ sender: AnyObject) {
 		let swtch = sender as! UISwitch
-		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsResetSettingsOnLaunch)
+		SettingsManager.sharedManager().setBool(swtch.isOn, key: kSettingsResetSettingsOnLaunch)
 	}
 	
-	@IBAction func continuousEditingSwitchAction(sender: AnyObject) {
+	@IBAction func continuousEditingSwitchAction(_ sender: AnyObject) {
 		let swtch = sender as! UISwitch
-		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsContinuousEditing)
+		SettingsManager.sharedManager().setBool(swtch.isOn, key: kSettingsContinuousEditing)
 	}
 	
-	@IBAction func darkModeSwitchAction(sender: AnyObject) {
+	@IBAction func darkModeSwitchAction(_ sender: AnyObject) {
 		let swtch = sender as! UISwitch
-		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsDarkMode)
+		SettingsManager.sharedManager().setBool(swtch.isOn, key: kSettingsDarkMode)
 		updateGlobalTheme()
 		let redrawHelperVC = UIViewController()
-		redrawHelperVC.modalPresentationStyle = .FullScreen
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
-			self.splitViewController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
+		redrawHelperVC.modalPresentationStyle = .fullScreen
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
+			self.splitViewController?.present(redrawHelperVC, animated: false, completion: nil)
 		}
 		else {
-			self.tabBarController?.presentViewController(redrawHelperVC, animated: false, completion: nil)
+			self.tabBarController?.present(redrawHelperVC, animated: false, completion: nil)
 		}
-		self.dismissViewControllerAnimated(false, completion: nil)
-		if (UI_USER_INTERFACE_IDIOM() == .Pad) {
+		self.dismiss(animated: false, completion: nil)
+		if (UI_USER_INTERFACE_IDIOM() == .pad) {
 			if self.splitViewController?.viewControllers.count > 1 {
 				let editorVC = self.splitViewController?.viewControllers[1] as? EditorViewController
 				editorVC?.backgroundImageView.layoutSubviews()
@@ -124,22 +148,22 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		updateViews()
 	}
 	
-	@IBAction func uploadEnableSwitchAction(sender: AnyObject) {
+	@IBAction func uploadEnableSwitchAction(_ sender: AnyObject) {
 		let swtch = sender as! UISwitch
-		SettingsManager.sharedManager().setBool(swtch.on, key: kSettingsUploadMemes)
+		SettingsManager.sharedManager().setBool(swtch.isOn, key: kSettingsUploadMemes)
 	}
 	
 
 	// MARK: - Table view data source
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if (section == 0) {
-			return quotes.objectAtIndex(random() % quotes.count) as? String
+			return quotes.object(at: arc4random() % quotes.count) as? String
 		}
 		return ""
 	}
 	
-	override func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
 		let noos = tableView.numberOfSections
 		switch section {
 			case 0:
@@ -151,10 +175,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 //			case 4:
 //				return "Check this if you want your \"creations\" to be uploaded to the server."
 			case noos - 4:
-				let formatter = NSDateFormatter()
+				let formatter = DateFormatter()
 				formatter.dateFormat = "MMM dd yyyy, hh:mm a"
 				let date = SettingsManager.sharedManager().getLastUpdateDate()
-				return "Last updated: \(formatter.stringFromDate(date))"
+				return "Last updated: \(formatter.string(from: date))"
 			case noos - 1:
 				return "Swipe up to bring up editing options.\n\nSwipe left and right to switch between options.\n\nPinch on top or bottom of the image to set text size.\n\nTwo finger pan on top or bottom half to place top or bottom text, Shake or two finger double tap to reset position.\n\nSwipe right text field to add default text. Swipe left to clear text.\n\nDouble tap to change case.\n\n--------------------------\n\n"
 			default:
@@ -164,20 +188,20 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
     // MARK: - Table view delegate
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 		
 		if (indexPath.section == tableView.numberOfSections - 4) {
 			// Update...
-			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
+			SVProgressHUD.show(withStatus: "Fetching latest memes, Just for you!")
 			do {
 				let _ = try Reachability.reachabilityForInternetConnection()
 				self.fetchedMemes = NSMutableArray()
 				self.fetchMemes(1)
 			}
 			catch _ {
-				SVProgressHUD.showErrorWithStatus("No connection!")
+				SVProgressHUD.showError(withStatus: "No connection!")
 			}
 		}
 		
@@ -190,7 +214,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				mailComposeViewController.setSubject("Meme Maker Feedback")
 			}
 			if MFMailComposeViewController.canSendMail() {
-				self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+				self.present(mailComposeViewController, animated: true, completion: nil)
 			}
 			else {
 				self.showSendMailErrorAlert()
@@ -207,10 +231,10 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	func showTutorial() -> Void {
 		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
 		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
-		let page1 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage1")
-		let page2 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage2")
-		let page3 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage3")
-		let page4 = storyboard.instantiateViewControllerWithIdentifier("WalkthroughPage4")
+		let page1 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage1")
+		let page2 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage2")
+		let page3 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage3")
+		let page4 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage4")
 		walkthrough.delegate = self
 		walkthrough.addViewController(page1)
 		walkthrough.addViewController(page2)
@@ -222,7 +246,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	// MARK: - Walkthrough delegate
 	
 	func walkthroughCloseButtonPressed() {
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 	
 	// MARK: - Mail things
@@ -231,17 +255,17 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		let mailComposerVC = MFMailComposeViewController()
 		mailComposerVC.mailComposeDelegate = self
 		mailComposerVC.setToRecipients(["avikantsainidbz@gmail.com"])
-		mailComposerVC.setMessageBody("\n\n\n-----------Device: \(UIDevice.currentDevice().modelName)\nSystem: \(UIDevice.currentDevice().systemName)|\(UIDevice.currentDevice().systemVersion)", isHTML: false)
+		mailComposerVC.setMessageBody("\n\n\n-----------Device: \(UIDevice.current.modelName)\nSystem: \(UIDevice.current.systemName)|\(UIDevice.current.systemVersion)", isHTML: false)
 		return mailComposerVC
 	}
 	
 	func showSendMailErrorAlert() {
 		let alertController = modalAlertControllerFor("What year is this!", message: "Your device cannot send e-mail.  Please check e-mail configuration and try again.")
-		self.presentViewController(alertController, animated: true, completion: nil)
+		self.present(alertController, animated: true, completion: nil)
 	}
 	
-	func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-		controller.dismissViewControllerAnimated(true, completion: nil)
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
 	}
 	
 	// MARK: - Fetch Memes
@@ -249,7 +273,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	func updateCount() -> Void {
 		let request = NSFetchRequest(entityName: "XMeme")
 		do {
-			let fetchedArray = try self.context?.executeFetchRequest(request)
+			let fetchedArray = try self.context?.fetch(request)
 			memes = NSMutableArray(array: fetchedArray!)
 			self.memesCountLabel.text = "\(memes.count) Memes"
 		}
@@ -258,17 +282,17 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		}
 	}
 	
-	func fetchMemes(paging: Int) -> Void {
+	func fetchMemes(_ paging: Int) -> Void {
 		
-		let request = NSMutableURLRequest(URL: apiMemesPaging(paging))
-		request.HTTPMethod = "GET"
+		let request = NSMutableURLRequest(url: apiMemesPaging(paging))
+		request.httpMethod = "GET"
 		
-		NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
+		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			
 			if (error != nil) {
 				print("Error: %@", error?.localizedDescription)
-				dispatch_async(dispatch_get_main_queue(), {
-					SVProgressHUD.showErrorWithStatus("No connection!")
+				DispatchQueue.main.async(execute: {
+					SVProgressHUD.showError(withStatus: "No connection!")
 				})
 				return
 			}
@@ -278,25 +302,25 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				do {
 					
 					let persistentStoreCoordinator = self.context?.persistentStoreCoordinator
-					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-					let code = json.valueForKey("code") as! Int
+					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+					let code = json.value(forKey: "code") as! Int
 					if (code == 200) {
-						let jsonmemes = json.valueForKey("data") as! NSArray
+						let jsonmemes = json.value(forKey: "data") as! NSArray
 						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
 						for meme in memesArray {
-							self.fetchedMemes.addObject(meme)
+							self.fetchedMemes.add(meme)
 						}
 						try asyncContext.save()
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							self.fetchMemes(paging + 1)
 						})
 					}
 					else {
 						self.memes = self.fetchedMemes
-						dispatch_async(dispatch_get_main_queue(), {
+						DispatchQueue.main.async(execute: {
 							SettingsManager.sharedManager().saveLastUpdateDate()
 							self.tableView.reloadData()
 							self.updateCount()
@@ -307,13 +331,13 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				}
 				catch _ {
 					print("Unable to parse")
-					SVProgressHUD.showErrorWithStatus("Failed to fetch")
+					SVProgressHUD.showError(withStatus: "Failed to fetch")
 					return
 				}
 				
 			}
 			
-			}.resume()
+			}) .resume()
 		
 	}
 

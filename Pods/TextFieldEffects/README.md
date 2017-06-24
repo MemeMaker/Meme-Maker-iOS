@@ -45,7 +45,9 @@ Currently it features the following effects from the article:
 
 ## Installation
 
-Looking for Swift 1.2 support? Check out the `swift-1.2` branch.
+- Looking for Swift 2.3 support? Check out the [1.2.0](https://github.com/raulriera/TextFieldEffects/releases/tag/1.2.0) tag.
+- Looking for Swift 2.1 support? Check out the [1.1.1](https://github.com/raulriera/TextFieldEffects/releases/tag/1.1.1) tag.
+- Looking for Swift 1.2 support? Check out the `swift-1.2` branch.
 
 ### Manual
 
@@ -74,7 +76,7 @@ Every effect is properly documented in the source code, this is the best way to 
 
 ### Interface Builder
 
-The library is a simple drop-in, as soon as you set your subclass to one of the effects you will be able to see all the IBDesignable settings in the storyboard.
+The library is a simple drop-in, as soon as you set your subclass to one of the effects and your module to `TextFieldEffects` you will be able to see all the IBDesignable settings in the storyboard.
 
 ### Code
 

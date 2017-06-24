@@ -10,27 +10,27 @@ import Foundation
 import UIKit
 
 func getDocumentsDirectory() -> String {
-	let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+	let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
 	let documentsDirectory = paths[0]
 	return documentsDirectory
 }
 
-func documentsPathForFileName(name: String) -> String {
-	let directoryPath = getDocumentsDirectory().stringByAppendingString("/resources/")
-	let manager = NSFileManager.defaultManager()
-	if (!manager.fileExistsAtPath(directoryPath)) {
+func documentsPathForFileName(_ name: String) -> String {
+	let directoryPath = getDocumentsDirectory() + "/resources/"
+	let manager = FileManager.default
+	if (!manager.fileExists(atPath: directoryPath)) {
 		do {
-			try manager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+			try manager.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
 		} catch _ { }
 	}
-	return directoryPath.stringByAppendingString("\(name).dat")
+	return directoryPath + "\(name).dat"
 }
 
-func getImageByResizingImage(image: UIImage, ratio: CGFloat) -> UIImage {
-	let imageRect = CGRectMake(0, 0, image.size.width * ratio, image.size.height * ratio)
-	UIGraphicsBeginImageContext(CGSizeMake(image.size.width * ratio, image.size.height * ratio))
-	image.drawInRect(imageRect)
-	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+func getImageByResizingImage(_ image: UIImage, ratio: CGFloat) -> UIImage {
+	let imageRect = CGRect(x: 0, y: 0, width: image.size.width * ratio, height: image.size.height * ratio)
+	UIGraphicsBeginImageContext(CGSize(width: image.size.width * ratio, height: image.size.height * ratio))
+	image.draw(in: imageRect)
+	let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
 	UIGraphicsEndImageContext()
 	return newImage
 }
@@ -44,10 +44,10 @@ extension UIColor {
 }
 
 extension UIImage {
-	func drawInRectAspectFill(rect: CGRect) {
+	func drawInRectAspectFill(_ rect: CGRect) {
 		let targetSize = rect.size
 		let scaledImage: UIImage
-		if targetSize == CGSizeZero {
+		if targetSize == CGSize.zero {
 			scaledImage = self
 		}
 		else {
@@ -55,10 +55,10 @@ extension UIImage {
 			let scalingFactor = targetSize.width / self.size.width > targetSize.height / self.size.height ? targetSize.width / self.size.width: targetSize.height / self.size.height
 			let newSize = CGSize(width: self.size.width * scalingFactor, height: self.size.height * scalingFactor)
 			UIGraphicsBeginImageContext(targetSize)
-			self.drawInRect(CGRect(origin: CGPoint(x: (targetSize.width - newSize.width) / 2, y: (targetSize.height - newSize.height) / 2), size: newSize))
-			scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+			self.draw(in: CGRect(origin: CGPoint(x: (targetSize.width - newSize.width) / 2, y: (targetSize.height - newSize.height) / 2), size: newSize))
+			scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
 			UIGraphicsEndImageContext()
 		}
-		scaledImage.drawInRect(rect)
+		scaledImage.draw(in: rect)
 	}
 }

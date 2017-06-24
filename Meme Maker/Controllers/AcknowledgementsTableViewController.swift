@@ -16,16 +16,16 @@ class AcknowledgementsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		if let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("fontAck", ofType: "json")!) {
+		if let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "fontAck", ofType: "json")!)) {
 			do {
-				let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSArray
+				let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSArray
 				fontAcks = NSMutableArray(array: jsonData)
 			}
 			catch _ {}
 		}
-		if let data = NSData(contentsOfFile: NSBundle.mainBundle().pathForResource("libsAck", ofType: "json")!) {
+		if let data = try? Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "libsAck", ofType: "json")!)) {
 			do {
-				let jsonData = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSArray
+				let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSArray
 				libsAcks = NSMutableArray(array: jsonData)
 			}
 			catch _ {}
@@ -36,37 +36,37 @@ class AcknowledgementsTableViewController: UITableViewController {
 		tableView.backgroundColor = globalBackColor
 		
 		if isDarkMode() {
-			self.tableView.separatorColor = UIColor.darkGrayColor()
+			self.tableView.separatorColor = UIColor.darkGray
 		}
 		else {
-			self.tableView.separatorColor = UIColor.lightGrayColor()
+			self.tableView.separatorColor = UIColor.lightGray
 		}
 		
     }
 	
 	// MARK: - Table view data source
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 2
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if (section == 0) {
 			return fontAcks.count
 		}
 		return libsAcks.count
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("ackCell", forIndexPath: indexPath)
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "ackCell", for: indexPath)
 		
 		if (indexPath.section == 0) {
-			let fontAck = fontAcks.objectAtIndex(indexPath.row) as! NSDictionary
-			cell.textLabel?.text = fontAck.objectForKey("text") as? String
+			let fontAck = fontAcks.object(at: indexPath.row) as! NSDictionary
+			cell.textLabel?.text = fontAck.object(forKey: "text") as? String
 		}
 		else {
-			let libsAck = libsAcks.objectAtIndex(indexPath.row) as! NSDictionary
-			cell.textLabel?.text = libsAck.objectForKey("text") as? String
+			let libsAck = libsAcks.object(at: indexPath.row) as! NSDictionary
+			cell.textLabel?.text = libsAck.object(forKey: "text") as? String
 		}
 		
 		cell.backgroundColor = globalBackColor
@@ -76,7 +76,7 @@ class AcknowledgementsTableViewController: UITableViewController {
 		return cell
 	}
 	
-	override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if (section == 0) {
 			return "Thanking the following people for providing awesome free-ware fonts."
 		}
@@ -85,28 +85,28 @@ class AcknowledgementsTableViewController: UITableViewController {
 
     // MARK: - Table view delegate
 	
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 44
 	}
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		var URLString = ""
 		if (indexPath.section == 0) {
-			let fontAck = fontAcks.objectAtIndex(indexPath.row) as! NSDictionary
-			URLString = fontAck.objectForKey("link") as! String
+			let fontAck = fontAcks.object(at: indexPath.row) as! NSDictionary
+			URLString = fontAck.object(forKey: "link") as! String
 		}
 		else {
-			let libsAck = libsAcks.objectAtIndex(indexPath.row) as! NSDictionary
-			URLString = libsAck.objectForKey("link") as! String
+			let libsAck = libsAcks.object(at: indexPath.row) as! NSDictionary
+			URLString = libsAck.object(forKey: "link") as! String
 		}
 		
-		let URL = NSURL(string: URLString)
-		if (UIApplication.sharedApplication().canOpenURL(URL!)) {
-			UIApplication.sharedApplication().openURL(URL!)
+		let URL = Foundation.URL(string: URLString)
+		if (UIApplication.shared.canOpenURL(URL!)) {
+			UIApplication.shared.openURL(URL!)
 		}
 		
-		tableView.deselectRowAtIndexPath(indexPath, animated: true)
+		tableView.deselectRow(at: indexPath, animated: true)
 	}
 	
 

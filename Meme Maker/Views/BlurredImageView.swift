@@ -17,11 +17,11 @@ class BlurredImageView: UIImageView {
 		blurView?.removeFromSuperview()
 		
 		if isDarkMode() {
-			let blurEffect = UIBlurEffect(style: .Dark)
+			let blurEffect = UIBlurEffect(style: .dark)
 			blurView = UIVisualEffectView(effect: blurEffect)
 		}
 		else {
-			let blurEffect = UIBlurEffect(style: .Light)
+			let blurEffect = UIBlurEffect(style: .light)
 			blurView = UIVisualEffectView(effect: blurEffect)
 		}
 		

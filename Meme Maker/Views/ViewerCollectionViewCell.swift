@@ -29,9 +29,9 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 		}
 	}
 	
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		
-		super.drawRect(rect)
+		super.draw(rect)
 		
 		let size = max(self.bounds.size.width, self.bounds.size.height)
 		var ratio: CGFloat = 1
@@ -48,40 +48,40 @@ class ViewerCollectionViewCell: UICollectionViewCell {
 		topTextAttr.fontSize = 20
 		topTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 16)!
 		topTextAttr.strokeWidth = 0
-		topTextAttr.text = topText
+		topTextAttr.text = topText as NSString
 		let bottomTextAttr = XTextAttributes(savename: "boto")
-		bottomTextAttr.text = bottomText
+		bottomTextAttr.text = bottomText as NSString
 		bottomTextAttr.fontSize = 20
 		bottomTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 16)!
 		bottomTextAttr.strokeWidth = 0
 		
 		let maxHeight = self.bounds.height/2 - 4	// Max height of top and bottom texts
-		let stringDrawingOptions: NSStringDrawingOptions = [.UsesLineFragmentOrigin, .UsesFontLeading]
+		let stringDrawingOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 		
-		var topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(self.bounds.width, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRectMake(4, 4, self.bounds.width - 8, self.bounds.height/2 - 4)
+		var topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: self.bounds.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextAttr.rect = CGRect(x: 4, y: 4, width: self.bounds.width - 8, height: self.bounds.height/2 - 4)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) >= maxHeight) {
 			topTextAttr.fontSize -= 1;
-			topTextRect = topTextAttr.text.boundingRectWithSize(CGSizeMake(self.bounds.width - 8, maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+			topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: self.bounds.width - 8, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(self.bounds.width, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: self.bounds.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
-		bottomTextAttr.rect = CGRectMake(4, (self.bounds.height - expectedBottomSize.height), self.bounds.width - 8, expectedBottomSize.height);
+		bottomTextAttr.rect = CGRect(x: 4, y: (self.bounds.height - expectedBottomSize.height), width: self.bounds.width - 8, height: expectedBottomSize.height);
 		// Adjust bottom size
 		while (ceil(bottomTextRect.size.height) >= maxHeight) {
 			bottomTextAttr.fontSize -= 1;
-			bottomTextRect = bottomTextAttr.text.boundingRectWithSize(CGSizeMake(self.bounds.width - 8, maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: self.bounds.width - 8, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
-			bottomTextAttr.rect = CGRectMake(4, (self.bounds.height - expectedBottomSize.height), self.bounds.width - 8, expectedBottomSize.height)
+			bottomTextAttr.rect = CGRect(x: 4, y: (self.bounds.height - expectedBottomSize.height), width: self.bounds.width - 8, height: expectedBottomSize.height)
 		}
 	
 		baseImage.drawInRectAspectFill(self.bounds)
 		
-		topText.drawInRect(topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
-		bottomText.drawInRect(bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
+		topText.draw(in: topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
+		bottomText.draw(in: bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())
 		
 	}
 	

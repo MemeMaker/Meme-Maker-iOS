@@ -8,7 +8,6 @@
 
 import UIKit
 import SVProgressHUD
-import ChameleonFramework
 import IQKeyboardManagerSwift
 
 let kSettingsTimesLaunched			= "kTimesLaunched"
@@ -28,13 +27,13 @@ func updateGlobalTheme () -> Void {
 	if isDarkMode() {
 		globalBackColor = UIColor(white: 0.12, alpha: 1)
 		globalTintColor = UIColor(hexString: "AAFA78")
-		UIApplication.sharedApplication().statusBarStyle = .LightContent
+		UIApplication.shared.statusBarStyle = .lightContent
 		IQKeyboardManager.sharedManager().keyboardAppearance = .Dark
 	}
 	else {
 		globalBackColor = UIColor(hexString: "EFF0EF")
 		globalTintColor = UIColor(hexString: "326400")
-		UIApplication.sharedApplication().statusBarStyle = .Default
+		UIApplication.shared.statusBarStyle = .default
 		IQKeyboardManager.sharedManager().keyboardAppearance = .Light
 	}
 	
@@ -48,10 +47,10 @@ func updateGlobalTheme () -> Void {
 	UITabBar.appearance().tintColor = globalTintColor
 	UITabBar.appearance().barTintColor = globalBackColor
 	
-	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: globalTintColor], forState: .Selected)
-	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: UIColor.lightGrayColor()], forState: .Normal)
+	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: globalTintColor], for: .selected)
+	UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 13)!, NSForegroundColorAttributeName: UIColor.lightGray], for: UIControlState())
 	
-	UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor], forState: .Normal)
+	UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 16)!, NSForegroundColorAttributeName: globalTintColor], for: UIControlState())
 	
 	UITableView.appearance().backgroundColor = globalBackColor
 	UITableView.appearance().tintColor = globalTintColor
@@ -68,8 +67,8 @@ func updateGlobalTheme () -> Void {
 	UISearchBar.appearance().tintColor = globalTintColor
 	UISearchBar.appearance().barTintColor = globalBackColor
 	
-	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor]
-	UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor.colorWithAlphaComponent(0.8)]
+	UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor]
+	UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 14)!, NSForegroundColorAttributeName: globalTintColor.withAlphaComponent(0.8)]
 	
 	SVProgressHUD.setFont(UIFont(name: "EtelkaNarrowTextPro", size: 16))
 	SVProgressHUD.setBackgroundColor(globalBackColor)
@@ -84,9 +83,9 @@ class SettingsManager: NSObject {
 
 	// MARK:- Shared Instance
 	
-	private static let sharedInstance = SettingsManager()
+	fileprivate static let sharedInstance = SettingsManager()
 	
-	private let defaults = NSUserDefaults.standardUserDefaults()
+	fileprivate let defaults = UserDefaults.standard
 	
 	class func sharedManager () -> SettingsManager {
 		return sharedInstance
@@ -94,58 +93,58 @@ class SettingsManager: NSObject {
 	
 	// MARK:- Save and fetch stuff
 	
-	func setObject(object: AnyObject, key: String) {
-		defaults.setObject(object, forKey: key)
+	func setObject(_ object: AnyObject, key: String) {
+		defaults.set(object, forKey: key)
 	}
 	
-	func getObject(key: String) -> AnyObject? {
-		return defaults.objectForKey(key)
+	func getObject(_ key: String) -> AnyObject? {
+		return defaults.object(forKey: key)
 	}
 	
-	func setBool(bool: Bool, key: String) {
-		defaults.setBool(bool, forKey: key)
+	func setBool(_ bool: Bool, key: String) {
+		defaults.set(bool, forKey: key)
 	}
 	
-	func getBool(key: String) -> Bool {
-		return defaults.boolForKey(key)
+	func getBool(_ key: String) -> Bool {
+		return defaults.bool(forKey: key)
 	}
 	
-	func setInteger(value: Int, key: String) {
-		defaults.setInteger(value, forKey: key)
+	func setInteger(_ value: Int, key: String) {
+		defaults.set(value, forKey: key)
 	}
 	
-	func getInteger(key: String) -> Int {
-		return defaults.integerForKey(key)
+	func getInteger(_ key: String) -> Int {
+		return defaults.integer(forKey: key)
 	}
 	
-	func setFloat(value: Float, key: String) {
-		defaults.setFloat(value, forKey: key)
+	func setFloat(_ value: Float, key: String) {
+		defaults.set(value, forKey: key)
 	}
 	
-	func getFloat(key: String) -> Float {
-		return defaults.floatForKey(key)
+	func getFloat(_ key: String) -> Float {
+		return defaults.float(forKey: key)
 	}
 	
-	func deleteObject(key: String) {
-		defaults.removeObjectForKey(key)
+	func deleteObject(_ key: String) {
+		defaults.removeObject(forKey: key)
 	}
 	
 	func saveLastUpdateDate() -> Void {
-		let formatter = NSDateFormatter()
+		let formatter = DateFormatter()
 		formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-		let date = formatter.stringFromDate(NSDate())
-		defaults.setObject(date, forKey: "lastUpdateDate")
+		let date = formatter.string(from: Date())
+		defaults.set(date, forKey: "lastUpdateDate")
 	}
 	
-	func getLastUpdateDate() -> NSDate {
-		if (defaults.objectForKey("lastUpdateDate") != nil) {
-			let dateString = "\(defaults.objectForKey("lastUpdateDate") as! String)"
-			let formatter = NSDateFormatter()
+	func getLastUpdateDate() -> Date {
+		if (defaults.object(forKey: "lastUpdateDate") != nil) {
+			let dateString = "\(defaults.object(forKey: "lastUpdateDate") as! String)"
+			let formatter = DateFormatter()
 			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-			let date = formatter.dateFromString(dateString)
+			let date = formatter.date(from: dateString)
 			return date!
 		}
-		return NSDate(timeIntervalSinceNow: (-10 * 86400))
+		return Date(timeIntervalSinceNow: (-10 * 86400))
 	}
 	
 }

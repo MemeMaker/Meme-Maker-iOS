@@ -1,20 +1,18 @@
 # Uncomment this line to define a global platform for your project
-platform :ios, '8.0'
+platform :ios, '9.0'
 # Uncomment this line if you're using Swift
 use_frameworks!
 
 target 'Meme Maker' do
 
-pod 'IQKeyboardManagerSwift'
+pod 'IQKeyboardManagerSwift', '4.0.10'
 pod 'SDWebImage', '~>3.7'
 pod 'SVProgressHUD'
 pod 'TextFieldEffects'
-pod 'ChameleonFramework/Swift'
-pod 'PermissionScope'
-pod 'BWWalkthrough'
+pod 'BWWalkthrough', '2.1.0'
 pod 'SSZipArchive'
 pod 'DZNEmptyDataSet'
-pod 'ReachabilitySwift', :git => 'https://github.com/ashleymills/Reachability.swift'
+pod 'ReachabilitySwift', '~> 3'
 
 end
 

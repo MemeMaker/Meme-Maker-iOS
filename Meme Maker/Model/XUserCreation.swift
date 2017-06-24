@@ -14,15 +14,15 @@ class XUserCreation: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 	
-	var dateCreated: NSDate? {
+	var dateCreated: Date? {
 		didSet {
-			let formatter = NSDateFormatter()
+			let formatter = DateFormatter()
 			formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-			self.createdOn = formatter.stringFromDate(dateCreated!)
+			self.createdOn = formatter.string(from: dateCreated!)
 		}
 	}
 	
-	class func createOrUpdateUserCreationWithMeme(meme: XMeme, topText: String, bottomText: String, dateCreated: NSDate, context: NSManagedObjectContext) -> XUserCreation {
+	class func createOrUpdateUserCreationWithMeme(_ meme: XMeme, topText: String, bottomText: String, dateCreated: Date, context: NSManagedObjectContext) -> XUserCreation {
 		
 		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
 		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
@@ -30,12 +30,12 @@ class XUserCreation: NSManagedObject {
 		var creation: XUserCreation!
 		
 		do {
-			let fetchedArray = try context.executeFetchRequest(fetchRequest)
+			let fetchedArray = try context.fetch(fetchRequest)
 			if (fetchedArray.count > 0) {
 				creation = fetchedArray.first as! XUserCreation
 			}
 			else {
-				creation = NSEntityDescription.insertNewObjectForEntityForName("XUserCreation", inManagedObjectContext: context) as! XUserCreation
+				creation = NSEntityDescription.insertNewObject(forEntityName: "XUserCreation", into: context) as! XUserCreation
 				creation.memeID = meme.memeID
 				creation.topText = topText
 				creation.bottomText = bottomText
@@ -57,7 +57,7 @@ class XUserCreation: NSManagedObject {
 		return creation
 	}
 	
-	class func createOrUpdateUserCreationWithUserImage(image: UIImage, topText: String, bottomText: String, dateCreated: NSDate, context: NSManagedObjectContext) -> XUserCreation {
+	class func createOrUpdateUserCreationWithUserImage(_ image: UIImage, topText: String, bottomText: String, dateCreated: Date, context: NSManagedObjectContext) -> XUserCreation {
 		
 		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
 		fetchRequest.predicate = NSPredicate(format: "topText == %@ AND bottomText == %@", topText, bottomText)
@@ -65,12 +65,12 @@ class XUserCreation: NSManagedObject {
 		var creation: XUserCreation!
 		
 		do {
-			let fetchedArray = try context.executeFetchRequest(fetchRequest)
+			let fetchedArray = try context.fetch(fetchRequest)
 			if (fetchedArray.count > 0) {
 				creation = fetchedArray.first as! XUserCreation
 			}
 			else {
-				creation = NSEntityDescription.insertNewObjectForEntityForName("XUserCreation", inManagedObjectContext: context) as! XUserCreation
+				creation = NSEntityDescription.insertNewObject(forEntityName: "XUserCreation", into: context) as! XUserCreation
 				creation.topText = topText
 				creation.bottomText = bottomText
 				creation.dateCreated = dateCreated
@@ -85,12 +85,12 @@ class XUserCreation: NSManagedObject {
 		let data = UIImageJPEGRepresentation(image, 0.8)
 		let filePath = userImagesPathForFileName(creation.createdOn!)
 		
-		if (NSFileManager.defaultManager().fileExistsAtPath(filePath)) {
+		if (FileManager.default.fileExists(atPath: filePath)) {
 			print("\(#function) | file already present.")
 		}
 		
 		do {
-			try data?.writeToFile(filePath, options: .AtomicWrite)
+			try data?.write(to: URL(fileURLWithPath: filePath), options: .atomicWrite)
 		}
 		catch _ {}
 		

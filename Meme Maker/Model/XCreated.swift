@@ -14,13 +14,13 @@ class XCreated: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 	
-	var dateSubmission: NSDate?
+	var dateSubmission: Date?
 	
-	class func createOrUpdateSubmissionWithData(data: NSDictionary, context: NSManagedObjectContext) -> NSManagedObject {
+	class func createOrUpdateSubmissionWithData(_ data: NSDictionary, context: NSManagedObjectContext) -> NSManagedObject {
 		
-		let ID: Int32 = (data.objectForKey("memeID")?.intValue)!
-		let topText = data.objectForKey("topText") as? String
-		let bottomText = data.objectForKey("bottomText") as? String
+		let ID: Int32 = (data.object(forKey: "memeID")?.int32Value)!
+		let topText = data.object(forKey: "topText") as? String
+		let bottomText = data.object(forKey: "bottomText") as? String
 		
 		let fetchRequest = NSFetchRequest(entityName: "XCreated")
 		fetchRequest.predicate = NSPredicate(format: "memeID == %i AND topText == %@ AND bottomText == %@", ID, topText!, bottomText!)
@@ -28,21 +28,21 @@ class XCreated: NSManagedObject {
 		var submission: XCreated!
 		
 		do {
-			let fetchedArray = try context.executeFetchRequest(fetchRequest)
+			let fetchedArray = try context.fetch(fetchRequest)
 			if (fetchedArray.count > 0) {
 //			print("Submission \(ID) already present.")
 				submission = fetchedArray.first as! XCreated
 			}
 			else {
 //				print("Inserting submission \(ID).")
-				submission = NSEntityDescription.insertNewObjectForEntityForName("XCreated", inManagedObjectContext: context) as! XCreated
+				submission = NSEntityDescription.insertNewObject(forEntityName: "XCreated", into: context) as! XCreated
 				submission.memeID = ID
 				submission.topText = topText
 				submission.bottomText = bottomText
-				submission.dateCreated = data.objectForKey("dateCreated") as? String
-				let dateFormatter = NSDateFormatter.init()
+				submission.dateCreated = data.object(forKey: "dateCreated") as? String
+				let dateFormatter = DateFormatter.init()
 				dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-				submission.dateSubmission = dateFormatter.dateFromString(submission.dateCreated!)
+				submission.dateSubmission = dateFormatter.date(from: submission.dateCreated!)
 				
 			}
 		}
@@ -53,13 +53,13 @@ class XCreated: NSManagedObject {
 		return submission
 	}
 	
-	class func getAllSubmissionsFromArray(array: NSArray, context: NSManagedObjectContext) -> NSArray? {
+	class func getAllSubmissionsFromArray(_ array: NSArray, context: NSManagedObjectContext) -> NSArray? {
 		
 		let submissionsArray = NSMutableArray()
 		
 		for dict in array {
 			let subm = self.createOrUpdateSubmissionWithData(dict as! NSDictionary, context: context)
-			submissionsArray.addObject(subm)
+			submissionsArray.add(subm)
 		}
 		
 		return submissionsArray

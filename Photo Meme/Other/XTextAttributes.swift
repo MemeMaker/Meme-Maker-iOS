@@ -13,16 +13,16 @@ class XTextAttributes: NSObject {
 	var text: NSString! = ""
 	var uppercase: Bool = true
 
-	var rect: CGRect = CGRectZero
-	var offset: CGPoint = CGPointZero
+	var rect: CGRect = CGRect.zero
+	var offset: CGPoint = CGPoint.zero
 	
 	var fontSize: CGFloat = 44
 	var font: UIFont = UIFont(name: "Impact", size: 44)!
 	
-	var textColor: UIColor = UIColor.whiteColor()
-	var outlineColor: UIColor = UIColor.blackColor()
+	var textColor: UIColor = UIColor.white
+	var outlineColor: UIColor = UIColor.black
 	
-	var alignment: NSTextAlignment = .Center
+	var alignment: NSTextAlignment = .center
 	
 	var strokeWidth: CGFloat = 2
 	
@@ -35,17 +35,17 @@ class XTextAttributes: NSObject {
 		do {
 			
 			text = ""
-			rect = CGRectZero
+			rect = CGRect.zero
 			setDefault()
 			
-			if (!NSFileManager.defaultManager().fileExistsAtPath(documentsPathForFileName(savename))) {
+			if (!FileManager.default.fileExists(atPath: documentsPathForFileName(savename))) {
 //				print("No such attribute file")
 				return
 			}
 			
-			if let data = NSData.init(contentsOfFile: documentsPathForFileName(savename)) {
+			if let data = try? Data.init(contentsOf: URL(fileURLWithPath: documentsPathForFileName(savename))) {
 				
-				let dict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSDictionary
+				let dict = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
 				
 //				print("\(savename) = \(dict)")
 				
@@ -67,11 +67,11 @@ class XTextAttributes: NSObject {
 				
 				let align = dict["alignment"] as! Int
 				switch align {
-					case 0: alignment = .Center
-					case 1: alignment = .Justified
-					case 2: alignment = .Left
-					case 3: alignment = .Right
-					default: alignment = .Center
+					case 0: alignment = .center
+					case 1: alignment = .justified
+					case 2: alignment = .left
+					case 3: alignment = .right
+					default: alignment = .center
 				}
 				
 				strokeWidth = dict["strokeWidth"] as! CGFloat
@@ -86,18 +86,18 @@ class XTextAttributes: NSObject {
 		
 	}
 	
-	func saveAttributes(savename: String) -> Bool {
+	func saveAttributes(_ savename: String) -> Bool {
 		
 		let dict = NSMutableDictionary()
 		
 		dict["text"] = text
-		dict["uppercase"] = NSNumber(bool: uppercase)
+		dict["uppercase"] = NSNumber(value: uppercase as Bool)
 		
 		dict["rect"] = NSStringFromCGRect(rect)
 		dict["offset"] = NSStringFromCGPoint(offset)
 		
 		let fontName = font.fontName
-		let fontSizeNum = NSNumber(float: Float(fontSize))
+		let fontSizeNum = NSNumber(value: Float(fontSize) as Float)
 		dict["fontSize"] = fontSizeNum
 		dict["fontName"] = fontName
 		
@@ -111,22 +111,22 @@ class XTextAttributes: NSObject {
 		
 		var align: Int = 0
 		switch alignment {
-			case .Justified: align = 1
-			case .Left: align = 2
-			case .Right: align = 3
+			case .justified: align = 1
+			case .left: align = 2
+			case .right: align = 3
 			default: align = 0
 		}
-		dict["alignment"] = NSNumber(integer: align)
+		dict["alignment"] = NSNumber(value: align as Int)
 		
-		dict["strokeWidth"] = NSNumber(float: Float(strokeWidth))
+		dict["strokeWidth"] = NSNumber(value: Float(strokeWidth) as Float)
 		
-		dict["opacity"] = NSNumber(float: Float(opacity))
+		dict["opacity"] = NSNumber(value: Float(opacity) as Float)
 		
 //		print("SAVING : \(savename) = \(dict)")
 		
 		do {
-			let data = try NSJSONSerialization.dataWithJSONObject(dict, options: .PrettyPrinted)
-			try data.writeToFile(documentsPathForFileName(savename), options: .AtomicWrite)
+			let data = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+			try data.write(to: URL(fileURLWithPath: documentsPathForFileName(savename)), options: .atomicWrite)
 		}
 		catch _ {
 			print("attribute writing failed")
@@ -138,12 +138,12 @@ class XTextAttributes: NSObject {
 	
 	func setDefault() -> Void {
 		uppercase = true
-		offset = CGPointZero
+		offset = CGPoint.zero
 		fontSize = 44
 		font = UIFont(name: "Impact", size: 44)!
-		textColor = UIColor.whiteColor()
-		outlineColor = UIColor.blackColor()
-		alignment = .Center
+		textColor = UIColor.white
+		outlineColor = UIColor.black
+		alignment = .center
 		strokeWidth = 2
 		opacity = 1
 	}
@@ -155,20 +155,20 @@ class XTextAttributes: NSObject {
 		font = UIFont(name: font.fontName, size: fontSize)!
 		attr[NSFontAttributeName] = font
 		
-		attr[NSForegroundColorAttributeName] = textColor.colorWithAlphaComponent(opacity)
+		attr[NSForegroundColorAttributeName] = textColor.withAlphaComponent(opacity)
 		
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.alignment = alignment
 		
 		attr[NSParagraphStyleAttributeName] = paragraphStyle
 		
-		attr[NSStrokeWidthAttributeName] = NSNumber(float: Float(-strokeWidth))
+		attr[NSStrokeWidthAttributeName] = NSNumber(value: Float(-strokeWidth) as Float)
 		
 		attr[NSStrokeColorAttributeName] = outlineColor
 		
 		let shadow = NSShadow()
 		shadow.shadowColor = outlineColor
-		shadow.shadowOffset = CGSizeMake(1, 1)
+		shadow.shadowOffset = CGSize(width: 1, height: 1)
 		shadow.shadowBlurRadius = 1
 		attr[NSShadowAttributeName] = shadow
 		

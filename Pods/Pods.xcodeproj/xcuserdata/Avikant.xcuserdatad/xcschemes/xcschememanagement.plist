@@ -4,17 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>BWWalkthrough-BWWalkthrough.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>BWWalkthrough.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ChameleonFramework.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,12 +19,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>PermissionScope.xcscheme</key>
+		<key>Pods-Meme Maker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Meme Maker.xcscheme</key>
+		<key>Pods-Meme MakerTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Meme MakerUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Photo Meme.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,62 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>16FB872D0D2D4BA0F378AB34D47CF95F</key>
+		<key>02F291249B2358539CEAFF460907C4FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17664F8F0232329D875EC690EB653867</key>
+		<key>1F884C204405B34AD01F4E17EAA910D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>42054F718B75E2C3A55A578C601DB9F5</key>
+		<key>516F21FFF50549B687D4501A5F5C8D9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
+		<key>67F466ADEC626EA98620E5A60AF7A11F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5FD85A2A129B8D5D88BE120DCE59C344</key>
+		<key>9141F6EADA4AD993C867DE2216247529</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6292CC40BCA04C7B63B7B430242BE4CD</key>
+		<key>9889562781163BF5CB84E06A985BCE44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62F7A3D0B990E1D544628D72405EBD76</key>
+		<key>C235F77E101E742652CCF98FFDFA5182</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>712AFC7B88225B2EA04545215CC262BE</key>
+		<key>C5AAA6AA6DB0A6F5664056138B11725E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A371D9F716AF507FF01A593DD0D9DFDF</key>
+		<key>D386C75EFD4F03725E4EFB866B600B9A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C55E46AC6A1E70A6AA25E306AE545375</key>
+		<key>DD02693AE7C829579FF8DBB7016228CA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E9B5C577F89B2F2EBCB51E034A136673</key>
+		<key>E4EC98AA70D2E21B75DFF8256AADD8CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F4913CD2403218A5B4D68320284F4E39</key>
+		<key>EB2DCA769232FC142EB97576B37E9982</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,4 +1,6 @@
 
+[![Build Status](https://travis-ci.org/ZipArchive/ZipArchive.svg?branch=master)](https://travis-ci.org/ZipArchive/ZipArchive)
+
 # SSZipArchive
 
 ZipArchive is a simple utility class for zipping and unzipping files on iOS and Mac.
@@ -11,6 +13,8 @@ ZipArchive is a simple utility class for zipping and unzipping files on iOS and 
 - Zip-up NSData instances. (with a filename)
 
 ## Installation and Setup
+
+*The main release branch is configured to support Objective C and Swift 3. There is a 'swift23' branch which is the latest branch but marked to compile for Swift 2.3.* 
 
 ### CocoaPods
 

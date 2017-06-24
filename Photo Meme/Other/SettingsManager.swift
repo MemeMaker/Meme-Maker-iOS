@@ -27,9 +27,9 @@ class SettingsManager: NSObject {
 
 	// MARK:- Shared Instance
 	
-	private static let sharedInstance = SettingsManager()
+	fileprivate static let sharedInstance = SettingsManager()
 	
-	private let defaults = NSUserDefaults.standardUserDefaults()
+	fileprivate let defaults = UserDefaults.standard
 	
 	class func sharedManager () -> SettingsManager {
 		return sharedInstance
@@ -37,40 +37,40 @@ class SettingsManager: NSObject {
 	
 	// MARK:- Save and fetch stuff
 	
-	func setObject(object: AnyObject, key: String) {
-		defaults.setObject(object, forKey: key)
+	func setObject(_ object: AnyObject, key: String) {
+		defaults.set(object, forKey: key)
 	}
 	
-	func getObject(key: String) -> AnyObject? {
-		return defaults.objectForKey(key)
+	func getObject(_ key: String) -> AnyObject? {
+		return defaults.object(forKey: key) as AnyObject
 	}
 	
-	func setBool(bool: Bool, key: String) {
-		defaults.setBool(bool, forKey: key)
+	func setBool(_ bool: Bool, key: String) {
+		defaults.set(bool, forKey: key)
 	}
 	
-	func getBool(key: String) -> Bool {
-		return defaults.boolForKey(key)
+	func getBool(_ key: String) -> Bool {
+		return defaults.bool(forKey: key)
 	}
 	
-	func setInteger(value: Int, key: String) {
-		defaults.setInteger(value, forKey: key)
+	func setInteger(_ value: Int, key: String) {
+		defaults.set(value, forKey: key)
 	}
 	
-	func getInteger(key: String) -> Int {
-		return defaults.integerForKey(key)
+	func getInteger(_ key: String) -> Int {
+		return defaults.integer(forKey: key)
 	}
 	
-	func setFloat(value: Float, key: String) {
-		defaults.setFloat(value, forKey: key)
+	func setFloat(_ value: Float, key: String) {
+		defaults.set(value, forKey: key)
 	}
 	
-	func getFloat(key: String) -> Float {
-		return defaults.floatForKey(key)
+	func getFloat(_ key: String) -> Float {
+		return defaults.float(forKey: key)
 	}
 	
-	func deleteObject(key: String) {
-		defaults.removeObjectForKey(key)
+	func deleteObject(_ key: String) {
+		defaults.removeObject(forKey: key)
 	}
 
 }
