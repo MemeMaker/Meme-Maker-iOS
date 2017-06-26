@@ -108,13 +108,11 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 		if (Date().timeIntervalSince(SettingsManager.sharedManager().getLastUpdateDate())) > 7 * 86400 {
 //			SVProgressHUD.showWithStatus("Fetching latest memes, Just for you!")
 			print("Fetching latest memes, just for you!")
-			do {
-				let _ = try Reachability.reachabilityForInternetConnection()
-				self.fetchedMemes = NSMutableArray()
-				self.fetchMemes(1)
-			}
-			catch _ {
-				SVProgressHUD.showError(withStatus: "No connection!")
+			if let reachable = Reachability.init()?.isReachable {
+				if reachable {
+					self.fetchedMemes = NSMutableArray()
+					self.fetchMemes(1)
+				}
 			}
 		}
 		
@@ -131,7 +129,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func fetchLocalMemes() {
-		let request = NSFetchRequest(entityName: "XMeme")
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "XMeme")
 		if let lastSortKey = SettingsManager.sharedManager().getObject(kSettingsLastSortKey) {
 			request.sortDescriptors = [NSSortDescriptor.init(key: lastSortKey as? String, ascending: true)]
 		}
@@ -155,11 +153,11 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	}
 	
 	func fetchMemes(_ paging: Int) -> Void {
-		let request = NSMutableURLRequest(url: apiMemesPaging(paging))
+		var request = URLRequest(url: apiMemesPaging(paging))
 		request.httpMethod = "GET"
-		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+		let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 			if (error != nil) {
-				print("Error: ", error?.localizedDescription)
+				print("Error: ", error?.localizedDescription ?? "nil")
 				DispatchQueue.main.async(execute: {
 					SVProgressHUD.showError(withStatus: "No connection!")
 				})
@@ -171,10 +169,13 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-					let code = json.value(forKey: "code") as! Int
+					guard let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: AnyObject] else {
+						print("Error in parsing")
+						return
+					}
+					let code = json["code"] as! Int
 					if (code == 200) {
-						let jsonmemes = json.value(forKey: "data") as! NSArray
+						let jsonmemes = json["data"] as! NSArray
 						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
 						for meme in memesArray {
 							self.fetchedMemes.add(meme)
@@ -206,7 +207,8 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 					return
 				}
 			}
-		}) .resume()
+		}
+		task.resume()
 	}
 	
 	// MARK: - Bar Button Actions
@@ -364,7 +366,7 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	// MARK: - DZN Empty Data Set
 	
 	func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-		let attrs = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSForegroundColorAttributeName: globalTintColor]
+		let attrs = [NSFontAttributeName: UIFont(name: "EtelkaNarrowTextPro", size: 26)!, NSForegroundColorAttributeName: globalTintColor] as [String : Any]
 		let title = NSMutableAttributedString(string: "No memes found!", attributes: attrs)
 		if (self.searchBar.text?.characters.count > 0) {
 			title.setAttributedString(NSAttributedString(string: "No results", attributes: attrs))
@@ -545,21 +547,21 @@ class MemesViewController: UIViewController, UICollectionViewDataSource, UIColle
 	
 	func showTutorial() -> Void {
 		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
-		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
+		let walkthrough = storyboard.instantiateViewController(withIdentifier: "WalkthroughBase") as! BWWalkthroughViewController
 		let page1 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage1")
 		let page2 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage2")
 		let page3 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage3")
 		let page4 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage4")
 		walkthrough.delegate = self
-		walkthrough.addViewController(page1)
-		walkthrough.addViewController(page2)
-		walkthrough.addViewController(page3)
-		walkthrough.addViewController(page4)
+		walkthrough.add(viewController: page1)
+		walkthrough.add(viewController: page2)
+		walkthrough.add(viewController: page3)
+		walkthrough.add(viewController: page4)
 		if (UI_USER_INTERFACE_IDIOM() == .pad) {
-			self.splitViewController?.presentViewController(walkthrough, animated: true, completion: nil)
+			self.splitViewController?.present(walkthrough, animated: true, completion: nil)
 		}
 		else {
-			self.navigationController?.presentViewController(walkthrough, animated: true, completion: nil)
+			self.navigationController?.present(walkthrough, animated: true, completion: nil)
 		}
 	}
 	

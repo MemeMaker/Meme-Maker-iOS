@@ -18,11 +18,11 @@ class XCreated: NSManagedObject {
 	
 	class func createOrUpdateSubmissionWithData(_ data: NSDictionary, context: NSManagedObjectContext) -> NSManagedObject {
 		
-		let ID: Int32 = (data.object(forKey: "memeID")?.int32Value)!
+		let ID: Int32 = ((data.object(forKey: "memeID") as AnyObject).int32Value)!
 		let topText = data.object(forKey: "topText") as? String
 		let bottomText = data.object(forKey: "bottomText") as? String
 		
-		let fetchRequest = NSFetchRequest(entityName: "XCreated")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XCreated")
 		fetchRequest.predicate = NSPredicate(format: "memeID == %i AND topText == %@ AND bottomText == %@", ID, topText!, bottomText!)
 		
 		var submission: XCreated!

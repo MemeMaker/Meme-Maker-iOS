@@ -110,13 +110,20 @@ class MemesCollectionViewCell: UICollectionViewCell {
 		
 	}
 	
-	func downloadImageWithURL(_ URL: Foundation.URL, filePath: String) -> Void {
-		SDWebImageDownloader.shared().downloadImage(with: URL, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
+	func downloadImageWithURL(_ url: Foundation.URL, filePath: String) -> Void {
+		SDWebImageDownloader.shared().downloadImage(with: url, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
 			if (success && error == nil) {
-				data?.write(toFile: filePath, atomically: true)
-				DispatchQueue.main.async(execute: {
-					self.updateImageView()
-				})
+				if let fileURL = URL(string: filePath) {
+					do {
+						try data?.write(to: fileURL, options: .atomicWrite)
+						DispatchQueue.main.async(execute: {
+							self.updateImageView()
+						})
+					}
+					catch _ {
+						print("")
+					}
+				}
 			}
 		})
 	}

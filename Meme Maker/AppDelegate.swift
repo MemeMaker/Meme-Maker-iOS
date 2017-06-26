@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			manager.setBool(true, key: kSettingsDarkMode)
 			manager.setBool(false, key: kSettingsUploadMemes)
 			manager.setInteger(3, key: kSettingsNumberOfElementsInGrid)
-			manager.setObject("rank", key: kSettingsLastSortKey)
+			manager.setObject("rank" as AnyObject, key: kSettingsLastSortKey)
 			print("Unarchiving to \(getImagesFolder())")
-			SSZipArchive.unzipFile(atPath: Bundle.main.path(forResource: "defaultMemes", ofType: "zip"), toDestination: getImagesFolder())
+			SSZipArchive.unzipFile(atPath: Bundle.main.path(forResource: "defaultMemes", ofType: "zip")!, toDestination: getImagesFolder())
 			saveDefaultMemes()
 		}
 		manager.setInteger(timesLaunched + 1, key: kSettingsTimesLaunched)
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			SettingsManager.sharedManager().setInteger(3, key: kSettingsNumberOfElementsInGrid)
 		}
 		if ("rank memeID name".contains(SettingsManager.sharedManager().getObject(kSettingsLastSortKey) as! String)) {
-			SettingsManager.sharedManager().setObject("rank", key: kSettingsLastSortKey)
+			SettingsManager.sharedManager().setObject("rank" as AnyObject, key: kSettingsLastSortKey)
 		}
 		
 		SVProgressHUD.setDefaultMaskType(.gradient)
@@ -201,7 +201,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	        // Report any error we got.
 	        var dict = [String: AnyObject]()
 	        dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
-	        dict[NSLocalizedFailureReasonErrorKey] = failureReason
+	        dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
 
 	        dict[NSUnderlyingErrorKey] = error as NSError
 	        let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)

@@ -250,35 +250,35 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		let imageSize = baseImage?.size as CGSize!
 		
-		let maxHeight = imageSize.height/2 + 2	// Max height of top and bottom texts
+		let maxHeight = (imageSize?.height)!/2 + 2	// Max height of top and bottom texts
 		let stringDrawingOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 		
-		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercased : topTextAttr.text;
-		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercased : bottomTextAttr.text;
+		let topText = topTextAttr.uppercase ? topTextAttr.text.uppercased : String(topTextAttr.text);
+		let bottomText = bottomTextAttr.uppercase ? bottomTextAttr.text.uppercased : String(bottomTextAttr.text);
 		
-		var topTextRect = topText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-		topTextAttr.rect = CGRect(x: 0, y: 8, width: imageSize.width, height: imageSize.height/2 - 8)
+		var topTextRect = topText.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextAttr.rect = CGRect(x: 0, y: 8, width: (imageSize?.width)!, height: (imageSize?.height)!/2 - 8)
 		// Adjust top size
 		while (ceil(topTextRect.size.height) > maxHeight) {
 			topTextAttr.fontSize -= 1;
-			topTextRect = topText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+			topTextRect = topText.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 		}
 		
-		var bottomTextRect = bottomText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		var bottomTextRect = bottomText.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		var expectedBottomSize = bottomTextRect.size
 		// Bottom rect starts from bottom, not from center.y
-		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: expectedBottomSize.height);
+		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize?.height)! - (expectedBottomSize.height), width: (imageSize?.width)!, height: expectedBottomSize.height);
 		// Adjust bottom size
 		while (ceil(bottomTextRect.size.height) > maxHeight) {
 			bottomTextAttr.fontSize -= 1;
-			bottomTextRect = bottomText.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+			bottomTextRect = bottomText.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 			expectedBottomSize = bottomTextRect.size
-			bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: expectedBottomSize.height)
+			bottomTextAttr.rect = CGRect(x: 0, y: (imageSize?.height)! - (expectedBottomSize.height), width: (imageSize?.width)!, height: expectedBottomSize.height)
 		}
 		
-		UIGraphicsBeginImageContext(imageSize)
+		UIGraphicsBeginImageContext(imageSize!)
 		
-		baseImage?.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+		baseImage?.draw(in: CGRect(x: 0, y: 0, width: (imageSize?.width)!, height: (imageSize?.height)!))
 		
 		let topRect = CGRect(x: topTextAttr.rect.origin.x + topTextAttr.offset.x, y: topTextAttr.rect.origin.y + topTextAttr.offset.y, width: topTextAttr.rect.size.width, height: topTextAttr.rect.size.height)
 		let bottomRect = CGRect(x: bottomTextAttr.rect.origin.x + bottomTextAttr.offset.x, y: bottomTextAttr.rect.origin.y + bottomTextAttr.offset.y, width: bottomTextAttr.rect.size.width, height: bottomTextAttr.rect.size.height)
@@ -306,7 +306,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			// Access has not been determined.
 			PHPhotoLibrary.requestAuthorization({ (newStatus) in
 				if (newStatus == PHAuthorizationStatus.authorized) {
-					saveImageToPhotos()
+					self.saveImageToPhotos()
 				} else {
 					
 				}
@@ -504,7 +504,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	// MARK: - Text field delegate
 	
 	@IBAction func topTextChangedAction(_ sender: AnyObject) {
-		topTextAttr.text = "\(topTextField.text!)"
+		topTextAttr.text = "\(topTextField.text!)" as NSString
 		topTextAttr.saveAttributes("topAttr")
 		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
 			cookImage()
@@ -512,7 +512,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	}
 	
 	@IBAction func bottomTextChangedAction(_ sender: AnyObject) {
-		bottomTextAttr.text = "\(bottomTextField.text!)"
+		bottomTextAttr.text = "\(bottomTextField.text!)" as NSString
 		bottomTextAttr.saveAttributes("bottomAttr")
 		if (SettingsManager.sharedManager().getBool(kSettingsContinuousEditing)) {
 			cookImage()
@@ -545,7 +545,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		if (textField == self.topTextField) {
 			if let topText = self.meme?.topText as String! {
 				if (topText.characters.count > 0) {
-					self.topTextAttr.text = topText
+					self.topTextAttr.text = topText as NSString
 					self.topTextField.text = topText
 				}
 			}
@@ -553,7 +553,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		else if (textField == self.bottomTextField) {
 			if let bottomText = self.meme?.bottomText as String! {
 				if (bottomText.characters.count > 0) {
-					self.bottomTextAttr.text = bottomText
+					self.bottomTextAttr.text = bottomText as NSString
 					self.bottomTextField.text = bottomText
 				}
 			}
@@ -582,11 +582,11 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		
 		print("upload url: \(URLString)")
 		
-		let request = NSMutableURLRequest(url: URL!)
+		var request = URLRequest(url: URL!)
 		request.httpMethod = "POST"
 		
 		let postBodyString =  NSString(format: "topText=%@&bottomText=%@", topTextAttr.text!, bottomTextAttr.text!)
-		let postData = postBodyString.data(using: String.Encoding.utf8)
+		let postData = postBodyString.data(using: String.Encoding.utf8.rawValue)
 		request.httpBody = postData
 		
 		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
@@ -600,7 +600,7 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 			if (data != nil) {
 				do {
 					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-					let code = json.value(forKey: "code") as! Int
+					let code = (json as AnyObject).value(forKey: "code") as! Int
 					if (code == 201) {
 						print("Upload success")
 					}
@@ -627,19 +627,21 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 		}
 	}
 	
-	func downloadImageWithURL(_ URL: Foundation.URL, filePath: String) -> Void {
-		SDWebImageDownloader.shared().downloadImage(with: URL, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
-			if (success) {
-				do {
-					try data.write(toFile: filePath, options: .atomicWrite)
+	func downloadImageWithURL(_ url: Foundation.URL, filePath: String) -> Void {
+		SDWebImageDownloader.shared().downloadImage(with: url, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
+			if (success && error == nil) {
+				if let fileURL = URL(string: filePath) {
+					do {
+						try data?.write(to: fileURL, options: .atomicWrite)
+					}
+					catch _ {}
+					DispatchQueue.main.async(execute: {
+						self.baseImage = image
+						self.memeImageView.image = image
+						self.backgroundImageView.image = image
+						self.cookImage()
+					})
 				}
-				catch _ {}
-				DispatchQueue.main.async(execute: {
-					self.baseImage = image
-					self.memeImageView.image = image
-					self.backgroundImageView.image = image
-					self.cookImage()
-				})
 			}
 		})
 	}

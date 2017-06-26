@@ -134,37 +134,39 @@ func getImageByDrawingOnImage(_ image: UIImage, topText: String, bottomText: Str
 	topTextAttr.strokeWidth = 0.5
 	topTextAttr.text = topText as NSString
 	let bottomTextAttr = XTextAttributes(savename: "boto")
-	bottomTextAttr.text = bottomText as NSString
+	bottomTextAttr
+		.text = bottomText as NSString
 	bottomTextAttr.fontSize = 44
 	bottomTextAttr.font = UIFont(name: "LeagueGothic-Regular", size: 44)!
 	bottomTextAttr.strokeWidth = 0.5
 	
-	let maxHeight = imageSize?.height/2	// Max height of top and bottom texts
+	
+	let maxHeight = (imageSize?.height)!/2	// Max height of top and bottom texts
 	let stringDrawingOptions: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
 	
-	var topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
-	topTextAttr.rect = CGRect(x: 0, y: 0, width: imageSize?.width, height: imageSize.height/2)
+	var topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+	topTextAttr.rect = CGRect(x: 0, y: 0, width: (imageSize?.width)!, height: (imageSize?.height)!/2)
 	// Adjust top size
 	while (ceil(topTextRect.size.height) > maxHeight) {
 		topTextAttr.fontSize -= 1;
-		topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
+		topTextRect = topTextAttr.text.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: topTextAttr.getTextAttributes(), context: nil)
 	}
 	
-	var bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+	var bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 	var expectedBottomSize = bottomTextRect.size
 	// Bottom rect starts from bottom, not from center.y
-	bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: imageSize.height/2);
+	bottomTextAttr.rect = CGRect(x: 0, y: (imageSize?.height)! - (expectedBottomSize.height), width: (imageSize?.width)!, height: (imageSize?.height)!/2);
 	// Adjust bottom size
 	while (ceil(bottomTextRect.size.height) > maxHeight) {
 		bottomTextAttr.fontSize -= 1;
-		bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: imageSize.width, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
+		bottomTextRect = bottomTextAttr.text.boundingRect(with: CGSize(width: (imageSize?.width)!, height: maxHeight), options: stringDrawingOptions, attributes: bottomTextAttr.getTextAttributes(), context: nil)
 		expectedBottomSize = bottomTextRect.size
-		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize.height) - (expectedBottomSize.height), width: imageSize.width, height: imageSize.height/2)
+		bottomTextAttr.rect = CGRect(x: 0, y: (imageSize?.height)! - (expectedBottomSize.height), width: (imageSize?.width)!, height: (imageSize?.height)!/2)
 	}
 	
 	UIGraphicsBeginImageContext(imageSize!)
 	
-	baseImage.draw(in: CGRect(x: 0, y: 0, width: imageSize?.width, height: imageSize.height))
+	baseImage.draw(in: CGRect(x: 0, y: 0, width: (imageSize?.width)!, height: (imageSize?.height)!))
 	
 	topText.uppercased().draw(in: topTextAttr.rect, withAttributes: topTextAttr.getTextAttributes())
 	bottomText.uppercased().draw(in: bottomTextAttr.rect, withAttributes: bottomTextAttr.getTextAttributes())

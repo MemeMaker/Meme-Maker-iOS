@@ -46,8 +46,8 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	var creations = NSMutableArray()
 	var fetchedCreations = NSMutableArray()
 	
-	var context: NSManagedObjectContext? = nil
-	var fetchRequest: NSFetchRequest? = nil
+	var context: NSManagedObjectContext?
+	var fetchRequest: NSFetchRequest<XMeme>?
 
 	var longPressGesture: UILongPressGestureRecognizer?
 	
@@ -61,7 +61,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
-		let request = NSFetchRequest(entityName: "XCreated")
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "XCreated")
 		request.sortDescriptors = [NSSortDescriptor.init(key: "dateCreated", ascending: false)]
 		do {
 			let fetchedArray = try self.context?.fetch(request)
@@ -94,10 +94,11 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	@IBAction func refershAction(_ sender: AnyObject) {
 		SVProgressHUD.show(withStatus: "Loading...")
 		do {
-			let reachability = try Reachability.reachabilityForInternetConnection()
-			if (reachability.isReachable()) {
-				self.fetchedCreations = NSMutableArray()
-				self.fetchCreations(1)
+			if let reachable = Reachability.init()?.isReachable {
+				if reachable {
+					self.fetchedCreations = NSMutableArray()
+					self.fetchCreations(1)
+				}
 			}
 		}
 		catch _ {
@@ -107,13 +108,13 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 	
 	func fetchCreations(_ paging: Int) -> Void {
 		
-		let request = NSMutableURLRequest(url: apiSubmissionsPaging(paging))
+		var request = URLRequest(url: apiSubmissionsPaging(paging))
 		request.httpMethod = "GET"
 		
 		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
 			
 			if (error != nil) {
-				print("Error: %@", error?.localizedDescription)
+				print("Error: %@", error?.localizedDescription ?? "nil")
 				DispatchQueue.main.async(execute: {
 					SVProgressHUD.showError(withStatus: "No connection!")
 				})
@@ -127,10 +128,10 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-					let code = json.value(forKey: "code") as! Int
+					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+					let code = json["code"] as! Int
 					if (code == 200) {
-						let jsoncreations = json.value(forKey: "data") as! NSArray
+						let jsoncreations = json["data"] as! NSArray
 						let creationsArray = XCreated.getAllSubmissionsFromArray(jsoncreations, context: asyncContext)!
 						for creation in creationsArray {
 							self.fetchedCreations.add(creation)
@@ -183,7 +184,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 		}
 		else {
 			var meme: XMeme!
-			let fetchRequest = NSFetchRequest(entityName: "XMeme")
+			let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XMeme")
 			fetchRequest.predicate = NSPredicate(format: "memeID == %li", creation.memeID)
 			do {
 				let fetchedArray = try self.context!.fetch(fetchRequest)
@@ -191,7 +192,7 @@ class BrowseViewController: UIViewController, UICollectionViewDataSource, UIColl
 					meme = fetchedArray.first as! XMeme
 					if let imageURLString = meme.image {
 						let imageURL = URL(string: imageURLString)
-						DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
+						DispatchQueue.main.async(execute: {
 							let data = try? Data(contentsOf: imageURL!)
 							try? data?.write(to: URL(fileURLWithPath: imagePath), options: [.atomic])
 							if let dimage = UIImage(data: data!) {

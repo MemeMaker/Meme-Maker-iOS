@@ -41,7 +41,7 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 	var userCreations = NSMutableArray()
 	
 	var context: NSManagedObjectContext?
-	var fetchRequest: NSFetchRequest<NSFetchRequestResult>?
+	var fetchRequest: NSFetchRequest<XUserCreation>?
 	
 	var editorVC: EditorViewController?
 	
@@ -55,7 +55,7 @@ class MyMemesViewController: UIViewController, UICollectionViewDelegate, UIColle
 		let appDelegate = UIApplication.shared.delegate as! AppDelegate
 		context = appDelegate.managedObjectContext
 		
-		fetchRequest = NSFetchRequest(entityName: "XUserCreation")
+		fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XUserCreation") as! NSFetchRequest<XUserCreation>
 		fetchRequest?.sortDescriptors = [NSSortDescriptor.init(key: "createdOn", ascending: false)]
 		
 		if (UI_USER_INTERFACE_IDIOM() == .pad) {

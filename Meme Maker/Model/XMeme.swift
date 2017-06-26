@@ -18,9 +18,9 @@ class XMeme: NSManagedObject {
 	
 	class func createOrUpdateMemeWithData(_ data: NSDictionary, context: NSManagedObjectContext) -> XMeme {
 		
-		let ID: Int = (data.object(forKey: "ID")?.intValue)!
+		let ID: Int = ((data.object(forKey: "ID") as AnyObject).intValue)!
 		
-		let fetchRequest = NSFetchRequest(entityName: "XMeme")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XMeme")
 		fetchRequest.predicate = NSPredicate(format: "memeID == %li", ID)
 		
 		var meme: XMeme!
@@ -34,7 +34,7 @@ class XMeme: NSManagedObject {
 			else {
 //				print("Inserting meme \(ID).")
 				meme = NSEntityDescription.insertNewObject(forEntityName: "XMeme", into: context) as! XMeme
-				meme.memeID = (data.object(forKey: "ID")?.int32Value)!
+				meme.memeID = ((data.object(forKey: "ID") as AnyObject).int32Value)!
 			}
 		}
 		catch _ {
@@ -49,7 +49,7 @@ class XMeme: NSManagedObject {
 		meme.image = data.object(forKey: "image") as? String
 		meme.imageURL = URL(string: meme.image!)
 		meme.thumb = data.object(forKey: "thumb") as? String
-		meme.rank = (data.object(forKey: "rank")?.int32Value)!
+		meme.rank = ((data.object(forKey: "rank") as AnyObject).int32Value)!
 	
 		return meme
 		

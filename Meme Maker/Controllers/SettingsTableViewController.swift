@@ -158,7 +158,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		if (section == 0) {
-			return quotes.object(at: arc4random() % quotes.count) as? String
+			return quotes.object(at: Int(arc4random()) % quotes.count) as? String
 		}
 		return ""
 	}
@@ -195,13 +195,11 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 		if (indexPath.section == tableView.numberOfSections - 4) {
 			// Update...
 			SVProgressHUD.show(withStatus: "Fetching latest memes, Just for you!")
-			do {
-				let _ = try Reachability.reachabilityForInternetConnection()
-				self.fetchedMemes = NSMutableArray()
-				self.fetchMemes(1)
-			}
-			catch _ {
-				SVProgressHUD.showError(withStatus: "No connection!")
+			if let reachable = Reachability.init()?.isReachable {
+				if reachable {
+					self.fetchedMemes = NSMutableArray()
+					self.fetchMemes(1)
+				}
 			}
 		}
 		
@@ -230,17 +228,17 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	func showTutorial() -> Void {
 		let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
-		let walkthrough = storyboard.instantiateViewControllerWithIdentifier("WalkthroughBase") as! BWWalkthroughViewController
+		let walkthrough = storyboard.instantiateViewController(withIdentifier: "WalkthroughBase") as! BWWalkthroughViewController
 		let page1 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage1")
 		let page2 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage2")
 		let page3 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage3")
 		let page4 = storyboard.instantiateViewController(withIdentifier: "WalkthroughPage4")
 		walkthrough.delegate = self
-		walkthrough.addViewController(page1)
-		walkthrough.addViewController(page2)
-		walkthrough.addViewController(page3)
-		walkthrough.addViewController(page4)
-		self.presentViewController(walkthrough, animated: true, completion: nil)
+		walkthrough.add(viewController: page1)
+		walkthrough.add(viewController: page2)
+		walkthrough.add(viewController: page3)
+		walkthrough.add(viewController: page4)
+		self.present(walkthrough, animated: true, completion: nil)
 	}
 	
 	// MARK: - Walkthrough delegate
@@ -271,7 +269,7 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	// MARK: - Fetch Memes
 	
 	func updateCount() -> Void {
-		let request = NSFetchRequest(entityName: "XMeme")
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "XMeme")
 		do {
 			let fetchedArray = try self.context?.fetch(request)
 			memes = NSMutableArray(array: fetchedArray!)
@@ -284,13 +282,13 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 	
 	func fetchMemes(_ paging: Int) -> Void {
 		
-		let request = NSMutableURLRequest(url: apiMemesPaging(paging))
+		var request = URLRequest(url: apiMemesPaging(paging))
 		request.httpMethod = "GET"
 		
-		URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+		let task = URLSession.shared.dataTask(with:  request) { (data, response, error) in
 			
 			if (error != nil) {
-				print("Error: %@", error?.localizedDescription)
+				print("Error: %@", error?.localizedDescription ?? "nil")
 				DispatchQueue.main.async(execute: {
 					SVProgressHUD.showError(withStatus: "No connection!")
 				})
@@ -305,10 +303,13 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 					let asyncContext: NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 					asyncContext.persistentStoreCoordinator = persistentStoreCoordinator
 					
-					let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-					let code = json.value(forKey: "code") as! Int
+					guard let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: AnyObject] else {
+						print("Unable to parse JSON")
+						return
+					}
+					let code = json["code"] as! Int
 					if (code == 200) {
-						let jsonmemes = json.value(forKey: "data") as! NSArray
+						let jsonmemes = json["data"] as! NSArray
 						let memesArray = XMeme.getAllMemesFromArray(jsonmemes, context: asyncContext)!
 						for meme in memesArray {
 							self.fetchedMemes.add(meme)
@@ -336,8 +337,9 @@ class SettingsTableViewController: UITableViewController, MFMailComposeViewContr
 				}
 				
 			}
-			
-			}) .resume()
+		}
+		
+		task.resume()
 		
 	}
 

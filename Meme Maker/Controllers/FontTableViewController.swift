@@ -291,7 +291,7 @@ class FontTableViewController: UITableViewController {
 		
 		let currentDict = selectedAttrs.object(at: currentFTType) as! NSDictionary
 		
-		cell.ticked = dict["value"]!.isEqual(currentDict["value"])
+		cell.ticked = (dict["value"]! as AnyObject).isEqual(currentDict["value"])
 		
 		if (currentFTType == 0) {
 			cell.fontNameLabel?.font = UIFont(name: dict["value"] as! String, size: cellFontSize)!

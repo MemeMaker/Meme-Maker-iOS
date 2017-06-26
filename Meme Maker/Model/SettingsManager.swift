@@ -23,18 +23,39 @@ let kSettingsNumberOfElementsInGrid	= "kNumberOfElementsInGrid"
 var globalBackColor: UIColor = UIColor(hexString: "EFF0EF")
 var globalTintColor: UIColor = UIColor(hexString: "326400")
 
+extension UIColor {
+	convenience init(hexString: String) {
+		let scanner = Scanner(string: hexString)
+		scanner.scanLocation = 0
+		
+		var rgbValue: UInt64 = 0
+		
+		scanner.scanHexInt64(&rgbValue)
+		
+		let r = (rgbValue & 0xff0000) >> 16
+		let g = (rgbValue & 0xff00) >> 8
+		let b = rgbValue & 0xff
+		
+		self.init(
+			red: CGFloat(r) / 0xff,
+			green: CGFloat(g) / 0xff,
+			blue: CGFloat(b) / 0xff, alpha: 1
+		)
+	}
+}
+
 func updateGlobalTheme () -> Void {
 	if isDarkMode() {
 		globalBackColor = UIColor(white: 0.12, alpha: 1)
 		globalTintColor = UIColor(hexString: "AAFA78")
 		UIApplication.shared.statusBarStyle = .lightContent
-		IQKeyboardManager.sharedManager().keyboardAppearance = .Dark
+		IQKeyboardManager.sharedManager().keyboardAppearance = .dark
 	}
 	else {
 		globalBackColor = UIColor(hexString: "EFF0EF")
 		globalTintColor = UIColor(hexString: "326400")
 		UIApplication.shared.statusBarStyle = .default
-		IQKeyboardManager.sharedManager().keyboardAppearance = .Light
+		IQKeyboardManager.sharedManager().keyboardAppearance = .light
 	}
 	
 	UINavigationBar.appearance().backgroundColor = globalBackColor
@@ -93,11 +114,11 @@ class SettingsManager: NSObject {
 	
 	// MARK:- Save and fetch stuff
 	
-	func setObject(_ object: AnyObject, key: String) {
+	func setObject(_ object: Any?, key: String) {
 		defaults.set(object, forKey: key)
 	}
 	
-	func getObject(_ key: String) -> AnyObject? {
+	func getObject(_ key: String) -> Any? {
 		return defaults.object(forKey: key)
 	}
 	

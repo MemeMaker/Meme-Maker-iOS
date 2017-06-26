@@ -24,7 +24,7 @@ class XUserCreation: NSManagedObject {
 	
 	class func createOrUpdateUserCreationWithMeme(_ meme: XMeme, topText: String, bottomText: String, dateCreated: Date, context: NSManagedObjectContext) -> XUserCreation {
 		
-		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XUserCreation")
 		fetchRequest.predicate = NSPredicate(format: "memeID == %li AND topText == %@ AND bottomText == %@", meme.memeID, topText, bottomText)
 		
 		var creation: XUserCreation!
@@ -59,7 +59,7 @@ class XUserCreation: NSManagedObject {
 	
 	class func createOrUpdateUserCreationWithUserImage(_ image: UIImage, topText: String, bottomText: String, dateCreated: Date, context: NSManagedObjectContext) -> XUserCreation {
 		
-		let fetchRequest = NSFetchRequest(entityName: "XUserCreation")
+		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "XUserCreation")
 		fetchRequest.predicate = NSPredicate(format: "topText == %@ AND bottomText == %@", topText, bottomText)
 		
 		var creation: XUserCreation!
