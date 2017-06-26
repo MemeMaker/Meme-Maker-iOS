@@ -630,18 +630,16 @@ class EditorViewController: UIViewController, MemesViewControllerDelegate, UITex
 	func downloadImageWithURL(_ url: Foundation.URL, filePath: String) -> Void {
 		SDWebImageDownloader.shared().downloadImage(with: url, options: .progressiveDownload, progress: nil, completed: { (image, data, error, success) in
 			if (success && error == nil) {
-				if let fileURL = URL(string: filePath) {
-					do {
-						try data?.write(to: fileURL, options: .atomicWrite)
-					}
-					catch _ {}
-					DispatchQueue.main.async(execute: {
-						self.baseImage = image
-						self.memeImageView.image = image
-						self.backgroundImageView.image = image
-						self.cookImage()
-					})
+				do {
+					try data?.write(to: URL(fileURLWithPath: filePath), options: .atomicWrite)
 				}
+				catch _ {}
+				DispatchQueue.main.async(execute: {
+					self.baseImage = image
+					self.memeImageView.image = image
+					self.backgroundImageView.image = image
+					self.cookImage()
+				})
 			}
 		})
 	}

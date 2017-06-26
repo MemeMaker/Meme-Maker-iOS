@@ -167,5 +167,9 @@
 			<string>ExportIcon</string>
 		</dict>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Meme Maker would like to have access to the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Meme Maker would like to have access to the photo gallery.</string>
 </dict>
 </plist>
