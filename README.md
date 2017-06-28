@@ -3,7 +3,7 @@
 ##### Add customized text to popular images, or choose your own, share with the world.
 
 --------------------
-##Screens
+## Screens
 
 [![](http://a5.mzstatic.com/us/r30/Purple20/v4/8b/f3/00/8bf30030-cb42-3cbd-7c67-f53503a713c8/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
 [![](http://a1.mzstatic.com/us/r30/Purple20/v4/eb/7b/2e/eb7b2e0b-5bdf-d996-44f2-fbc4adb8f253/screen322x572.jpeg)](https://itunes.apple.com/app/id962121383)
@@ -13,7 +13,7 @@
 [![](http://a2.mzstatic.com/us/r30/Purple20/v4/09/37/d3/0937d3af-7279-8989-f8e0-121e71040013/screen480x480.jpeg)](https://itunes.apple.com/app/id962121383)
 
 --------------------
-##Features
+## Features
 
 - Select or search a meme from a huge collection.
 - Swipe up to bring up editing options.
@@ -44,11 +44,10 @@
 - [TextFieldEffects](https://github.com/raulriera/TextFieldEffects) for beautiful text fields.
 - [SDWebImage](https://github.com/rs/SDWebImage) for caching and async loading of images.
 - [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) as a clean and minimal heads up display. 
-- [ChameleonFramework](https://github.com/ViccAlexander/Chameleon) for global app theming.
+- [ReachabilitySwift](https://github.com/ashleymills/Reachability.swift) for network check.
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet) to easily handle empty data sets.
 - [SSZipArchive](https://github.com/soffes/ssziparchive) as zip archive utility.
 - [BWWalkthrough](https://github.com/ariok/BWWalkthrough) as drop in walkthrough screen utility.
-
 
 --------------------
 
